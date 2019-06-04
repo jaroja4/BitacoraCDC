@@ -1,0 +1,39 @@
+.acoordion{    
+    background-color: #fff;
+    border:1px solid #eaefe9;     
+    font-size: 14px;
+}
+.panel{
+    margin-bottom: 0px;
+}
+.acoordion-step {     
+    border-top: 1px solid #f2f2f2;
+    color: #666;
+    font-size: 14px;
+    padding: 15px;
+    position: relative;
+}
+
+.acoordion-step-number {
+    border-radius: 50%;
+    border: 1px solid #666;
+    display: inline-block;
+    font-size: 12px;
+    height: 32px;
+    margin-right: 26px;
+    padding: 6px;
+    text-align: center;
+    width: 32px;
+}
+.acoordion-step-title{ 
+    font-size: 18px;
+    font-weight: bold;
+    vertical-align: middle;display: inline-block; margin: 0px;
+     }
+ 
+.acoordion-address-step .form-group{
+    margin-bottom: 18px;
+    display: inline-block;
+    width: 100%;}
+
+.acoordion-step-body{padding-left: 60px; padding-top: 30px;}
