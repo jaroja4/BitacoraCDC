@@ -33,14 +33,18 @@ class Formulario {
             estadoFormulario = false;
 
         if (estadoFormulario) {
-            formulario.create;
+            if ($("#btn_guardar_formulario").hasClass("actualizarFormulario"))
+                var miAccion = "Update";
+            else
+                var miAccion = "Create";
+            formulario.create(miAccion);
         } else {
             alert("Faltan Datos");
         }
     }
 
-    get create() {
-        var miAccion = 'Create';
+    create(miAccion) {
+        // var miAccion = 'Create';
 
         formulario.idDataCenter = $("#sel_centro_datos").val();
         formulario.idSala = $("#sel_sala").val();;
@@ -48,9 +52,10 @@ class Formulario {
         formulario.idAutorizador = $("#sel_autorizador").val();
         formulario.otrosDetalles = $("#otrosDetalles").val();
         formulario.motivoVisita = $("#inp_descripcion").val();
-        (typeof (formulario.fechaIngreso) == "object") ? formulario.fechaIngreso = formulario.fechaIngreso.format("YYYY-MM-DD HH:mm:ss") : true;
-        // formulario.fechaIngreso = formulario.fechaIngreso.format("YYYY-MM-DD HH:mm:ss");
-        formulario.fechaSalida = formulario.fechaSalida.format("YYYY-MM-DD HH:mm:ss");
+        // (typeof (formulario.fechaIngreso) == "object") ? formulario.fechaIngreso = formulario.fechaIngreso.format("YYYY-MM-DD HH:mm:ss") : true;
+        formulario.fechaIngreso = moment(formulario.fechaIngreso).format("YYYY-MM-DD HH:mm:ss");
+        // (typeof (formulario.fechaSalida) == "object") ? formulario.fechaSalida = formulario.fechaSalida.format("YYYY-MM-DD HH:mm:ss") : true;
+        formulario.fechaSalida = moment(formulario.fechaSalida).format("YYYY-MM-DD HH:mm:ss");
         formulario.arrayVisitantes = $('#tb_visitante_seccionado').DataTable().columns(0).data()[0];
         formulario.idEstado = $('#sel_estado').val();
         formulario.fechaSolicitud = moment().format("YYYY-MM-DD HH:mm:ss");
@@ -64,8 +69,16 @@ class Formulario {
             }
         })
             .done(function (e) {
-                // formulario.drawFormulariosbyRange(e);
-                alert("LISTO");
+                formulario.ReadAllbyRange;
+                // formulario = new Formulario();
+                $("#modal_new_form").modal("hide");
+                Swal.fire({
+                    position: 'top-end',
+                    type: 'success',
+                    title: 'Formulario Enviado',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
             })
             .fail(function (e) {
                 // formulario.showError(e);
@@ -124,6 +137,11 @@ class Formulario {
                 {
                     title: "Consecutivo",
                     data: "consecutivo",
+                    width: "5%",
+                },
+                {
+                    title: "Fecha Solicitud",
+                    data: "fechaSolicitud",
                     width: "10%",
                 },
                 {
@@ -132,14 +150,14 @@ class Formulario {
                     width: "10%",
                 },
                 {
-                    title: "Fecha Solicitud",
-                    data: "fechaSolicitud",
+                    title: "Fecha Salida",
+                    data: "fechaSalida",
                     width: "10%",
                 },
                 {
                     title: "Motivo",
                     data: "motivoVisita",
-                    width: "50%",
+                    width: "45%",
                 },
                 {
                     title: "Estado",
@@ -156,60 +174,10 @@ class Formulario {
 
     }
 
-    get carga_DataCenters() {
-        var miAccion = 'ReadAll';
-        var sel_centro_datos = $('#sel_centro_datos');
-        $.ajax({
-            type: "POST",
-            url: "class/DataCenter.php",
-            data: {
-                action: miAccion,
-                obj: JSON.stringify(formulario)
-            }
-        })
-            .done(function (e) {
-                var data = JSON.parse(e);
-                sel_centro_datos.html('');
-                $.each(data,
-                    function (key, val) {
-                        sel_centro_datos.append('<option value="' + val.id + '">' + val.nombre + '</option>');
-                    })
-                formulario.carga_SalabyDC;
-            })
-            .fail(function (e) {
-                sel_centro_datos.html('<option id="-1">Cargando...</option>');
-            });
-    }
-
-    get carga_SalabyDC() {
-        var miAccion = 'ReadSalabyDC';
-        var sel_sala = $('#sel_sala');
-        $.ajax({
-            type: "POST",
-            url: "class/Sala.php",
-            data: {
-                action: miAccion,
-                idDataCenter: $('#sel_centro_datos').val()
-            }
-        })
-            .done(function (e) {
-                var data = JSON.parse(e);
-                sel_sala.html('');
-                $.each(data,
-                    function (key, val) {
-                        sel_sala.append('<option value="' + val.id + '">' + val.nombre + '</option>');
-                    })
-            })
-            .fail(function (e) {
-                $sel_sala.html('<option id="-1">Cargando...</option>');
-            });
-    }
-
-
     get carga_Autorizador() {
     }
 
-    get cargar_datos_formulario() {
+    get cargarFormulariobyID() {
         var miAccion = 'ReadbyID';
         $.ajax({
             type: "POST",
@@ -229,36 +197,85 @@ class Formulario {
 
     drawFormulario_id(e) {
         var data_formulario = JSON.parse(e);
+        formulario.id = data_formulario.id;
+        formulario.idEstado = data_formulario.idEstado;
+        formulario.idDataCenter = data_formulario.idDataCenter
+        formulario.idSala = data_formulario.idSala;
+        formulario.idTramitante = data_formulario.idTramitante;
+        formulario.idAutorizador = data_formulario.idAutorizador;
+        formulario.idResponsable = data_formulario.idResponsable;
+        formulario.consecutivo = data_formulario.consecutivo;
+        formulario.fechaSolicitud = data_formulario.fechaSolicitud;
+        formulario.fechaIngreso = data_formulario.fechaIngreso;
+        formulario.fechaSalida = data_formulario.fechaSalida
+        formulario.motivoVisita = data_formulario.motivoVisita;
+        formulario.otrosDetalles = data_formulario.otrosDetalles;
+        formulario.arrayVisitantes = data_formulario.arrayVisitantes;
 
-        $("#sel_centro_datos").val(data_formulario.idDataCenter);        
-        formulario.carga_SalabyDC;
-        $("#sel_sala").val(data_formulario.idSala);
+        dataCenter.id = formulario.idDataCenter;
+        sala.id = formulario.idSala;
+        usuario.id = formulario.idResponsable;
 
-        usuario.id = data_formulario.idResponsable;
+        dataCenter.ReadAll;
+
         usuario.responsable_ReadbyID;
-        // $("#sel_responsable").select2({"data": [{"id":"2127","text":"Henry Ford"},{"id":"2199","text":"Tom Phillips"}]});
-        $("#sel_responsable").select2({"data": usuario.responsable_ReadbyID });
-        $('#sel_responsable').select2().trigger('change');
 
+        $("#sel_autorizador").val(formulario.idAutorizador);
+        $("#sel_estado").val(formulario.idEstado);
+        // // $("#sel_tramitante").val(data_formulario.idTramitante);
+        $("#otrosDetalles").val(formulario.otrosDetalles);
 
+        $("#dp_rangoFechaFormulario").data('daterangepicker').setStartDate(moment(formulario.fechaIngreso));
+        $("#dp_rangoFechaFormulario").data('daterangepicker').setEndDate(moment(formulario.fechaSalida));
+        $('#dp_rangoFechaFormulario span').html(moment(formulario.fechaIngreso).format('D MMMM YY - hh:mm A') + ' - ' + moment(formulario.fechaSalida).format('D MMMM YY - hh:mm A'));
+        $("#inp_descripcion").val(formulario.motivoVisita);
 
-        $("#sel_responsable").val("2127");
-        $("#sel_autorizador").val(data_formulario.idAutorizador);
-        $('#sel_estado').val(data_formulario.idEstado);
-        // $("#sel_tramitante").val(data_formulario.idTramitante);
-        $("#otrosDetalles").val(data_formulario.otrosDetalles);
-        //Rango de fecha
-        // data_formulario.fechaIngreso
-        // data_formulario.fechaSalida
-        $("#inp_descripcion").val(data_formulario.motivoVisita);
-
-        $('#tb_visitante_seccionado').DataTable().columns(0).data()[0];
-        (typeof (formulario.fechaIngreso) == "object") ?
-            formulario.fechaIngreso = formulario.fechaIngreso.format("YYYY-MM-DD HH:mm:ss") :
-            true;
+        $(formulario.arrayVisitantes).each(function (index, value) {
+            $('#tb_visitante_seccionado').DataTable().row.add(value).draw();
+        });
+        $("#btn_guardar_formulario").text("Actualizar");
+        $("#btn_guardar_formulario").addClass("actualizarFormulario");
+        $("#modal_new_form").modal("show");
     }
 
+    get clear() {
+        dataCenter.ReadAll;
 
+        usuario.id = "-1";
+        usuario.responsable_ReadAll;
+
+        $("#sel_autorizador").val("d3b95439-89c2-11e7-8f4b-005056a81613");
+        $("#sel_estado").val(0);
+        // // $("#sel_tramitante").val(data_formulario.idTramitante);
+        $("#otrosDetalles").val("");
+        var fechaIngreso = moment().locale("es");
+        var fechaSalida = moment().add(5, 'hour').locale("es");
+        $("#dp_rangoFechaFormulario").data('daterangepicker').setStartDate(fechaIngreso);
+        $("#dp_rangoFechaFormulario").data('daterangepicker').setEndDatefechaSalida
+        $('#dp_rangoFechaFormulario span').html(moment(fechaIngreso).format('D MMMM YY - hh:mm A') + ' - ' + moment(fechaSalida).format('D MMMM YY - hh:mm A'));
+        $("#inp_descripcion").val("");
+        $('#tb_visitante_seccionado').DataTable().clear().draw();
+        // $('#accordion').collapse('hide');
+        // $('.panel-collapse').collapse({
+        //     toggle: false
+        //   });
+        // $(".panel-collapse").collapse("hide");
+        // $(".panel-collapse").collapse("show");
+        // $('.panel-collapse').collapse('toggle');
+        $("#btn_guardar_formulario").removeClass("actualizarFormulario");
+        $("#btn_guardar_formulario").text("Enviar");
+
+
+        if ( !$("#collapseOne").hasClass("in") ){
+            $("#collapseOne").collapse('toggle');
+        }
+        if ( $("#collapseTwo").hasClass("in") ){
+            $("#collapseTwo").collapse('toggle');
+        }
+        if ( $("#collapseThree").hasClass("in") ){
+            $("#collapseThree").collapse('toggle');
+        }
+    }
 
 }
 

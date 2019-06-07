@@ -18,6 +18,9 @@ if( isset($_POST["action"])){
         case "ReadbyID":
             echo json_encode($formulario->ReadbyID());
             break;
+        case "Update":
+            echo json_encode($formulario->Update());
+            break;
     }
 }
 
@@ -42,8 +45,6 @@ class Formulario{
     public $read_fechaFinal = "";  
     public $arrayVisitantes = [];    
     public $otrosDetalles =[];
-    
-           
 
     function __construct(){
 
@@ -75,8 +76,65 @@ class Formulario{
         }
     }
 
+    function Update(){
+        try {
+            $sql="UPDATE formulario 
+                SET
+                idEstado = :idEstado,
+                idSala = :idSala,
+                idTramitante = :idTramitante,
+                idAutorizador = :idAutorizador,
+                idResponsable = :idResponsable,
+                fechaSolicitud = :fechaSolicitud,
+                fechaIngreso = :fechaIngreso,
+                fechaSalida = :fechaSalida,
+                motivoVisita = :motivoVisita,
+                otrosDetalles = :otrosDetalles
+                WHERE id= :id;";
+            $param= array(':id'=>$this->id, 
+                            ':idEstado'=>$this->idEstado, 
+                            ':idSala'=>$this->idSala, 
+                            ':idTramitante'=>$this->idTramitante, 
+                            ':idAutorizador'=>$this->idAutorizador, 
+                            ':idResponsable'=>$this->idResponsable, 
+                            ':fechaSolicitud'=>$this->fechaSolicitud, 
+                            ':fechaIngreso'=>$this->fechaIngreso, 
+                            ':fechaSalida'=>$this->fechaSalida, 
+                            ':motivoVisita'=>$this->motivoVisita, 
+                            ':otrosDetalles'=>$this->otrosDetalles);            
+            $data= DATA::Ejecutar($sql, $param, false);
+
+
+
+            // $sql="DELETE FROM visitante_formulario
+            //         WHERE idVisitante = :idVisitante
+            //         AND idFormulario = :idFormulario;)";
+            //     $param= array(':idVisitante'=>$visitante, ':idFormulario'=>$this->id);            
+            //     $data= DATA::Ejecutar($sql, $param);   
+            // foreach ($this->arrayVisitantes as $visitante) {
+            //     $sql="INSERT INTO visitante_formulario 
+            //     (idVisitante, idFormulario)
+            //     VALUES (:idVisitante, :idFormulario)";
+            //     $param= array(':idVisitante'=>$visitante, ':idFormulario'=>$this->id);            
+            //     $data= DATA::Ejecutar($sql, $param);   
+            // }
+             
+
+        }     
+        catch(Exception $e) {
+            error_log("[ERROR]  (".$e->getCode()."): ". $e->getMessage());
+            header('HTTP/1.0 400 Bad error');
+            die(json_encode(array(
+                'code' => $e->getCode() ,
+                'msg' => 'Error al cargar la lista'))
+            );
+        }
+
+    }
+
     function Create(){
         try {
+            $this->id = UUID::v4();
             $sql="INSERT INTO formulario 
                 (id, idEstado, idSala, idTramitante, idAutorizador, 
                 idResponsable, fechaSolicitud, fechaIngreso,
@@ -95,7 +153,7 @@ class Formulario{
                             ':fechaSalida'=>$this->fechaSalida, 
                             ':motivoVisita'=>$this->motivoVisita, 
                             ':otrosDetalles'=>$this->otrosDetalles);            
-            $data= DATA::Ejecutar($sql, $param);
+            $data= DATA::Ejecutar($sql, $param, false);
 
             foreach ($this->arrayVisitantes as $visitante) {
                 $sql="INSERT INTO visitante_formulario 
@@ -125,6 +183,7 @@ class Formulario{
                         e.nombre Estado,
                         f.fechaSolicitud,
                         f.fechaIngreso,
+                        f.fechaSalida,
                         f.motivoVisita,
                         f.otrosDetalles
                     FROM
@@ -180,9 +239,11 @@ class Formulario{
                 $this->motivoVisita = $data[0]["motivoVisita"];
                 $this->otrosDetalles = $data[0]["otrosDetalles"];
 
-                $sql="SELECT idVisitante
-                FROM visitante_formulario
-                Where idFormulario = :idFormulario;";
+                $sql="SELECT v.id, v.cedula, v.nombre text, v.empresa, v.fechaCreacion 
+                FROM usuario_n v
+                INNER JOIN visitante_formulario vf
+                ON vf.idVisitante = v.id
+                WHERE vf.idFormulario = :idFormulario;";
                 $param= array(':idFormulario'=>$this->id);            
                 $data= DATA::Ejecutar($sql, $param);   
                 if ($data){

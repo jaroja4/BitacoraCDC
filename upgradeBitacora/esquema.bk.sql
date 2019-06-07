@@ -86,7 +86,7 @@ CREATE TABLE `formulario` (
   `otrosDetalles` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `consecutivo` (`consecutivo`)
-) ENGINE=InnoDB AUTO_INCREMENT=2167 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2148 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -201,8 +201,8 @@ DROP TABLE IF EXISTS `usuario_rol`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `usuario_rol` (
   `idRol` char(36) NOT NULL,
-  `idUsuario` char(36) NOT NULL,
-  PRIMARY KEY (`idRol`,`idUsuario`)
+  `idUsuario` char(36) DEFAULT NULL,
+  PRIMARY KEY (`idRol`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -236,7 +236,7 @@ CREATE TABLE `visitante_formulario` (
   `idVisitante` char(36) NOT NULL,
   `idFormulario` char(36) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10274 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10152 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -248,4 +248,4 @@ CREATE TABLE `visitante_formulario` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-05 23:04:29
+-- Dump completed on 2019-06-04 20:47:47

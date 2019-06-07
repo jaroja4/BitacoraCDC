@@ -44,10 +44,10 @@ class Responsable{
                 INNER JOIN usuario_rol ur
                 ON ur.idUsuario = un.id
                 WHERE ur.idRol = "bcec0ea4-4a0b-4e69-b9f5-744530a765ed"
-                AND ( un.nombre LIKE "%' . $this->search_value . '%"
-                OR cedula LIKE "%' . $this->search_value . '%")
-                ORDER BY un.nombre ASC
-                LIMIT 10;';
+                AND (un.nombre LIKE "%' . $this->search_value . '%"
+                    OR cedula LIKE "%' . $this->search_value . '%")
+                    ORDER BY un.nombre ASC
+                    LIMIT 11;';
             $data= DATA::Ejecutar($sql);            
             if($data){
                 return $data;

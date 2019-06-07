@@ -1,11 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Actualizar Esquema</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <link href="./css/main.css" rel="stylesheet">
+  <style>
+
+  </style>
+
+</head>
+
+<body>
+
+  <div class="btn_iniciar">
+    <button id="btn_iniciar_upgrade" class="btn third" style="position: absolute; left: 45.5%;">INICIAR</button>
+    <div id="div_cargando" style="display: none; position: absolute;" class="lds-ripple"><div></div><div></div></div>
+</div>
+
+  <div class="ui">
+    <p class="zoom"><span class="zoom zoomin">+</span><span class="zoom zoomout">-</span></p>
+    <p class="zoomlevel"><span class="percent">50</span> % - (<span class="width"></span>px)(<span
+        class="height"></span>px)</p>
+    <p>Dead: <span class="dead">1</span></p>
+    <p>Alive: <span class="alive">0</span></p>
+    <p>Drawn: <span class="drawn">0</span></p>
+    <p><span class="fps">0</span> FPS</p>
+    <!-- <a class="save" href="" download="capture.png">Save</a> -->
+  </div>
+  <script src='./js/lodash.js'></script>
+  <script src="./js/index.js"></script>
+</body>
+<!-- jQuery -->
+<script src="../assets/js/jquery/dist/jquery.min.js"></script>
+<script>
+    $('#btn_iniciar_upgrade').click(function() {
+        $("#btn_iniciar_upgrade").css("display", "none");  
+        $("#div_cargando").css("display","")          
+        $.ajax({
+        type: "POST",
+        url: "update_shema.php",
+        data: { 
+            action: "init" 
+        }
+        })
+        .done(function( msg ) {  
+            $("#btn_iniciar_upgrade").css("display","")
+            $("#div_cargando").css("display", "none"); 
+            alert( "Listo: "+msg);
+        });    
+    });
+</script>
+</html>
+
+
 <?php
-    ini_set('max_execution_time', 1800); //300 seconds = 5 minutes
+    ini_set('max_execution_time', 3000); //300 seconds = 5 minutes
     $debug = false;
-    validarDataBase();
-    require_once( __DIR__ . DIRECTORY_SEPARATOR .".." . DIRECTORY_SEPARATOR ."class". DIRECTORY_SEPARATOR."Conexion.php");
-    loadData();
-    unirTabla_Visitante_Responsable_Usuario();
-    asignaRoles();
+
+    if( isset($_POST["action"])){        
+        $opt= $_POST["action"];
+        unset($_POST['action']);          
+        if($opt="init")
+            echo json_encode(init());
+    }
+
+    
+
+    function init(){
+        $debug = false;
+        validarDataBase();
+        require_once( __DIR__ . DIRECTORY_SEPARATOR .".." . DIRECTORY_SEPARATOR ."class". DIRECTORY_SEPARATOR."Conexion.php");
+        loadData();
+        unirTabla_Visitante_Responsable_Usuario();
+        asignaRoles();
+        
+    }
 
     function validarDataBase(){
         $db_con = new PDO('mysql:host=10.3.2.156; port=3306; charset=utf8', 'operti', 'SanPedro1');    
@@ -166,13 +237,13 @@
                 
         // SALA
         echo "Cargando Datos de Sala..." . PHP_EOL;
-        $sql='SELECT id, iddatacenter, nombre FROM controlaccesocdc_dbp.tarjeta;';
+        $sql='SELECT id, iddatacenter, nombre FROM controlaccesocdc_dbp.sala;';
         $data = DATA::Ejecutar($sql);
         if($data){
             foreach ($data as $key => $value) {
                 $count= $key;
-                $sql='INSERT IGNORE INTO control_acceso_cdc_dbp.sala (id, idDataCenter, nombre) values(:id, :idDataCenter, :nombre);';   
-                $param= array(':id'=>$value["id"], ':idDataCenter'=>$value["idDataCenter"], ':nombre'=>$value["nombre"]);
+                $sql='INSERT IGNORE INTO control_acceso_cdc_dbp.sala (id, iddatacenter, nombre) values(:id, :idDataCenter, :nombre);';   
+                $param= array(':id'=>$value["id"], ':idDataCenter'=>$value["iddatacenter"], ':nombre'=>$value["nombre"]);
                 $data = DATA::Ejecutar($sql, $param);
                 if ($GLOBALS['debug']){
                     print_r($value);
@@ -239,7 +310,7 @@
         }
 
         // RESPONSABLE
-        $sql='SELECT id, nombre, cedula, empresa FROM responsable WHERE cedula NOT IN(SELECT cedula FROM control_acceso_cdc_dbp.usuario_n);';
+        $sql='SELECT id, nombre, cedula, empresa FROM controlaccesocdc_dbp.responsable WHERE cedula NOT IN(SELECT cedula FROM control_acceso_cdc_dbp.usuario_n);';
         $data = DATA::Ejecutar($sql);    
         $count = 0;
         if($data){
@@ -276,27 +347,39 @@
     }
 
     function asignaRoles() {
-        // Asinga Rol de usuario al usuario correspondiente
-        $sql='SELECT un.id FROM control_acceso_cdc_dbp.usuario_n un 
-            INNER JOIN controlaccesocdc_dbp.usuario u 
-            ON u.nombre = un.nombre;';
-        $data = DATA::Ejecutar($sql);    
-        $count = 0;
-        if($data){
-            foreach ($data as $key => $value) {
-                $count= $key;
-                $sql='INSERT IGNORE INTO control_acceso_cdc_dbp.usuario_rol (idUsuario, idRol) values(:id, :idRol);';   
-                $param= array(':id'=>$value["id"] ?? "", ':idRol'=> "97b3927c-41de-47fd-871a-3eb6d2a57758");  
-                $data = DATA::Ejecutar($sql, $param);
-                if ($GLOBALS['debug']){
-                    print_r($value);
-                    echo "<br>";
-                }
-            }
-            echo $count." datos actualizados de la tabla usuario" . PHP_EOL;
-        }
+        // Asinga Rol de USUARIO al usuario correspondiente
+        $sql='CREATE TABLE IF NOT EXISTS control_acceso_cdc_dbp.usuario_rol (idUsuario CHAR(36) NOT NULL, idRol CHAR(36) NOT NULL, PRIMARY KEY (idUsuario, idRol));';
+        $data = DATA::Ejecutar($sql, NULL, false); 
 
-        // Asinga Rol de Responsable al usuario correspondiente
+        $sql='INSERT IGNORE INTO control_acceso_cdc_dbp.rol (id, nombre) VALUES ( "c4d35117-d57e-4cad-b3bc-b589f002814d", "Visitante");';
+        $data = DATA::Ejecutar($sql, NULL, false);
+      
+        $sql='INSERT IGNORE INTO control_acceso_cdc_dbp.rol (id, nombre) VALUES ( "bcec0ea4-4a0b-4e69-b9f5-744530a765ed", "Responsable");';
+        $data = DATA::Ejecutar($sql, NULL, false);
+       
+        $sql='INSERT IGNORE INTO control_acceso_cdc_dbp.rol (id, nombre) VALUES ( "97b3927c-41de-47fd-871a-3eb6d2a57758", "Usuario");';
+        $data = DATA::Ejecutar($sql, NULL, false);
+        
+        // Asinga Rol de USUARIO al usuario correspondiente
+        $sql='SELECT un.id FROM control_acceso_cdc_dbp.usuario_n un 
+        INNER JOIN controlaccesocdc_dbp.usuario u 
+        ON u.nombre = un.nombre;';
+        $data = DATA::Ejecutar($sql);
+        if($data){
+        foreach ($data as $key => $value) {
+            $count= $key;
+            $sql='INSERT INTO control_acceso_cdc_dbp.usuario_rol (idUsuario, idRol) values(:id, :idRol);';   
+            $param= array(':id'=>$value["id"] ?? "", ':idRol'=> "97b3927c-41de-47fd-871a-3eb6d2a57758");  
+            $data = DATA::Ejecutar($sql, $param);
+            if ($GLOBALS['debug']){
+                print_r($value);
+                echo "<br>";
+            }
+        }
+        echo $count." datos actualizados de la tabla usuario" . PHP_EOL;
+        }
+        
+        // Asinga Rol de RESPONSABLE al usuario correspondiente
         $sql='SELECT un.id FROM control_acceso_cdc_dbp.usuario_n un
             INNER JOIN controlaccesocdc_dbp.responsable r
             ON r.cedula = un.cedula;';
@@ -315,8 +398,7 @@
             }
             echo $count." datos actualizados de la tabla Responsable" . PHP_EOL;
         }
-
-        // Asinga Rol de Visitante al usuario correspondiente
+        // Asinga Rol de VISITANTE al usuario correspondiente
         $sql='SELECT un.id FROM control_acceso_cdc_dbp.usuario_n un
         INNER JOIN controlaccesocdc_dbp.visitante v
         ON v.cedula = un.cedula;';

@@ -54,7 +54,7 @@ class DATA {
         try{
             //conecta a BD
             self::Conectar();
-            $st=self::$conn->prepare($sql);
+            $st=self::$conn->prepare($sql); 
             self::$conn->beginTransaction(); 
             if($st->execute($param))
             {

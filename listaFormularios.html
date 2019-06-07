@@ -24,6 +24,8 @@
   <link href="vendors/daterangepicker/daterangepicker.css" rel="stylesheet">
   <!-- NProgress -->
   <link href="vendors/nprogress/nprogress.css" rel="stylesheet">
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="vendors/sweetalert2/dist/sweetalert2.css">
   <!-- bootstrap-daterangepicker -->
   <link href="vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
   <!-- Custom Theme Style -->
@@ -219,7 +221,7 @@
                     <div>
                       <span class="acoordion-step-number">1</span>
                       <h4 class="acoordion-step-title">
-                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"> Sitio a
+                        <a id="acoordionSitio" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"> Sitio a
                           Autorizar:</a>
                       </h4>
                     </div>
@@ -250,11 +252,11 @@
                                 </select>
                               </div>
                               <div class="col-sm-12 col-md-12 col-lg-6 form-group">
-                                  <label for="sel_autorizador">Seleccione el Autorizador</label>
-                                  <select class="form-control" style="height: 2.7em;" id="sel_autorizador">
-                                    <option value="d3b95439-89c2-11e7-8f4b-005056a81613">Jason Rojas Valverde</option>
-                                  </select>
-                                </div>
+                                <label for="sel_autorizador">Seleccione el Autorizador</label>
+                                <select class="form-control" style="height: 2.7em;" id="sel_autorizador">
+                                  <option value="d3b95439-89c2-11e7-8f4b-005056a81613">Jason Rojas Valverde</option>
+                                </select>
+                              </div>
                             </form>
                           </div>
                         </div>
@@ -262,11 +264,11 @@
                         <div class="row">
                           <div class="col-sm-12 col-md-12 col-lg-12">
                             <form>
-                              <!-- <div class="col-lg-6 form-group">
+                              <div class="col-sm-12 col-md-12 col-lg-6 form-group">
                                 <label for="sel_tramitante">Tramitante:</label>
                                 <select class="form-control" id="sel_tramitante"> </select>
-                              </div> -->
-                              <div class="col-sm-12 col-md-12 col-lg-12 form-group">
+                              </div>
+                              <div class="col-sm-12 col-md-12 col-lg-6 form-group">
                                 <label for="sel_estado">Estado</label>
                                 <select class="form-control" id="sel_estado">
                                   <option value="0">Pendiente</option>
@@ -344,16 +346,16 @@
                           <div class="form-group">
                             <div class="col-sm-12 col-md-12 col-lg-12">
                               <!-- <div class="row"> -->
-                                <label for="inp_titulo">Personal por Autorizar:</label>
-                                <div class="form-group">
-                                  <select id='dp_select_visitante' style='width: 400px;'>
-                                    <option value='0'>- Buscar Visitante -</option>
-                                  </select>
-                                </div>
+                              <label for="inp_titulo">Personal por Autorizar:</label>
+                              <div class="form-group">
+                                <select id='dp_select_visitante' style='width: 400px;'>
+                                  <option value='0'>- Buscar Visitante -</option>
+                                </select>
+                              </div>
 
-                                <table id="tb_visitante_seccionado" class="display" style="width:100%">
+                              <table id="tb_visitante_seccionado" class="display" style="width:100%">
 
-                                </table>
+                              </table>
                               <!-- </div> -->
                             </div>
                           </div>
@@ -370,7 +372,7 @@
           </div>
           <!-- Modal footer -->
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" id="btn_guardar_formulario">Guardar</button>
+            <button type="button" class="btn btn-primary" id="btn_guardar_formulario">Enviar</button>
           </div>
 
         </div>
@@ -389,16 +391,19 @@
     <!-- bootstrap-progressbar -->
     <script src="vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
     <!-- Seleect2 -->
-    <script src='vendors/select2/js/select2.js'></script>  
+    <script src='vendors/select2/js/select2.js'></script>
     <!-- Moment -->
     <script src="vendors/moment/moment.min.js"></script>
     <script src="vendors/moment/locale/es.js"></script>
+    <!-- SweetAlert2 -->
+    <script src="vendors/sweetalert2/dist/sweetalert2.js"></script>
     <!-- bootstrap-daterangepicker -->
     <script src="vendors/daterangepicker/daterangepicker.min.js"></script>
     <!-- Custom Theme Scripts -->
-    <script src="assets/js/custom.js"></script>  
-    <!-- JS Scripts -->
+    <script src="assets/js/custom.js"></script>
     <script src="assets/js/formulario.js"></script>
+    <script src="assets/js/sala.js"></script>
+    <script src="assets/js/datacenter.js"></script>
     <!-- <script src="assets/js/responsable.js"></script>  -->
     <script src="assets/js/usuario.js"></script>
 
@@ -407,19 +412,17 @@
 </html>
 
 <script>
-  formulario.carga_DataCenters;
 
   $(document).ready(function () {
 
-
+    dataCenter.ReadAll;
 
     $("#btn_guardar_formulario").click(function () {
       formulario.validar;
     });
 
-
     $("#sel_centro_datos").change(function () {
-      formulario.carga_SalabyDC;
+      sala.carga_SalabyDC;
     })
 
     var result_Visitantes = [];
@@ -481,13 +484,11 @@
       ]
     });
 
-
-    $('#tbl_formularios tbody').on( 'click', 'tr', function () {
-        formulario.id = $('#tbl_formularios').DataTable().row(this).data().id;
-        formulario.cargar_datos_formulario;
-        $("#modal_new_form").modal("show");
-    } );
-
+    $('#tbl_formularios tbody').on('click', 'tr', function () {  
+      formulario.clear;
+      formulario.id = $('#tbl_formularios').DataTable().row(this).data().id;
+      formulario.cargarFormulariobyID;
+    });
 
     $("#sel_responsable").select2({
       ajax: {
@@ -502,7 +503,6 @@
           };
         },
         processResults: function (response) {
-          result_Visitantes = response;
           return {
             results: response
           };
@@ -562,6 +562,7 @@
     });
 
     $("#btn_abrirModal").click(function () {
+      formulario.clear;
       $("#modal_new_form").modal("show");
     });
 
