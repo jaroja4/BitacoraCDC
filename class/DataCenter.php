@@ -38,7 +38,7 @@ class DataCenter{
 
     function ReadAll(){
         try {
-            $sql='SELECT id, nombre FROM dataCenter;';      
+            $sql='SELECT id, nombre, imagen FROM dataCenter;';      
             $data= DATA::Ejecutar($sql);            
             if($data){
                 return $data;

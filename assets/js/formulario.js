@@ -298,18 +298,49 @@ class Formulario {
 
     modalEntradaVisitante(e) {
         var dataVisitante = JSON.parse(e);
+        if (dataVisitante == "noformulario"){
+            Swal.fire({
+                type: 'error',
+                title: 'SIN REGISTRO',
+                text: 'No exite un resgistro para la cédula ingresada!',
+                timer: 2000
+              })
+            // Swal.fire({
+            //     title: 'SIN REGISTRO',
+            //     text: "No exite un resgistro para la cédula ingresada!",
+            //     type: 'warning',
+            //     showCancelButton: true,
+            //     confirmButtonColor: '#3085d6',
+            //     cancelButtonColor: '#d33',
+            //     confirmButtonText: 'Yes, delete it!'
+            //   }).then((result) => {
+            //     if (result.value) {
+            //       Swal.fire(
+            //         'Deleted!',
+            //         'Your file has been deleted.',
+            //         'success'
+            //       )
+            //     }
+            //   })
+            return false;
+        }
+        if (dataVisitante == "notarjeta"){
+
+            return false;
+        }
+
         $("#modalVisitanteTitulo").text(dataVisitante.dataCenter);
         $("#modalVisitanteNoFormulario").text(dataVisitante.consecutivo);
 
-        $("#modalVisitanteCedula").val("114140310");
-        $("#modalVisitanteNombre").val("Jason Rojas Valverde");
-        $("#modalVisitanteEmpresa").val("DTI");
-        $("#modalVisitanteAutoriza").val("Jason Rojas Valverde");
-        $("#modalVisitanteFechaEntrada").val("2019-06-07 19:00:00");
-        $("#modalVisitanteFechaSalida").val("2019-06-16 07:00:00");
-        $("#modalVisitanteConsecutivoTarjeta").val("BC09");
-        $("#modalVisitaSala").val("BlOQUE-C");
-        $("#modalVisitanteOtrosDetalles").val("Placa: 398416, laptop: algunActivo");
+        $("#modalVisitanteCedula").val(dataVisitante.cedula);
+        $("#modalVisitanteNombre").val(dataVisitante.nombre);
+        $("#modalVisitanteEmpresa").val(dataVisitante.empresa);
+        $("#modalVisitanteAutoriza").val(dataVisitante.autorizador);
+        $("#modalVisitanteFechaEntrada").val(dataVisitante.fechaIngreso);
+        $("#modalVisitanteFechaSalida").val(dataVisitante.fechaSalida);
+        $("#modalVisitanteConsecutivoTarjeta").val(dataVisitante.consecutivoTarjeta);
+        $("#modalVisitaSala").val(dataVisitante.sala);
+        $("#modalVisitanteOtrosDetalles").val(dataVisitante.otrosDetalles);
         
         $("#modalVisitante").modal("toggle");
     }

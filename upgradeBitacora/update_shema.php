@@ -420,12 +420,11 @@
     }
 
     function agregaDatosNuevos(){
-        $sql='UPDATE control_acceso_cdc_dbp.dataCenter SET direccionesIP="{ \"ip\": [ \"10.3.103.17\", \"10.3.204.68\" ] }" WHERE id="29c4b8e3-8cfc-11e7-8f4b-005056a81613";';
+        $sql='UPDATE control_acceso_cdc_dbp.dataCenter SET imagen="ice_sabana_norte.jpg", direccionesIP="{ \"ip\": [ \"10.3.103.17\", \"10.3.204.68\" ] }" WHERE id="29c4b8e3-8cfc-11e7-8f4b-005056a81613";';
         $data = DATA::Ejecutar($sql);
 
-        $sql='UPDATE control_acceso_cdc_dbp.dataCenter SET direccionesIP="{ \"ip\": [ \"10.129.20.21\", \"10.129.29.199\"] }" WHERE id="29c43c98-8cfc-11e7-8f4b-005056a81613";';
+        $sql='UPDATE control_acceso_cdc_dbp.dataCenter SET imagen="ice_san_pedro.jpg", direccionesIP="{ \"ip\": [ \"10.129.20.21\", \"10.129.29.199\"] }" WHERE id="29c43c98-8cfc-11e7-8f4b-005056a81613";';
         $data = DATA::Ejecutar($sql);
-        
 
 
     }

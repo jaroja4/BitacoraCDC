@@ -17,10 +17,13 @@
   <link href="vendors/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <!-- NProgress -->
   <link href="vendors/nprogress/nprogress.css" rel="stylesheet">
+  <!-- SweetAlert -->
+  <link href="vendors/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
   <!-- bootstrap-daterangepicker -->
   <link href="vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
   <!-- Custom Theme Style -->
   <link href="assets/css/custom.min.css" rel="stylesheet">
+  <link href="assets/css/registro.css" rel="stylesheet">
 </head>
 
 <body class="nav-md">
@@ -114,30 +117,15 @@
                   </li>
                 </ul>
               </li>
+
               <li role="presentation" class="dropdown">
                 <a href="javascript:;" class="dropdown-toggle info-number sitio" data-toggle="dropdown"
                   aria-expanded="false">
                   Seleccione un sitio: <i style="margin-left: 10px;font-size:24px;" class="fa fa-building-o"></i>
                 </a>
                 <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                  <li>
-                    <a id="btn_sitio_sanpedro">
-                      <span class="image"><img style="width: 55%;" src="images/ice_san_pedro.jpg"
-                          alt="Profile Image" /></span>
-                      <span>
-                        <h4>San Pedro</h4>
-                      </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a id="btn_sitio_sabana">
-                      <span class="image"><img style="width: 55%;" src="images/ice_sabana_norte.jpg"
-                          alt="Profile Image" /></span>
-                      <span>
-                        <h4>Sabana</h4>
-                      </span>
-                    </a>
-                  </li>
+
+
                 </ul>
               </li>
               <!-- <li>
@@ -275,7 +263,8 @@
             <div class="col-sm-12 col-md-6 col-lg-6">
               <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1">Visita Sala </span>
-                <input type="text" readonly class="form-control txt_tarjeta" style="color: royalblue;" id="modalVisitaSala"></input>
+                <input type="text" readonly class="form-control txt_tarjeta" style="color: royalblue;"
+                  id="modalVisitaSala"></input>
               </div>
             </div>
           </div>
@@ -310,6 +299,8 @@
   <!-- bootstrap-daterangepicker -->
   <script src="vendors/moment/min/moment.min.js"></script>
   <script src="vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+  <!-- SweetAlert2 -->
+  <script src="vendors/sweetalert2/dist/sweetalert2.js"></script>
 
   <!-- JS  -->
   <!-- <script src="js/bootstrap-select.js"></script> -->
@@ -323,28 +314,31 @@
 
 </html>
 
-<style>
-  .txt_large {
-    font-size: large;
-
-  }
-
-  .txt_xx-large {
-    font-size: xx-large;
-  }
-
-  .txt_tarjeta {
-    color: firebrick;
-    font-size: xx-large;
-    font-style: italic;
-  }
-</style>
 <script>
-  dataCenter.index_cargaSitioXIP;
+  $('form').keypress(function(e){   
+    if(e == 13){
+      return false;
+    }
+  });
 
+  $('input').keypress(function(e){
+    if(e.which == 13){
+      return false;
+    }
+  });
+  
+  dataCenter.index_cargaSitioXIP;
+  dataCenter.Registro_ReadAll;
+  function dataCenterSelect(id, nombre) {
+    dataCenter.id = id;
+    dataCenter.nombre = nombre;
+    $(".sitio").html(dataCenter.nombre+'  <i style="margin-left: 10px;font-size:24px;" class="fa fa-building-o"></i>');
+  }
   $(document).ready(function () {
+
     $("#btn_sitio_sanpedro").click(function () {
       $(".sitio").html('San Pedro  <i style="margin-left: 10px;font-size:24px;" class="fa fa-building-o"></i>');
+      dataCenter.Registro_ReadAll
     });
 
     $("#btn_sitio_sabana").click(function () {
@@ -355,7 +349,12 @@
       formulario.buscar;
     });
 
-
+    $("#inp_identificacion").on('keyup', function (e) {
+        if (e.keyCode == 13) {
+          formulario.buscar;
+        }
+    });
+    
   });
 
 

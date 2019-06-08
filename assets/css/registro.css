@@ -1,0 +1,14 @@
+.txt_large {
+    font-size: large;
+
+  }
+
+  .txt_xx-large {
+    font-size: xx-large;
+  }
+
+  .txt_tarjeta {
+    color: firebrick;
+    font-size: xx-large;
+    font-style: italic;
+  }

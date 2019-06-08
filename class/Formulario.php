@@ -82,7 +82,7 @@ class Formulario{
     
     function Buscar($cedula, $idDataCenter){        
         try { 
-            $sql = 'SELECT f.id, f.idEstado, f.consecutivo, f.fechaSolicitud, 
+            $sql = 'SELECT f.id, f.idEstado, f.consecutivo, f.fechaSolicitud, f.otrosDetalles,
                 (SELECT nombre FROM usuario_n where id = f.idAutorizador) autorizador, 
                 f.fechaIngreso, f.fechaSalida, dc.nombre dataCenter, s.id idSala, 
                 s.nombre sala, u.cedula, u.nombre, u.empresa
@@ -108,12 +108,17 @@ class Formulario{
                 $this->id = $data[0]["id"];
                 $this->idEstado = $data[0]["idEstado"];
                 $this->consecutivo = $data[0]["consecutivo"];
+                $this->autorizador = $data[0]["autorizador"];
                 $this->fechaSolicitud = $data[0]["fechaSolicitud"];
                 $this->fechaIngreso = $data[0]["fechaIngreso"];
                 $this->fechaSalida = $data[0]["fechaSalida"];
                 $this->dataCenter = $data[0]["dataCenter"];
                 $this->idSala = $data[0]["idSala"];
                 $this->sala = $data[0]["sala"];
+                $this->cedula = $data[0]["cedula"];
+                $this->nombre = $data[0]["nombre"];
+                $this->empresa = $data[0]["empresa"];
+                $this->otrosDetalles = $data[0]["otrosDetalles"];
 
 
                 $sql = 'SELECT id, consecutivo, estado
