@@ -32,6 +32,25 @@ class DataCenter {
                 sel_centro_datos.html('<option id="-1">Cargando...</option>');
             });
     }
+
+    get index_cargaSitioXIP(){
+        $.ajax({
+                  type: "POST",
+                  url: "class/DataCenter.php",
+                  data: {
+                      action: "ReadByIP"
+                  }
+              })
+      .done(function (e) {
+          var data = JSON.parse(e);
+          dataCenter.id = data["id"];
+          dataCenter.nombre = data["nombre"];
+          $(".sitio").html(data["nombre"]+' <i style="margin-left: 10px;font-size:24px;" class="fa fa-building-o"></i>');
+      })
+      .fail(function (e) {
+            $(".sitio").html('Seleccionar un Sitio: <i style="margin-left: 10px;font-size:24px;" class="fa fa-building-o"></i>');
+      });
+      }
 }
 
 let dataCenter = new DataCenter();  

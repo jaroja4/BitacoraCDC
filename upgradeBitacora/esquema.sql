@@ -46,6 +46,7 @@ DROP TABLE IF EXISTS `dataCenter`;
 CREATE TABLE `dataCenter` (
   `id` char(36) NOT NULL,
   `nombre` varchar(100) NOT NULL,
+  `direccionesIP` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -86,23 +87,7 @@ CREATE TABLE `formulario` (
   `otrosDetalles` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `consecutivo` (`consecutivo`)
-) ENGINE=InnoDB AUTO_INCREMENT=2167 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `responsable`
---
-
-DROP TABLE IF EXISTS `responsable`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `responsable` (
-  `id` char(36) NOT NULL,
-  `nombre` varchar(60) NOT NULL,
-  `cedula` varchar(20) NOT NULL,
-  `empresa` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2191 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152,27 +137,6 @@ CREATE TABLE `tarjeta` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `usuario`
---
-
-DROP TABLE IF EXISTS `usuario`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `usuario` (
-  `id` char(36) NOT NULL,
-  `nombre` varchar(60) NOT NULL,
-  `usuario` varchar(10) NOT NULL,
-  `contrasena` varchar(10) NOT NULL,
-  `idrol` char(36) NOT NULL,
-  `email` varchar(150) DEFAULT NULL,
-  `fechacreacion` datetime NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`),
-  KEY `idrol` (`idrol`),
-  CONSTRAINT `usuario_ibfk_rol` FOREIGN KEY (`idrol`) REFERENCES `rol` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Table structure for table `usuario_n`
 --
 
@@ -207,24 +171,6 @@ CREATE TABLE `usuario_rol` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `visitante`
---
-
-DROP TABLE IF EXISTS `visitante`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `visitante` (
-  `cedula` varchar(20) NOT NULL,
-  `empresa` varchar(50) DEFAULT NULL,
-  `nombre` varchar(60) DEFAULT NULL,
-  `fechacreacion` datetime DEFAULT current_timestamp(),
-  `permisoanual` tinyint(1) NOT NULL DEFAULT 0,
-  `id` char(36) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Table structure for table `visitante_formulario`
 --
 
@@ -236,7 +182,7 @@ CREATE TABLE `visitante_formulario` (
   `idVisitante` char(36) NOT NULL,
   `idFormulario` char(36) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10274 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10506 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -248,4 +194,4 @@ CREATE TABLE `visitante_formulario` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-05 23:04:29
+-- Dump completed on 2019-06-07 18:31:27

@@ -1,6 +1,6 @@
 class Formulario {
     // Constructor
-    constructor(id, idEstado, idDataCenter, idSala, idTramitante, idAutorizador, idResponsable, consecutivo, fechaSolicitud, fechaIngreso, fechaSalida, detalles, arrayVisitantes, motivoVisita) {
+    constructor(id, idEstado, idDataCenter, idSala, idTramitante, idAutorizador, idResponsable, consecutivo, fechaSolicitud, fechaIngreso, fechaSalida, otrosDetalles, arrayVisitantes, motivoVisita) {
         this.id = id || null;
         this.idEstado = idEstado || null;
         this.idDataCenter = idDataCenter || null;
@@ -275,6 +275,43 @@ class Formulario {
         if ( $("#collapseThree").hasClass("in") ){
             $("#collapseThree").collapse('toggle');
         }
+    }
+
+    get buscar() {
+        var miAccion = 'Buscar';
+        $.ajax({
+            type: "POST",
+            url: "class/Formulario.php",
+            data: {
+                action: miAccion,
+                value: $("#inp_identificacion").val(),
+                idDataCenter: dataCenter.id
+            }
+        })
+            .done(function (e) {
+                formulario.modalEntradaVisitante(e);
+            })
+            .fail(function (e) {
+                // formulario.showError(e);
+            });
+    }
+
+    modalEntradaVisitante(e) {
+        var dataVisitante = JSON.parse(e);
+        $("#modalVisitanteTitulo").text(dataVisitante.dataCenter);
+        $("#modalVisitanteNoFormulario").text(dataVisitante.consecutivo);
+
+        $("#modalVisitanteCedula").val("114140310");
+        $("#modalVisitanteNombre").val("Jason Rojas Valverde");
+        $("#modalVisitanteEmpresa").val("DTI");
+        $("#modalVisitanteAutoriza").val("Jason Rojas Valverde");
+        $("#modalVisitanteFechaEntrada").val("2019-06-07 19:00:00");
+        $("#modalVisitanteFechaSalida").val("2019-06-16 07:00:00");
+        $("#modalVisitanteConsecutivoTarjeta").val("BC09");
+        $("#modalVisitaSala").val("BlOQUE-C");
+        $("#modalVisitanteOtrosDetalles").val("Placa: 398416, laptop: algunActivo");
+        
+        $("#modalVisitante").modal("toggle");
     }
 
 }

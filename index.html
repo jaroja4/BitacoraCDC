@@ -109,54 +109,193 @@
                   <span class=" fa fa-angle-down"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-usermenu pull-right">
-                  <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Salir</a></li>
+                  <li>
+                    <a href="login.html"> <i class="fa fa-sign-out pull-right"></i> Salir</a>
+                  </li>
                 </ul>
               </li>
+              <li role="presentation" class="dropdown">
+                <a href="javascript:;" class="dropdown-toggle info-number sitio" data-toggle="dropdown"
+                  aria-expanded="false">
+                  Seleccione un sitio: <i style="margin-left: 10px;font-size:24px;" class="fa fa-building-o"></i>
+                </a>
+                <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                  <li>
+                    <a id="btn_sitio_sanpedro">
+                      <span class="image"><img style="width: 55%;" src="images/ice_san_pedro.jpg"
+                          alt="Profile Image" /></span>
+                      <span>
+                        <h4>San Pedro</h4>
+                      </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a id="btn_sitio_sabana">
+                      <span class="image"><img style="width: 55%;" src="images/ice_sabana_norte.jpg"
+                          alt="Profile Image" /></span>
+                      <span>
+                        <h4>Sabana</h4>
+                      </span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <!-- <li>
+                  <a id="lbl_sitio"> San Pedro </a>
+              </li> -->
             </ul>
           </nav>
         </div>
       </div>
-      <!-- /top navigation -->
 
-      <!-- page content -->
-      <div class="right_col" role="main">
-        <div class="row">
-          <!-- <div class="center-block"> -->
-          <div class="login_wrapper">
-            <!-- <div class="col-md-12 col-sm-12 col-xs-12"> -->
+      </li>
+      </ul>
+    </div>
+    <!-- /top navigation -->
 
-            <section class="login_content">
-              <form>
-                <h2>Tarjeta | Identificación</h2>
-                <div>
-                  <br>
-                  <input id="inp_identificacion" type="text" class="form-control" placeholder="Identificación"
-                    required="" style=" font-size: -webkit-xxx-large; padding: 10%; " />
-                </div>
-                <div>
-                  <button id="btn_check_Identificacion" type="button" class="btn btn-primary btn-lg">Consultar</button>
-                </div>
+    <!-- page content -->
+    <div class="right_col" role="main">
+      <div class="row">
+        <!-- <div class="center-block"> -->
+        <div class="login_wrapper">
+          <!-- <div class="col-md-12 col-sm-12 col-xs-12"> -->
 
-                <div class="clearfix"></div>
-              </form>
-            </section>
-          </div>
+          <section class="login_content">
+            <form>
+              <h2>Tarjeta | Identificación</h2>
+              <div>
+                <br>
+                <input id="inp_identificacion" type="text" class="form-control" placeholder="Identificación" required=""
+                  style=" font-size: -webkit-xxx-large; padding: 10%; " />
+              </div>
+              <div>
+                <button id="btn_check_Identificacion" type="button" class="btn btn-primary btn-lg">Consultar</button>
+              </div>
 
+              <div class="clearfix"></div>
+            </form>
+          </section>
         </div>
-        <br />
-
 
       </div>
-      <!-- /page content -->
+    </div>
+  </div>
 
-      <!-- footer content -->
-      <footer>
-        <div class="pull-right">
-          Operaciones TI - DTI - Instituto Costarricense de Electricidad
+  </div>
+  <!-- /page content -->
+
+  <!-- footer content -->
+  <footer>
+    <div class="pull-right">
+      Operaciones TI - DTI - Instituto Costarricense de Electricidad
+    </div>
+    <div class="clearfix"></div>
+  </footer>
+  <!-- /footer content -->
+  </div>
+  </div>
+
+
+
+  <!-- The modal -->
+  <div class="modal fade" id="modalVisitante" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3> Formulario # <span id="modalVisitanteNoFormulario"></span></h3>
+          <!-- <h1 class="modal-title" id="modalVisitanteTitulo"></h1> -->
         </div>
-        <div class="clearfix"></div>
-      </footer>
-      <!-- /footer content -->
+
+        <div class="modal-body">
+
+          <!-- <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+              
+            </div>
+          </div>
+          <br> -->
+          <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-6">
+              <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">Cédula: </span>
+                <input type="text" readonly class="form-control txt_large" id="modalVisitanteCedula"> </input>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6">
+              <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">Nombre: </span>
+                <input type="text" readonly class="form-control txt_large" id="modalVisitanteNombre"> </input>
+              </div>
+            </div>
+          </div>
+
+          <br>
+          <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-6">
+              <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">Empresa / Dependencia </span>
+
+                <input type="text" readonly class="form-control txt_large" id="modalVisitanteEmpresa"> </input>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6">
+              <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">Autorizador </span>
+                <input type="text" readonly class="form-control txt_large" id="modalVisitanteAutoriza"> </input>
+              </div>
+            </div>
+          </div>
+
+          <br>
+          <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-6">
+              <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">Hora de Entrada </span>
+
+                <input type="text" readonly class="form-control txt_large" id="modalVisitanteFechaEntrada"> </input>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6">
+              <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">Hora de Salida </span>
+                <input type="text" readonly class="form-control txt_large" id="modalVisitanteFechaSalida"> </input>
+              </div>
+            </div>
+          </div>
+
+          <br>
+          <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-6">
+              <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">Numero de Tarjeta </span>
+                <input type="text" readonly class="form-control txt_tarjeta"
+                  id="modalVisitanteConsecutivoTarjeta"></input>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6">
+              <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">Visita Sala </span>
+                <input type="text" readonly class="form-control txt_tarjeta" style="color: royalblue;" id="modalVisitaSala"></input>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+              <div class="form-group">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                  <label class="txt_large" for="inp_descripcion">Otros Detalles:</label>
+                  <textarea class="form-control txt_large" id="modalVisitanteOtrosDetalles" rows="3"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="btn_entrega_tarjeta" type="button" class="btn btn-success btn-lg" data-dismiss="modal">Entregar
+            Tarjeta</button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -177,11 +316,47 @@
 
   <!-- Custom Theme Scripts -->
   <script src="assets/js/custom.js"></script>
+  <script src="assets/js/datacenter.js"></script>
+  <script src="assets/js/formulario.js"></script>
 
 </body>
 
 </html>
 
+<style>
+  .txt_large {
+    font-size: large;
+
+  }
+
+  .txt_xx-large {
+    font-size: xx-large;
+  }
+
+  .txt_tarjeta {
+    color: firebrick;
+    font-size: xx-large;
+    font-style: italic;
+  }
+</style>
 <script>
+  dataCenter.index_cargaSitioXIP;
+
+  $(document).ready(function () {
+    $("#btn_sitio_sanpedro").click(function () {
+      $(".sitio").html('San Pedro  <i style="margin-left: 10px;font-size:24px;" class="fa fa-building-o"></i>');
+    });
+
+    $("#btn_sitio_sabana").click(function () {
+      $(".sitio").html('Sabana <i style="margin-left: 10px;font-size:24px;" class="fa fa-building-o"></i>');
+    });
+
+    $("#btn_check_Identificacion").click(function () {
+      formulario.buscar;
+    });
+
+
+  });
+
 
 </script>
