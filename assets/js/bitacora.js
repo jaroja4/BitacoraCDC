@@ -44,9 +44,6 @@ class Bitacora {
                     "previous": "Anterior"
                 }
             },
-            "order": [
-                [1, "desc"]
-            ],
             columns: [
                 {
                     title: "id",
@@ -56,29 +53,62 @@ class Bitacora {
                 {
                     title: "Formulario",
                     data: "idFormulario",
-                    width: "20%",
+                    visible: false
                 },
                 {
                     title: "Visitante",
                     data: "idVisitante",
-                    width: "20%",
+                    visible: false
                 },
                 {
                     title: "Tarjeta",
                     data: "idTarjeta",
-                    width: "20%",
+                    visible: false
                 },
                 {
                     title: "Fecha Entrada",
                     data: "entrada",
-                    width: "20%",
+                    width: "10%"
                 },
                 {
                     title: "Fecha Salida",
                     data: "salida",
-                    width: "20%",
+                    width: "10%"
+                },
+                {
+                    title: "Formulario",
+                    data: "consecutivoFormulario",
+                    width: "5%"
+                },
+                {
+                    title: "Visitante",
+                    data: "nombre",
+                    width: "20%"
+                },
+                {
+                    title: "Empresa",
+                    data: "empresa",
+                    width: "10%"
+                },
+                {
+                    title: "Motivo Visita",
+                    data: "motivoVisita",
+                    width: "20%"
+                },
+                {
+                    title: "Detalles Visita",
+                    data: "otrosDetalles",
+                    width: "20%"
+                },
+                {
+                    title: "Tarjeta Asignada",
+                    data: "consecutivoTarjeta",
+                    width: "5%"
                 }
-            ]
+            ],
+            "order": [
+                [4, "desc"]
+            ],
         });
 
     }
