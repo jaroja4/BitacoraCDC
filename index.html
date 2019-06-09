@@ -190,7 +190,7 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h3> Formulario # <span id="modalVisitanteNoFormulario"></span></h3>
+          <h3 id="modalTituloVisitante"> Formulario # <span id="modalVisitanteNoFormulario"></span></h3>
           <!-- <h1 class="modal-title" id="modalVisitanteTitulo"></h1> -->
         </div>
 
@@ -309,6 +309,7 @@
   <script src="assets/js/custom.js"></script>
   <script src="assets/js/datacenter.js"></script>
   <script src="assets/js/formulario.js"></script>
+  <script src="assets/js/tarjeta.js"></script>
 
 </body>
 
@@ -326,7 +327,7 @@
       return false;
     }
   });
-  
+
   dataCenter.index_cargaSitioXIP;
   dataCenter.Registro_ReadAll;
   function dataCenterSelect(id, nombre) {
@@ -340,6 +341,14 @@
       $(".sitio").html('San Pedro  <i style="margin-left: 10px;font-size:24px;" class="fa fa-building-o"></i>');
       dataCenter.Registro_ReadAll
     });
+
+    $("#btn_entrega_tarjeta").click(function () {
+      if ($("#btn_entrega_tarjeta").data("accion") == "entregar")
+        tarjeta.Entregar;
+      if ($("#btn_entrega_tarjeta").data("accion") == "recibir")
+        tarjeta.Recibir;
+    });
+    
 
     $("#btn_sitio_sabana").click(function () {
       $(".sitio").html('Sabana <i style="margin-left: 10px;font-size:24px;" class="fa fa-building-o"></i>');

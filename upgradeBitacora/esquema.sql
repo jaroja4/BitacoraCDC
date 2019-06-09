@@ -31,7 +31,6 @@ CREATE TABLE `bitacora` (
   `idTarjeta` char(36) DEFAULT NULL,
   `entrada` datetime DEFAULT NULL,
   `salida` datetime DEFAULT NULL,
-  `fechacreacion` datetime DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -195,4 +194,4 @@ CREATE TABLE `visitante_formulario` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-07 22:14:22
+-- Dump completed on 2019-06-08 15:59:41

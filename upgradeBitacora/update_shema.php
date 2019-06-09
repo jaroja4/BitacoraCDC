@@ -133,16 +133,15 @@
     function loadData(){
         // BITACORA
         echo "Cargando Datos de Bitacora..." . PHP_EOL;
-        $sql='SELECT idvisitante, idformulario, entrada, salida, idtarjeta, id, fechacreacion FROM controlaccesocdc_dbp.bitacora;';
+        $sql='SELECT idvisitante, idformulario, entrada, salida, idtarjeta, id FROM controlaccesocdc_dbp.bitacora;';
         $data = DATA::Ejecutar($sql);
         if($data){
             foreach ($data as $key => $value) {
                 $count= $key;
                 $sql='INSERT IGNORE INTO control_acceso_cdc_dbp.bitacora (id, idFormulario, idVisitante, idTarjeta, entrada, 
-                    salida, fechaCreacion) values(:id, :idFormulario, :idVisitante, :idTarjeta, :entrada, :salida, :fechaCreacion);';   
+                    salida) values(:id, :idFormulario, :idVisitante, :idTarjeta, :entrada, :salida);';   
                 $param= array(':id'=>$value["id"], ':idFormulario'=>$value["idformulario"], ':idVisitante'=>$value["idvisitante"], 
-                    ':idTarjeta'=>$value["idtarjeta"], ':entrada'=>$value["entrada"], ':salida'=>$value["salida"], 
-                    ':fechaCreacion'=>$value["fechacreacion"]);
+                    ':idTarjeta'=>$value["idtarjeta"], ':entrada'=>$value["entrada"], ':salida'=>$value["salida"]);
                 $data = DATA::Ejecutar($sql, $param);
                 if ($GLOBALS['debug']){
                     print_r($value);
@@ -420,10 +419,10 @@
     }
 
     function agregaDatosNuevos(){
-        $sql='UPDATE control_acceso_cdc_dbp.dataCenter SET imagen="ice_sabana_norte.jpg", direccionesIP="{ \"ip\": [ \"10.3.103.17\", \"10.3.204.68\" ] }" WHERE id="29c4b8e3-8cfc-11e7-8f4b-005056a81613";';
+        $sql='UPDATE control_acceso_cdc_dbp.dataCenter SET imagen="ice_sabana_norte.jpg", direccionesIP="{ \"ip\": [ \"10.3\" ] }" WHERE id="29c4b8e3-8cfc-11e7-8f4b-005056a81613";';
         $data = DATA::Ejecutar($sql);
 
-        $sql='UPDATE control_acceso_cdc_dbp.dataCenter SET imagen="ice_san_pedro.jpg", direccionesIP="{ \"ip\": [ \"10.129.20.21\", \"10.129.29.199\"] }" WHERE id="29c43c98-8cfc-11e7-8f4b-005056a81613";';
+        $sql='UPDATE control_acceso_cdc_dbp.dataCenter SET imagen="ice_san_pedro.jpg", direccionesIP="{ \"ip\": [ \"10.129\"] }" WHERE id="29c43c98-8cfc-11e7-8f4b-005056a81613";';
         $data = DATA::Ejecutar($sql);
 
 

@@ -99,6 +99,89 @@ class Tarjeta {
         });
 
     }
+
+    get Entregar() {
+        var miAccion = 'Entregar';
+
+        $.ajax({
+            type: "POST",
+            url: "class/Tarjeta.php",
+            data: {
+                action: miAccion,
+                value: $('#modalVisitanteConsecutivoTarjeta').data("id"),
+                id: tarjeta.id,
+                obj: JSON.stringify(formulario)
+            }
+        })
+            .done(function (e) {
+                var result = JSON.parse(e);
+                if(result){
+                    Swal.fire({
+                        position: 'top-end',
+                        type: 'success',
+                        title: 'Tarjeta Registrada',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+                else{
+                    Swal.fire({
+                        type: 'error',
+                        title: 'ERROR',
+                        text: 'Ocurrio un problema al registrar la tarjeta!',
+                        timer: 3000
+                    })
+                }
+            })
+            .fail(function (e) {
+                Swal.fire({
+                    type: 'error',
+                    title: 'ERROR',
+                    text: 'Ocurrio un problema contacte al 2002-4040!',
+                    timer: 3000
+                })
+            });
+    }
+    get Recibir() {
+        var miAccion = 'Recibir';
+
+        $.ajax({
+            type: "POST",
+            url: "class/Tarjeta.php",
+            data: {
+                action: miAccion,
+                value: $('#inp_identificacion').val()
+            }
+        })
+            .done(function (e) {
+                var result = JSON.parse(e);
+                if(result){
+                    Swal.fire({
+                        position: 'top-end',
+                        type: 'success',
+                        title: 'Tarjeta Registrada',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+                else{
+                    Swal.fire({
+                        type: 'error',
+                        title: 'ERROR',
+                        text: 'Ocurrio un problema al registrar la tarjeta!',
+                        timer: 3000
+                    })
+                }
+            })
+            .fail(function (e) {
+                Swal.fire({
+                    type: 'error',
+                    title: 'ERROR',
+                    text: 'Ocurrio un problema contacte al 2002-4040!',
+                    timer: 3000
+                })
+            });
+    }
 }
 
 let tarjeta = new Tarjeta();

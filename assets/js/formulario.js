@@ -266,13 +266,13 @@ class Formulario {
         $("#btn_guardar_formulario").text("Enviar");
 
 
-        if ( !$("#collapseOne").hasClass("in") ){
+        if (!$("#collapseOne").hasClass("in")) {
             $("#collapseOne").collapse('toggle');
         }
-        if ( $("#collapseTwo").hasClass("in") ){
+        if ($("#collapseTwo").hasClass("in")) {
             $("#collapseTwo").collapse('toggle');
         }
-        if ( $("#collapseThree").hasClass("in") ){
+        if ($("#collapseThree").hasClass("in")) {
             $("#collapseThree").collapse('toggle');
         }
     }
@@ -289,58 +289,99 @@ class Formulario {
             }
         })
             .done(function (e) {
-                formulario.modalEntradaVisitante(e);
+                formulario.modalVisitante(e);
             })
             .fail(function (e) {
                 // formulario.showError(e);
             });
     }
 
-    modalEntradaVisitante(e) {
+    modalVisitante(e) {
         var dataVisitante = JSON.parse(e);
-        if (dataVisitante == "noformulario"){
+        if (dataVisitante == "noformulario") {
             Swal.fire({
                 type: 'error',
                 title: 'SIN REGISTRO',
                 text: 'No exite un resgistro para la cédula ingresada!',
                 timer: 2000
-              })
-            // Swal.fire({
-            //     title: 'SIN REGISTRO',
-            //     text: "No exite un resgistro para la cédula ingresada!",
-            //     type: 'warning',
-            //     showCancelButton: true,
-            //     confirmButtonColor: '#3085d6',
-            //     cancelButtonColor: '#d33',
-            //     confirmButtonText: 'Yes, delete it!'
-            //   }).then((result) => {
-            //     if (result.value) {
-            //       Swal.fire(
-            //         'Deleted!',
-            //         'Your file has been deleted.',
-            //         'success'
-            //       )
-            //     }
-            //   })
+            })
             return false;
         }
-        if (dataVisitante == "notarjeta"){
+        if (dataVisitante == "notarjeta") {
+            Swal.fire({
+                type: 'error',
+                title: 'SIN TARJETA',
+                text: 'No exite una tarjeta diponible para esta recinto!',
+                timer: 2000
+            })
+            return false;
+        }        
+        if ( typeof dataVisitante.idFormulario != "undefined" ? true : false ) {
 
+            this.dataCenter = dataVisitante.nombreDataCenter;
+            this.consecutivo = dataVisitante.consecutivo;
+            this.cedula = dataVisitante.cedula;
+            this.nombre = dataVisitante.nombre;
+            this.empresa = dataVisitante.empresa;
+            this.autorizador = dataVisitante.autorizador;
+            this.fechaIngreso = dataVisitante.fechaIngreso;
+            this.fechaSalida = dataVisitante.fechaSalida;
+            tarjeta.consecutivo = dataVisitante.consecutivoTarjeta;;
+            tarjeta.id = dataVisitante.idTarjeta;;
+            this.sala = dataVisitante.nombreSala;
+            this.otrosDetalles = dataVisitante.otrosDetalles;
+            
+            $("#modalVisitanteTitulo").text(this.dataCenter);
+            $("#modalVisitanteNoFormulario").text(this.consecutivo);
+            $("#modalVisitanteCedula").val(this.cedula);
+            $("#modalVisitanteNombre").val(this.nombre);
+            $("#modalVisitanteEmpresa").val(this.empresa);
+            $("#modalVisitanteAutoriza").val(this.autorizador);
+            $("#modalVisitanteFechaEntrada").val(this.fechaIngreso);
+            $("#modalVisitanteFechaSalida").val(this.fechaSalida);
+            $("#modalVisitanteConsecutivoTarjeta").val(tarjeta.consecutivo);
+            $('#modalVisitanteConsecutivoTarjeta').data("id", tarjeta.id);
+            $("#modalVisitaSala").val(this.sala);
+            $("#modalVisitanteOtrosDetalles").val(this.otrosDetalles);
+            $("#btn_entrega_tarjeta").text("Recibir Tarjeta");
+            $('#btn_entrega_tarjeta').data("accion", "recibir");
+            $("#modalTituloVisitante").text("Formulario de SALIDA #");
+            $("#modalVisitante").modal("toggle");
             return false;
         }
+        this.id = dataVisitante.id;
+        this.idEstado = dataVisitante.idEstado;
+        // this.idDataCenter = dataVisitante.idDataCenter; 
+        this.idSala = dataVisitante.idSala;
+        // this.idTramitante = dataVisitante.idTramitante; 
+        // this.idAutorizador = dataVisitante.idAutorizador; 
+        // this.idResponsable = dataVisitante.idResponsable; 
+        this.consecutivo = dataVisitante.consecutivo;
+        this.fechaSolicitud = dataVisitante.fechaSolicitud;
+        this.fechaIngreso = dataVisitante.fechaIngreso;
+        this.fechaSalida = dataVisitante.fechaSalida;
+        // this.motivoVisita = dataVisitante.motivoVisita; 
+        this.otrosDetalles = dataVisitante.otrosDetalles;
+        this.idVisitante = dataVisitante.idVisitante;
+        tarjeta.consecutivo = dataVisitante.tarjeta.consecutivo;
+        tarjeta.id = dataVisitante.tarjeta.id;
 
         $("#modalVisitanteTitulo").text(dataVisitante.dataCenter);
         $("#modalVisitanteNoFormulario").text(dataVisitante.consecutivo);
-
         $("#modalVisitanteCedula").val(dataVisitante.cedula);
         $("#modalVisitanteNombre").val(dataVisitante.nombre);
         $("#modalVisitanteEmpresa").val(dataVisitante.empresa);
         $("#modalVisitanteAutoriza").val(dataVisitante.autorizador);
         $("#modalVisitanteFechaEntrada").val(dataVisitante.fechaIngreso);
         $("#modalVisitanteFechaSalida").val(dataVisitante.fechaSalida);
-        $("#modalVisitanteConsecutivoTarjeta").val(dataVisitante.consecutivoTarjeta);
+        $("#modalVisitanteConsecutivoTarjeta").val(dataVisitante.tarjeta.consecutivo);
+        $('#modalVisitanteConsecutivoTarjeta').data("id", dataVisitante.tarjeta.id);
         $("#modalVisitaSala").val(dataVisitante.sala);
         $("#modalVisitanteOtrosDetalles").val(dataVisitante.otrosDetalles);
+
+        $("#btn_entrega_tarjeta").text("Entregar Tarjeta");
+        $('#btn_entrega_tarjeta').data("accion", "entregar");
+        $("#modalTituloVisitante").text("Formulario de ENTRADA #");
         
         $("#modalVisitante").modal("toggle");
     }
@@ -349,3 +390,44 @@ class Formulario {
 
 let formulario = new Formulario();
 let tbl_formularios = [];
+
+
+// Swal.fire({
+            //     title: "Realizar Salida de Visitante?",
+            //     text: "El visitante seleccionado ya se encuentra dentro de las instalaciones, desea procesar su salida?",
+                
+            //     inputAttributes: {
+            //         autocapitalize: 'off'
+            //     },
+            //     showCancelButton: true,
+            //     confirmButtonText: 'Si, Realizar la Salida!',
+            //     showLoaderOnConfirm: true,
+            //     allowOutsideClick: () => !swal.isLoading()
+            // }).then((result) => {
+            //     if (result.value) {
+            //         $.ajax({
+            //             type: "POST",
+            //             url: "class/Tarjeta.php",
+            //             data: {
+            //                 action: "Recibir",
+            //                 value: $("#inp_identificacion").val()
+            //             }
+            //         })
+            //             .done(function (e) {
+                            // CargaListaFactura();
+                            // swal({
+                            //     type: 'success',
+                            //     title: 'Factura Cancelada!',
+                            //     showConfirmButton: false,
+                            //     timer: 2000
+                            // });
+                //         })
+                //         .fail(function (e) { });
+                // }
+                // else
+                    // swal({
+                    //     type: 'error',
+                    //     title: 'Error al cancelar',
+                    //     text: 'Debe de digitar una razón'
+                    // })
+            // })

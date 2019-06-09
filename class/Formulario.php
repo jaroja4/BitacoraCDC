@@ -79,13 +79,72 @@ class Formulario{
         }
     }
 
-    
+    function ValidarVisitante($cedula){
+        try { 
+            $sql = 'SELECT b.id, b.idFormulario, b.idVisitante, b.idTarjeta, b.entrada, b.salida,
+                        u.cedula, u.nombre, u.empresa,
+                        f.consecutivo, f.fechaIngreso, f.fechaSalida, f.idAutorizador, f.otrosDetalles,
+                        t.consecutivo consecutivoTarjeta, t.id idTarjeta,
+                        dc.id idDataCenter, dc.nombre nombreDataCenter,
+                        s.id idSala, s.nombre nombreSala
+                    FROM bitacora b
+                    INNER JOIN usuario_n u
+                    ON u.id = b.idVisitante
+                    INNER JOIN formulario f
+                    ON f.id = b.idFormulario
+                    INNER JOIN tarjeta t
+                    ON t.id = b.idTarjeta
+                    INNER JOIN sala s
+                    ON t.idSala = s.id
+                    INNER JOIN dataCenter dc
+                    ON dc.id = s.idDataCenter
+                    WHERE u.cedula = :cedula
+                    AND salida IS NULL
+                    ORDER BY entrada DESC;';
+            $param= array(':cedula'=>$cedula);            
+            $data= DATA::Ejecutar($sql, $param, true);
+            if ($data){
+                return $data;
+            }
+            return false;
+        }     
+        catch(Exception $e) {
+            error_log("[ERROR]  (".$e->getCode()."): ". $e->getMessage());
+            header('HTTP/1.0 400 Bad error');
+            die(json_encode(array(
+                'code' => $e->getCode() ,
+                'msg' => 'Error al cargar la lista'))
+            );
+        }
+    }
+
     function Buscar($cedula, $idDataCenter){        
         try { 
+            //Valida que el Visitante no haya ingresado
+            $visitanteIngresado = $this->ValidarVisitante($cedula);
+            if ($visitanteIngresado){
+                return $visitanteIngresado[0];
+            }
+            return $this->Entrada($cedula, $idDataCenter);
+            
+        }     
+        catch(Exception $e) {
+            error_log("[ERROR]  (".$e->getCode()."): ". $e->getMessage());
+            header('HTTP/1.0 400 Bad error');
+            die(json_encode(array(
+                'code' => $e->getCode() ,
+                'msg' => 'Error al cargar la lista'))
+            );
+        }
+    }
+
+    function Entrada($cedula, $idDataCenter){
+        try {
+
             $sql = 'SELECT f.id, f.idEstado, f.consecutivo, f.fechaSolicitud, f.otrosDetalles,
                 (SELECT nombre FROM usuario_n where id = f.idAutorizador) autorizador, 
                 f.fechaIngreso, f.fechaSalida, dc.nombre dataCenter, s.id idSala, 
-                s.nombre sala, u.cedula, u.nombre, u.empresa
+                s.nombre sala, u.id idVisitante, u.cedula, u.nombre, u.empresa
                     FROM formulario f
                     INNER JOIN visitante_formulario vf
                     ON vf.idFormulario = f.id
@@ -119,26 +178,15 @@ class Formulario{
                 $this->nombre = $data[0]["nombre"];
                 $this->empresa = $data[0]["empresa"];
                 $this->otrosDetalles = $data[0]["otrosDetalles"];
+                $this->idVisitante = $data[0]["idVisitante"];
 
 
-                $sql = 'SELECT id, consecutivo, estado
-                    FROM tarjeta
-                    WHERE idSala = :idSala
-                    AND estado = 0
-                    ORDER BY consecutivo ASC
-                    LIMIT 1;';
-                $param= array(':idSala'=>$data[0]["idSala"]);            
-                $data= DATA::Ejecutar($sql, $param);
-                if ($data){
-                    $this->consecutivoTarjeta = $data[0]["consecutivo"];
-                    $sql= 'UPDATE tarjeta
-                        SET estado = 1
-                        WHERE id = :id;';
-                    $param= array(':id'=>$data[0]["id"]);            
-                    $data= DATA::Ejecutar($sql, $param, false);
-                    return $this;
-                }
-                return "notarjeta";
+                require_once("Tarjeta.php");
+                $tarjeta = new Tarjeta;
+                $tarjeta->idSala = $data[0]["idSala"];
+                $this->tarjeta = $tarjeta->BuscarDisponible();
+
+                return $this;
             }
             return "noformulario";
         }     
@@ -273,7 +321,7 @@ class Formulario{
 
     function ReadbyID(){        
         try {
-            $sql="SELECT 	f.id, f.idEstado, f.idSala, s.idDataCenter, f.idTramitante, f.idAutorizador, 
+            $sql="SELECT f.id, f.idEstado, f.idSala, s.idDataCenter, f.idTramitante, f.idAutorizador, 
                         f.idResponsable, f.consecutivo, f.fechaSolicitud, f.fechaIngreso,
                         f.fechaSalida, f.motivoVisita, f.otrosDetalles
                 FROM formulario f

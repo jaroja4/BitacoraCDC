@@ -57,14 +57,6 @@ class Visitante{
 
     function Search(){
         try {
-            $sql='SELECT id, cedula, nombre text, empresa, fechaCreacion FROM visitante
-                WHERE 
-                cedula LIKE "%' . $this->search_value . '%" OR 
-                nombre LIKE "%' . $this->search_value . '%" OR
-                empresa LIKE "%' . $this->search_value . '%"
-                ORDER BY nombre DESC
-                LIMIT 10;';
-
             $sql='SELECT u.id, u.cedula, u.nombre text, u.empresa, u.fechaCreacion FROM usuario_n u
                     INNER JOIN usuario_rol ur
                     ON ur.idUsuario = u.id
@@ -75,8 +67,7 @@ class Visitante{
                         nombre LIKE "%' . $this->search_value . '%" OR 
                         empresa LIKE "%' . $this->search_value . '%")
                     ORDER BY u.nombre DESC
-                    LIMIT 10;';
-            // $param= array(':search_value'=>$this->search_value);            
+                    LIMIT 10;';            
             $data= DATA::Ejecutar($sql);            
             if($data){
                 return $data;

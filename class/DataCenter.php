@@ -62,14 +62,17 @@ class DataCenter{
         try {
             $ip = explode('/',$_SERVER['REQUEST_URI'])[2];
             $ip = $_SERVER['REMOTE_ADDR']?:($_SERVER['HTTP_X_FORWARDED_FOR']?:$_SERVER['HTTP_CLIENT_IP']);
-            $ip == "::1"?$ip="10.3.204.68":$ip;
+            $ip == "::1"?$ip="10.129.29.199":$ip;  //SANPEDRO
+            // $ip == "::1"?$ip="10.3.8.16":$ip; //Sabana            
+            $vLAN = explode ( ".", $ip, 3);
+            $vLAN = $vLAN[0].".".$vLAN[1];
 
             $sql='SELECT id, nombre, direccionesIP FROM dataCenter;';      
             $data= DATA::Ejecutar($sql);            
             if($data){
                 foreach ($data as $value) {
                     foreach (json_decode($value["direccionesIP"])->ip as $direccionIP) {
-                        if($ip == $direccionIP){
+                        if($vLAN == $direccionIP){
                             return $value;
                         }
                     }
