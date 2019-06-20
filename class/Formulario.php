@@ -83,7 +83,7 @@ class Formulario{
         try { 
             $sql = 'SELECT b.id, b.idFormulario, b.idVisitante, b.idTarjeta, b.entrada, b.salida,
                         u.cedula, u.nombre, u.empresa,
-                        f.consecutivo, f.fechaIngreso, f.fechaSalida, f.idAutorizador, f.otrosDetalles,
+                        f.consecutivo, f.fechaIngreso, f.fechaSalida, f.idAutorizador, (SELECT nombre FROM usuario_n where id = f.idAutorizador) autorizador, f.otrosDetalles,
                         t.consecutivo consecutivoTarjeta, t.id idTarjeta,
                         dc.id idDataCenter, dc.nombre nombreDataCenter,
                         s.id idSala, s.nombre nombreSala
@@ -117,15 +117,60 @@ class Formulario{
             );
         }
     }
-
-    function Buscar($cedula, $idDataCenter){        
+    function SalidaXTarjeta($consecutivoTarjeta, $idDataCenter){
         try { 
-            //Valida que el Visitante no haya ingresado
-            $visitanteIngresado = $this->ValidarVisitante($cedula);
-            if ($visitanteIngresado){
-                return $visitanteIngresado[0];
+            $sql="SELECT b.id, b.idFormulario, b.idVisitante, b.idTarjeta, b.entrada, b.salida,
+                u.cedula, u.nombre, u.empresa,
+                f.consecutivo, f.fechaIngreso, f.fechaSalida, f.idAutorizador, (SELECT nombre FROM usuario_n where id = f.idAutorizador) autorizador, f.otrosDetalles,
+                t.consecutivo consecutivoTarjeta, t.id idTarjeta,
+                dc.id idDataCenter, dc.nombre nombreDataCenter,
+                s.id idSala, s.nombre nombreSala
+            FROM bitacora b
+            INNER JOIN usuario_n u
+            ON u.id = b.idVisitante
+            INNER JOIN formulario f
+            ON f.id = b.idFormulario
+            INNER JOIN tarjeta t
+            ON t.id = b.idTarjeta
+            INNER JOIN sala s
+            ON t.idSala = s.id
+            INNER JOIN dataCenter dc
+            ON dc.id = s.idDataCenter
+            WHERE t.consecutivo= :consecutivoTarjeta
+            AND salida IS NULL
+            ORDER BY entrada DESC;";
+            $param= array(':consecutivoTarjeta'=>$consecutivoTarjeta);            
+            $data= DATA::Ejecutar($sql, $param);
+
+            if($data){
+                return $data[0];
             }
-            return $this->Entrada($cedula, $idDataCenter);
+            else
+                return "noformulario";
+        }     
+        catch(Exception $e) {
+            error_log("[ERROR]  (".$e->getCode()."): ". $e->getMessage());
+            header('HTTP/1.0 400 Bad error');
+            die(json_encode(array(
+                'code' => $e->getCode() ,
+                'msg' => 'Error al cargar la lista'))
+            );
+        }
+        
+    }
+    function Buscar($value, $idDataCenter){        
+        try { 
+            if( strlen($value) > 5){
+                //Valida que el Visitante no haya ingresado
+                $visitanteIngresado = $this->ValidarVisitante($value);
+                if ($visitanteIngresado){
+                    return $visitanteIngresado[0];
+                }
+                return $this->Entrada($value, $idDataCenter);
+            }
+            else{
+                return $this->SalidaXTarjeta($value, $idDataCenter);
+            }
             
         }     
         catch(Exception $e) {
@@ -140,7 +185,6 @@ class Formulario{
 
     function Entrada($cedula, $idDataCenter){
         try {
-
             $sql = 'SELECT f.id, f.idEstado, f.consecutivo, f.fechaSolicitud, f.otrosDetalles,
                 (SELECT nombre FROM usuario_n where id = f.idAutorizador) autorizador, 
                 f.fechaIngreso, f.fechaSalida, dc.nombre dataCenter, s.id idSala, 

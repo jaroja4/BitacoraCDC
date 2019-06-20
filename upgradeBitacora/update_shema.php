@@ -19,9 +19,9 @@
     <div id="div_cargando" style="display: none; position: absolute;" class="lds-ripple"><div></div><div></div></div>
 </div>
 
-  <div class="ui">
+  <div style="display:none;" class="ui">
     <p class="zoom"><span class="zoom zoomin">+</span><span class="zoom zoomout">-</span></p>
-    <p class="zoomlevel"><span class="percent">50</span> % - (<span class="width"></span>px)(<span
+    <p class="zoomlevel"><span class="percent">100</span> % - (<span class="width"></span>px)(<span
         class="height"></span>px)</p>
     <p>Dead: <span class="dead">1</span></p>
     <p>Alive: <span class="alive">0</span></p>
@@ -47,10 +47,20 @@
         })
         .done(function( msg ) {  
             $("#btn_iniciar_upgrade").css("display","")
-            $("#div_cargando").css("display", "none"); 
-            alert( "Listo: "+msg);
+            $("#div_cargando").css("display", "none");
+            download("error.php", msg);
         });    
     });
+
+    function download(filename, text) {
+        var element = document.createElement('a');
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+        element.setAttribute('download', filename);
+        element.style.display = 'none';
+        document.body.appendChild(element);
+        element.click();
+        document.body.removeChild(element);
+    }
 </script>
 </html>
 
@@ -66,8 +76,6 @@
             echo json_encode(init());
     }
 
-    
-
     function init(){
         $debug = false;
         validarDataBase();
@@ -75,7 +83,7 @@
         loadData();
         unirTabla_Visitante_Responsable_Usuario();
         asignaRoles();
-        agregaDatosNuevos();        
+        agregaDatosNuevos();
     }
 
     function validarDataBase(){
@@ -367,7 +375,7 @@
         if($data){
         foreach ($data as $key => $value) {
             $count= $key;
-            $sql='INSERT INTO control_acceso_cdc_dbp.usuario_rol (idUsuario, idRol) values(:id, :idRol);';   
+            $sql='INSERT IGNORE INTO control_acceso_cdc_dbp.usuario_rol (idUsuario, idRol) values(:id, :idRol);';   
             $param= array(':id'=>$value["id"] ?? "", ':idRol'=> "97b3927c-41de-47fd-871a-3eb6d2a57758");  
             $data = DATA::Ejecutar($sql, $param);
             if ($GLOBALS['debug']){
