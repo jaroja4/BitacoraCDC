@@ -17,6 +17,9 @@ if( isset($_POST["action"])){
             $responsable->id= $_POST["id"] ?? "";
             echo json_encode($responsable->ReadbyID());
             break;
+        case "ReadAll_List":
+            echo json_encode($responsable->ReadAll_List());
+            break;
     }
 }
 
@@ -37,6 +40,35 @@ class Responsable{
             $this->id= $obj["id"] ?? UUID::v4();
         }
     }
+    
+    function ReadAll_List(){
+        try {
+            $sql='SELECT u.id, u.usuario, u.cedula, u.nombre, u.correo, u.empresa, u.fechaCreacion
+                FROM usuario_n u
+                INNER JOIN usuario_rol ur
+                ON ur.idUsuario = u.id
+                INNER JOIN rol r
+                ON r.id = ur.idRol
+                WHERE r.nombre = "Responsable";';
+            $data= DATA::Ejecutar($sql);            
+            if($data){
+                return $data;
+            }
+            else {
+                return false;
+            }
+
+        }     
+        catch(Exception $e) {
+            error_log("[ERROR]  (".$e->getCode()."): ". $e->getMessage());
+            header('HTTP/1.0 400 Bad error');
+            die(json_encode(array(
+                'code' => $e->getCode() ,
+                'msg' => 'Error al cargar la lista'))
+            );
+        }
+    }
+
 
     function ReadAll(){
         try {

@@ -67,7 +67,7 @@
 
 <?php
     ini_set('max_execution_time', 3000); //300 seconds = 5 minutes
-    $debug = false;
+    $debug = true;
 
     if( isset($_POST["action"])){        
         $opt= $_POST["action"];
@@ -152,7 +152,7 @@
                     ':idTarjeta'=>$value["idtarjeta"], ':entrada'=>$value["entrada"], ':salida'=>$value["salida"]);
                 $data = DATA::Ejecutar($sql, $param);
                 if ($GLOBALS['debug']){
-                    print_r($value);
+                    error_log( print_r($value) );
                     echo "<br>";
                 }
             }
@@ -169,7 +169,7 @@
                 $param= array(':id'=>$value["id"], ':nombre'=>$value["nombre"]);
                 $data = DATA::Ejecutar($sql, $param);
                 if ($GLOBALS['debug']){
-                    print_r($value);
+                    error_log( print_r($value) );
                     echo "<br>";
                 }
             }
@@ -187,7 +187,7 @@
                 $param= array(':id'=>$value["id"], ':nombre'=>$value["nombre"]);
                 $data = DATA::Ejecutar($sql, $param);
                 if ($GLOBALS['debug']){
-                    print_r($value);
+                    error_log( print_r($value) );
                     echo "<br>";
                 }
             }
@@ -217,7 +217,7 @@
                         ':otrosDetalles'=>( "RFC: ".$value["rfc"]." Placa: ".$value["rfc"]." Detalle Equipo: ".$value["detalleequipo"]) );
                 $data = DATA::Ejecutar($sql, $param);
                 if ($GLOBALS['debug']){
-                    print_r($value);
+                    error_log( print_r($value) );
                     echo "<br>";
                 }
             }
@@ -235,7 +235,7 @@
                 $param= array(':id'=>$value["id"], ':nombre'=>$value["nombre"]);
                 $data = DATA::Ejecutar($sql, $param);
                 if ($GLOBALS['debug']){
-                    print_r($value);
+                    error_log( print_r($value) );
                     echo "<br>";
                 }
             }
@@ -253,7 +253,7 @@
                 $param= array(':id'=>$value["id"], ':idDataCenter'=>$value["iddatacenter"], ':nombre'=>$value["nombre"]);
                 $data = DATA::Ejecutar($sql, $param);
                 if ($GLOBALS['debug']){
-                    print_r($value);
+                    error_log( print_r($value) );
                     echo "<br>";
                 }
             }
@@ -271,7 +271,7 @@
                 $param= array(':id'=>$value["id"], ':idSala'=>$value["idSala"], ':estado'=>$value["estado"], ':consecutivo'=>$value["consecutivo"]);
                 $data = DATA::Ejecutar($sql, $param);
                 if ($GLOBALS['debug']){
-                    print_r($value);
+                    error_log( print_r($value) );
                     echo "<br>";
                 }
             }
@@ -289,7 +289,7 @@
                 $param= array(':id'=>$value["id"], ':idVisitante'=>$value["idvisitante"], ':idFormulario'=>$value["idformulario"]);
                 $data = DATA::Ejecutar($sql, $param);
                 if ($GLOBALS['debug']){
-                    print_r($value);
+                    error_log( print_r($value) );
                     echo "<br>";
                 }
             }
@@ -309,7 +309,7 @@
                 $param= array(':id'=>$value["id"], ':nombre'=>$value["nombre"], ':cedula'=>$value["cedula"], ':empresa'=>$value["empresa"], ':fechaCreacion'=>$value["fechaCreacion"]);  
                 $data = DATA::Ejecutar($sql, $param);
                 if ($GLOBALS['debug']){
-                    print_r($value);
+                    error_log( print_r($value) );
                     echo "<br>";
                 }
             }
@@ -327,7 +327,7 @@
                 $param= array(':id'=>$value["id"], ':nombre'=>$value["nombre"], ':cedula'=>$value["cedula"], ':empresa'=>$value["empresa"]);  
                 $data = DATA::Ejecutar($sql, $param);
                 if ($GLOBALS['debug']){
-                    print_r($value);
+                    error_log( print_r($value) );
                     echo "<br>";
                 }
             }
@@ -345,7 +345,7 @@
                 $param= array(':id'=>$value["id"], ':nombre'=>$value["nombre"], ':usuario'=>$value["usuario"], ':passwd'=>$value["contrasena"], ':correo'=>$value["email"], ':fechaCreacion'=>$value["fechaCreacion"]);  
                 $data = DATA::Ejecutar($sql, $param);
                 if ($GLOBALS['debug']){
-                    print_r($value);
+                    error_log( print_r($value) );
                     echo "<br>";
                 }
             }
@@ -379,7 +379,7 @@
             $param= array(':id'=>$value["id"] ?? "", ':idRol'=> "97b3927c-41de-47fd-871a-3eb6d2a57758");  
             $data = DATA::Ejecutar($sql, $param);
             if ($GLOBALS['debug']){
-                print_r($value);
+                error_log( print_r($value) );
                 echo "<br>";
             }
         }
@@ -399,7 +399,7 @@
                 $param= array(':id'=>$value["id"] ?? "", ':idRol'=> "bcec0ea4-4a0b-4e69-b9f5-744530a765ed");  
                 $data = DATA::Ejecutar($sql, $param);
                 if ($GLOBALS['debug']){
-                    print_r($value);
+                    error_log( print_r($value) );
                     echo "<br>";
                 }
             }
@@ -418,7 +418,7 @@
                 $param= array(':id'=>$value["id"] ?? "", ':idRol'=> "c4d35117-d57e-4cad-b3bc-b589f002814d");  
                 $data = DATA::Ejecutar($sql, $param);
                 if ($GLOBALS['debug']){
-                    print_r($value);
+                    error_log( print_r($value) );
                     echo "<br>";
                 }
             }

@@ -13,6 +13,9 @@ if( isset($_POST["action"])){
             $visitante->search_value= $_POST["search_value"] ?? "";
             echo json_encode($visitante->Search());
             break;
+        case "ReadAll_list":
+            echo json_encode($visitante->ReadAll_list());
+            break;
     }
 }
 
@@ -87,23 +90,16 @@ class Visitante{
         }
     }
 
-    function ReadAllbyRange(){
+    function ReadAll_list(){
         try {
-            $sql="SELECT f.id,
-                        f.consecutivo,
-                        e.nombre Estado,
-                        f.fechaSolicitud,
-                        f.fechaIngreso,
-                        f.motivoVisita,
-                        f.RFC
-                    FROM
-                        formulario f
-                            INNER JOIN
-                        estado e ON f.idEstado = e.id
-                    WHERE (fechaSolicitud BETWEEN :read_fechaInicial AND :read_fechaFinal);";
-            $param= array(':read_fechaInicial'=>$this->read_fechaInicial, ':read_fechaFinal'=>$this->read_fechaFinal);            
-            $data= DATA::Ejecutar($sql, $param);
-            
+            $sql='SELECT u.id, u.usuario, u.cedula, u.nombre, u.correo, u.empresa, u.fechaCreacion
+                FROM usuario_n u
+                INNER JOIN usuario_rol ur
+                ON ur.idUsuario = u.id
+                INNER JOIN rol r
+                ON r.id = ur.idRol
+                WHERE r.nombre = "Visitante";';
+            $data= DATA::Ejecutar($sql);            
             if($data){
                 return $data;
             }

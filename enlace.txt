@@ -1,1 +1,1 @@
-sudo ln -s /opt/www/BitacoraCDC /opt/www/operacionesti.icetel.ice/BitacoraCDC
+sudo ln -s /opt/www/BitacoraCDC /opt/www/operacionesti.icetel.ice/BitacoraCDC2

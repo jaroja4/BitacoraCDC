@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- <link rel="icon" href="images/favicon.ico" type="image/ico" /> -->
+
+  <title>Bitácora CDC | DTI</title>
+
+  <!-- Bootstrap -->
+  <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="vendors/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <!-- Datatables -->
+  <link href="vendors/datatables.net/datatables.min.css" rel="stylesheet">
+  <link href="vendors/datatables.net/DataTables-1.10.18/css/dataTables.bootstrap.min.css" rel="stylesheet">
+  <!-- SweetAlert -->
+  <link href="vendors/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
+  <!-- RangePicker -->
+  <link href="vendors/daterangepicker/daterangepicker.css" rel="stylesheet">
+  <!-- NProgress -->
+  <link href="vendors/nprogress/nprogress.css" rel="stylesheet">
+  <!-- bootstrap-daterangepicker -->
+  <link href="vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+  <!-- Custom Theme Style -->
+  <link href="assets/css/custom.min.css" rel="stylesheet">
+  <link href="assets/css/modal_accordion_formulario_ingreso.css" rel="stylesheet">
+
+  <link href='vendors/select2/css/select2.css' rel='stylesheet' type='text/css'>
+
+
+
+</head>
+
+<body class="nav-md">
+  <div class="container body">
+    <div class="main_container">
+      <div class="col-md-3 left_col">
+        <div class="left_col scroll-view">
+          <div class="navbar nav_title" style="border: 0;">
+            <a href="index.html" class="site_title"><i class="fa fa-bullhorn"></i> <span>Centros de Datos Corporativos
+              </span></a>
+          </div>
+
+          <div class="clearfix"></div>
+
+          <!-- menu profile quick info -->
+          <div class="profile clearfix">
+            <div class="profile_pic">
+              <img src="images/LogoICESmall.png" alt="..."
+                style="width:70px;height:70px;border-radius:50%;margin-top:10%">
+            </div>
+            <div class="profile_info">
+              <span><span>Bienvenido,</span></span>
+              <h2>Usuario de Seguridad</h2>
+            </div>
+          </div>
+          <!-- /menu profile quick info -->
+
+          <br />
+
+          <!-- sidebar menu -->
+          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+            <div class="menu_section">
+              <h3>General</h3>
+              <ul class="nav side-menu">
+                <li><a><i class="fa fa-address-book-o"></i> Bitácora <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="index.html">Registro</a></li>
+                    <li><a href="consultaBitacora.html">Consultas</a></li>
+                  </ul>
+                </li>
+
+                <li><a><i class="fa fa-list-alt"></i> Formularios <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="listaFormularios.html">Lista Formularios</a></li>
+                  </ul>
+                </li>
+
+                <li><a><i class="fa fa-users"></i> Personal <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="listaUsuarios.html">Usuarios</a></li>
+                    <li><a href="Roles.html">Roles</a></li>
+                  </ul>
+                </li>
+                <li><a><i class="fa fa-map-marker"></i> Sitios <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="listaSitios.html">Lista Sitios</a></li>
+                  </ul>
+                </li>
+                <li><a><i class="fa fa-id-badge"></i> Tarjetas <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="tarjetas.html">Gestión de Tarjetas</a></li>
+                  </ul>
+                </li>
+
+              </ul>
+            </div>
+          </div>
+          <!-- /sidebar menu -->
+        </div>
+      </div>
+
+      <!-- top navigation -->
+      <div class="top_nav">
+        <div class="nav_menu">
+          <nav>
+            <div class="nav toggle">
+              <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+            </div>
+
+            <ul class="nav navbar-nav navbar-right">
+              <li class="">
+                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                  aria-expanded="false">
+                  <img src="images/img.png" alt="">Usuario de Seguridad
+                  <span class=" fa fa-angle-down"></span>
+                </a>
+                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                  <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Salir</a></li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <!-- /top navigation -->
+
+      <!-- page content -->
+      <div class="right_col" role="main">
+        <div class="">
+          <div class="page-title">
+            <div class="title_left">
+              <h3>Gestión de Usuarios <small></small></h3>
+            </div>
+
+            <!-- <div class="title_right">
+                  <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Buscar en formularios...">
+                      <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Buscar</button>
+                      </span>
+                    </div>
+                  </div>
+                </div> -->
+          </div>
+
+          <div class="clearfix"></div>
+
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="x_panel">
+                <div class="x_title">
+                  <button id="btn_abrirModal" type="button" class="btn btn-primary">Crear Nuevo Usuario</button>
+                  <div class="nav navbar-right panel_toolbox">
+
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                  <div class="container">
+                    <ul class="nav nav-tabs">
+                      <li class="active">
+                        <a href="#tab_usuarios" data-toggle="tab">Usuarios</a>
+                      </li>
+                      <li><a href="#tab_responsables" data-toggle="tab">Responsables</a>
+                      </li>
+                      <li><a href="#tab_visitantes" data-toggle="tab">Visitantes</a>
+                      </li>
+                      <li><a href="#tab_autorizadores" data-toggle="tab">Autorizadores</a>
+                      </li>
+                    </ul>
+
+                    <div class="tab-content ">
+                      <br>
+                      <div class="tab-pane active" id="tab_usuarios">
+                        <div class="table-responsive">
+                          <table id="tb_usuarios" class="table table-striped jambo_table bulk_action">
+                            <thead>
+                            </thead>
+
+                            <tbody>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+
+                      <div class="tab-pane" id="tab_responsables">
+                        <div class="table-responsive">
+                          <table id="tb_responsables" class="table table-striped jambo_table bulk_action">
+                            <thead>
+                            </thead>
+
+                            <tbody>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+
+                      <div class="tab-pane" id="tab_visitantes">
+                        <div class="table-responsive">
+                          <table id="tb_visitantes" class="table table-striped jambo_table bulk_action">
+                            <thead>
+                            </thead>
+
+                            <tbody>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+
+                      <div class="tab-pane" id="tab_autorizadores">
+                        <div class="table-responsive">
+                          <table id="tb_autorizadores" class="table table-striped jambo_table bulk_action">
+                            <thead>
+                            </thead>
+
+                            <tbody>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /page content -->
+
+
+      <!-- footer content -->
+      <footer>
+        <div class="pull-right">
+          Operaciones TI - DTI - Instituto Costarricense de Electricidad
+        </div>
+        <div class="clearfix"></div>
+      </footer>
+      <!-- /footer content -->
+    </div>
+  </div>
+
+  <!--Modal Crear Tarea -->
+  <div class="modal fade" id="modal_new_form">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Formulario de Ingreso</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-12 col-md-12 col-lg-12">
+
+
+              </div>
+            </div>
+          </div>
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="btn_guardar_formulario">Enviar</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- jQuery -->
+  <script src="assets/js/jquery/dist/jquery.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+  <!-- JS dataTables -->
+  <script src="vendors/datatables.net/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
+  <script src="vendors/datatables.net/DataTables-1.10.18/js/dataTables.bootstrap.min.js"></script>
+  <!-- NProgress -->
+  <script src="vendors/nprogress/nprogress.js"></script>
+  <!-- bootstrap-progressbar -->
+  <script src="vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+  <!-- Seleect2 -->
+  <script src='vendors/select2/js/select2.js'></script>
+  <!-- Moment -->
+  <script src="vendors/moment/moment.min.js"></script>
+  <script src="vendors/moment/locale/es.js"></script>
+  <!-- SweetAlert2 -->
+  <script src="vendors/sweetalert2/dist/sweetalert2.js"></script>
+  <!-- bootstrap-daterangepicker -->
+  <script src="vendors/daterangepicker/daterangepicker.min.js"></script>
+  <!-- Custom Theme Scripts -->
+  <script src="assets/js/custom.js"></script>
+  <script src="assets/js/usuario.js"></script>
+
+</body>
+
+</html>
+
+<script>
+
+  $(document).ready(function () {
+
+    usuario.responsables_ReadAll_list;
+    usuario.usuarios_ReadAll_list;
+    usuario.visitantes_ReadAll_list;
+    usuario.autorizadores_ReadAll_list;
+    
+
+    $("#btn_abrirModal").click(function () {
+      formulario.clear;
+      $('#sel_autorizador').val("null").change();
+      $("#modal_new_form").modal("show");
+    });
+
+
+
+
+  })
+
+</script>

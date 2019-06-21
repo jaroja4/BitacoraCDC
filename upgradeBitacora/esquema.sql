@@ -66,6 +66,24 @@ CREATE TABLE `estado` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `eventosXRoll`
+--
+
+DROP TABLE IF EXISTS `eventosXRoll`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `eventosXRoll` (
+  `id` char(36) NOT NULL,
+  `nombre` varchar(100) DEFAULT NULL,
+  `url` varchar(150) DEFAULT NULL,
+  `menuPadre` varchar(100) DEFAULT NULL,
+  `subMenuPadre` varchar(100) DEFAULT NULL,
+  `icono` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `formulario`
 --
 
@@ -194,4 +212,4 @@ CREATE TABLE `visitante_formulario` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-08 15:59:41
+-- Dump completed on 2019-06-20 13:46:34

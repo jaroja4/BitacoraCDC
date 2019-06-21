@@ -4,13 +4,6 @@ if(isset($_POST["action"])){
     unset($_POST['action']);
     // Classes
     require_once("Conexion.php");
-    require_once('Evento.php');
-    // require_once("usuariosXBodega.php");
-    // require_once("ClienteFE.php");
-    // require_once("encdes.php");
-    // Session
-    if (!isset($_SESSION))
-        session_start();
     // Instance
     $usuario= new Usuario();
     switch($opt){  
@@ -26,22 +19,11 @@ if(isset($_POST["action"])){
             break;
         case "EndSession":
             $usuario->EndSession();
-            break;        
-        // case "CheckUsername":
-        //     $usuario->username= $_POST["username"];
-        //     echo json_encode($usuario->CheckUsername());
-        //     break;
+            break;    
+        case "ReadAll":
+            echo json_encode($usuario->ReadAll());
+            break; 
     }
-}
-
-abstract class userSessionStatus
-{
-    const invalido = 'invalido'; // login invalido
-    const login = 'login'; // login ok; credencial ok
-    const nocredencial= 'nocredencial'; // login ok; sin credenciales
-    const inactivo= 'inactivo';
-    const noexiste= 'noexiste';
-    const noip= 'noip';
 }
 
 class Usuario{
@@ -51,7 +33,7 @@ class Usuario{
     public $nombre;
     public $email;
     public $activo = 0;
-    public $status = userSessionStatus::invalido; // estado de la sesion de usuario.
+    public $status = 0;
     public $listarol= array(); // array de roles del usuario.
     public $eventos= array(); // array de eventos asignados a la sesion de usuario.
     public $url;
@@ -115,6 +97,35 @@ class Usuario{
             return false;  
         }
     }
+
+    
+    function ReadAll(){
+        try {
+            $sql='SELECT u.id, u.usuario, u.passwd, u.cedula, u.nombre, u.correo, u.empresa, u.fechaCreacion
+                FROM usuario_n u       
+                ORDER BY nombre ASC';
+            $data= DATA::Ejecutar($sql);
+            return $data;
+        }     
+        catch(Exception $e) { error_log("[ERROR]  (".$e->getCode()."): ". $e->getMessage());
+            header('HTTP/1.0 400 Bad error');
+            die(json_encode(array(
+                'code' => $e->getCode() ,
+                'msg' => 'Error al cargar la lista'))
+            );
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
 
     // login and user session
     function CheckSession(){
@@ -223,23 +234,6 @@ class Usuario{
                 'msg' => $e->getMessage()))
             );
         } 
-    }
-
-    function ReadAll(){
-        try {
-            $sql='SELECT id, nombre, username, email, activo
-                FROM     usuario       
-                ORDER BY nombre asc';
-            $data= DATA::Ejecutar($sql);
-            return $data;
-        }     
-        catch(Exception $e) { error_log("[ERROR]  (".$e->getCode()."): ". $e->getMessage());
-            header('HTTP/1.0 400 Bad error');
-            die(json_encode(array(
-                'code' => $e->getCode() ,
-                'msg' => 'Error al cargar la lista'))
-            );
-        }
     }
 
     function Read(){

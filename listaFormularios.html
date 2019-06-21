@@ -252,7 +252,7 @@
                               <div class="col-sm-12 col-md-12 col-lg-6 form-group">
                                 <label for="sel_autorizador">Seleccione el Autorizador</label>
                                 <select class="form-control" style="height: 2.7em;" id="sel_autorizador">
-                                  <option value="d3b95439-89c2-11e7-8f4b-005056a81613">Jason Rojas Valverde</option>
+                                  <option value="null" selected>Seleccione...</option>
                                 </select>
                               </div>
                             </form>
@@ -376,7 +376,7 @@
         </div>
       </div>
     </div>
-
+  </div>
     <!-- jQuery -->
     <script src="assets/js/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
@@ -414,6 +414,8 @@
   $(document).ready(function () {
 
     dataCenter.ReadAll;
+    usuario.autorizador_ReadAll;
+
 
     $("#btn_guardar_formulario").click(function () {
       formulario.validar;
@@ -561,6 +563,7 @@
 
     $("#btn_abrirModal").click(function () {
       formulario.clear;
+      $('#sel_autorizador').val("null").change();
       $("#modal_new_form").modal("show");
     });
 
