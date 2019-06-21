@@ -87,7 +87,8 @@
     }
 
     function validarDataBase(){
-        $db_con = new PDO('mysql:host=10.3.2.156; port=3306; charset=utf8', 'operti', 'SanPedro1');    
+        $db_con = new PDO('mysql:host=localhost; port=3306; charset=utf8', 'operti', 'b7F3sW7P*8g-4b_e');
+        // $db_con = new PDO('mysql:host=localhost; port=3306; charset=utf8', 'operti', 'SanPedro1');    
         echo "Conexión Exitosa" . PHP_EOL;
         $sql = "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'control_acceso_cdc_dbp'";
         $st=$db_con->prepare($sql);

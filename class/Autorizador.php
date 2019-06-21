@@ -35,7 +35,7 @@ class Autorizador{
                     INNER JOIN rol r
                     ON r.id = ur.idRol
                     WHERE r.nombre = :rolNombre;';   
-            $param= array(':rolNombre'=>"Operador");  
+            $param= array(':rolNombre'=>"Autorizador");  
             $data = DATA::Ejecutar($sql,$param);       
             if($data){
                 return $data;
