@@ -30,6 +30,7 @@ class SearchLDAP{
     public $cedula = "";
     public $telephonenumber = "";
     public $streetaddress = "";
+    public $physicaldeliveryofficename = "";
 
 	function __construct(){
         require_once("Conexion.php");
@@ -61,6 +62,7 @@ class SearchLDAP{
             $this->cedula = utf8_encode( $LDAP_user_data[0]["description"][0] ?? null );
             $this->telephonenumber = utf8_encode( $LDAP_user_data[0]["telephonenumber"][0] ?? null );
             $this->streetaddress = utf8_encode( $LDAP_user_data[0]["streetaddress"][0] ?? null );
+            $this->physicaldeliveryofficename = utf8_encode( $LDAP_user_data[0]["physicaldeliveryofficename"][0] ?? null );
             
             @ldap_close($LDAP_connect);
             return $this;
@@ -71,5 +73,6 @@ class SearchLDAP{
         }
     }
 }
+
 
 ?>

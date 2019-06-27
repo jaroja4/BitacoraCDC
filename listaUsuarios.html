@@ -163,7 +163,8 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="x_panel">
                 <div class="x_title">
-                  <button id="btn_abrirModal" type="button" class="btn btn-primary">Crear Nuevo Usuario</button>
+                  <button id="btn_abrirModal_NuevoUsuario" type="button" class="btn btn-primary">Crear Nuevo
+                    Usuario</button>
                   <div class="nav navbar-right panel_toolbox">
 
                   </div>
@@ -258,30 +259,113 @@
   </div>
 
   <!--Modal Crear Tarea -->
-  <div class="modal fade" id="modal_new_form">
+  <div class="modal fade" id="modal_NuevoUsuario">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
 
         <!-- Modal Header -->
         <div class="modal-header">
-          <h4 class="modal-title">Formulario de Ingreso</h4>
+          <h4 class="modal-title">Crear Nuevo Usuario</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
 
         <!-- Modal body -->
         <div class="modal-body">
 
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-12 col-md-12 col-lg-12">
-
-
+          <form class="form-horizontal" role="form">
+            <div class="form-group">
+              <label for="inp_nombre" class="col-sm-2 control-label">Nombre Completo</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inp_nombre" placeholder="Ingrese Nombre Completo">
               </div>
             </div>
-          </div>
+            <div class="form-group">
+              <label for="inp_identificacion" class="col-sm-2 control-label">Identificación</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inp_identificacion"
+                  placeholder="Ingrese el numero de Identificación">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inp_usuario" class="col-sm-2 control-label">Usuario de Red</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inp_usuario" placeholder="Ingrese el Usuario de Red">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inp_identificacion" class="col-sm-2 control-label">Correo Electrónico</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inp_correo" placeholder="Ingrese el correo electrónico">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inp_empresa" class="col-sm-2 control-label">Dependencia o Empresa</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inp_empresa"
+                  placeholder="Ingrese la empresa o dependencia a la que pertenece">
+              </div>
+            </div>
+
+
+
+
+            <div class="form-group">
+              <label for="inp_rol" class="col-sm-2 control-label">Rol:</label>
+              <div class="col-sm-10">
+                <select class="form-control" id="inp_rol" name="tipoFiltro">
+                  <option value='Visitante'>Visitante</option>
+                  <option value='Responsable'>Responsable</option>
+                  <option value='Autorizador'>Autorizador</option>
+                </select>
+              </div>
+            </div>
+
+
+          </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          </form>
+          <hr>
+          <form class="form-horizontal" >
+            <div class="form-group">
+              <label for="inp_usuario" class="col-sm-2 control-label">Buscar en LDAP:</label>
+              <div class="col-sm-4">
+                <select class="form-control" id="sel_tipoFiltro" name="tipoFiltro">
+                  <option value='mail'>Correo</option>
+                  <option value='samAccountName'>Usuario</option>
+                  <option value='samAccountName'>Nombre</option>
+                  <option value='description'>Cedula</option>
+                </select>
+              </div>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" id="inp_searchValue" name="searchValue"
+                  placeholder="Ingrese el Valor a Buscar">
+              </div>
+              <div class="col-sm-1">
+                <button id="btn_buscarLDAP" class="btn btn-default">Buscar</button>
+              </div>
+            </div>
+
+
+          </form>
+
+
+
           <!-- Modal footer -->
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" id="btn_guardar_formulario">Enviar</button>
+            <button type="button" class="btn btn-primary" id="btn_guardarUsuario">Agregar</button>
           </div>
 
         </div>
@@ -325,15 +409,44 @@
     usuario.usuarios_ReadAll_list;
     usuario.visitantes_ReadAll_list;
     usuario.autorizadores_ReadAll_list;
-    
 
-    $("#btn_abrirModal").click(function () {
-      formulario.clear;
-      $('#sel_autorizador').val("null").change();
-      $("#modal_new_form").modal("show");
+
+    $("#btn_abrirModal_NuevoUsuario").click(function () {
+      // usuario.clearModal;
+      // $('#sel_autorizador').val("null").change();
+      $("#modal_NuevoUsuario").modal("show");
     });
 
+    $("#btn_guardarUsuario").click(function () {
 
+    });
+    
+    $("#btn_buscarLDAP").click(function () {
+      event.preventDefault();
+
+      var values = { tipoFiltro: "", searchValue: "" };
+      values.tipoFiltro = $("#sel_tipoFiltro").val();
+      values.searchValue = $("#inp_searchValue").val();
+
+      var miAccion = "BuscarLDAP";
+      $.ajax({
+        type: "POST",
+        url: "class/checkLDAP.php",
+        data: {
+          action: miAccion,
+          obj: JSON.stringify(values)
+        }
+      })
+        .done(function (e) {
+          var data = JSON.parse(e);
+          $("#inp_nombre").val(data.nombre);
+          $("#inp_identificacion").val(data.cedula);
+          $("#inp_correo").val(data.email);
+          $("#inp_usuario").val(data.usuario);
+          $("#inp_empresa").val(data.physicaldeliveryofficename);
+        })
+
+    });
 
 
   })
