@@ -49,12 +49,11 @@ class SearchLDAP{
         if ($LDAP_bind) {
             $LDAP_filter="(".$this->tipoFiltro."=$this->searchValue)";
             $search_result=ldap_search($LDAP_connect,$LDAP_servicio["LDAP_base_dn"],$LDAP_filter);
-            $LDAP_user_data = ldap_get_entries($LDAP_connect, $search_result);  
-            // var_dump($LDAP_user_data);
+            $LDAP_user_data = ldap_get_entries($LDAP_connect, $search_result);
             if($LDAP_user_data["count"] < 1){
                 @ldap_close($LDAP_connect);
                 return false;
-            }       
+            }
             $this->dn = utf8_encode( $LDAP_user_data[0]["dn"] ?? null );
             $this->email= utf8_encode( $LDAP_user_data[0]["mail"][0] ?? null );
             $this->nombre = utf8_encode( $LDAP_user_data[0]["cn"][0] ?? null );
@@ -73,6 +72,5 @@ class SearchLDAP{
         }
     }
 }
-
 
 ?>

@@ -305,10 +305,6 @@
                   placeholder="Ingrese la empresa o dependencia a la que pertenece">
               </div>
             </div>
-
-
-
-
             <div class="form-group">
               <label for="inp_rol" class="col-sm-2 control-label">Rol:</label>
               <div class="col-sm-10">
@@ -319,21 +315,6 @@
                 </select>
               </div>
             </div>
-
-
-          </form>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
           </form>
@@ -357,8 +338,6 @@
                 <button id="btn_buscarLDAP" class="btn btn-default">Buscar</button>
               </div>
             </div>
-
-
           </form>
 
 
@@ -412,8 +391,17 @@
 
 
     $("#btn_abrirModal_NuevoUsuario").click(function () {
-      // usuario.clearModal;
-      // $('#sel_autorizador').val("null").change();
+      $("#inp_nombre").val("");
+      $("#inp_identificacion").val("");
+      $("#inp_correo").val("");
+      $("#inp_usuario").val("");
+      $("#inp_empresa").val("");
+      $("#inp_searchValue").val("");
+      
+      $('#sel_tipoFiltro').val("mail").change();
+      $('#inp_rol').val("Visitante").change();
+
+      // $("#inp_rol mail:selected").change();
       $("#modal_NuevoUsuario").modal("show");
     });
 
