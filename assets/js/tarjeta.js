@@ -172,6 +172,7 @@ class Tarjeta {
                         timer: 3000
                     })
                 }
+                $("#inp_identificacion").val("");
             })
             .fail(function (e) {
                 Swal.fire({

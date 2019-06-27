@@ -131,34 +131,98 @@ class Tarjeta{
     function Recibir(){
         try {
             if( strlen( $this->value ) > 4){
-                $sql = 'SELECT b.id, b.idFormulario, b.idVisitante, b.idTarjeta, b.entrada FROM bitacora b
-                    INNER JOIN usuario_n u
-                    ON u.id = b.idVisitante
-                    WHERE u.cedula = :cedula
-                    AND salida IS NULL
-                    ORDER BY entrada DESC;';
-                $param= array(':cedula'=>$this->value);            
-                $dataFormulario= DATA::Ejecutar($sql, $param, true);
+                return $this->RecibirConCedula();
+            }
+            else{
+                return $this->RecibirConTarjeta();
+            }
 
-                if ($dataFormulario){
+        }     
+        catch(Exception $e) {
+            error_log("[ERROR]  (".$e->getCode()."): ". $e->getMessage());
+            header('HTTP/1.0 400 Bad error');
+            die(json_encode(array(
+                'code' => $e->getCode() ,
+                'msg' => 'Error al cargar la lista'))
+            );
+        }
+    }
 
-                    $sql= 'UPDATE bitacora
-                        SET salida = NOW()
-                        WHERE id = :id;';
-                    $param= array(':id'=>$dataFormulario[0]["id"]);            
-                    $data= DATA::Ejecutar($sql, $param, false);
+    
+    function RecibirConCedula(){
+        try {
+            $sql = 'SELECT b.id, b.idFormulario, b.idVisitante, b.idTarjeta, b.entrada 
+                FROM bitacora b
+                INNER JOIN usuario_n u
+                ON u.id = b.idVisitante
+                WHERE u.cedula = :cedula
+                AND salida IS NULL
+                ORDER BY entrada DESC;';
+            $param= array(':cedula'=>$this->value);            
+            $dataFormulario= DATA::Ejecutar($sql, $param, true);
+
+            if ($dataFormulario){
+
+                $sql= 'UPDATE bitacora
+                    SET salida = NOW()
+                    WHERE id = :id;';
+                $param= array(':id'=>$dataFormulario[0]["id"]);            
+                $data= DATA::Ejecutar($sql, $param, false);
 
 
-                    $sql= 'UPDATE tarjeta
-                        SET estado = 0
-                        WHERE id = :id;';
-                    $param= array(':id'=>$dataFormulario[0]["idTarjeta"]);            
-                    $data= DATA::Ejecutar($sql, $param, false);
-                    if ($data){
-                        return true;
-                    }
+                $sql= 'UPDATE tarjeta
+                    SET estado = 0
+                    WHERE id = :id;';
+                $param= array(':id'=>$dataFormulario[0]["idTarjeta"]);            
+                $data= DATA::Ejecutar($sql, $param, false);
+                if ($data){
+                    return true;
                 }
             }
+        }     
+        catch(Exception $e) {
+            error_log("[ERROR]  (".$e->getCode()."): ". $e->getMessage());
+            header('HTTP/1.0 400 Bad error');
+            die(json_encode(array(
+                'code' => $e->getCode() ,
+                'msg' => 'Error al cargar la lista'))
+            );
+        }
+    }
+        
+    function RecibirConTarjeta(){
+        try {
+            $sql = 'SELECT b.id, b.idFormulario, b.idVisitante, b.idTarjeta, b.entrada 
+            FROM bitacora b
+            INNER JOIN usuario_n u
+            ON u.id = b.idVisitante
+            INNER JOIN tarjeta t
+            ON t.id = b.idTarjeta
+            WHERE t.consecutivo = :consecutivo
+            AND salida IS NULL
+            ORDER BY entrada DESC;';
+            $param= array(':consecutivo'=>$this->value);            
+            $dataFormulario= DATA::Ejecutar($sql, $param, true);
+
+            if ($dataFormulario){
+
+                $sql= 'UPDATE bitacora
+                    SET salida = NOW()
+                    WHERE id = :id;';
+                $param= array(':id'=>$dataFormulario[0]["id"]);            
+                $data= DATA::Ejecutar($sql, $param, false);
+
+
+                $sql= 'UPDATE tarjeta
+                    SET estado = 0
+                    WHERE id = :id;';
+                $param= array(':id'=>$dataFormulario[0]["idTarjeta"]);            
+                $data= DATA::Ejecutar($sql, $param, false);
+                if ($data){
+                    return true;
+                }
+            }
+            
 
         }     
         catch(Exception $e) {
