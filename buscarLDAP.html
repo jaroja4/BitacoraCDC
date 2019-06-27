@@ -4,24 +4,17 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <!-- Meta, title, CSS, favicons, etc. -->
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- <link rel="icon" href="images/favicon.ico" type="image/ico" /> -->
 
   <title>Bitácora CDC | DTI</title>
 
-
   <!-- Bootstrap -->
   <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Font Awesome -->
   <link href="vendors/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
-  <!-- NProgress -->
-  <link href="vendors/nprogress/nprogress.css" rel="stylesheet">
-  <!-- bootstrap-daterangepicker -->
-  <link href="vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-  <!-- Custom Theme Style -->
-  <link href="assets/css/custom.min.css" rel="stylesheet">
   <!-- Datatables -->
   <link href="vendors/datatables.net/datatables.min.css" rel="stylesheet">
   <link href="vendors/datatables.net/DataTables-1.10.18/css/dataTables.bootstrap.min.css" rel="stylesheet">
@@ -29,6 +22,14 @@
   <link href="vendors/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
   <!-- RangePicker -->
   <link href="vendors/daterangepicker/daterangepicker.css" rel="stylesheet">
+  <!-- NProgress -->
+  <link href="vendors/nprogress/nprogress.css" rel="stylesheet">
+  <!-- bootstrap-daterangepicker -->
+  <link href="vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+  <!-- Custom Theme Style -->
+  <link href="assets/css/custom.min.css" rel="stylesheet">
+  <link href="assets/css/modal_accordion_formulario_ingreso.css" rel="stylesheet">
+
   <link href='vendors/select2/css/select2.css' rel='stylesheet' type='text/css'>
 
 
@@ -135,9 +136,19 @@
         <div class="">
           <div class="page-title">
             <div class="title_left">
-              <h3>Bitacora <small>consulta los movientos del personal que ingresa a los Centros de Datos
-                  Corporativos</small></h3>
+              <h3>Formularios <small>de acceso a personal autorizado</small></h3>
             </div>
+
+            <!-- <div class="title_right">
+                  <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Buscar en formularios...">
+                      <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Buscar</button>
+                      </span>
+                    </div>
+                  </div>
+                </div> -->
           </div>
 
           <div class="clearfix"></div>
@@ -145,80 +156,72 @@
           <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="x_panel">
-                <div class="x_title">
-                  <!--begin tabs going in wide content -->
-                  <ul class="nav nav-tabs content-tabs" id="maincontent" role="tablist" style="display: inline-block;">
-                    <li class="active"><a href="#pnl_registro" role="tab" data-toggle="tab">Registro</a></li>
-                    <li><a href="#pnl_visitantes" role="tab" data-toggle="tab">Personal en Sitio</a></li>
-                  </ul>
-                  <!--/.nav-tabs.content-tabs -->
+                <!-- <div class="x_title">
+                  <button id="btn_abrirModal" type="button" class="btn btn-primary">Crear Nuevo Formulario</button>
                   <div class="nav navbar-right panel_toolbox">
-                    <div id="dp_rango_dp_rango_Bitacora"
+                    <div id="dp_rango_Lista_Formularios"
                       style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%; float:right">
                       <i class="fa fa-calendar"></i>&nbsp;
                       <span></span> <i class="fa fa-caret-down"></i>
                     </div>
                   </div>
-
                   <div class="clearfix"></div>
-                </div>
-
+                </div> -->
                 <div class="x_content">
-                  <div class="tab-content">
-
-                    <div class="tab-pane fade in active" id="pnl_registro">
-                      <div class="x_content">
-                        <div class="table-responsive">
-                          <table id="tbl_bitacora" class="table table-striped jambo_table bulk_action">
-                            <!-- <thead>
-                                </thead>
-          
-                                <tbody>
-                                </tbody> -->
-                          </table>
+                  <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                      <form>
+                        <div class="col-sm-12 col-md-12 col-lg-12 form-group">
+                          <label for="sel_tipoFiltro">Seleccione el Parametro de Busqueda:</label>
+                          <select id="sel_tipoFiltro" name="tipoFiltro">
+                            <option value='mail'>Correo</option>
+                            <option value='samAccountName'>Usuario</option>
+                            <option value='samAccountName'>Nombre</option>
+                            <option value='description'>Cedula</option>
+                          </select>
                         </div>
-                      </div>
-                    </div>
-                    <!--/.tab-panel -->
-
-                    <div class="tab-pane fade" id="pnl_visitantes">
-                      <div class="x_content">
-                        <div class="table-responsive">
-                          <table id="tbl_visitantesEnSitio" class="table table-striped jambo_table bulk_action">
-                            <!-- <thead>
-                                </thead>
-          
-                                <tbody>
-                                </tbody> -->
-                          </table>
+                        <div class="col-sm-12 col-md-12 col-lg-12 form-group">
+                          <label for="inp_searchValue">Inserte el Valor a Buscar:</label>
+                          <input id="inp_searchValue" type="text" name="searchValue">
                         </div>
-                      </div>
+                      </form>
                     </div>
-                    <!--/.tab-panel -->
-
                   </div>
-                  <!--/.tab-content -->
 
+                  <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                      <button type="button" class="btn btn-primary" id="btn_buscarLDAP">Enviar</button>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                      <pre id="dataResult">
 
+                      </pre>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <!-- /page content -->
-
-
-      <!-- footer content -->
-      <footer>
-        <div class="pull-right">
-          Operaciones TI - DTI - Instituto Costarricense de Electricidad
-        </div>
-        <div class="clearfix"></div>
-      </footer>
-      <!-- /footer content -->
     </div>
   </div>
+  <!-- /page content -->
+
+
+  <!-- footer content -->
+  <footer>
+    <div class="pull-right">
+      Operaciones TI - DTI - Instituto Costarricense de Electricidad
+    </div>
+    <div class="clearfix"></div>
+  </footer>
+  <!-- /footer content -->
+  </div>
+  </div>
+
 
 
   <!-- jQuery -->
@@ -241,88 +244,104 @@
   <script src="vendors/sweetalert2/dist/sweetalert2.js"></script>
   <!-- bootstrap-daterangepicker -->
   <script src="vendors/daterangepicker/daterangepicker.min.js"></script>
-  <!-- Custom Theme Scripts -->
-  <script src="assets/js/custom.js"></script>
-  <script src="assets/js/bitacora.js"></script>
-
 
 </body>
 
 </html>
 
+<style>
+  pre {
+    outline: 1px solid #ccc;
+    padding: 5px;
+    margin: 5px;
+    height: 50vh;
+  }
+
+  .string {
+    color: green;
+  }
+
+  .number {
+    color: darkorange;
+  }
+
+  .boolean {
+    color: blue;
+  }
+
+  .null {
+    color: magenta;
+  }
+
+  .key {
+    color: red;
+  }
+</style>
+
 <script>
+
   $(document).ready(function () {
-    // DATERANGEPICKER Bitacora
-    $(function () {
 
-      var dp_rango_Bitacora_Start = moment().subtract(29, 'days');
-      var dp_rango_Bitacora_End = moment().locale("es");;
-
-
-      function cb(dp_rango_Bitacora_Start, dp_rango_Bitacora_End) {
-        $('#dp_rango_dp_rango_Bitacora span').html(dp_rango_Bitacora_Start.format('MMMM D, YYYY') + ' - ' + dp_rango_Bitacora_End.format('MMMM D, YYYY'));
-      }
-
-      $('#dp_rango_dp_rango_Bitacora').daterangepicker({
-        "opens": "left",
-        "locale": {
-          "format": "DD/MM/YYYY",
-          "separator": " - ",
-          "applyLabel": "Aplicar",
-          "cancelLabel": "Cancelar",
-          "fromLabel": "From",
-          "toLabel": "To",
-          "customRangeLabel": "Manual",
-          "daysOfWeek": [
-            "DO",
-            "Lu",
-            "Ma",
-            "Mi",
-            "Ju",
-            "Vi",
-            "Sa"
-          ],
-          "monthNames": [
-            "Enero",
-            "Febrero",
-            "Marzo",
-            "Abril",
-            "Mayo",
-            "Junio",
-            "Julio",
-            "Agosto",
-            "Setiembre",
-            "Octubre",
-            "Noviembre",
-            "Diciembre"
-          ],
-          "firstDay": 1
-        },
-        startDate: dp_rango_Bitacora_Start,
-        endDate: dp_rango_Bitacora_End,
-        ranges: {
-          'Hoy': [moment(), moment()],
-          'Ayer': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-          'Ultimos 7 Días': [moment().subtract(6, 'days'), moment()],
-          'Ultimos 30 Días': [moment().subtract(29, 'days'), moment()],
-          'Este Mes': [moment().startOf('month'), moment().endOf('month')],
-          'Ultimo Mes': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+    $('input').on('keydown', function (e) {
+        /* Prevent form submission */
+        if (e.keyCode == 13) {
+          return false;
         }
-      }, cb);
+      })
 
-      cb(dp_rango_Bitacora_Start, dp_rango_Bitacora_End);
+    $("#btn_buscarLDAP").click(function () {
+      var values = { tipoFiltro: "", searchValue: "" };
+      values.tipoFiltro = $("#sel_tipoFiltro").val();
+      values.searchValue = $("#inp_searchValue").val();
 
-      bitacora.read_fechaInicial = dp_rango_Bitacora_Start.format('YYYY-MM-DD') + ' 00:00:00';
-      bitacora.read_fechaFinal = dp_rango_Bitacora_End.format('YYYY-MM-DD') + ' 23:59:59';
-      bitacora.ReadbyRange;
+      var miAccion = "BuscarLDAP";
+      $.ajax({
+        type: "POST",
+        url: "class/checkLDAP.php",
+        data: {
+          action: miAccion,
+          obj: JSON.stringify(values)
+        }
+      })
+        .done(function (e) {
+          drawLDAPResult(e);
+        })
 
     });
+  })
 
-    $('#dp_rango_dp_rango_Bitacora').on('apply.daterangepicker', function (ev, picker) {
-    bitacora.read_fechaInicial = picker.startDate.format('YYYY-MM-DD') + ' 00:00:00';
-    bitacora.read_fechaFinal = picker.endDate.format('YYYY-MM-DD') + ' 23:59:59';
-    bitacora.ReadbyRange;
-  });
+  function drawLDAPResult(e) {
+    var obj = { a: 1, 'b': 'foo', c: [false, 'false', null, 'null', { d: { e: 1.3e5, f: '1.3e5' } }] };
+    var data = JSON.parse(e);
+    var str = JSON.stringify(data, undefined, 4);
 
-  });
+    // output(str);
+    $("#dataResult").html(syntaxHighlight(str));
+  }
+
+  // function output(inp) {
+  //   $("#dataResult").html(inp);
+  // }
+
+  function syntaxHighlight(json) {
+    json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+      var cls = 'number';
+      if (/^"/.test(match)) {
+        if (/:$/.test(match)) {
+          cls = 'key';
+        } else {
+          cls = 'string';
+        }
+      } else if (/true|false/.test(match)) {
+        cls = 'boolean';
+      } else if (/null/.test(match)) {
+        cls = 'null';
+      }
+      return '<span class="' + cls + '">' + match + '</span>';
+    });
+  }
+
+
+
 </script>

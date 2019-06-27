@@ -158,7 +158,6 @@
                 $data = DATA::Ejecutar($sql, $param);
                 if ($GLOBALS['debug']){
                     error_log( print_r($value, TRUE) );
-                    echo "<br>";
                 }
             }
             echo ($count+1)." datos ingresados a la tabla bitacora" . PHP_EOL;
@@ -176,7 +175,6 @@
                 $data = DATA::Ejecutar($sql, $param);
                 if ($GLOBALS['debug']){
                     error_log( print_r($value, TRUE) );
-                    echo "<br>";
                 }
             }
             echo ($count+1)." datos ingresados a la tabla DataCenter" . PHP_EOL;
@@ -194,7 +192,6 @@
                 $data = DATA::Ejecutar($sql, $param);
                 if ($GLOBALS['debug']){
                     error_log( print_r($value, TRUE) );
-                    echo "<br>";
                 }
             }
             echo ($count+1)." datos ingresados a la tabla DataCenter" . PHP_EOL;
@@ -224,7 +221,6 @@
                 $data = DATA::Ejecutar($sql, $param);
                 if ($GLOBALS['debug']){
                     error_log( print_r($value, TRUE) );
-                    echo "<br>";
                 }
             }
             echo ($count+1)." datos ingresados a la tabla DataCenter" . PHP_EOL;
@@ -242,7 +238,6 @@
                 $data = DATA::Ejecutar($sql, $param);
                 if ($GLOBALS['debug']){
                     error_log( print_r($value, TRUE) );
-                    echo "<br>";
                 }
             }
             echo ($count+1)." datos ingresados a la tabla DataCenter" . PHP_EOL;
@@ -260,7 +255,6 @@
                 $data = DATA::Ejecutar($sql, $param);
                 if ($GLOBALS['debug']){
                     error_log( print_r($value, TRUE) );
-                    echo "<br>";
                 }
             }
             echo ($count+1)." datos ingresados a la tabla Sala" . PHP_EOL;
@@ -278,7 +272,6 @@
                 $data = DATA::Ejecutar($sql, $param);
                 if ($GLOBALS['debug']){
                     error_log( print_r($value, TRUE) );
-                    echo "<br>";
                 }
             }
             echo ($count+1)." datos ingresados a la tabla DataCenter" . PHP_EOL;
@@ -296,7 +289,6 @@
                 $data = DATA::Ejecutar($sql, $param);
                 if ($GLOBALS['debug']){
                     error_log( print_r($value, TRUE) );
-                    echo "<br>";
                 }
             }
             echo ($count+1)." datos ingresados a la tabla DataCenter" . PHP_EOL;
@@ -316,7 +308,6 @@
                 $data = DATA::Ejecutar($sql, $param);
                 if ($GLOBALS['debug']){
                     error_log( print_r($value, TRUE) );
-                    echo "<br>";
                 }
             }
             echo $count." datos recolectados de la tabla visitante" . PHP_EOL;
@@ -335,7 +326,6 @@
                 $data = DATA::Ejecutar($sql, $param);
                 if ($GLOBALS['debug']){
                     error_log( print_r($value, TRUE) );
-                    echo "<br>";
                 }
             }
             echo $count." datos recolectados de la tabla responsable" . PHP_EOL;
@@ -353,7 +343,6 @@
                 $data = DATA::Ejecutar($sql, $param);
                 if ($GLOBALS['debug']){
                     error_log( print_r($value, TRUE) );
-                    echo "<br>";
                 }
             }
             echo $count." datos recolectados de la tabla USUARIO" . PHP_EOL;
@@ -389,7 +378,6 @@
                 if ($GLOBALS['debug']){
                     error_log( print_r($value, TRUE) );
                     error_log( "\n\r" );
-                    echo "<br>";
                 }
             }
             echo $count." datos actualizados de la tabla usuario" . PHP_EOL;
@@ -403,7 +391,6 @@
             if ($GLOBALS['debug']){
                 error_log( print_r($value, TRUE) );
                 error_log( "\n\r" );
-                echo "<br>";
             }
         }
         echo $count." datos actualizados de la tabla Autorizador" . PHP_EOL;
@@ -423,7 +410,6 @@
                 $data = DATA::Ejecutar($sql, $param);
                 if ($GLOBALS['debug']){
                     error_log( print_r($value, TRUE) );
-                    echo "<br>";
                 }
             }
             echo $count." datos actualizados de la tabla Responsable" . PHP_EOL;
@@ -443,7 +429,7 @@
                 $data = DATA::Ejecutar($sql, $param);
                 if ($GLOBALS['debug']){
                     error_log( print_r($value, TRUE) );
-                    echo "<br>";
+                    error_log( "\n\r" );
                 }
             }
             echo $count." datos actualizados de la tabla Visitante" . PHP_EOL;
