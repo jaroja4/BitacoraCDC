@@ -102,6 +102,7 @@
         }
         if (!$existeDB){  
             echo "Base de datos NO encontrada" . PHP_EOL;
+            error_log( "\n\r" );
             // $db_con = new PDO('mysql:host=10.3.2.156; port=3306; charset=utf8', 'operti', 'SanPedro1');
             // $sql = "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'control_acceso_cdc_dbp'";
             $sql = "CREATE DATABASE IF NOT EXISTS control_acceso_cdc_dbp;";
@@ -112,6 +113,7 @@
             if($st->execute()){
                 $db_con->commit();
                 echo "Base de datos CREADA" . PHP_EOL;
+                error_log( "\n\r" );
 
                 $sql = "USE control_acceso_cdc_dbp;";
                 $st=$db_con->prepare($sql);
@@ -130,7 +132,9 @@
                     if($st->execute()){
                         $db_con->commit();
                         echo "Cargando Esquema..." . PHP_EOL;
+                        error_log( "\n\r" );
                         echo "Esquema Cargado" . PHP_EOL;
+                        error_log( "\n\r" );
                     }
                 }
             }
@@ -158,6 +162,7 @@
                 }
             }
             echo ($count+1)." datos ingresados a la tabla bitacora" . PHP_EOL;
+            error_log( "\n\r" );
         }
         // DataCenter
         echo "Cargando Datos de DataCenter..." . PHP_EOL;
@@ -315,6 +320,7 @@
                 }
             }
             echo $count." datos recolectados de la tabla visitante" . PHP_EOL;
+            error_log( "\n\r" );
         }
 
         // RESPONSABLE
@@ -369,23 +375,39 @@
         $data = DATA::Ejecutar($sql, NULL, false);
         
         // Asinga Rol de USUARIO al usuario correspondiente
-        $sql='SELECT un.id FROM control_acceso_cdc_dbp.usuario_n un 
-        INNER JOIN controlaccesocdc_dbp.usuario u 
-        ON u.nombre = un.nombre;';
-        $data = DATA::Ejecutar($sql);
-        if($data){
-        foreach ($data as $key => $value) {
+        $sql='SELECT un.id 
+            FROM control_acceso_cdc_dbp.usuario_n un 
+            INNER JOIN controlaccesocdc_dbp.usuario u 
+            ON u.nombre = un.nombre;';
+        $dataUsuario = DATA::Ejecutar($sql);
+        if($dataUsuario){
+            foreach ($dataUsuario as $key => $value) {
+                $count= $key;
+                $sql='INSERT IGNORE INTO control_acceso_cdc_dbp.usuario_rol (idUsuario, idRol) values(:id, :idRol);';   
+                $param= array(':id'=>$value["id"] ?? "", ':idRol'=> "97b3927c-41de-47fd-871a-3eb6d2a57758");  
+                $data = DATA::Ejecutar($sql, $param);
+                if ($GLOBALS['debug']){
+                    error_log( print_r($value, TRUE) );
+                    error_log( "\n\r" );
+                    echo "<br>";
+                }
+            }
+            echo $count." datos actualizados de la tabla usuario" . PHP_EOL;
+        }
+
+        foreach ($dataUsuario as $key => $value) {
             $count= $key;
             $sql='INSERT IGNORE INTO control_acceso_cdc_dbp.usuario_rol (idUsuario, idRol) values(:id, :idRol);';   
-            $param= array(':id'=>$value["id"] ?? "", ':idRol'=> "97b3927c-41de-47fd-871a-3eb6d2a57758");  
+            $param= array(':id'=>$value["id"] ?? "", ':idRol'=> "1");  
             $data = DATA::Ejecutar($sql, $param);
             if ($GLOBALS['debug']){
                 error_log( print_r($value, TRUE) );
+                error_log( "\n\r" );
                 echo "<br>";
             }
         }
-        echo $count." datos actualizados de la tabla usuario" . PHP_EOL;
-        }
+        echo $count." datos actualizados de la tabla Autorizador" . PHP_EOL;
+        
         
         // Asinga Rol de RESPONSABLE al usuario correspondiente
         $sql='SELECT un.id FROM control_acceso_cdc_dbp.usuario_n un
@@ -405,6 +427,7 @@
                 }
             }
             echo $count." datos actualizados de la tabla Responsable" . PHP_EOL;
+            error_log( "\n\r" );
         }
         // Asinga Rol de VISITANTE al usuario correspondiente
         $sql='SELECT un.id FROM control_acceso_cdc_dbp.usuario_n un
@@ -424,6 +447,7 @@
                 }
             }
             echo $count." datos actualizados de la tabla Visitante" . PHP_EOL;
+            error_log( "\n\r" );
         }
     }
 
