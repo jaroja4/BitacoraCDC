@@ -93,7 +93,7 @@ class Usuario {
     }
 
     get autorizador_ReadAll() {
-        var miAccion = 'ReadAll';
+        var miAccion = 'ReadAll_list';
 
         $.ajax({
             type: "POST",

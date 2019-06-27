@@ -83,8 +83,8 @@
 
                 <li><a><i class="fa fa-users"></i> Personal <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
-                    <li><a href="listaResponsables.html">Responsables</a></li>
-                    <li><a href="ListaVisitantes.html">Visitantes</a></li>
+                    <li><a href="listaUsuarios.html">Usuarios</a></li>
+                    <li><a href="roles.html">Roles</a></li>
                   </ul>
                 </li>
                 <li><a><i class="fa fa-map-marker"></i> Sitios <span class="fa fa-chevron-down"></span></a>
@@ -526,7 +526,7 @@
 
     $("#dp_select_visitante").select2({
       ajax: {
-        url: "class/visitante.php",
+        url: "class/Visitante.php",
         type: "post",
         dataType: 'json',
         delay: 250,
