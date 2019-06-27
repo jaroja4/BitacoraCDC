@@ -330,17 +330,27 @@ class Formulario{
     function ReadAllbyRange(){
         try {
             $sql="SELECT f.id,
-                        f.consecutivo,
-                        e.nombre Estado,
-                        f.fechaSolicitud,
-                        f.fechaIngreso,
-                        f.fechaSalida,
-                        f.motivoVisita,
-                        f.otrosDetalles
-                    FROM
-                        formulario f
-                            INNER JOIN
-                        estado e ON f.idEstado = e.id
+                (SELECT GROUP_CONCAT(nombre SEPARATOR ', ')  from usuario_n u
+                INNER JOIN visitante_formulario vf
+                ON u.id = vf.idVisitante
+                WHERE vf.idFormulario = f.id) nombreVisitante,
+                
+                (SELECT GROUP_CONCAT(cedula SEPARATOR ', ')  from usuario_n u
+                INNER JOIN visitante_formulario vf
+                ON u.id = vf.idVisitante
+                WHERE vf.idFormulario = f.id) cedulaVisitante,
+                
+                f.consecutivo,
+                e.nombre Estado,
+                f.fechaSolicitud,
+                f.fechaIngreso,
+                f.fechaSalida,
+                f.motivoVisita,
+                f.otrosDetalles
+            FROM
+            formulario f
+                INNER JOIN
+            estado e ON f.idEstado = e.id
                     WHERE (fechaSolicitud BETWEEN :read_fechaInicial AND :read_fechaFinal);";
             $param= array(':read_fechaInicial'=>$this->read_fechaInicial, ':read_fechaFinal'=>$this->read_fechaFinal);            
             $data= DATA::Ejecutar($sql, $param);

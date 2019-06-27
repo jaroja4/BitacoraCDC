@@ -142,22 +142,22 @@ class Formulario {
                 {
                     title: "Fecha Solicitud",
                     data: "fechaSolicitud",
-                    width: "10%",
+                    width: "15%",
                 },
                 {
                     title: "Fecha Ingreso",
                     data: "fechaIngreso",
-                    width: "10%",
+                    width: "15%",
                 },
                 {
                     title: "Fecha Salida",
                     data: "fechaSalida",
-                    width: "10%",
+                    width: "15%",
                 },
                 {
                     title: "Motivo",
                     data: "motivoVisita",
-                    width: "45%",
+                    width: "30%",
                 },
                 {
                     title: "Estado",
@@ -168,6 +168,18 @@ class Formulario {
                     title: "Otros Detalles",
                     data: "otrosDetalles",
                     width: "10%",
+                },
+                {
+                    title: "nombreVisitante",
+                    data: "nombreVisitante",
+                    visible: false,
+                    searchable: true
+                },
+                {
+                    title: "cedulaVisitante",
+                    data: "cedulaVisitante",
+                    visible: false,
+                    searchable: true
                 }
             ]
         });
