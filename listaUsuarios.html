@@ -308,18 +308,25 @@
             <div class="form-group">
               <label for="inp_rol" class="col-sm-2 control-label">Rol:</label>
               <div class="col-sm-10">
-                <select class="form-control" id="inp_rol" name="tipoFiltro">
+                <select id="inp_rol" class="form-control js-example-responsive" style="width: 100%" multiple="multiple">
                   <option value='Visitante'>Visitante</option>
                   <option value='Responsable'>Responsable</option>
                   <option value='Autorizador'>Autorizador</option>
                 </select>
+
+
+                <!-- <select class="form-control" id="inp_rol" name="tipoFiltro">
+                  <option value='Visitante'>Visitante</option>
+                  <option value='Responsable'>Responsable</option>
+                  <option value='Autorizador'>Autorizador</option>
+                </select> -->
               </div>
             </div>
 
 
           </form>
           <hr>
-          <form class="form-horizontal" >
+          <form class="form-horizontal">
             <div class="form-group">
               <label for="inp_usuario" class="col-sm-2 control-label">Buscar en LDAP:</label>
               <div class="col-sm-4">
@@ -389,26 +396,28 @@
     usuario.visitantes_ReadAll_list;
     usuario.autorizadores_ReadAll_list;
 
+    $('#inp_rol').select2({
+      width: 'resolve' // need to override the changed default
+    });
+
 
     $("#btn_abrirModal_NuevoUsuario").click(function () {
-      $("#inp_nombre").val("");
-      $("#inp_identificacion").val("");
-      $("#inp_correo").val("");
-      $("#inp_usuario").val("");
-      $("#inp_empresa").val("");
-      $("#inp_searchValue").val("");
-      
-      $('#sel_tipoFiltro').val("mail").change();
-      $('#inp_rol').val("Visitante").change();
-
-      // $("#inp_rol mail:selected").change();
-      $("#modal_NuevoUsuario").modal("show");
+      usuario.clearModalNuevoUsuario;
+      $("#btn_guardarUsuario").text("Crear");
+      $("#modal_NuevoUsuario").modal("toggle");
     });
 
     $("#btn_guardarUsuario").click(function () {
+      usuario.nombre = $("#inp_nombre").val();
+      usuario.cedula = $("#inp_identificacion").val();
+      usuario.correo = $("#inp_correo").val();
+      usuario.usuario = $("#inp_usuario").val();
+      usuario.empresa = $("#inp_empresa").val();
+      usuario.rol = $("#inp_rol").select2("val");
 
+      usuario.create;
     });
-    
+
     $("#btn_buscarLDAP").click(function () {
       event.preventDefault();
 
@@ -427,13 +436,47 @@
       })
         .done(function (e) {
           var data = JSON.parse(e);
-          $("#inp_nombre").val(data.nombre);
-          $("#inp_identificacion").val(data.cedula);
-          $("#inp_correo").val(data.email);
-          $("#inp_usuario").val(data.usuario);
-          $("#inp_empresa").val(data.physicaldeliveryofficename);
+          if (data){
+            $("#inp_nombre").val(data.nombre);
+            $("#inp_identificacion").val(data.cedula);
+            $("#inp_correo").val(data.email);
+            $("#inp_usuario").val(data.usuario);
+            $("#inp_empresa").val(data.physicaldeliveryofficename);
+            usuario.SwalAlert('success','Usuario Encontrado');
+          }
+          else
+          {
+            usuario.SwalAlert('error','Sin Resultados');    
+          }
         })
 
+    });
+
+    $('#tb_usuarios tbody').on('click', 'tr', function () {  
+      var dataUsuario = $('#tb_usuarios').DataTable().row(this).data();
+
+      $("#inp_nombre").val(dataUsuario.nombre);
+      $("#inp_identificacion").val(dataUsuario.cedula);
+      $("#inp_correo").val(dataUsuario.correo);
+      $("#inp_usuario").val(dataUsuario.usuario);
+      $("#inp_empresa").val(dataUsuario.empresa);
+
+
+      if (dataUsuario.cedula.length >8){
+        $('#sel_tipoFiltro').val("description").change();
+        $("#inp_searchValue").val(dataUsuario.cedula);
+      }
+      
+
+
+      // $("#inp_rol").select2("val");
+      // formulario.clear;
+      // formulario.id = $('#tbl_formularios').DataTable().row(this).data().id;
+      // alert( $('#tbl_formularios').DataTable().row(this).data().id);
+      // formulario.cargarFormulariobyID;
+      $("#btn_guardarUsuario").text("Actualizar");
+      
+      $("#modal_NuevoUsuario").modal("toggle");
     });
 
 

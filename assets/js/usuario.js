@@ -1,6 +1,6 @@
 class Usuario {
     // Constructor
-    constructor(id, usuario, passwd, cedula, nombre, empresa, correo, fechaCreacion) {
+    constructor(id, usuario, passwd, cedula, nombre, empresa, correo, fechaCreacion, rol) {
         this.id = id || null;
         this.usuario = usuario || "";
         this.passwd = passwd || "";
@@ -9,8 +9,19 @@ class Usuario {
         this.empresa = empresa || "";
         this.correo = correo || null;
         this.fechaCreacion = fechaCreacion || [];
+        this.rol = rol || "";
     }
 
+    get clearModalNuevoUsuario(){
+        $("#inp_nombre").val("");
+        $("#inp_identificacion").val("");
+        $("#inp_correo").val("");
+        $("#inp_usuario").val("");
+        $("#inp_empresa").val("");
+        $("#inp_searchValue").val("");      
+        $('#sel_tipoFiltro').val("mail").change();
+        $('#inp_rol').val("Visitante").change();
+    }
     get responsable_ReadAll() {
         var miAccion = 'ReadAll';
         $.ajax({
@@ -185,6 +196,41 @@ class Usuario {
             .fail(function (e) {
                 // dataCenter.showError(e);
             });
+    }
+    
+    get create() {
+        var miAccion = 'Create';
+        $.ajax({
+            type: "POST",
+            url: "class/Usuario.php",
+            data: {
+                action: miAccion,
+                obj: JSON.stringify(usuario)
+            }
+        })
+        .done(function (e) {
+            var result = JSON.parse(e);
+            usuario.clearModalNuevoUsuario;
+            result?usuario.SwalAlert('success','Usuario Agregado'):usuario.SwalAlert('error','Error');            
+            $("#modal_NuevoUsuario").modal("toggle");
+        })
+        .fail(function (e) {
+            
+        });
+    }
+    
+    SwalAlert(tipo, titulo){
+        usuario.responsables_ReadAll_list;
+        usuario.usuarios_ReadAll_list;
+        usuario.visitantes_ReadAll_list;
+        usuario.autorizadores_ReadAll_list;
+        Swal.fire({
+            position: 'top-end',
+            type: tipo,
+            title: titulo,
+            showConfirmButton: false,
+            timer: 1500
+        })
     }
 
     drawUsuariosDataTable(e) {

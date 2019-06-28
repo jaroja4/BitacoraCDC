@@ -22,6 +22,9 @@ if(isset($_POST["action"])){
             break;    
         case "ReadAll":
             echo json_encode($usuario->ReadAll());
+            break;   
+        case "Create":
+            echo json_encode($usuario->Create());
             break; 
     }
 }
@@ -32,11 +35,14 @@ class Usuario{
     public $password;
     public $nombre;
     public $email;
+    public $cedula;
     public $activo = 0;
     public $status = 0;
     public $listarol= array(); // array de roles del usuario.
     public $eventos= array(); // array de eventos asignados a la sesion de usuario.
     public $url;
+    public $empresa;
+    public $rol;
 
     function __construct(){
         // identificador único
@@ -48,10 +54,12 @@ class Usuario{
             require_once("UUID.php");
             $this->id= $obj["id"] ?? UUID::v4();
             $this->nombre= $obj["nombre"] ?? '';  
-            $this->username= $obj["username"] ?? '';
-            $this->password= $obj["password"] ?? '';  
-            $this->email= $obj["email"] ?? '';  
-            $this->activo= $obj["activo"] ?? '';
+            $this->username= $obj["usuario"] ?? '';
+            $this->password= $obj["passwd"] ?? ''; 
+            $this->cedula= $obj["cedula"] ?? '';  
+            $this->email= $obj["correo"] ?? '';  
+            $this->empresa= $obj["empresa"] ?? '';
+            $this->rol= $obj["rol"] ?? '';
             //roles del usuario.
             if(isset($obj["listarol"] )){
                 require_once("RolesXUsuario.php");
@@ -106,6 +114,54 @@ class Usuario{
                 ORDER BY nombre ASC';
             $data= DATA::Ejecutar($sql);
             return $data;
+        }     
+        catch(Exception $e) { error_log("[ERROR]  (".$e->getCode()."): ". $e->getMessage());
+            header('HTTP/1.0 400 Bad error');
+            die(json_encode(array(
+                'code' => $e->getCode() ,
+                'msg' => 'Error al cargar la lista'))
+            );
+        }
+    }
+
+    function Create(){
+        try {
+            
+            $sql='SELECT id FROM usuario_n
+                WHERE usuario like :usuario
+                OR cedula like :cedula
+                OR correo like :correo;';  
+            $param= array(':usuario'=>$this->username, ':cedula'=>$this->cedula, ':correo'=>$this->email);  
+            $data = DATA::Ejecutar($sql,$param);    
+            
+            if (!$data){
+
+                $sql='INSERT INTO usuario_n (id, usuario, passwd, cedula, nombre, correo, empresa, fechaCreacion)
+                    VALUES (:id, :usuario, :passwd, :cedula, :nombre, :correo, :empresa, NOW())';  
+                $param= array(':id'=>$this->id, ':usuario'=>$this->username, ':passwd'=>$this->password, 
+                    ':cedula'=>$this->cedula, ':nombre'=>$this->nombre, ':correo'=>$this->email, 
+                    ':empresa'=>$this->empresa);  
+                $data = DATA::Ejecutar($sql,$param);    
+                
+
+                
+                foreach ($this->rol as $rol) {
+                    $sql='SELECT id FROM rol
+                        WHERE nombre = :nombre;';  
+                    $param= array(':nombre'=>$rol );  
+                    $dataRol = DATA::Ejecutar($sql,$param); 
+                    
+                    $sql='INSERT INTO usuario_rol (idRol, idUsuario) VALUES (:idRol, :idUsuario);';  
+                    $param= array(':idRol'=>$dataRol[0]["id"], ':idUsuario'=>$this->id);
+                    $data = DATA::Ejecutar($sql,$param,false); 
+                
+                }
+                
+                return true;
+            }
+            else {
+                return false;
+            }
         }     
         catch(Exception $e) { error_log("[ERROR]  (".$e->getCode()."): ". $e->getMessage());
             header('HTTP/1.0 400 Bad error');
@@ -280,42 +336,42 @@ class Usuario{
         }
     }
 
-    function Create(){
-        try {
-            $sql="INSERT INTO usuario   (id, nombre, username, password, email, activo)
-                VALUES (:uuid, :nombre, :username, :password, :email, :activo)";
-            //
-            $param= array(':uuid'=>$this->id, ':nombre'=>$this->nombre, ':username'=>$this->username, ':password'=> password_hash($this->password, PASSWORD_DEFAULT), 
-                ':email'=>$this->email, ':activo'=>$this->activo);
-            $data = DATA::Ejecutar($sql,$param, false);
-            if($data)
-            {
-                $created= true;
-                $errmsg='';
-                //save array obj
-                if(!RolesXUsuario::Create($this->listarol)){
-                    $created= false;
-                    $errmsg= 'Error al guardar los roles.';
-                }
-                // save bodegas
-                if(!usuariosXBodega::Create($this->bodegas)){
-                    $created= false;
-                    $errmsg= 'Error al guardar las bodegas.';
-                }
-                if($created)
-                    return true;
-                else throw new Exception($errmsg, 05);
-            }
-            else throw new Exception('Error al guardar.', 02);
-        }     
-        catch(Exception $e) { error_log("[ERROR]  (".$e->getCode()."): ". $e->getMessage());
-            header('HTTP/1.0 400 Bad error');
-            die(json_encode(array(
-                'code' => $e->getCode() ,
-                'msg' => $e->getMessage()))
-            );
-        }
-    }
+    // function Create(){
+    //     try {
+    //         $sql="INSERT INTO usuario   (id, nombre, username, password, email, activo)
+    //             VALUES (:uuid, :nombre, :username, :password, :email, :activo)";
+    //         //
+    //         $param= array(':uuid'=>$this->id, ':nombre'=>$this->nombre, ':username'=>$this->username, ':password'=> password_hash($this->password, PASSWORD_DEFAULT), 
+    //             ':email'=>$this->email, ':activo'=>$this->activo);
+    //         $data = DATA::Ejecutar($sql,$param, false);
+    //         if($data)
+    //         {
+    //             $created= true;
+    //             $errmsg='';
+    //             //save array obj
+    //             if(!RolesXUsuario::Create($this->listarol)){
+    //                 $created= false;
+    //                 $errmsg= 'Error al guardar los roles.';
+    //             }
+    //             // save bodegas
+    //             if(!usuariosXBodega::Create($this->bodegas)){
+    //                 $created= false;
+    //                 $errmsg= 'Error al guardar las bodegas.';
+    //             }
+    //             if($created)
+    //                 return true;
+    //             else throw new Exception($errmsg, 05);
+    //         }
+    //         else throw new Exception('Error al guardar.', 02);
+    //     }     
+    //     catch(Exception $e) { error_log("[ERROR]  (".$e->getCode()."): ". $e->getMessage());
+    //         header('HTTP/1.0 400 Bad error');
+    //         die(json_encode(array(
+    //             'code' => $e->getCode() ,
+    //             'msg' => $e->getMessage()))
+    //         );
+    //     }
+    // }
 
     function Update(){
         try {
