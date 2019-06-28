@@ -293,6 +293,11 @@ class Usuario {
                     targets: 7
                 },
                 {
+                    title: "Roles",
+                    data: "roles",
+                    targets: 8
+                },
+                {
                     title: "Eliminar",
                     targets: 8,
                     visible: true,

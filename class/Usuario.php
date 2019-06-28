@@ -106,12 +106,16 @@ class Usuario{
         }
     }
 
-    
     function ReadAll(){
         try {
-            $sql='SELECT u.id, u.usuario, u.passwd, u.cedula, u.nombre, u.correo, u.empresa, u.fechaCreacion
-                FROM usuario_n u       
-                ORDER BY nombre ASC';
+            $sql="SELECT u.id, u.usuario, u.passwd, u.cedula, u.nombre, u.correo, u.empresa, u.fechaCreacion,
+                    (SELECT GROUP_CONCAT(r.nombre SEPARATOR ', ') roles 
+                    FROM rol r
+                    INNER JOIN usuario_rol ur
+                    ON ur.idRol = r.id
+                    WHERE ur.idUsuario = u.id) roles
+                FROM usuario_n u   
+                ORDER BY nombre ASC;";
             $data= DATA::Ejecutar($sql);
             return $data;
         }     
@@ -171,17 +175,6 @@ class Usuario{
             );
         }
     }
-
-
-
-
-
-
-
-
-
-
-
 
     // login and user session
     function CheckSession(){

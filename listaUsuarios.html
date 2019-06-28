@@ -453,29 +453,29 @@
     });
 
     $('#tb_usuarios tbody').on('click', 'tr', function () {  
-      var dataUsuario = $('#tb_usuarios').DataTable().row(this).data();
 
-      $("#inp_nombre").val(dataUsuario.nombre);
-      $("#inp_identificacion").val(dataUsuario.cedula);
-      $("#inp_correo").val(dataUsuario.correo);
-      $("#inp_usuario").val(dataUsuario.usuario);
-      $("#inp_empresa").val(dataUsuario.empresa);
+      usuario.nombre = $('#tb_usuarios').DataTable().row(this).data().nombre;
+      usuario.cedula = $('#tb_usuarios').DataTable().row(this).data().cedula;
+      usuario.cedula = $('#tb_usuarios').DataTable().row(this).data().cedula;
+      usuario.correo = $('#tb_usuarios').DataTable().row(this).data().correo;
+      usuario.empresa = $('#tb_usuarios').DataTable().row(this).data().empresa;
+      usuario.rol = $('#tb_usuarios').DataTable().row(this).data().roles;
+      
+
+      $("#inp_nombre").val(usuario.nombre);
+      $("#inp_identificacion").val(usuario.cedula);
+      $("#inp_correo").val(usuario.correo);
+      $("#inp_usuario").val(usuario.usuario);
+      $("#inp_empresa").val(usuario.empresa);
+      $("#inp_rol").select2("val", usuario.rol);
 
 
-      if (dataUsuario.cedula.length >8){
+      if (usuario.cedula.length >8){
         $('#sel_tipoFiltro').val("description").change();
-        $("#inp_searchValue").val(dataUsuario.cedula);
+        $("#inp_searchValue").val(usuario.cedula);
       }
       
-
-
-      // $("#inp_rol").select2("val");
-      // formulario.clear;
-      // formulario.id = $('#tbl_formularios').DataTable().row(this).data().id;
-      // alert( $('#tbl_formularios').DataTable().row(this).data().id);
-      // formulario.cargarFormulariobyID;
       $("#btn_guardarUsuario").text("Actualizar");
-      
       $("#modal_NuevoUsuario").modal("toggle");
     });
 
