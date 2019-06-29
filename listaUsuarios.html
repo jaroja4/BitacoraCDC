@@ -322,8 +322,6 @@
                 </select> -->
               </div>
             </div>
-
-
           </form>
           <hr>
           <form class="form-horizontal">
@@ -333,7 +331,7 @@
                 <select class="form-control" id="sel_tipoFiltro" name="tipoFiltro">
                   <option value='mail'>Correo</option>
                   <option value='samAccountName'>Usuario</option>
-                  <option value='samAccountName'>Nombre</option>
+                  <option value='cn'>Nombre</option>
                   <option value='description'>Cedula</option>
                 </select>
               </div>
@@ -346,14 +344,10 @@
               </div>
             </div>
           </form>
-
-
-
           <!-- Modal footer -->
           <div class="modal-footer">
             <button type="button" class="btn btn-primary" id="btn_guardarUsuario">Agregar</button>
           </div>
-
         </div>
       </div>
     </div>
@@ -389,6 +383,8 @@
 
 <script>
 
+  var update = false;
+
   $(document).ready(function () {
 
     usuario.responsables_ReadAll_list;
@@ -397,12 +393,74 @@
     usuario.autorizadores_ReadAll_list;
 
     $('#inp_rol').select2({
-      width: 'resolve' // need to override the changed default
+      width: 'resolve', // need to override the changed default
+      multiple: true,
+      type: "post",
+      placeholder: 'Select value...',
+      tokenSeparators: [','],
+      ajax: {
+        url: "class/Roles.php",
+        type: "post",
+        dataType: 'json',
+        // delay: 250,
+        data: function (params) {
+          return {
+            action: "ReadAll"
+          };
+        },
+        processResults: function (response) {
+          return {
+            results: response
+          };
+        },
+        cache: true
+      }
     });
+    // $.ajax({
+    //     type: "POST",
+    //     url: "class/Usuario.php",
+    //     data: {
+    //         action: miAccion,
+    //         obj: JSON.stringify(usuario)
+    //     }
+    // })
+
+    // ajax: {
+    //     url: "class/Responsable.php",
+    //     type: "post",
+    //     dataType: 'json',
+    //     delay: 250,
+    //     data: function (params) {
+    //       return {
+    //         action: "ReadAll",
+    //         search_value: params.term // search term
+    //       };
+    //     },
+    //     processResults: function (response) {
+    //       return {
+    //         results: response
+    //       };
+    //     },
+    //     cache: true
+    //   }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     $("#btn_abrirModal_NuevoUsuario").click(function () {
       usuario.clearModalNuevoUsuario;
+      update = false;
       $("#btn_guardarUsuario").text("Crear");
       $("#modal_NuevoUsuario").modal("toggle");
     });
@@ -415,7 +473,7 @@
       usuario.empresa = $("#inp_empresa").val();
       usuario.rol = $("#inp_rol").select2("val");
 
-      usuario.create;
+      update ? usuario.update : usuario.create;
     });
 
     $("#btn_buscarLDAP").click(function () {
@@ -436,50 +494,53 @@
       })
         .done(function (e) {
           var data = JSON.parse(e);
-          if (data){
+          if (data) {
             $("#inp_nombre").val(data.nombre);
             $("#inp_identificacion").val(data.cedula);
             $("#inp_correo").val(data.email);
             $("#inp_usuario").val(data.usuario);
             $("#inp_empresa").val(data.physicaldeliveryofficename);
-            usuario.SwalAlert('success','Usuario Encontrado');
+            usuario.SwalAlert('success', 'Usuario Encontrado');
           }
-          else
-          {
-            usuario.SwalAlert('error','Sin Resultados');    
+          else {
+            usuario.SwalAlert('error', 'Sin Resultados');
           }
         })
 
     });
 
-    $('#tb_usuarios tbody').on('click', 'tr', function () {  
-
+    $('#tb_usuarios tbody').on('click', 'tr', function () {
+      update = true;
+      usuario.id = $('#tb_usuarios').DataTable().row(this).data().id;
       usuario.nombre = $('#tb_usuarios').DataTable().row(this).data().nombre;
-      usuario.cedula = $('#tb_usuarios').DataTable().row(this).data().cedula;
+      usuario.usuario = $('#tb_usuarios').DataTable().row(this).data().usuario;
       usuario.cedula = $('#tb_usuarios').DataTable().row(this).data().cedula;
       usuario.correo = $('#tb_usuarios').DataTable().row(this).data().correo;
       usuario.empresa = $('#tb_usuarios').DataTable().row(this).data().empresa;
-      usuario.rol = $('#tb_usuarios').DataTable().row(this).data().roles;
-      
+      usuario.rol = $('#tb_usuarios').DataTable().row(this).data().roles.replace(/\s+/g, '').split(",");;
 
       $("#inp_nombre").val(usuario.nombre);
       $("#inp_identificacion").val(usuario.cedula);
       $("#inp_correo").val(usuario.correo);
       $("#inp_usuario").val(usuario.usuario);
       $("#inp_empresa").val(usuario.empresa);
-      $("#inp_rol").select2("val", usuario.rol);
+      $("#inp_rol").val(usuario.rol).change();
 
-
-      if (usuario.cedula.length >8){
+      if (usuario.cedula != null) {
         $('#sel_tipoFiltro').val("description").change();
         $("#inp_searchValue").val(usuario.cedula);
+      } else if (usuario.usuario != "" && usuario.usuario != null) {
+        $('#sel_tipoFiltro').val("samAccountName").change();
+        $("#inp_searchValue").val(usuario.usuario);
+      } else if (usuario.correo != null) {
+        $('#sel_tipoFiltro').val("mail").change();
+        $("#inp_searchValue").val(usuario.correo);
       }
-      
+
       $("#btn_guardarUsuario").text("Actualizar");
       $("#modal_NuevoUsuario").modal("toggle");
     });
 
 
   })
-
 </script>

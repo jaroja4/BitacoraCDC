@@ -211,7 +211,28 @@ class Usuario {
         .done(function (e) {
             var result = JSON.parse(e);
             usuario.clearModalNuevoUsuario;
-            result?usuario.SwalAlert('success','Usuario Agregado'):usuario.SwalAlert('error','Error');            
+            result?usuario.SwalAlert('success','Usuario Agregado'):usuario.SwalAlert('error','Error al Crear');            
+            $("#modal_NuevoUsuario").modal("toggle");
+        })
+        .fail(function (e) {
+            
+        });
+    }
+
+    get update() {
+        var miAccion = 'Update';
+        $.ajax({
+            type: "POST",
+            url: "class/Usuario.php",
+            data: {
+                action: miAccion,
+                obj: JSON.stringify(usuario)
+            }
+        })
+        .done(function (e) {
+            var result = JSON.parse(e);
+            usuario.clearModalNuevoUsuario;
+            result?usuario.SwalAlert('success','Usuario Actualizado'):usuario.SwalAlert('error','Error al Actualizar');            
             $("#modal_NuevoUsuario").modal("toggle");
         })
         .fail(function (e) {

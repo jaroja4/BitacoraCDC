@@ -25,6 +25,9 @@ if(isset($_POST["action"])){
             break;   
         case "Create":
             echo json_encode($usuario->Create());
+            break;    
+        case "Update":
+            echo json_encode($usuario->Update());
             break; 
     }
 }
@@ -165,6 +168,44 @@ class Usuario{
             }
             else {
                 return false;
+            }
+        }     
+        catch(Exception $e) { error_log("[ERROR]  (".$e->getCode()."): ". $e->getMessage());
+            header('HTTP/1.0 400 Bad error');
+            die(json_encode(array(
+                'code' => $e->getCode() ,
+                'msg' => 'Error al cargar la lista'))
+            );
+        }
+    }
+    function Update(){
+        try {            
+            $sql='UPDATE usuario_n
+                SET usuario = :username,
+                cedula = :cedula,
+                nombre = :nombre,
+                correo = :email,
+                empresa = :empresa
+                WHERE id=:id;';  
+            $param= array(':id'=>$this->id, ':username'=>$this->username, ':cedula'=>$this->cedula, 
+                ':nombre'=>$this->nombre, ':email'=>$this->email, ':empresa'=>$this->empresa);  
+            $data = DATA::Ejecutar($sql,$param);    
+            
+            $sql='DELETE FROM usuario_rol
+                WHERE idUsuario = :idUsuario';  
+            $param= array(':idUsuario'=>$this->id);  
+            $data = DATA::Ejecutar($sql,$param);
+            
+            foreach ($this->rol as $rol) {
+                $sql='SELECT id FROM rol
+                    WHERE nombre = :nombre;';  
+                $param= array(':nombre'=>$rol );  
+                $dataRol = DATA::Ejecutar($sql,$param); 
+                
+                $sql='INSERT INTO usuario_rol (idRol, idUsuario) VALUES (:idRol, :idUsuario);';  
+                $param= array(':idRol'=>$dataRol[0]["id"], ':idUsuario'=>$this->id);
+                $data = DATA::Ejecutar($sql,$param,false); 
+            
             }
         }     
         catch(Exception $e) { error_log("[ERROR]  (".$e->getCode()."): ". $e->getMessage());
@@ -366,68 +407,68 @@ class Usuario{
     //     }
     // }
 
-    function Update(){
-        try {
-            if($this->password=='NOCHANGED'){
-                $sql="UPDATE usuario 
-                    SET nombre=:nombre, username=:username, email=:email, activo=:activo
-                    WHERE id=:id";
-                $param= array(':id'=>$this->id, ':nombre'=>$this->nombre, ':username'=>$this->username, ':email'=>$this->email, ':activo'=>$this->activo);
-            }
-            else {
-                $sql="UPDATE usuario 
-                    SET nombre=:nombre, username=:username, password= :password, email=:email, activo=:activo
-                    WHERE id=:id";
-                $param= array(':id'=>$this->id, ':nombre'=>$this->nombre, ':username'=>$this->username, ':password'=> password_hash($this->password, PASSWORD_DEFAULT), 
-                    ':email'=>$this->email, ':activo'=>$this->activo);
-            }
-            $data = DATA::Ejecutar($sql,$param,false);
-            if($data){
-                //update array obj
-                $created= true;
-                $errmsg='';
-                if($this->listarol!=null){
-                    if(!RolesXUsuario::Update($this->listarol)){
-                        $created= false;
-                        $errmsg= 'Error al actualizar los roles.';
-                    }
-                }
-                else {
-                    // no tiene roles
-                    if(!RolesXUsuario::Delete($this->id)){
-                        $created= false;
-                        $errmsg= 'Error al actualizar los roles.';
-                    }                        
-                }
-                //
-                if($this->bodegas!=null){
-                    if(!usuariosXBodega::Update($this->bodegas)){
-                        $created= false;
-                        $errmsg= 'Error al actualizar las bodegas.';
-                    }                
-                }
-                else {
-                    // no tiene bodegas
-                    if(!usuariosXBodega::Delete($this->id)){
-                        $created= false;
-                        $errmsg= 'Error al actualizar las bodegas.';
-                    }
-                }
-                if($created)
-                    return true;
-                else throw new Exception($errmsg, 04);
+    // function Update(){
+    //     try {
+    //         if($this->password=='NOCHANGED'){
+    //             $sql="UPDATE usuario 
+    //                 SET nombre=:nombre, username=:username, email=:email, activo=:activo
+    //                 WHERE id=:id";
+    //             $param= array(':id'=>$this->id, ':nombre'=>$this->nombre, ':username'=>$this->username, ':email'=>$this->email, ':activo'=>$this->activo);
+    //         }
+    //         else {
+    //             $sql="UPDATE usuario 
+    //                 SET nombre=:nombre, username=:username, password= :password, email=:email, activo=:activo
+    //                 WHERE id=:id";
+    //             $param= array(':id'=>$this->id, ':nombre'=>$this->nombre, ':username'=>$this->username, ':password'=> password_hash($this->password, PASSWORD_DEFAULT), 
+    //                 ':email'=>$this->email, ':activo'=>$this->activo);
+    //         }
+    //         $data = DATA::Ejecutar($sql,$param,false);
+    //         if($data){
+    //             //update array obj
+    //             $created= true;
+    //             $errmsg='';
+    //             if($this->listarol!=null){
+    //                 if(!RolesXUsuario::Update($this->listarol)){
+    //                     $created= false;
+    //                     $errmsg= 'Error al actualizar los roles.';
+    //                 }
+    //             }
+    //             else {
+    //                 // no tiene roles
+    //                 if(!RolesXUsuario::Delete($this->id)){
+    //                     $created= false;
+    //                     $errmsg= 'Error al actualizar los roles.';
+    //                 }                        
+    //             }
+    //             //
+    //             if($this->bodegas!=null){
+    //                 if(!usuariosXBodega::Update($this->bodegas)){
+    //                     $created= false;
+    //                     $errmsg= 'Error al actualizar las bodegas.';
+    //                 }                
+    //             }
+    //             else {
+    //                 // no tiene bodegas
+    //                 if(!usuariosXBodega::Delete($this->id)){
+    //                     $created= false;
+    //                     $errmsg= 'Error al actualizar las bodegas.';
+    //                 }
+    //             }
+    //             if($created)
+    //                 return true;
+    //             else throw new Exception($errmsg, 04);
                 
-            }
-            else throw new Exception('Error al guardar.', 123);
-        }     
-        catch(Exception $e) { error_log("[ERROR]  (".$e->getCode()."): ". $e->getMessage());
-            header('HTTP/1.0 400 Bad error');
-            die(json_encode(array(
-                'code' => $e->getCode() ,
-                'msg' => $e->getMessage()))
-            );
-        }
-    }   
+    //         }
+    //         else throw new Exception('Error al guardar.', 123);
+    //     }     
+    //     catch(Exception $e) { error_log("[ERROR]  (".$e->getCode()."): ". $e->getMessage());
+    //         header('HTTP/1.0 400 Bad error');
+    //         die(json_encode(array(
+    //             'code' => $e->getCode() ,
+    //             'msg' => $e->getMessage()))
+    //         );
+    //     }
+    // }   
 
     function CheckUsername(){
         try{
