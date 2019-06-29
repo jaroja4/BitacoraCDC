@@ -197,16 +197,17 @@ class Usuario{
             $data = DATA::Ejecutar($sql,$param);
             
             foreach ($this->rol as $rol) {
-                $sql='SELECT id FROM rol
-                    WHERE nombre = :nombre;';  
-                $param= array(':nombre'=>$rol );  
-                $dataRol = DATA::Ejecutar($sql,$param); 
+                // $sql='SELECT id FROM rol
+                //     WHERE nombre = :nombre;';  
+                // $param= array(':nombre'=>$rol );  
+                // $dataRol = DATA::Ejecutar($sql,$param); 
                 
                 $sql='INSERT INTO usuario_rol (idRol, idUsuario) VALUES (:idRol, :idUsuario);';  
-                $param= array(':idRol'=>$dataRol[0]["id"], ':idUsuario'=>$this->id);
+                $param= array(':idRol'=>$rol, ':idUsuario'=>$this->id);
                 $data = DATA::Ejecutar($sql,$param,false); 
             
             }
+            return true;
         }     
         catch(Exception $e) { error_log("[ERROR]  (".$e->getCode()."): ". $e->getMessage());
             header('HTTP/1.0 400 Bad error');
