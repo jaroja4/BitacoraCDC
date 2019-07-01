@@ -271,6 +271,19 @@ class Formulario{
                             ':motivoVisita'=>$this->motivoVisita, 
                             ':otrosDetalles'=>$this->otrosDetalles);            
             $data= DATA::Ejecutar($sql, $param, false);
+
+            $sql="DELETE FROM visitante_formulario
+                    WHERE idFormulario = :idFormulario";
+            $param= array(':idFormulario'=>$this->id);            
+            $data= DATA::Ejecutar($sql, $param, false);
+
+            foreach ($this->arrayVisitantes as $visitante) {
+                $sql="INSERT INTO visitante_formulario 
+                (idVisitante, idFormulario)
+                VALUES (:idVisitante, :idFormulario)";
+                $param= array(':idVisitante'=>$visitante, ':idFormulario'=>$this->id);            
+                $data= DATA::Ejecutar($sql, $param);   
+            }
         }     
         catch(Exception $e) {
             error_log("[ERROR]  (".$e->getCode()."): ". $e->getMessage());
