@@ -143,16 +143,31 @@ class Formulario {
                     title: "Fecha Solicitud",
                     data: "fechaSolicitud",
                     width: "15%",
+                    mRender: function (e) {
+                        var event = new Date(e);
+                        var f_entrada = moment(event).format('DD-MM-YY hh:mma');
+                        return f_entrada;                
+                    }
                 },
                 {
                     title: "Fecha Ingreso",
                     data: "fechaIngreso",
                     width: "15%",
+                    mRender: function (e) {
+                        var event = new Date(e);
+                        var f_entrada = moment(event).format('DD-MM-YY hh:mma');
+                        return f_entrada;                
+                    }
                 },
                 {
                     title: "Fecha Salida",
                     data: "fechaSalida",
                     width: "15%",
+                    mRender: function (e) {
+                        var event = new Date(e);
+                        var f_entrada = moment(event).format('DD-MM-YY hh:mma');
+                        return f_entrada;                
+                    }
                 },
                 {
                     title: "Motivo",
@@ -310,6 +325,12 @@ class Formulario {
 
     modalVisitante(e) {
         var dataVisitante = JSON.parse(e);
+        
+        dataVisitante.fechaIngreso = new Date(dataVisitante.fechaIngreso);
+        dataVisitante.fechaIngreso = moment(dataVisitante.fechaIngreso).format('DD-MM-YY hh:mma');
+        dataVisitante.fechaSalida = new Date(dataVisitante.fechaSalida);
+        dataVisitante.fechaSalida = moment(dataVisitante.fechaSalida).format('DD-MM-YY hh:mma');
+
         if (dataVisitante == "noformulario") {
             Swal.fire({
                 type: 'error',
@@ -327,7 +348,10 @@ class Formulario {
                 timer: 2000
             })
             return false;
-        }        
+        }
+        
+
+
         if ( typeof dataVisitante.idFormulario != "undefined" ? true : false ) {
 
             this.dataCenter = dataVisitante.nombreDataCenter;
@@ -342,6 +366,10 @@ class Formulario {
             tarjeta.id = dataVisitante.idTarjeta;;
             this.sala = dataVisitante.nombreSala;
             this.otrosDetalles = dataVisitante.otrosDetalles;
+
+            this.fechaIngreso = new Date(this.fechaIngreso);
+            this.fechaIngreso = moment(this.fechaIngreso).format('DD-MM-YY hh:mma');
+
             
             $("#modalVisitanteTitulo").text(this.dataCenter);
             $("#modalVisitanteNoFormulario").text(this.consecutivo);
@@ -361,6 +389,7 @@ class Formulario {
             $("#modalVisitante").modal("toggle");
             return false;
         }
+
         this.id = dataVisitante.id;
         this.idEstado = dataVisitante.idEstado;
         // this.idDataCenter = dataVisitante.idDataCenter; 
@@ -377,6 +406,7 @@ class Formulario {
         this.idVisitante = dataVisitante.idVisitante;
         tarjeta.consecutivo = dataVisitante.tarjeta.consecutivo;
         tarjeta.id = dataVisitante.tarjeta.id;
+        
 
         $("#modalVisitanteTitulo").text(dataVisitante.dataCenter);
         $("#modalVisitanteNoFormulario").text(dataVisitante.consecutivo);
@@ -402,44 +432,3 @@ class Formulario {
 
 let formulario = new Formulario();
 let tbl_formularios = [];
-
-
-// Swal.fire({
-            //     title: "Realizar Salida de Visitante?",
-            //     text: "El visitante seleccionado ya se encuentra dentro de las instalaciones, desea procesar su salida?",
-                
-            //     inputAttributes: {
-            //         autocapitalize: 'off'
-            //     },
-            //     showCancelButton: true,
-            //     confirmButtonText: 'Si, Realizar la Salida!',
-            //     showLoaderOnConfirm: true,
-            //     allowOutsideClick: () => !swal.isLoading()
-            // }).then((result) => {
-            //     if (result.value) {
-            //         $.ajax({
-            //             type: "POST",
-            //             url: "class/Tarjeta.php",
-            //             data: {
-            //                 action: "Recibir",
-            //                 value: $("#inp_identificacion").val()
-            //             }
-            //         })
-            //             .done(function (e) {
-                            // CargaListaFactura();
-                            // swal({
-                            //     type: 'success',
-                            //     title: 'Factura Cancelada!',
-                            //     showConfirmButton: false,
-                            //     timer: 2000
-                            // });
-                //         })
-                //         .fail(function (e) { });
-                // }
-                // else
-                    // swal({
-                    //     type: 'error',
-                    //     title: 'Error al cancelar',
-                    //     text: 'Debe de digitar una razón'
-                    // })
-            // })

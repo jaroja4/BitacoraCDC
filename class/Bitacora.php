@@ -15,6 +15,9 @@ if( isset($_POST["action"])){
         case "ReadbyRange":
             echo json_encode($bitacora->ReadbyRange());
             break;
+        case "ReadVisitantesSitio":
+            echo json_encode($bitacora->ReadVisitantesSitio());
+            break;
     }
 }
 
@@ -96,6 +99,47 @@ class Bitacora{
             $data= DATA::Ejecutar($sql, $param);   
             
             return true;
+        }     
+        catch(Exception $e) {
+            error_log("[ERROR]  (".$e->getCode()."): ". $e->getMessage());
+            header('HTTP/1.0 400 Bad error');
+            die(json_encode(array(
+                'code' => $e->getCode() ,
+                'msg' => 'Error al cargar la lista'))
+            );
+        }
+    }
+
+    function ReadVisitantesSitio(){
+        try {
+            $sql="SELECT b.id, b.idFormulario, b.idVisitante, b.idTarjeta, b.entrada,
+                f.consecutivo consecutivoFormulario, f.motivoVisita, f.otrosDetalles, f.fechaSalida salida,
+                u.nombre, u.empresa,
+                t.consecutivo consecutivoTarjeta,
+                (Select CONCAT(dc.nombre, ', ', s.nombre) As sala 
+                    FROM dataCenter dc
+                    INNER JOIN sala s
+                    ON dc.id = s.idDataCenter
+                    INNER JOIN tarjeta t
+                    ON t.idSala = s.id
+                    WHERE t.id = b.idTarjeta) sala
+            FROM bitacora b
+            INNER JOIN formulario f
+            ON f.id = b.idFormulario
+            INNER JOIN usuario_n u
+            ON u.id = b.idVisitante
+            INNER JOIN tarjeta t
+            ON t.id = b.idTarjeta
+            WHERE b.salida IS NULL;";            
+            $data= DATA::Ejecutar($sql);
+            
+            if($data){
+                return $data;
+            }
+            else {
+                return false;
+            }
+
         }     
         catch(Exception $e) {
             error_log("[ERROR]  (".$e->getCode()."): ". $e->getMessage());

@@ -311,7 +311,12 @@ class Usuario {
                 {
                     title: "Creado",
                     data: "fechaCreacion",
-                    targets: 7
+                    targets: 7,
+                    mRender: function (e) {
+                        var event = new Date(e);
+                        var f_entrada = moment(event).format('DD-MM-YY hh:mma');
+                        return f_entrada;                
+                    }
                 },
                 {
                     title: "Roles",
@@ -393,7 +398,12 @@ class Usuario {
                 {
                     title: "Creado",
                     data: "fechaCreacion",
-                    targets: 7
+                    targets: 7,
+                    mRender: function (e) {
+                        var event = new Date(e);
+                        var f_entrada = moment(event).format('DD-MM-YY hh:mma');
+                        return f_entrada;                
+                    }
                 },
                 {
                     title: "Eliminar",
@@ -470,7 +480,12 @@ class Usuario {
                 {
                     title: "Creado",
                     data: "fechaCreacion",
-                    targets: 7
+                    targets: 7,
+                    mRender: function (e) {
+                        var event = new Date(e);
+                        var f_entrada = moment(event).format('DD-MM-YY hh:mma');
+                        return f_entrada;                
+                    }
                 },
                 {
                     title: "Eliminar",
@@ -547,7 +562,12 @@ class Usuario {
                 {
                     title: "Creado",
                     data: "fechaCreacion",
-                    targets: 7
+                    targets: 7,
+                    mRender: function (e) {
+                        var event = new Date(e);
+                        var f_entrada = moment(event).format('DD-MM-YY hh:mma');
+                        return f_entrada;                
+                    }
                 },
                 {
                     title: "Eliminar",
