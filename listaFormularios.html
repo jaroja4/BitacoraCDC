@@ -561,6 +561,7 @@
   <script src="assets/js/datacenter.js"></script>
   <!-- <script src="assets/js/responsable.js"></script>  -->
   <script src="assets/js/usuario.js"></script>
+  <script src="assets/js/rol.js"></script>
 
 </body>
 
@@ -572,32 +573,14 @@
 
     dataCenter.ReadAll;
     usuario.autorizador_ReadAll;
+    rol.readAll;
 
     $('#inp_rol').select2({
-      width: 'resolve', // need to override the changed default
+      width: "100%",
       multiple: true,
-      type: "post",
-      placeholder: 'Select value...',
-      tokenSeparators: [','],
-      ajax: {
-        url: "class/Roles.php",
-        type: "post",
-        dataType: 'json',
-        // delay: 250,
-        data: function (params) {
-          return {
-            action: "ReadAll"
-          };
-        },
-        processResults: function (response) {
-          return {
-            results: response
-          };
-        },
-        cache: true
-      }
+      placeholder: 'Seleccione Rol...',
+      closeOnSelect: false
     });
-    $("#inp_rol").trigger('change');
     
 
     $("#btn_guardar_formulario").click(function () {
