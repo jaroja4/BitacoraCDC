@@ -48,16 +48,23 @@ class Bitacora{
     function ReadbyRange(){
         try {
             $sql="SELECT b.id, b.idFormulario, b.idVisitante, b.idTarjeta, b.entrada, b.salida,
-                        f.consecutivo consecutivoFormulario, f.motivoVisita, f.otrosDetalles,
-                        u.nombre, u.empresa,
-                        t.consecutivo consecutivoTarjeta
+                    f.consecutivo consecutivoFormulario, f.motivoVisita, f.otrosDetalles,
+                    u.nombre, u.empresa,
+                    t.consecutivo consecutivoTarjeta,
+                    (Select CONCAT(dc.nombre, ', ', s.nombre) As sala 
+                        FROM dataCenter dc
+                        INNER JOIN sala s
+                        ON dc.id = s.idDataCenter
+                        INNER JOIN tarjeta t
+                        ON t.idSala = s.id
+                        WHERE t.id = b.idTarjeta) sala
                 FROM bitacora b
                 INNER JOIN formulario f
                 ON f.id = b.idFormulario
                 INNER JOIN usuario_n u
                 ON u.id = b.idVisitante
                 INNER JOIN tarjeta t
-                ON t.id = b.idTarjeta;
+                ON t.id = b.idTarjeta
                 WHERE (entrada BETWEEN :read_fechaInicial AND :read_fechaFinal);";
             $param= array(':read_fechaInicial'=>$this->read_fechaInicial, ':read_fechaFinal'=>$this->read_fechaFinal);            
             $data= DATA::Ejecutar($sql, $param);

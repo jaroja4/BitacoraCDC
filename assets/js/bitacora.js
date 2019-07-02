@@ -98,6 +98,12 @@ class Bitacora {
                 {
                     title: "Detalles Visita",
                     data: "otrosDetalles",
+                    width: "20%",
+                    visible: false
+                },
+                {
+                    title: "Ubicación",
+                    data: "sala",
                     width: "20%"
                 },
                 {
