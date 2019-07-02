@@ -274,13 +274,15 @@
               <div class="form-group">
                 <div class="col-sm-12 col-md-12 col-lg-12">
                   <label class="txt_large" for="inp_descripcion">Otros Detalles:</label>
-                  <textarea class="form-control txt_large" disabled id="modalVisitanteOtrosDetalles" rows="3"></textarea>
+                  <textarea class="form-control txt_large" disabled id="modalVisitanteOtrosDetalles"
+                    rows="3"></textarea>
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div class="modal-footer">
+          <button id="btn_cierra_modal" type="button" class="btn btn-danger btn-lg">Cancelar</button>
           <button id="btn_entrega_tarjeta" type="button" class="btn btn-success btn-lg" data-dismiss="modal">Entregar
             Tarjeta</button>
         </div>
@@ -316,14 +318,14 @@
 </html>
 
 <script>
-  $('form').keypress(function(e){   
-    if(e == 13){
+  $('form').keypress(function (e) {
+    if (e == 13) {
       return false;
     }
   });
 
-  $('input').keypress(function(e){
-    if(e.which == 13){
+  $('input').keypress(function (e) {
+    if (e.which == 13) {
       return false;
     }
   });
@@ -333,9 +335,16 @@
   function dataCenterSelect(id, nombre) {
     dataCenter.id = id;
     dataCenter.nombre = nombre;
-    $(".sitio").html(dataCenter.nombre+'  <i style="margin-left: 10px;font-size:24px;" class="fa fa-building-o"></i>');
+    $(".sitio").html(dataCenter.nombre + '  <i style="margin-left: 10px;font-size:24px;" class="fa fa-building-o"></i>');
   }
   $(document).ready(function () {
+
+    $('#modalVisitante').modal({ backdrop: 'static', keyboard: false, show: false})
+    
+    $("#btn_cierra_modal").click(function () {
+      $("#inp_identificacion").val("");
+      $("#modalVisitante").modal("toggle");
+    });
 
     $("#btn_sitio_sanpedro").click(function () {
       $(".sitio").html('San Pedro  <i style="margin-left: 10px;font-size:24px;" class="fa fa-building-o"></i>');
@@ -348,7 +357,7 @@
       if ($("#btn_entrega_tarjeta").data("accion") == "recibir")
         tarjeta.Recibir;
     });
-    
+
 
     $("#btn_sitio_sabana").click(function () {
       $(".sitio").html('Sabana <i style="margin-left: 10px;font-size:24px;" class="fa fa-building-o"></i>');
@@ -359,11 +368,11 @@
     });
 
     $("#inp_identificacion").on('keyup', function (e) {
-        if (e.keyCode == 13) {
-          formulario.buscar;
-        }
+      if (e.keyCode == 13) {
+        formulario.buscar;
+      }
     });
-    
+
   });
 
 
