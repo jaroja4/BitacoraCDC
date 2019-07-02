@@ -258,7 +258,7 @@
     </div>
   </div>
 
-  <!--Modal Crear Tarea -->
+  <!--Modal Crear usuario -->
   <div class="modal fade" id="modal_NuevoUsuario">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -308,18 +308,8 @@
             <div class="form-group">
               <label for="inp_rol" class="col-sm-2 control-label">Rol:</label>
               <div class="col-sm-10">
-                <select id="inp_rol" class="form-control js-example-responsive" style="width: 100%" multiple="multiple">
-                  <!-- <option value='Visitante'>Visitante</option>
-                  <option value='Responsable'>Responsable</option>
-                  <option value='Autorizador'>Autorizador</option> -->
+                <select id="inp_rol" class="form-control js-example-responsive">
                 </select>
-
-
-                <!-- <select class="form-control" id="inp_rol" name="tipoFiltro">
-                  <option value='Visitante'>Visitante</option>
-                  <option value='Responsable'>Responsable</option>
-                  <option value='Autorizador'>Autorizador</option>
-                </select> -->
               </div>
             </div>
           </form>
@@ -376,6 +366,7 @@
   <!-- Custom Theme Scripts -->
   <script src="assets/js/custom.js"></script>
   <script src="assets/js/usuario.js"></script>
+  <script src="assets/js/rol.js"></script>
 
 </body>
 
@@ -391,33 +382,15 @@
     usuario.usuarios_ReadAll_list;
     usuario.visitantes_ReadAll_list;
     usuario.autorizadores_ReadAll_list;
+    usuario.autorizadores_ReadAll_list;
+    rol.readAll;
 
     $('#inp_rol').select2({
-      width: 'resolve', // need to override the changed default
+      width: "100%",
       multiple: true,
-      type: "post",
-      placeholder: 'Select value...',
-      tokenSeparators: [','],
-      ajax: {
-        url: "class/Roles.php",
-        type: "post",
-        dataType: 'json',
-        // delay: 250,
-        data: function (params) {
-          return {
-            action: "ReadAll"
-          };
-        },
-        processResults: function (response) {
-          return {
-            results: response
-          };
-        },
-        cache: true
-      }
+      placeholder: 'Seleccione Rol...'
     });
-    $("#inp_rol").trigger('change');
-    
+
     $("#btn_abrirModal_NuevoUsuario").click(function () {
       usuario.clearModalNuevoUsuario;
       update = false;
@@ -477,15 +450,15 @@
       usuario.cedula = $('#tb_usuarios').DataTable().row(this).data().cedula;
       usuario.correo = $('#tb_usuarios').DataTable().row(this).data().correo;
       usuario.empresa = $('#tb_usuarios').DataTable().row(this).data().empresa;
-      if (  ($('#tb_usuarios').DataTable().row(this).data().roles =! null) && ( $('#tb_usuarios').DataTable().row(this).data().roles =! true) )
-        usuario.rol = $('#tb_usuarios').DataTable().row(this).data().roles.replace(/\s+/g, '').split(",");;
+
+      rol.idUsuario = usuario.id;
+      usuario.rol = rol.loadbyUser;
 
       $("#inp_nombre").val(usuario.nombre);
       $("#inp_identificacion").val(usuario.cedula);
       $("#inp_correo").val(usuario.correo);
       $("#inp_usuario").val(usuario.usuario);
       $("#inp_empresa").val(usuario.empresa);
-      $("#inp_rol").val(usuario.rol).change();
 
       if (usuario.cedula != null) {
         $('#sel_tipoFiltro').val("description").change();

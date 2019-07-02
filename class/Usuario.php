@@ -132,8 +132,7 @@ class Usuario{
     }
 
     function Create(){
-        try {
-            
+        try {            
             $sql='SELECT id FROM usuario_n
                 WHERE usuario like :usuario
                 OR cedula like :cedula
@@ -150,20 +149,11 @@ class Usuario{
                     ':empresa'=>$this->empresa);  
                 $data = DATA::Ejecutar($sql,$param);    
                 
-
-                
-                foreach ($this->rol as $rol) {
-                    $sql='SELECT id FROM rol
-                        WHERE nombre = :nombre;';  
-                    $param= array(':nombre'=>$rol );  
-                    $dataRol = DATA::Ejecutar($sql,$param); 
-                    
+                foreach ($this->rol as $idRol) {                    
                     $sql='INSERT INTO usuario_rol (idRol, idUsuario) VALUES (:idRol, :idUsuario);';  
-                    $param= array(':idRol'=>$dataRol[0]["id"], ':idUsuario'=>$this->id);
-                    $data = DATA::Ejecutar($sql,$param,false); 
-                
-                }
-                
+                    $param= array(':idRol'=>$idRol, ':idUsuario'=>$this->id);
+                    $data = DATA::Ejecutar($sql,$param,false);                 
+                }                
                 return true;
             }
             else {
@@ -178,6 +168,7 @@ class Usuario{
             );
         }
     }
+
     function Update(){
         try {            
             $sql='UPDATE usuario_n

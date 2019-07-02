@@ -12,6 +12,9 @@ if( isset($_POST["action"])){
         case "ReadAll":
             echo json_encode($roles->ReadAll());
             break;
+        case "LoadbyUser":
+            echo json_encode($roles->LoadbyUser());
+            break;
     }
 }
 
@@ -19,6 +22,7 @@ class Roles{
     //Componente
     public $id="";
     public $nombre=""; 
+    public $idUsuario=""; 
     
            
 
@@ -26,6 +30,9 @@ class Roles{
 
         if(isset($_POST["id"])){
             $this->id= $_POST["id"];
+        }
+        if(isset($_POST["idUsuario"])){
+            $this->idUsuario= $_POST["idUsuario"];
         }
         
         if(isset($_POST["obj"])){
@@ -42,6 +49,31 @@ class Roles{
             $sql='SELECT id, nombre text
                 FROM rol;';
             $data= DATA::Ejecutar($sql);            
+            if($data){
+                return $data;
+            }
+            else {
+                return false;
+            }
+
+        }     
+        catch(Exception $e) {
+            error_log("[ERROR]  (".$e->getCode()."): ". $e->getMessage());
+            header('HTTP/1.0 400 Bad error');
+            die(json_encode(array(
+                'code' => $e->getCode() ,
+                'msg' => 'Error al cargar la lista'))
+            );
+        }
+    }
+    
+    function LoadbyUser(){
+        try {
+            $sql='SELECT idRol
+                FROM usuario_rol
+                WHERE idUsuario = :idUsuario;';
+            $param= array(':idUsuario'=>$this->idUsuario);            
+            $data= DATA::Ejecutar($sql, $param);        
             if($data){
                 return $data;
             }
