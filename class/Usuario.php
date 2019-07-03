@@ -149,11 +149,13 @@ class Usuario{
                     ':empresa'=>$this->empresa);  
                 $data = DATA::Ejecutar($sql,$param);    
                 
-                foreach ($this->rol as $idRol) {                    
-                    $sql='INSERT INTO usuario_rol (idRol, idUsuario) VALUES (:idRol, :idUsuario);';  
-                    $param= array(':idRol'=>$idRol, ':idUsuario'=>$this->id);
-                    $data = DATA::Ejecutar($sql,$param,false);                 
-                }                
+                if($this->rol?true:false){
+                    foreach ($this->rol as $idRol) {                    
+                        $sql='INSERT INTO usuario_rol (idRol, idUsuario) VALUES (:idRol, :idUsuario);';  
+                        $param= array(':idRol'=>$idRol, ':idUsuario'=>$this->id);
+                        $data = DATA::Ejecutar($sql,$param,false);                 
+                    }                
+                }
                 return true;
             }
             else {
