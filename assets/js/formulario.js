@@ -327,9 +327,9 @@ class Formulario {
         var dataVisitante = JSON.parse(e);
         
         dataVisitante.fechaIngreso = new Date(dataVisitante.fechaIngreso);
-        dataVisitante.fechaIngreso = moment(dataVisitante.fechaIngreso).format('DD-MM-YY hh:mm a');
+        dataVisitante.fechaIngreso = moment(dataVisitante.fechaIngreso).format('DD-MMM-YYYY hh:mm a', 'es');
         dataVisitante.fechaSalida = new Date(dataVisitante.fechaSalida);
-        dataVisitante.fechaSalida = moment(dataVisitante.fechaSalida).format('DD-MM-YY hh:mm a');
+        dataVisitante.fechaSalida = moment(dataVisitante.fechaSalida).format('DD-MMM-YYYY hh:mm a', 'es');
 
         if (dataVisitante == "noformulario") {
             Swal.fire({
