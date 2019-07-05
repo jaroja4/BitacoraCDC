@@ -325,11 +325,6 @@ class Formulario {
 
     modalVisitante(e) {
         var dataVisitante = JSON.parse(e);
-        
-        dataVisitante.fechaIngreso = new Date(dataVisitante.fechaIngreso);
-        dataVisitante.fechaIngreso = moment(dataVisitante.fechaIngreso).format('DD-MMM-YYYY hh:mm a', 'es');
-        dataVisitante.fechaSalida = new Date(dataVisitante.fechaSalida);
-        dataVisitante.fechaSalida = moment(dataVisitante.fechaSalida).format('DD-MMM-YYYY hh:mm a', 'es');
 
         if (dataVisitante == "noformulario") {
             Swal.fire({
@@ -350,7 +345,10 @@ class Formulario {
             return false;
         }
         
-
+        dataVisitante.fechaIngreso = new Date(dataVisitante.fechaIngreso);
+        dataVisitante.fechaIngreso = moment(dataVisitante.fechaIngreso).format('DD-MMM-YYYY hh:mm a', 'es');
+        dataVisitante.fechaSalida = new Date(dataVisitante.fechaSalida);
+        dataVisitante.fechaSalida = moment(dataVisitante.fechaSalida).format('DD-MMM-YYYY hh:mm a', 'es');
 
         if ( typeof dataVisitante.idFormulario != "undefined" ? true : false ) {
 
