@@ -141,7 +141,6 @@ class Usuario{
             $data = DATA::Ejecutar($sql,$param);    
             
             if (!$data){
-
                 $sql='INSERT INTO usuario_n (id, usuario, passwd, cedula, nombre, correo, empresa, fechaCreacion)
                     VALUES (:id, :usuario, :passwd, :cedula, :nombre, :correo, :empresa, NOW())';  
                 $param= array(':id'=>$this->id, ':usuario'=>$this->username, ':passwd'=>$this->password, 

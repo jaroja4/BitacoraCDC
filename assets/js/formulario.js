@@ -327,9 +327,9 @@ class Formulario {
         var dataVisitante = JSON.parse(e);
         
         dataVisitante.fechaIngreso = new Date(dataVisitante.fechaIngreso);
-        dataVisitante.fechaIngreso = moment(dataVisitante.fechaIngreso).format('DD-MM-YY hh:mma');
+        dataVisitante.fechaIngreso = moment(dataVisitante.fechaIngreso).format('DD-MM-YY hh:mm a');
         dataVisitante.fechaSalida = new Date(dataVisitante.fechaSalida);
-        dataVisitante.fechaSalida = moment(dataVisitante.fechaSalida).format('DD-MM-YY hh:mma');
+        dataVisitante.fechaSalida = moment(dataVisitante.fechaSalida).format('DD-MM-YY hh:mm a');
 
         if (dataVisitante == "noformulario") {
             Swal.fire({
@@ -366,9 +366,6 @@ class Formulario {
             tarjeta.id = dataVisitante.idTarjeta;;
             this.sala = dataVisitante.nombreSala;
             this.otrosDetalles = dataVisitante.otrosDetalles;
-
-            this.fechaIngreso = new Date(this.fechaIngreso);
-            this.fechaIngreso = moment(this.fechaIngreso).format('DD-MM-YY hh:mma');
 
             
             $("#modalVisitanteTitulo").text(this.dataCenter);
