@@ -166,9 +166,9 @@ class Bitacora {
                 }
             },
             "createdRow": function (row, data, dataIndex) {
-                var s = new Date(data.salida);
-                var a = new Date();
-                if (a.getTime() > s.getTime())
+                var s = new Date(data.formularioSalida);
+                var a = Date.now();
+                if (a > s.getTime())
                     $(row).css("background", "yellow");
             },
             columns: [
@@ -203,8 +203,8 @@ class Bitacora {
                     }
                 },
                 {
-                    title: "Fecha Salida",
-                    data: "salida",
+                    title: "Permiso Hasta",
+                    data: "formularioSalida",
                     mRender: function (e) {
                         if (e != null) {
                             var event = new Date(e);

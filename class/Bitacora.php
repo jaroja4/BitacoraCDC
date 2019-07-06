@@ -112,8 +112,8 @@ class Bitacora{
 
     function ReadVisitantesSitio(){
         try {
-            $sql="SELECT b.id, b.idFormulario, b.idVisitante, b.idTarjeta, b.entrada,
-                f.consecutivo consecutivoFormulario, f.motivoVisita, f.otrosDetalles, f.fechaSalida salida,
+            $sql="SELECT b.id, b.idFormulario, b.idVisitante, b.idTarjeta, b.entrada, b.salida,
+                f.consecutivo consecutivoFormulario, f.motivoVisita, f.otrosDetalles, f.fechaSalida formularioSalida,
                 u.nombre, u.empresa,
                 t.consecutivo consecutivoTarjeta,
                 (Select CONCAT(dc.nombre, ', ', s.nombre) As sala 
