@@ -27,6 +27,13 @@ class Bitacora {
     drawBitacorabyRange(e) {
         var data_bitacora = JSON.parse(e);
 
+        data_bitacora.map(function(item){
+            item.entrada = moment(item.entrada).format('YYYY/MM/DD hh:mm a');
+            item.salida = item.salida!=null?moment(item.salida).format('YYYY/MM/DD hh:mm a'):"Pendiente";
+        });
+
+        $.fn.dataTable.moment( 'DD-MMM-YYYY hh:mm a' );
+
         tbl_bitacora = $('#tbl_bitacora').DataTable({
             data: data_bitacora,
             destroy: true,
@@ -68,26 +75,12 @@ class Bitacora {
                 {
                     title: "Fecha Entrada",
                     data: "entrada",
-                    width: "10%",
-                    mRender: function (e) {
-                        var event = new Date(e);
-                        var f_entrada = moment(event).format('DD-MMM-YYYY hh:mm a', 'es');
-                        return f_entrada;                
-                    }
+                    width: "10%"
                 },
                 {
                     title: "Fecha Salida",
                     data: "salida",
-                    width: "10%",
-                    mRender: function (e) {
-                        if (e!= null){
-                            var event = new Date(e);
-                            var f_salida = moment(event).format('DD-MMM-YYYY hh:mm a', 'es');
-                            return f_salida;
-                        }
-                        else
-                            return "Pendiente";              
-                    }
+                    width: "10%"
                 },
                 {
                     title: "Formulario",
@@ -129,6 +122,7 @@ class Bitacora {
             "order": [
                 [4, "desc"]
             ],
+
         });
 
     }
@@ -171,10 +165,10 @@ class Bitacora {
                     "previous": "Anterior"
                 }
             },
-            "createdRow": function(row, data, dataIndex) {
+            "createdRow": function (row, data, dataIndex) {
                 var s = new Date(data.salida);
                 var a = new Date();
-                if ( a.getTime() > s.getTime() )
+                if (a.getTime() > s.getTime())
                     $(row).css("background", "yellow");
             },
             columns: [
@@ -205,14 +199,14 @@ class Bitacora {
                     mRender: function (e) {
                         var event = new Date(e);
                         var f_entrada = moment(event).format('DD-MMM-YYYY hh:mm a', 'es');
-                        return f_entrada;                
+                        return f_entrada;
                     }
                 },
                 {
                     title: "Fecha Salida",
                     data: "salida",
                     mRender: function (e) {
-                        if (e!= null){
+                        if (e != null) {
                             var event = new Date(e);
                             var f_salida = moment(event).format('DD-MMM-YYYY hh:mm a', 'es');
                             return f_salida;

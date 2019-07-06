@@ -145,7 +145,7 @@ class Formulario {
                     width: "15%",
                     mRender: function (e) {
                         var event = new Date(e);
-                        var f_entrada = moment(event).format('DD-MM-YY hh:mma');
+                        var f_entrada = moment(event).format('DD-MMM-YYYY hh:mm a', 'es');
                         return f_entrada;                
                     }
                 },
@@ -155,7 +155,7 @@ class Formulario {
                     width: "15%",
                     mRender: function (e) {
                         var event = new Date(e);
-                        var f_entrada = moment(event).format('DD-MM-YY hh:mma');
+                        var f_entrada = moment(event).format('DD-MMM-YYYY hh:mm a', 'es');
                         return f_entrada;                
                     }
                 },
@@ -165,7 +165,7 @@ class Formulario {
                     width: "15%",
                     mRender: function (e) {
                         var event = new Date(e);
-                        var f_entrada = moment(event).format('DD-MM-YY hh:mma');
+                        var f_entrada = moment(event).format('DD-MMM-YYYY hh:mm a', 'es');
                         return f_entrada;                
                     }
                 },
