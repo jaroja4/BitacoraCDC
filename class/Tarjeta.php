@@ -47,11 +47,15 @@ class Tarjeta{
 
     function ReadAll(){
         try {
-            $sql='SELECT t.id, t.idSala, s.nombre nombreSala, t.estado, t.consecutivo 
-            FROM tarjeta t
-            INNER JOIN sala s
-            ON s.id = t.idSala
-            ORDER BY t.consecutivo ASC;';  
+            $sql='SELECT t.id, t.idSala, t.estado, t.consecutivo,
+                    s.nombre nombreSala, 
+                    dc.nombre nombreDC
+                FROM tarjeta t
+                INNER JOIN sala s
+                ON s.id = t.idSala
+                INNER JOIN dataCenter dc
+                ON dc.id = s.idDataCenter
+                ORDER BY t.consecutivo ASC;';  
             $data = DATA::Ejecutar($sql);       
             if($data){
                 return $data;
@@ -147,7 +151,6 @@ class Tarjeta{
             );
         }
     }
-
     
     function RecibirConCedula(){
         try {
