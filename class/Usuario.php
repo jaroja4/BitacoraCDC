@@ -132,11 +132,11 @@ class Usuario{
     }
 
     function Create(){
-        try {            
-            $sql='SELECT id FROM usuario_n
-                WHERE usuario like :usuario
-                OR cedula like :cedula
-                OR correo like :correo;';  
+        try {
+            $sql='SELECT * FROM usuario_n
+            WHERE (usuario like :usuario AND usuario <> "")
+            OR (cedula like :cedula AND cedula <> "")
+            OR (correo like :correo AND correo <> "");';
             $param= array(':usuario'=>$this->username, ':cedula'=>$this->cedula, ':correo'=>$this->email);  
             $data = DATA::Ejecutar($sql,$param);    
             
@@ -158,9 +158,9 @@ class Usuario{
                 return true;
             }
             else {
-                return false;
+                return "5050";
             }
-        }     
+        }
         catch(Exception $e) { error_log("[ERROR]  (".$e->getCode()."): ". $e->getMessage());
             header('HTTP/1.0 400 Bad error');
             die(json_encode(array(
