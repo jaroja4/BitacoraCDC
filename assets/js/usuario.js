@@ -211,8 +211,16 @@ class Usuario {
         .done(function (e) {
             var result = JSON.parse(e);
             usuario.clearModalNuevoUsuario;
-            result==true?usuario.SwalAlert('success','Usuario Agregado'):usuario.SwalAlert('error','Error al Crear'); 
-            result=="5050"?usuario.SwalAlert('error','Usuario Repetido'):usuario.SwalAlert('error','Error al Crear');            
+            switch (result) {
+                case "5050":
+                    usuario.SwalAlert('error','Usuario Repetido');
+                    break;
+                case true:
+                    usuario.SwalAlert('success','Usuario Agregado');
+                    break; 
+                default: 
+                    usuario.SwalAlert('error','Error al Crear'); 
+              }           
             $("#modal_NuevoUsuario").modal("toggle");
         })
         .fail(function (e) {
