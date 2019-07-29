@@ -49,8 +49,10 @@
       <div class="col-md-3 left_col">
         <div class="left_col scroll-view">
           <div class="navbar nav_title" style="border: 0;">
-            <a href="index.html" class="site_title"><i class="fa fa-bullhorn"></i> <span>Centros de Datos Corporativos
-              </span></a>
+            <a href="index.html" class="site_title">
+              <!-- <i class="fa fa-bullhorn"></i>  -->
+              <span style="font-size: 20px !important; line-height: 2.5vh !important;">Centros de Datos Corporativos</span>
+            </a>
           </div>
 
           <div class="clearfix"></div>
@@ -58,13 +60,15 @@
           <!-- menu profile quick info -->
           <div class="profile clearfix">
             <div class="profile_pic">
+              <!-- <img src="images/LogoICESmall.png" alt="..."
+                style="width:70px;height:70px;border-radius:50%;margin-top:10%"> -->
               <img src="images/LogoICESmall.png" alt="..."
-                style="width:70px;height:70px;border-radius:50%;margin-top:10%">
+              style="width:70px;height:70px;border-radius:50%;margin-top:10%">
             </div>
-            <div class="profile_info">
+            <!-- <div class="profile_info">
               <span><span>Bienvenido,</span></span>
               <h2>Usuario de Seguridad</h2>
-            </div>
+            </div> -->
           </div>
           <!-- /menu profile quick info -->
 
@@ -73,11 +77,11 @@
           <!-- sidebar menu -->
           <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
             <div class="menu_section">
-              <h3>General</h3>
-              <ul class="nav side-menu">
+              <h3 id='call_userName'></h3>
+              <ul id="menubox" class="nav side-menu">
 
 
-
+<!-- 
                 <li><a><i class="fa fa-address-book-o"></i> Bitácora <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
                     <li><a><i class="fa fa-address-book-o"></i> Registro <span class="fa fa-chevron-down"></span></a>
@@ -117,7 +121,7 @@
                       </ul>
                     </li>
                   </ul>
-                </li>
+                </li> -->
 
 
 
@@ -144,9 +148,9 @@
 
             <ul class="nav navbar-nav navbar-right">
               <li class="">
-                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                <a id="call_name" href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
                   aria-expanded="false">
-                  <img src="images/img.png" alt="">Usuario de Seguridad
+                  <img  src="images/img.png" alt="">Usuario de Seguridad
                   <span class=" fa fa-angle-down"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-usermenu pull-right">

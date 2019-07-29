@@ -296,7 +296,7 @@ class Usuario{
                                 $evento->menu= $value['menu'];
                                 $evento->opcion= $value['opcion'];
                                 $evento->iconoMenu= $value['iconoMenu'];
-                                $evento->iniconoModulo= $value['iconoModulo'];
+                                $evento->iconoModulo= $value['iconoModulo'];
                                 $this->eventos = array($evento);
                             }
                             else {
@@ -307,7 +307,7 @@ class Usuario{
                                 $evento->menu= $value['menu'];
                                 $evento->opcion= $value['opcion'];
                                 $evento->iconoMenu= $value['iconoMenu'];
-                                $evento->iniconoModulo= $value['iconoModulo'];
+                                $evento->iconoModulo= $value['iconoModulo'];
                                 // $this->eventos = array($evento);
                                 array_push($this->eventos, $evento);
                             }                    
