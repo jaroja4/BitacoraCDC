@@ -256,7 +256,7 @@ class Usuario{
         try {
             //Check activo & password.
             $sql= 'SELECT DISTINCT u.id idUsuario, u.usuario, u.cedula, u.nombre, u.correo, u.empresa, u.estado, u.passwd,
-                e.id idEvento, e.nombre nombreEvento, e.url, e.modulo, e.menu, e.opcion, e.iconoModulo, e.iconoMenu
+                e.id idEvento, e.url, e.modulo, e.menu, e.opcion, e.iconoModulo, e.iconoMenu
                 FROM usuario_n u 
                 INNER JOIN usuario_rol ur 
                 ON ur.idUsuario = u.id
@@ -290,7 +290,6 @@ class Usuario{
                                 $this->url = isset($_SESSION['userSession']->url)? $_SESSION['userSession']->url : 'listaFormularios.html'; // Url consultada
                                 //
                                 $evento->id= $value['idEvento'];
-                                $evento->nombre= $value['nombreEvento'];
                                 $evento->url= $value['url'];
                                 $evento->modulo= $value['modulo'];
                                 $evento->menu= $value['menu'];
@@ -301,7 +300,6 @@ class Usuario{
                             }
                             else {
                                 $evento->id= $value['idEvento'];
-                                $evento->nombre= $value['nombreEvento'];
                                 $evento->url= $value['url'];
                                 $evento->modulo= $value['modulo'];
                                 $evento->menu= $value['menu'];

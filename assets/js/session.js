@@ -64,6 +64,9 @@ var Session = {
         $('#menubox').html('');
         // menu segun permisos de usuario.
         $.each(eventos, function (i, item) {
+            item.menu = item.menu.replace(/ /g, "_");
+            item.modulo = item.modulo.replace(/ /g, "_");
+            item.opcion  = item.opcion.replace(/ /g, "_");
             //Si no existe el modulo lo crea junto con sus Menu y Opción
             if (!$(`#${item.modulo}`).length) {
                 //Agrega el Modulo
@@ -100,7 +103,7 @@ var Session = {
         $('#menubox').append(`
             <li>
                 <a>
-                    <i class="${i}"></i> ${m}
+                    <i class="${i}"></i> ${m.replace(/_/g, " ")}
                     <span class="fa fa-chevron-down"></span>
                 </a>
                 <ul id="${m}" class="nav child_menu">
@@ -112,7 +115,7 @@ var Session = {
         $(`#${mo}`).append(`
             <li>
                 <a>
-                    <i class="${ic}"></i> ${me} 
+                    <i class="${ic} fa-xs"></i> ${me.replace(/_/g, " ")} 
                     <span class="fa fa-chevron-down"></span>
                 </a>
                 <ul id="${me}" class="nav child_menu">
@@ -122,7 +125,7 @@ var Session = {
     },
     AgregaOpcion(m, u, o) {
         $(`#${m}`).append(`
-            <li class="sub_menu"><a href="${u}">${o}</a></li>
+            <li class="sub_menu"><a href="${u}">${o.replace(/_/g, " ")}</a></li>
         `);
     },
     End() {

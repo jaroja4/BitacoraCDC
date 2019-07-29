@@ -20,7 +20,6 @@ if(isset($_POST["action"])){
 }
 class Evento{
     public $id;
-    public $nombre;
     public $url;
     public $modulo;
     public $iconoModulo;
@@ -30,7 +29,7 @@ class Evento{
 
     function ReadAll(){
         try {
-            $sql='SELECT id, nombre, url, modulo, iconoModulo, menu, iconoMenu, opcion
+            $sql='SELECT id, url, modulo, iconoModulo, menu, iconoMenu, opcion
                 FROM     evento       
                 ORDER BY modulo asc';
             $data= DATA::Ejecutar($sql);
