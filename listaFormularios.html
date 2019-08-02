@@ -2,6 +2,13 @@
 <html lang="es">
 
 <head>
+  <!-- check User session -->
+  <script src="assets/js/jquery/dist/jquery.min.js"></script>
+  <script src="assets/js/session.js"></script>
+  <script>
+    Session.Check();
+  </script>
+  <!-- /End check -->
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <!-- Meta, title, CSS, favicons, etc. -->
   <meta charset="UTF-8">
@@ -38,12 +45,14 @@
 
 <body class="nav-md">
   <div class="container body">
-    <div class="main_container">
+    <div class="main_container" style="visibility:hidden">
       <div class="col-md-3 left_col">
         <div class="left_col scroll-view">
           <div class="navbar nav_title" style="border: 0;">
-            <a href="index.html" class="site_title"><i class="fa fa-bullhorn"></i> <span>Centros de Datos Corporativos
-              </span></a>
+            <a href="index.html" class="site_title">
+              <!-- <i class="fa fa-bullhorn"></i>  -->
+              <span style="font-size: 20px !important; line-height: 2.5vh !important;">Centros de Datos Corporativos</span>
+            </a>
           </div>
 
           <div class="clearfix"></div>
@@ -51,13 +60,15 @@
           <!-- menu profile quick info -->
           <div class="profile clearfix">
             <div class="profile_pic">
+              <!-- <img src="images/LogoICESmall.png" alt="..."
+                style="width:70px;height:70px;border-radius:50%;margin-top:10%"> -->
               <img src="images/LogoICESmall.png" alt="..."
-                style="width:70px;height:70px;border-radius:50%;margin-top:10%">
+              style="width:70px;height:70px;border-radius:50%;margin-top:10%">
             </div>
-            <div class="profile_info">
+            <!-- <div class="profile_info">
               <span><span>Bienvenido,</span></span>
               <h2>Usuario de Seguridad</h2>
-            </div>
+            </div> -->
           </div>
           <!-- /menu profile quick info -->
 
@@ -66,44 +77,8 @@
           <!-- sidebar menu -->
           <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
             <div class="menu_section">
-              <h3>General</h3>
-              <ul class="nav side-menu">
-                <li><a><i class="fa fa-address-book-o"></i> Bitácora <span class="fa fa-chevron-down"></span></a>
-                  <ul class="nav child_menu">
-                    <li><a href="index.html">Registro</a></li>
-                    <li><a href="consultaBitacora.html">Consultas</a></li>
-                  </ul>
-                </li>
-
-                <li><a><i class="fa fa-list-alt"></i> Formularios <span class="fa fa-chevron-down"></span></a>
-                  <ul class="nav child_menu">
-                    <li><a href="listaFormularios.html">Lista Formularios</a></li>
-                  </ul>
-                </li>
-
-                <li><a><i class="fa fa-users"></i> Personal <span class="fa fa-chevron-down"></span></a>
-                  <ul class="nav child_menu">
-                    <li><a href="listaUsuarios.html">Usuarios</a></li>
-                    <li><a href="roles.html">Roles</a></li>
-                    <li><a href="buscarLDAP.html">Buscar LDAP</a></li>
-                  </ul>
-                </li>
-                <li><a><i class="fa fa-map-marker"></i> Sitios <span class="fa fa-chevron-down"></span></a>
-                  <ul class="nav child_menu">
-                    <li><a href="listaSitios.html">Lista Sitios</a></li>
-                  </ul>
-                </li>
-                <li><a><i class="fa fa-id-badge"></i> Tarjetas <span class="fa fa-chevron-down"></span></a>
-                  <ul class="nav child_menu">
-                    <li><a href="tarjetas.html">Gestión de Tarjetas</a></li>
-                  </ul>
-                </li>
-                <li><a><i class="fa fa-tasks"></i> Gestión <span class="fa fa-chevron-down"></span></a>
-                  <ul class="nav child_menu">
-                    <li><a href="gestion.html">Gestión de Datos</a></li>
-                    <li><a href="upgradeBitacora/update_shema.php">Actulizar Base de Datos</a></li>
-                  </ul>
-                </li>
+              <h3 id='call_userName'></h3>
+              <ul id="menubox" class="nav side-menu">
 
               </ul>
             </div>
@@ -122,9 +97,9 @@
 
             <ul class="nav navbar-nav navbar-right">
               <li class="">
-                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                <a id="call_name" href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
                   aria-expanded="false">
-                  <img src="images/img.png" alt="">Usuario de Seguridad
+                  <img  src="images/img.png" alt="">Usuario de Seguridad
                   <span class=" fa fa-angle-down"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -581,13 +556,13 @@
       placeholder: 'Seleccione Rol...',
       closeOnSelect: false
     });
-    
+
 
     $("#btn_guardar_formulario").click(function () {
       formulario.validar;
     });
 
-    
+
     $("#btn_guardarUsuario").click(function () {
       usuario.id = null;
       usuario.nombre = $("#inp_nombre").val();
@@ -603,7 +578,7 @@
     $("#btn_nuevoVisitante").click(function () {
       usuario.clearModalNuevoUsuario;
       $("#modal_NuevoUsuario").modal("show");
-    });  
+    });
 
     $("#btn_buscarLDAP").click(function () {
       event.preventDefault();
@@ -638,7 +613,7 @@
 
     });
 
- 
+
 
     $("#sel_centro_datos").change(function () {
       sala.carga_SalabyDC;

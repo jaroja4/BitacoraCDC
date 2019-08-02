@@ -1,8 +1,8 @@
-var Session=  {
+var Session = {
     state: undefined,
-    Check(){
-        Session.state=undefined
-        $.ajax({           
+    Check() {
+        Session.state = undefined
+        $.ajax({
             type: "POST",
             url: "class/Usuario.php",
             data: {
@@ -13,104 +13,122 @@ var Session=  {
                 // }
             }
         })
-        .done(function( e ) {
-            var data= JSON.parse(e);
-            switch(data.status){
-                case 'login':
-                    $('.right_col').show();
-                    Session.setUsername(data.username, data.nombre, data.bodega);
-                    Session.setMenu(data.eventos);  
-                    Session.state=true;
-                    Session.sideBarDraw(data);
-                    $(".main_container").removeAttr("style");
-                    break;
-                case 'nocredencial':
-                    $('.right_col').hide();
-                    Session.setUsername(data.username, data.nombre);      
-                    Session.setMenu(data.eventos);    
-                    Session.state=false;
-                    alert('El usuario no tiene credenciales para ver esta página.');
-                    /*swal({
-                        //
-                        type: 'error',
-                        title: 'El usuario no tiene credenciales para ver esta página.',
-                        showConfirmButton: false,
-                        timer: 3000
-                    });*/
-                    break;
-                case 'invalido':
-                    Session.state=false;
-                    location.href= 'login.html'; 
-                    break;                
-            }   
-        })    
-        .fail(function( e ) {
-            showError(e);
-            location.href= 'login.html';
-        });
+            .done(function (e) {
+                var data = JSON.parse(e);
+                switch (data.status) {
+                    case 'login':
+                        $('.right_col').show();
+                        Session.setUsername(data.username, data.nombre);
+                        Session.setMenu(data.eventos);
+                        Session.state = true;
+                        // Session.sideBarDraw(data);
+                        $(".main_container").removeAttr("style");
+                        break;
+                    case 'nocredencial':
+                        $('.right_col').hide();
+                        // Session.setUsername(data.username, data.nombre);
+                        // Session.setMenu(data.eventos);
+                        Session.state = false;
+                        alert('El usuario no tiene credenciales para ver esta página.');
+                        /*swal({
+                            //
+                            type: 'error',
+                            title: 'El usuario no tiene credenciales para ver esta página.',
+                            showConfirmButton: false,
+                            timer: 3000
+                        });*/
+                        break;
+                    case 'invalido':
+                        Session.state = false;
+                        location.href = 'login.html';
+                        break;
+                }
+            })
+            .fail(function (e) {
+                showError(e);
+                location.href = 'login.html';
+            });
     },
-    setUsername(un, n, b){
-        $('#call_username').html(
-            '<img src="images/logoTropical.png" alt="" > ' + un+ ' ' + 
-            '<span class=" fa fa-angle-down" ></span> '        
+    setUsername(un, n) {
+        $('#call_name').html("");
+        $('#call_name').html(
+            '<img src="images/CDC_Logo.png" alt="" > ' + n + ' ' +
+            '<span class=" fa fa-angle-down" ></span> '
         );
-        $('#call_name').text(n);
+        // $('#call_name').text(n);
         // bodega
-        $('.call_Bodega').text(b);
+        $('#call_userName').text("Menu Para " + un);
 
     },
-    setMenu(eventos){        
+    setMenu(eventos) {
         $('#menubox').html('');
-        $('#menubox').append(`
-            <li id="Inventario" style="display:none;">
-                <a>
-                    <i class="fa fa-reorder"></i> Inventario
-                    <span class="fa fa-chevron-down"></span>
-                </a>
-                <ul class="nav child_menu"></ul>
-            </li>
-            <li id="Facturacion" style="display:none;">
-                <a>
-                    <i class="fa fa-money"></i> Facturación
-                    <span class="fa fa-chevron-down"></span>
-                </a>
-                <ul class="nav child_menu"></ul>
-            </li>
-            <li id="Bodega" style="display:none;">
-                <a>
-                    <i class="fa fa-folder-open"></i> Bodega
-                    <span class="fa fa-chevron-down"></span>
-                </a>
-                <ul class="nav child_menu"></ul>
-            </li>
-            <li id="Sistema" style="display:none;">
-                <a> <i class="fa fa-cog"></i> Sistema
-                    <span class="fa fa-chevron-down"></span>
-                </a>
-                <ul class="nav child_menu"> </ul>
-            </li>
-        `);
         // menu segun permisos de usuario.
         $.each(eventos, function (i, item) {
-            $('#' + item.menuPadre).css({'display':'block'});
-            $('#' + item.menuPadre + ' ul.nav').css({'display':'block'});
-            $('#' + item.menuPadre + ' ul.nav').append(`
-                <li>
-                    <a href="${item.url}">${item.nombre}</a>
-                </li>
-            `);
+            item.menu = item.menu.replace(/ /g, "_");
+            item.modulo = item.modulo.replace(/ /g, "_");
+            item.opcion  = item.opcion.replace(/ /g, "_");
+            //Si no existe el modulo lo crea junto con sus Menu y Opción
+            if (!$(`#${item.modulo}`).length) {
+                //Agrega el Modulo
+                Session.AgregaModulo(item.iconoModulo, item.modulo);
+                //Agrega el Menu
+                Session.AgregaMenu(item.modulo, item.iconoMenu, item.menu);
+                //Agrega la opcion
+                Session.AgregaOpcion(item.menu, item.url, item.opcion);
+            }
+            //Si no existe el Menu lo crea junto con sus Opción
+            else if (!$(`#${item.menu}`).length) {
+                //Agrega el Menu
+                Session.AgregaMenu(item.modulo, item.iconoMenu, item.menu);
+                //Agrega la opcion
+                Session.AgregaOpcion(item.menu, item.url, item.opcion);
+            }
+            //Si ya existe el Modulo y el Menu solo agrega la opción
+            else if (!$(`#${item.opcion}`).length) {
+                //Agrega la opcion
+                Session.AgregaOpcion(item.menu, item.url, item.opcion);
+            }
         });
-        // $('#call_menu').html('');
-        // $('#call_menu').css({'display':'block'});
-        // $.each(eventos, function (i, item) {
-        //     $('#call_menu').append(`
-        //         <li>
-        //             <a href="${item.url}">${item.nombre}</a>
-        //         </li>
-        //     `);
-        // });
-    },  
-    End(){
+
+        if (typeof init_sidebar === "function")
+            init_sidebar();
+        else {
+            setTimeout(function () {
+                Session.setMenu(eventos);
+            }, 500);
+        }
+
+    },
+    AgregaModulo(i, m) {
+        $('#menubox').append(`
+            <li>
+                <a>
+                    <i class="${i}"></i> ${m.replace(/_/g, " ")}
+                    <span class="fa fa-chevron-down"></span>
+                </a>
+                <ul id="${m}" class="nav child_menu">
+                </ul>
+            </li>
+        `);
+    },
+    AgregaMenu(mo, ic, me) {
+        $(`#${mo}`).append(`
+            <li>
+                <a>
+                    <i class="${ic} fa-xs"></i> ${me.replace(/_/g, " ")} 
+                    <span class="fa fa-chevron-down"></span>
+                </a>
+                <ul id="${me}" class="nav child_menu">
+                </ul>
+            </li>
+            `);
+    },
+    AgregaOpcion(m, u, o) {
+        $(`#${m}`).append(`
+            <li class="sub_menu"><a href="${u}">${o.replace(/_/g, " ")}</a></li>
+        `);
+    },
+    End() {
         $.ajax({
             type: "POST",
             url: "class/Usuario.php",
@@ -118,55 +136,13 @@ var Session=  {
                 action: 'EndSession'
             }
         })
-        .done(function( e ) {
-            location.href= 'login.html';
-        })    
-        .fail(function( e ) {
-            showError(e);
-            //location.href= 'login.html';
-        });
-    },
-    sideBarDraw(dataMenu) {
-
-        if ( $("#sidebar-menu").length ) {
-
-            $("#sidebar-menu").empty();
-    
-            var menu_section =
-                `<div class="menu_section">
-                <h3>${dataMenu.bodega}</h3>
-                <ul id="menu" class="nav side-menu">
-                    
-                </ul>
-            </div>`;
-            $("#sidebar-menu").append(menu_section);
-    
-            $.each(dataMenu.eventos, function (i, item) {
-                if ($('#' + item.menuPadre).length) {
-                    if(!$('#' + item.id).length){
-                    var link =
-                        ` <li id="${item.id}"><a href="${item.url}">${item.nombre}</a></li>`;
-                    $("#list_" + item.menuPadre).append(link);
-                    }
-                } else {
-                    var menu =
-                        `<li id="${item.menuPadre}" ><a><i class="${item.icono}"></i> ${item.menuPadre} <span class="fa fa-chevron-down"></span></a>
-                            <ul id="list_${item.menuPadre}" class="nav child_menu">
-                                <li id="${item.id}"><a href="${item.url}">${item.nombre}</a></li>
-                            </ul>
-                        </li>`;
-                    $("#menu").append(menu);
-                }
-            });  
-            //
-            if (typeof init_sidebar === "function") 
-                init_sidebar();
-            else {
-                setTimeout(function(){
-                    Session.sideBarDraw(dataMenu);               
-                 }, 500);                
-            }
-        }
+            .done(function (e) {
+                location.href = 'login.html';
+            })
+            .fail(function (e) {
+                showError(e);
+                //location.href= 'login.html';
+            });
     }
 
 

@@ -91,6 +91,11 @@ var setContentHeight = function () {
 					$SIDEBAR_MENU.find( "li ul" ).slideUp();
 				}
 			}
+
+			if ( $SIDEBAR_MENU.find( "sub_menu" ) ) {
+				$SIDEBAR_MENU.find( "li" ).removeClass( "active active-sm" );
+				$SIDEBAR_MENU.find( "li ul li ul" ).slideUp();
+			}
             $li.addClass('active');
 
             $('ul:first', $li).slideDown(function() {
@@ -5025,7 +5030,7 @@ if (typeof NProgress != 'undefined') {
 				
 		init_sparklines();
 		init_flot_chart();
-		init_sidebar();
+		// init_sidebar();
 		init_wysiwyg();
 		init_InputMask();
 		init_JQVmap();

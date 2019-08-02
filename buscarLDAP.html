@@ -2,6 +2,13 @@
 <html lang="es">
 
 <head>
+  <!-- check User session -->
+  <script src="assets/js/jquery/dist/jquery.min.js"></script>
+  <script src="assets/js/session.js"></script>
+  <script>
+    Session.Check();
+  </script>
+  <!-- /End check -->
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <!-- Meta, title, CSS, favicons, etc. -->
   <meta charset="UTF-8">
@@ -66,44 +73,8 @@
           <!-- sidebar menu -->
           <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
             <div class="menu_section">
-              <h3>General</h3>
-              <ul class="nav side-menu">
-                <li><a><i class="fa fa-address-book-o"></i> Bitácora <span class="fa fa-chevron-down"></span></a>
-                  <ul class="nav child_menu">
-                    <li><a href="index.html">Registro</a></li>
-                    <li><a href="consultaBitacora.html">Consultas</a></li>
-                  </ul>
-                </li>
-
-                <li><a><i class="fa fa-list-alt"></i> Formularios <span class="fa fa-chevron-down"></span></a>
-                  <ul class="nav child_menu">
-                    <li><a href="listaFormularios.html">Lista Formularios</a></li>
-                  </ul>
-                </li>
-
-                <li><a><i class="fa fa-users"></i> Personal <span class="fa fa-chevron-down"></span></a>
-                  <ul class="nav child_menu">
-                    <li><a href="listaUsuarios.html">Usuarios</a></li>
-                    <li><a href="roles.html">Roles</a></li>
-                    <li><a href="buscarLDAP.html">Buscar LDAP</a></li>
-                  </ul>
-                </li>
-                <li><a><i class="fa fa-map-marker"></i> Sitios <span class="fa fa-chevron-down"></span></a>
-                  <ul class="nav child_menu">
-                    <li><a href="listaSitios.html">Lista Sitios</a></li>
-                  </ul>
-                </li>
-                <li><a><i class="fa fa-id-badge"></i> Tarjetas <span class="fa fa-chevron-down"></span></a>
-                  <ul class="nav child_menu">
-                    <li><a href="tarjetas.html">Gestión de Tarjetas</a></li>
-                  </ul>
-                </li>
-                <li><a><i class="fa fa-tasks"></i> Gestión <span class="fa fa-chevron-down"></span></a>
-                  <ul class="nav child_menu">
-                    <li><a href="gestion.html">Gestión de Datos</a></li>
-                    <li><a href="upgradeBitacora/update_shema.php">Actulizar Base de Datos</a></li>
-                  </ul>
-                </li>
+              <h3 id='call_userName'></h3>
+              <ul id="menubox" class="nav side-menu">
 
               </ul>
             </div>
@@ -149,7 +120,7 @@
 
         <div class="row">
           <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="x_panel">              
+            <div class="x_panel">
               <div class="x_content">
                 <div class="row">
                   <div class="col-sm-12 col-md-12 col-lg-12">
@@ -292,7 +263,7 @@
   })
 
   function drawLDAPResult(e) {
-    
+
     var data = JSON.parse(e);
     var str = JSON.stringify(data, undefined, 4);
 

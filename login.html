@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Portal de Centros de Datos Corporativos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="vendors/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/loginForm.css">
+
+</head>
+
+
+<body>
+
+    <header>
+    </header>
+
+    <div class="signin-form">
+        <div class="container">
+            <div id="error"></div>
+            <form id="frmLogin" name="frmLogin"
+                style="font-family:Quicksand, sans-serif;background-color:rgba(44,40,52,0.73);width:320px;padding:40px;">
+                <div>
+                    <a href="index.html">
+                        <img class="img-rounded img-responsive" src="images/logo_GrupoICE.png" id="image"
+                            style="width:auto;height:auto;margin-bottom: 2vh;">
+                    </a>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" id="correo" name="correo" placeholder="correo@ice.go.cr"
+                        required>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="password" id="password" name="password" placeholder="contraseña"
+                        required>
+                </div>
+                <button class="btn btn-default" type="submit" value="Ingresar" id="btnLogin"
+                    style="width:100%;height:100%;background-color: #214a80;color: #fff;border-color: #122b40;">Ingresar</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+<script src="assets/js/jquery/dist/jquery.js" type="text/jscript"></script>
+<script src="assets/js/login.js" languaje="javascript" type="text/javascript"></script>
+<script src="vendors/bootstrap/dist/js/bootstrap.js"></script>
+<script src="vendors/validator/validator.js"></script>
+
+</html>
+

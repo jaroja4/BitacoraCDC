@@ -1,0 +1,83 @@
+ #frmLogin {
+  max-width:333px;
+  width:90%;
+  position:relative;
+  left:50%;
+  top:10%;
+  padding:40px;
+  border-radius:4px;
+  transform:translate(-50%, 10%);
+  color:#fff;
+  box-shadow:3px 3px 4px rgba(0,0,0,0.2);
+}
+
+#head {
+  text-align:center;
+}
+
+#image {
+  margin:auto;
+  width:50%;
+  padding:10px;
+  max-height:175px;
+  max-width:175px;
+}
+
+#linkas {
+  display:block;
+  text-align:center;
+  font-size:12px;
+  opacity:0.9;
+  text-decoration:none;
+}
+
+#login {
+  background:#70b2d0;
+  outline:none;
+  text-shadow:initial;
+}
+
+#username {
+  background:none;
+  border:none;
+  border-bottom:1px solid #434a52;
+  border-radius:0;
+  box-shadow:none;
+  outline:none;
+  color:inherit;
+}
+
+#password {
+  background:none;
+  border:none;
+  border-bottom:1px solid #434a52;
+  border-radius:0;
+  box-shadow:none;
+  outline:none;
+  color:inherit;
+}
+
+
+body:before {
+  content: "";
+  position: fixed;
+  top: -5%;
+  left: -5%;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+
+    
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+
+  
+  background-image:url("../../images/data-center3.jpg");
+  background-size:cover;
+  background-repeat:no-repeat;
+  height:auto;
+  width:auto;
+}
