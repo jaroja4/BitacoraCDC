@@ -84,6 +84,79 @@ class DataCenter {
                 
             });
     }
+
+    get tbl_CDC_ReadAll() {
+        var miAccion = 'ReadAll';
+        $.ajax({
+            type: "POST",
+            url: "class/DataCenter.php",
+            data: {
+                action: miAccion
+            }
+        })
+            .done(function (e) {
+                dataCenter.drawCDC_DataTable(e);
+            })
+            .fail(function (e) {
+                // dataCenter.showError(e);
+            });
+    }
+
+    drawCDC_DataTable(e) {
+        if (e){
+            var dataCDC = JSON.parse(e);
+            $('#tb_CDC').DataTable({
+                data: dataCDC,
+                destroy: true,
+                autoWidth: false,
+                language: {
+                    "infoEmpty": "Sin Centros de Datos Creados",
+                    "emptyTable": "Sin Centros de Datos Creados",
+                    "search": "Buscar",
+                    "zeroRecords": "No hay resultados",
+                    "lengthMenu": "Mostar _MENU_ registros",
+                    "paginate": {
+                        "first": "Primera",
+                        "last": "Ultima",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                },
+                "order": [
+                    [1, "asc"]
+                ],
+                columns: [
+                    {
+                        title: "id",
+                        data: "id",
+                        targets: 0,
+                        visible: false
+                    },
+                    {
+                        title: "Nombre",
+                        data: "nombre",
+                        width: "90%",
+                        targets: 1
+                    },
+                    {
+                        title: "Eliminar",
+                        targets: 8,
+                        visible: true,
+                        mRender: function (e) {
+                            return '<button class=btnEliminarCDC onclick="deleteCDC(this)" > <i class="fa fa-trash-o" style="color:firebrick" aria-hidden="true"></i> </button>';
+                        }
+                    }
+                ]
+            });
+    
+            $('#tb_CDC tbody').on('click', 'tr', function () {
+                dataCenter.clear;
+                dataCenter.id = $('#tb_CDC').DataTable().row(this).data().id;
+                // dataCenter.cargarResponsablebyID;
+            });
+        }
+        
+    }
 }
 
 let dataCenter = new DataCenter();  
