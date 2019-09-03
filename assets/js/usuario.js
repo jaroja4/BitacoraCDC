@@ -595,7 +595,6 @@ class Usuario {
             usuario.cargarResponsablebyID;
         });
     }
-
 }
 
 let usuario = new Usuario();
