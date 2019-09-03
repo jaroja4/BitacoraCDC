@@ -32,6 +32,12 @@ if(isset($_POST["action"])){
         case "Update":
             echo json_encode($usuario->Update());
             break; 
+        case "Delete":
+            echo json_encode($usuario->Delete());
+            break;
+        case "UpdateEstado":
+            echo json_encode($usuario->UpdateEstado());
+            break; 
     }
 }
 
@@ -403,12 +409,19 @@ class Usuario{
 
     private function CheckRelatedItems(){
         try{
-            $sql="SELECT idUsuario
-                FROM rolesXUsuario x
-                WHERE x.idUsuario= :id";
+            // $sql="SELECT idUsuario
+            //     FROM usuario_rol x
+            //     WHERE x.idUsuario= :id";
+            // $param= array(':id'=>$this->id);
+            // $tieneRol= DATA::Ejecutar($sql, $param);
+
+            $sql="SELECT idVisitante 
+            FROM control_acceso_cdc_dbp.visitante_formulario 
+            WHERE idVisitante=:id";
             $param= array(':id'=>$this->id);
-            $data= DATA::Ejecutar($sql, $param);
-            if(count($data))
+            $tieneFormulario= DATA::Ejecutar($sql, $param);
+            
+            if(count($tieneFormulario))
                 return true;
             else return false;
         }
@@ -428,22 +441,48 @@ class Usuario{
                 $sessiondata['status']=1; 
                 $sessiondata['msg']='Registro en uso'; 
                 return $sessiondata;           
-            }                    
-            $sql='DELETE FROM usuario
-                WHERE id= :id';
-            $param= array(':id'=>$this->id);
-            $data= DATA::Ejecutar($sql, $param, false);
-            if($data){
-                $sessiondata['status']=0; 
-                return $sessiondata;
             }
-            else throw new Exception('Error al eliminar.', 978);
+            else{
+                //Delete Rol
+                $sql='DELETE FROM usuario_rol
+                WHERE idUsuario= :id';
+                $param= array(':id'=>$this->id);
+                $tieneRol= DATA::Ejecutar($sql, $param, false);
+
+                $sql='DELETE FROM usuario_n
+                WHERE id= :id';
+                $param= array(':id'=>$this->id);
+                $data= DATA::Ejecutar($sql, $param, false);
+                if($data){
+                    $sessiondata['status']=0; 
+                    return $sessiondata;
+                }
+                else throw new Exception('Error al eliminar.', 978);
+            }
         }
         catch(Exception $e) { error_log("[ERROR]  (".$e->getCode()."): ". $e->getMessage());
             header('HTTP/1.0 400 Bad error');
             die(json_encode(array(
                 'code' => $e->getCode() ,
                 'msg' => $e->getMessage()))
+            );
+        }
+    }
+
+    function UpdateEstado(){
+        try {            
+            $sql='UPDATE usuario_n
+                SET estado =0
+                WHERE id=:id;';  
+            $param= array(':id'=>$this->id);  
+            DATA::Ejecutar($sql,$param);    
+            return true;
+        }     
+        catch(Exception $e) { error_log("[ERROR]  (".$e->getCode()."): ". $e->getMessage());
+            header('HTTP/1.0 400 Bad error');
+            die(json_encode(array(
+                'code' => $e->getCode() ,
+                'msg' => 'Error al cargar la lista'))
             );
         }
     }

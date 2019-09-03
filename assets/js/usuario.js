@@ -248,6 +248,48 @@ class Usuario {
             
         });
     }
+
+    get updateEstado() {
+        var miAccion = 'UpdateEstado';
+        $.ajax({
+            type: "POST",
+            url: "class/Usuario.php",
+            data: {
+                action: miAccion,
+                obj: JSON.stringify(usuario)
+            }
+        })
+        .done(function (e) {
+            var result = JSON.parse(e);
+            usuario.clearModalNuevoUsuario;
+            result?usuario.SwalAlert('success','EStado del Usuario Actualizado'):usuario.SwalAlert('error','Error al Actualizar Estado del Usuario');            
+            $("#modal_NuevoUsuario").modal("toggle");
+        })
+        .fail(function (e) {
+            
+        });
+    }
+
+    get Delete() {
+        $.ajax({
+            type: "POST",
+            url: "class/Usuario.php",
+            data: {
+                action: 'Delete',
+                id: this.id
+            }
+        })
+            .done(function (e) {
+                var result = JSON.parse(e);
+                if (result.status==1) 
+                    usuario.SwalAlert('error','Error al Eliminar Usuario, el registro se encuentra en uso');
+                else
+                    usuario.SwalAlert('success','El usuario fue Eliminado');
+            })
+            .fail(function (e) {
+            
+            })
+    }
     
     SwalAlert(tipo, titulo){
         usuario.responsables_ReadAll_list;
@@ -334,7 +376,7 @@ class Usuario {
                 },
                 {
                     title: "Eliminar",
-                    targets: 8,
+                    class: "except",
                     visible: true,
                     mRender: function (e) {
                         return '<button class=btnEliminarResponsable onclick="deleteResponsable(this)" > <i class="fa fa-trash-o" style="color:firebrick" aria-hidden="true"></i> </button>';
@@ -416,6 +458,7 @@ class Usuario {
                 },
                 {
                     title: "Eliminar",
+                    class: "except",
                     targets: 8,
                     visible: true,
                     mRender: function (e) {
@@ -498,6 +541,7 @@ class Usuario {
                 },
                 {
                     title: "Eliminar",
+                    class: "except",
                     targets: 8,
                     visible: true,
                     mRender: function (e) {
@@ -580,6 +624,7 @@ class Usuario {
                 },
                 {
                     title: "Eliminar",
+                    class: "except",
                     targets: 8,
                     visible: true,
                     mRender: function (e) {
