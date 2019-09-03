@@ -80,7 +80,7 @@
 
             <ul class="nav navbar-nav navbar-right">
               <li class="">
-                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                <a id="call_name" href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
                   aria-expanded="false">
                   <img src="images/img.png" alt="">Usuario de Seguridad
                   <span class=" fa fa-angle-down"></span>
@@ -121,7 +121,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="x_panel">
                 <div class="x_title">
-                  <button type="button" class="btn btn-primary">Crear Nuevo Formulario</button>
+                  <button type="button" class="btn btn-primary">Crear Nuevo Sitio</button>
                   <!-- <div class="nav navbar-right panel_toolbox">
                     <button type="button" class="btn btn-primary">Crear Nuevo Formulario</button>
                   </div> -->
@@ -147,130 +147,11 @@
 
 
                   <div class="table-responsive">
-                    <table class="table table-striped jambo_table bulk_action">
+                    <table id="tb_CDC" class="table table-striped jambo_table bulk_action">
                       <thead>
-                        <tr class="headings">
-                          <!-- <th>
-                                <input type="checkbox" id="check-all" class="flat">
-                              </th> -->
-                          <th class="column-title"># Formulario </th>
-                          <th class="column-title">Fecha Ingreso </th>
-                          <th class="column-title">Fecha Solicitud </th>
-                          <th class="column-title">Motivo/Detalle </th>
-                          <th class="column-title">Estado </th>
-                          <th class="column-title"># RFC </th>
-                          <!-- </th> -->
-                          <!-- <th class="bulk-actions" colspan="7">
-                                <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
-                              </th> -->
-                        </tr>
                       </thead>
 
                       <tbody>
-                        <tr class="even pointer">
-
-                          <td class=" ">121000040</td>
-                          <td class=" ">May 23, 2014 11:47:56 PM </td>
-                          <td class=" ">121000210 <i class="success fa fa-long-arrow-up"></i></td>
-                          <td class=" ">John Blank L</td>
-                          <td class=" ">Paid</td>
-                          <td class="a-right a-right ">$7.45</td>
-
-                        </tr>
-                        <tr class="odd pointer">
-
-                          <td class=" ">121000039</td>
-                          <td class=" ">May 23, 2014 11:30:12 PM</td>
-                          <td class=" ">121000208 <i class="success fa fa-long-arrow-up"></i>
-                          </td>
-                          <td class=" ">John Blank L</td>
-                          <td class=" ">Paid</td>
-                          <td class="a-right a-right ">$741.20</td>
-
-                        </tr>
-                        <tr class="even pointer">
-
-                          <td class=" ">121000038</td>
-                          <td class=" ">May 24, 2014 10:55:33 PM</td>
-                          <td class=" ">121000203 <i class="success fa fa-long-arrow-up"></i>
-                          </td>
-                          <td class=" ">Mike Smith</td>
-                          <td class=" ">Paid</td>
-                          <td class="a-right a-right ">$432.26</td>
-
-                        </tr>
-                        <tr class="odd pointer">
-
-                          <td class=" ">121000037</td>
-                          <td class=" ">May 24, 2014 10:52:44 PM</td>
-                          <td class=" ">121000204</td>
-                          <td class=" ">Mike Smith</td>
-                          <td class=" ">Paid</td>
-                          <td class="a-right a-right ">$333.21</td>
-
-                        </tr>
-                        <tr class="even pointer">
-
-                          <td class=" ">121000040</td>
-                          <td class=" ">May 24, 2014 11:47:56 PM </td>
-                          <td class=" ">121000210</td>
-                          <td class=" ">John Blank L</td>
-                          <td class=" ">Paid</td>
-                          <td class="a-right a-right ">$7.45</td>
-
-                        </tr>
-                        <tr class="odd pointer">
-
-                          <td class=" ">121000039</td>
-                          <td class=" ">May 26, 2014 11:30:12 PM</td>
-                          <td class=" ">121000208 <i class="error fa fa-long-arrow-down"></i>
-                          </td>
-                          <td class=" ">John Blank L</td>
-                          <td class=" ">Paid</td>
-                          <td class="a-right a-right ">$741.20</td>
-
-                        </tr>
-                        <tr class="even pointer">
-
-                          <td class=" ">121000038</td>
-                          <td class=" ">May 26, 2014 10:55:33 PM</td>
-                          <td class=" ">121000203</td>
-                          <td class=" ">Mike Smith</td>
-                          <td class=" ">Paid</td>
-                          <td class="a-right a-right ">$432.26</td>
-
-                        </tr>
-                        <tr class="odd pointer">
-
-                          <td class=" ">121000037</td>
-                          <td class=" ">May 26, 2014 10:52:44 PM</td>
-                          <td class=" ">121000204</td>
-                          <td class=" ">Mike Smith</td>
-                          <td class=" ">Paid</td>
-                          <td class="a-right a-right ">$333.21</td>
-
-                        </tr>
-
-                        <tr class="even pointer">
-
-                          <td class=" ">121000040</td>
-                          <td class=" ">May 27, 2014 11:47:56 PM </td>
-                          <td class=" ">121000210</td>
-                          <td class=" ">John Blank L</td>
-                          <td class=" ">Paid</td>
-                          <td class="a-right a-right ">$7.45</td>
-
-                        </tr>
-                        <tr class="odd pointer">
-
-                          <td class=" ">121000039</td>
-                          <td class=" ">May 28, 2014 11:30:12 PM</td>
-                          <td class=" ">121000208</td>
-                          <td class=" ">John Blank L</td>
-                          <td class=" ">Paid</td>
-                          <td class="a-right a-right ">$741.20</td>
-
-                        </tr>
                       </tbody>
                     </table>
                   </div>
@@ -300,24 +181,65 @@
   <script src="assets/js/jquery/dist/jquery.min.js"></script>
   <!-- Bootstrap -->
   <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+  <!-- JS dataTables -->
+  <script src="vendors/datatables.net/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
+  <script src="vendors/datatables.net/DataTables-1.10.18/js/dataTables.bootstrap.min.js"></script>
   <!-- NProgress -->
   <script src="vendors/nprogress/nprogress.js"></script>
   <!-- bootstrap-progressbar -->
   <script src="vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+  <!-- Seleect2 -->
+  <script src='vendors/select2/js/select2.js'></script>
+  <!-- Moment -->
+  <script src="vendors/moment/moment.min.js"></script>
+  <script src="vendors/moment/locale/es.js"></script>
+  <!-- SweetAlert2 -->
+  <script src="vendors/sweetalert2/dist/sweetalert2.js"></script>
   <!-- bootstrap-daterangepicker -->
-  <script src="vendors/moment/min/moment.min.js"></script>
-  <script src="vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-
-  <!-- JS  -->
-  <!-- <script src="js/bootstrap-select.js"></script> -->
-
+  <script src="vendors/daterangepicker/daterangepicker.min.js"></script>
   <!-- Custom Theme Scripts -->
   <script src="assets/js/custom.js"></script>
+  <script src="assets/js/usuario.js"></script>
+  <script src="assets/js/rol.js"></script>
+  <script src="assets/js/datacenter.js"></script>
 
 </body>
 
 </html>
-
 <script>
+
+  var update = false;
+
+  $(document).ready(function () {
+    dataCenter.tbl_CDC_ReadAll;
+    // $('#tb_CDC tbody').on('click', 'tr', function () {
+    //   update = true;
+    //   sitio.id = $('#tb_CDC').DataTable().row(this).data().id;
+    //   sitio.nombre = $('#tb_CDC').DataTable().row(this).data().nombre;
+
+    //   // $("#modal_NuevoUsuario").modal("toggle");
+    // });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  })
 
 </script>
