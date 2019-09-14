@@ -36,7 +36,8 @@ var Session = {
                             title: 'El usuario no tiene credenciales para ver esta página.',
                             showConfirmButton: false,
                             timer: 3000
-                        });*/
+                        });*/                        
+                        location.href = 'index.html';
                         break;
                     case 'invalido':
                         Session.state = false;
