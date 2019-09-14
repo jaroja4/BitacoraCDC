@@ -272,7 +272,8 @@ class Usuario{
                 ON er.idRol = r.id 
                 INNER JOIN evento e 
                 ON e.id = er.idEvento
-                WHERE u.correo= :correo';
+                WHERE u.correo= :correo
+                OR u.cedula = :correo';
             $param= array(':correo'=>$this->email);
             $data= DATA::Ejecutar($sql, $param);
             if($data){
@@ -283,41 +284,18 @@ class Usuario{
                 else {
                     // usuario activo; check password
                     // if(password_verify($this->password, $data[0]['password'])){
+                    if($data[0]['passwd']=="LDAP"){
                         if ( $this->ValidarUsuarioLDAP() ){
-                        foreach ($data as $key => $value){
-                            // Session Datos del usuario y eventos relacionados a su rol
-                            $evento= new Evento(); // evento con credencial del usuario.
-                            if($key==0){
-                                $this->id = $value['idUsuario'];
-                                $this->username = $value['usuario'];
-                                $this->nombre = $value['nombre'];
-                                $this->activo = $value['estado'];
-                                $this->status = userSessionStatus::login;
-                                $this->url = isset($_SESSION['userSession']->url)? $_SESSION['userSession']->url : 'listaFormularios.html'; // Url consultada
-                                //
-                                $evento->id= $value['idEvento'];
-                                $evento->url= $value['url'];
-                                $evento->modulo= $value['modulo'];
-                                $evento->menu= $value['menu'];
-                                $evento->opcion= $value['opcion'];
-                                $evento->iconoMenu= $value['iconoMenu'];
-                                $evento->iconoModulo= $value['iconoModulo'];
-                                $this->eventos = array($evento);
-                            }
-                            else {
-                                $evento->id= $value['idEvento'];
-                                $evento->url= $value['url'];
-                                $evento->modulo= $value['modulo'];
-                                $evento->menu= $value['menu'];
-                                $evento->opcion= $value['opcion'];
-                                $evento->iconoMenu= $value['iconoMenu'];
-                                $evento->iconoModulo= $value['iconoModulo'];
-                                // $this->eventos = array($evento);
-                                array_push($this->eventos, $evento);
-                            }                    
+                            $this->AsignaEventos($data);
+                        } 
+                        else { // password invalido
+                            unset($_SESSION["userSession"]);
+                            $this->status= userSessionStatus::invalido;
                         }
-                        
                     }
+                    elseif ($data[0]['passwd']==$this->password){
+                        $this->AsignaEventos($data);
+                    } 
                     else { // password invalido
                         unset($_SESSION["userSession"]);
                         $this->status= userSessionStatus::invalido;
@@ -340,6 +318,41 @@ class Usuario{
                 'msg' => $e->getMessage()))
             );
         } 
+    }
+
+    function AsignaEventos($dataUsuario){
+        foreach ($dataUsuario as $key => $value){
+            // Session Datos del usuario y eventos relacionados a su rol
+            $evento= new Evento(); // evento con credencial del usuario.
+            if($key==0){
+                $this->id = $value['idUsuario'];
+                $this->username = $value['usuario'];
+                $this->nombre = $value['nombre'];
+                $this->activo = $value['estado'];
+                $this->status = userSessionStatus::login;
+                $this->url = isset($_SESSION['userSession']->url)? $_SESSION['userSession']->url : 'listaFormularios.html'; // Url consultada
+                //
+                $evento->id= $value['idEvento'];
+                $evento->url= $value['url'];
+                $evento->modulo= $value['modulo'];
+                $evento->menu= $value['menu'];
+                $evento->opcion= $value['opcion'];
+                $evento->iconoMenu= $value['iconoMenu'];
+                $evento->iconoModulo= $value['iconoModulo'];
+                $this->eventos = array($evento);
+            }
+            else {
+                $evento->id= $value['idEvento'];
+                $evento->url= $value['url'];
+                $evento->modulo= $value['modulo'];
+                $evento->menu= $value['menu'];
+                $evento->opcion= $value['opcion'];
+                $evento->iconoMenu= $value['iconoMenu'];
+                $evento->iconoModulo= $value['iconoModulo'];
+                // $this->eventos = array($evento);
+                array_push($this->eventos, $evento);
+            }                    
+        }
     }
 
     function Read(){
