@@ -1,11 +1,11 @@
 <?php
 //ACTION
-if( isset($_POST["action"])){        
+if( isset($_POST["action"])){
     $opt= $_POST["action"];
-    unset($_POST['action']);    
+    unset($_POST['action']);
     // Classes
     require_once("Conexion.php");
-    // 
+    //
     // Instance
     $formulario = new Formulario();
     switch($opt){
@@ -43,10 +43,10 @@ class Formulario{
     public $placa="";
     public $activos="";
     public $motivoVisita="";
-    public $RFC=""; 
+    public $RFC="";
     public $read_fechaInicial = "";
-    public $read_fechaFinal = "";  
-    public $arrayVisitantes = [];    
+    public $read_fechaFinal = "";
+    public $arrayVisitantes = [];
     public $otrosDetalles =[];
 
     function __construct(){
@@ -54,12 +54,12 @@ class Formulario{
         if(isset($_POST["id"])){
             $this->id= $_POST["id"];
         }
-        
+
         if(isset($_POST["obj"])){
             $obj= json_decode($_POST["obj"],true);
-            
+
             require_once("UUID.php");
-                        
+
             $this->id= $obj["id"] ?? UUID::v4();
             $this->idDataCenter = $obj["idDataCenter"] ?? "";
             $this->idEstado = $obj["idEstado"] ?? "";
@@ -80,9 +80,9 @@ class Formulario{
     }
 
     function ValidarVisitante($cedula){
-        try { 
+        try {
             $sql = 'SELECT b.id, b.idFormulario, b.idVisitante, b.idTarjeta, b.entrada, b.salida,
-                        u.cedula, u.nombre, u.empresa,
+                        u.cedula, u.nombre, u.imagen, u.empresa,
                         f.consecutivo, f.fechaIngreso, f.fechaSalida, f.idAutorizador, (SELECT nombre FROM usuario_n where id = f.idAutorizador) autorizador, f.otrosDetalles,
                         t.consecutivo consecutivoTarjeta, t.id idTarjeta,
                         dc.id idDataCenter, dc.nombre nombreDataCenter,
@@ -101,13 +101,18 @@ class Formulario{
                     WHERE u.cedula = :cedula
                     AND salida IS NULL
                     ORDER BY entrada DESC;';
-            $param= array(':cedula'=>$cedula);            
+            $param= array(':cedula'=>$cedula);
             $data= DATA::Ejecutar($sql, $param, true);
             if ($data){
+                if (!isset($data[0]["imagen"])){
+                  require_once("Usuario.php");
+                  $usuario = new Usuario();
+                  $data[0]["imagen"] = $usuario->getImgRH($cedula);
+                }
                 return $data;
             }
             return false;
-        }     
+        }
         catch(Exception $e) {
             error_log("[ERROR]  (".$e->getCode()."): ". $e->getMessage());
             header('HTTP/1.0 400 Bad error');
@@ -117,10 +122,11 @@ class Formulario{
             );
         }
     }
+
     function SalidaXTarjeta($consecutivoTarjeta, $idDataCenter){
-        try { 
+        try {
             $sql="SELECT b.id, b.idFormulario, b.idVisitante, b.idTarjeta, b.entrada, b.salida,
-                u.cedula, u.nombre, u.empresa,
+                u.cedula, u.nombre, u.empresa, u.imagen,
                 f.consecutivo, f.fechaIngreso, f.fechaSalida, f.idAutorizador, (SELECT nombre FROM usuario_n where id = f.idAutorizador) autorizador, f.otrosDetalles,
                 t.consecutivo consecutivoTarjeta, t.id idTarjeta,
                 dc.id idDataCenter, dc.nombre nombreDataCenter,
@@ -139,15 +145,21 @@ class Formulario{
             WHERE t.consecutivo= :consecutivoTarjeta
             AND salida IS NULL
             ORDER BY entrada DESC;";
-            $param= array(':consecutivoTarjeta'=>$consecutivoTarjeta);            
+            $param= array(':consecutivoTarjeta'=>$consecutivoTarjeta);
             $data= DATA::Ejecutar($sql, $param);
-
             if($data){
-                return $data[0];
+                if (!isset($data[0]["imagen"])){
+                  require_once("Usuario.php");
+                  $usuario = new Usuario();
+                  $data[0]["imagen"] = $usuario->getImgRH($data[0]["cedula"]);
+                }
+                return $data;
             }
-            else
-                return "noformulario";
-        }     
+            else{
+                $data[0] = "noformulario";
+                return $data;
+            }
+        }
         catch(Exception $e) {
             error_log("[ERROR]  (".$e->getCode()."): ". $e->getMessage());
             header('HTTP/1.0 400 Bad error');
@@ -156,23 +168,24 @@ class Formulario{
                 'msg' => 'Error al cargar la lista'))
             );
         }
-        
+
     }
-    function Buscar($value, $idDataCenter){        
-        try { 
+
+    function Buscar($value, $idDataCenter){
+        try {
             if( strlen($value) > 5){
                 //Valida que el Visitante no haya ingresado
                 $visitanteIngresado = $this->ValidarVisitante($value);
                 if ($visitanteIngresado){
-                    return $visitanteIngresado[0];
+                    return $visitanteIngresado;
                 }
                 return $this->Entrada($value, $idDataCenter);
             }
             else{
                 return $this->SalidaXTarjeta($value, $idDataCenter);
             }
-            
-        }     
+
+        }
         catch(Exception $e) {
             error_log("[ERROR]  (".$e->getCode()."): ". $e->getMessage());
             header('HTTP/1.0 400 Bad error');
@@ -186,9 +199,9 @@ class Formulario{
     function Entrada($cedula, $idDataCenter){
         try {
             $sql = 'SELECT f.id, f.idEstado, f.consecutivo, f.fechaSolicitud, f.otrosDetalles,
-                (SELECT nombre FROM usuario_n where id = f.idAutorizador) autorizador, 
-                f.fechaIngreso, f.fechaSalida, dc.nombre dataCenter, s.id idSala, 
-                s.nombre sala, u.id idVisitante, u.cedula, u.nombre, u.empresa
+                (SELECT nombre FROM usuario_n where id = f.idAutorizador) autorizador,
+                f.fechaIngreso, f.fechaSalida, dc.nombre dataCenter, s.id idSala,
+                s.nombre sala, u.id idVisitante, u.cedula, u.nombre, u.empresa, u.imagen
                     FROM formulario f
                     INNER JOIN visitante_formulario vf
                     ON vf.idFormulario = f.id
@@ -199,15 +212,16 @@ class Formulario{
                     INNER JOIN dataCenter dc
                     ON s.idDataCenter = dc.id
                     WHERE u.cedula = :cedula
-                    AND DATE_ADD(now(), INTERVAL 1 HOUR) > f.fechaIngreso 
-                    AND NOW() < f.fechaSalida 
+                    AND DATE_ADD(now(), INTERVAL 1 HOUR) > f.fechaIngreso
+                    AND NOW() < f.fechaSalida
                     AND f.idEstado = 1
-                    AND dc.id = :idDataCenter
-                    LIMIT 1;';
-            $param= array(':cedula'=>$cedula,       
-                        ':idDataCenter'=>$idDataCenter);            
+                    AND dc.id = :idDataCenter;';
+            $param= array(':cedula'=>$cedula,
+                        ':idDataCenter'=>$idDataCenter);
             $data= DATA::Ejecutar($sql, $param);
             if ($data){
+              $formularios = [];
+              foreach ($data as $formulario) {
                 $this->id = $data[0]["id"];
                 $this->idEstado = $data[0]["idEstado"];
                 $this->consecutivo = $data[0]["consecutivo"];
@@ -223,17 +237,37 @@ class Formulario{
                 $this->empresa = $data[0]["empresa"];
                 $this->otrosDetalles = $data[0]["otrosDetalles"];
                 $this->idVisitante = $data[0]["idVisitante"];
+                $this->imagen = $data[0]["imagen"];
 
 
                 require_once("Tarjeta.php");
                 $tarjeta = new Tarjeta;
                 $tarjeta->idSala = $data[0]["idSala"];
-                $this->tarjeta = $tarjeta->BuscarDisponible();
 
-                return $this;
+                $tarjetaAsiganada = $tarjeta->BuscarAsignada($this->idVisitante);
+                if ($tarjetaAsiganada){
+                  $this->tarjeta = $tarjetaAsiganada;
+                }
+                else{
+                  $this->tarjeta = $tarjeta->BuscarDisponible();
+                }
+                array_push($formularios, $this);
+              }
+
+              if (!isset($formularios[0]->imagen)){
+                require_once("Usuario.php");
+                $usuario = new Usuario();
+                $formularios[0]->imagen = $usuario->getImgRH($formularios[0]->cedula);
+
+              }
+
+              return $formularios;
             }
-            return "noformulario";
-        }     
+            else{
+                $data[0] = "noformulario";
+                return $data;
+            }
+        }
         catch(Exception $e) {
             error_log("[ERROR]  (".$e->getCode()."): ". $e->getMessage());
             header('HTTP/1.0 400 Bad error');
@@ -246,7 +280,7 @@ class Formulario{
 
     function Update(){
         try {
-            $sql="UPDATE formulario 
+            $sql="UPDATE formulario
                 SET
                 idEstado = :idEstado,
                 idSala = :idSala,
@@ -259,32 +293,32 @@ class Formulario{
                 motivoVisita = :motivoVisita,
                 otrosDetalles = :otrosDetalles
                 WHERE id= :id;";
-            $param= array(':id'=>$this->id, 
-                            ':idEstado'=>$this->idEstado, 
-                            ':idSala'=>$this->idSala, 
-                            ':idTramitante'=>$this->idTramitante, 
-                            ':idAutorizador'=>$this->idAutorizador, 
-                            ':idResponsable'=>$this->idResponsable, 
-                            ':fechaSolicitud'=>$this->fechaSolicitud, 
-                            ':fechaIngreso'=>$this->fechaIngreso, 
-                            ':fechaSalida'=>$this->fechaSalida, 
-                            ':motivoVisita'=>$this->motivoVisita, 
-                            ':otrosDetalles'=>$this->otrosDetalles);            
+            $param= array(':id'=>$this->id,
+                            ':idEstado'=>$this->idEstado,
+                            ':idSala'=>$this->idSala,
+                            ':idTramitante'=>$this->idTramitante,
+                            ':idAutorizador'=>$this->idAutorizador,
+                            ':idResponsable'=>$this->idResponsable,
+                            ':fechaSolicitud'=>$this->fechaSolicitud,
+                            ':fechaIngreso'=>$this->fechaIngreso,
+                            ':fechaSalida'=>$this->fechaSalida,
+                            ':motivoVisita'=>$this->motivoVisita,
+                            ':otrosDetalles'=>$this->otrosDetalles);
             $data= DATA::Ejecutar($sql, $param, false);
 
             $sql="DELETE FROM visitante_formulario
                     WHERE idFormulario = :idFormulario";
-            $param= array(':idFormulario'=>$this->id);            
+            $param= array(':idFormulario'=>$this->id);
             $data= DATA::Ejecutar($sql, $param, false);
 
             foreach ($this->arrayVisitantes as $visitante) {
-                $sql="INSERT INTO visitante_formulario 
+                $sql="INSERT INTO visitante_formulario
                 (idVisitante, idFormulario)
                 VALUES (:idVisitante, :idFormulario)";
-                $param= array(':idVisitante'=>$visitante, ':idFormulario'=>$this->id);            
-                $data= DATA::Ejecutar($sql, $param);   
+                $param= array(':idVisitante'=>$visitante, ':idFormulario'=>$this->id);
+                $data= DATA::Ejecutar($sql, $param);
             }
-        }     
+        }
         catch(Exception $e) {
             error_log("[ERROR]  (".$e->getCode()."): ". $e->getMessage());
             header('HTTP/1.0 400 Bad error');
@@ -299,36 +333,36 @@ class Formulario{
     function Create(){
         try {
             $this->id = UUID::v4();
-            $sql="INSERT INTO formulario 
-                (id, idEstado, idSala, idTramitante, idAutorizador, 
+            $sql="INSERT INTO formulario
+                (id, idEstado, idSala, idTramitante, idAutorizador,
                 idResponsable, fechaSolicitud, fechaIngreso,
                 fechaSalida, motivoVisita, otrosDetalles)
-                VALUES (:id, :idEstado, :idSala, :idTramitante, :idAutorizador, 
-                    :idResponsable, :fechaSolicitud, :fechaIngreso, 
+                VALUES (:id, :idEstado, :idSala, :idTramitante, :idAutorizador,
+                    :idResponsable, :fechaSolicitud, :fechaIngreso,
                     :fechaSalida, :motivoVisita, :otrosDetalles)";
-            $param= array(':id'=>$this->id, 
-                            ':idEstado'=>$this->idEstado, 
-                            ':idSala'=>$this->idSala, 
-                            ':idTramitante'=>$this->idTramitante, 
-                            ':idAutorizador'=>$this->idAutorizador, 
-                            ':idResponsable'=>$this->idResponsable, 
-                            ':fechaSolicitud'=>$this->fechaSolicitud, 
-                            ':fechaIngreso'=>$this->fechaIngreso, 
-                            ':fechaSalida'=>$this->fechaSalida, 
-                            ':motivoVisita'=>$this->motivoVisita, 
-                            ':otrosDetalles'=>$this->otrosDetalles);            
+            $param= array(':id'=>$this->id,
+                            ':idEstado'=>$this->idEstado,
+                            ':idSala'=>$this->idSala,
+                            ':idTramitante'=>$this->idTramitante,
+                            ':idAutorizador'=>$this->idAutorizador,
+                            ':idResponsable'=>$this->idResponsable,
+                            ':fechaSolicitud'=>$this->fechaSolicitud,
+                            ':fechaIngreso'=>$this->fechaIngreso,
+                            ':fechaSalida'=>$this->fechaSalida,
+                            ':motivoVisita'=>$this->motivoVisita,
+                            ':otrosDetalles'=>$this->otrosDetalles);
             $data= DATA::Ejecutar($sql, $param, false);
 
             foreach ($this->arrayVisitantes as $visitante) {
-                $sql="INSERT INTO visitante_formulario 
+                $sql="INSERT INTO visitante_formulario
                 (idVisitante, idFormulario)
                 VALUES (:idVisitante, :idFormulario)";
-                $param= array(':idVisitante'=>$visitante, ':idFormulario'=>$this->id);            
-                $data= DATA::Ejecutar($sql, $param);   
+                $param= array(':idVisitante'=>$visitante, ':idFormulario'=>$this->id);
+                $data= DATA::Ejecutar($sql, $param);
             }
-             
 
-        }     
+
+        }
         catch(Exception $e) {
             error_log("[ERROR]  (".$e->getCode()."): ". $e->getMessage());
             header('HTTP/1.0 400 Bad error');
@@ -347,12 +381,12 @@ class Formulario{
                 INNER JOIN visitante_formulario vf
                 ON u.id = vf.idVisitante
                 WHERE vf.idFormulario = f.id) nombreVisitante,
-                
+
                 (SELECT GROUP_CONCAT(cedula SEPARATOR ', ')  from usuario_n u
                 INNER JOIN visitante_formulario vf
                 ON u.id = vf.idVisitante
                 WHERE vf.idFormulario = f.id) cedulaVisitante,
-                
+
                 f.consecutivo,
                 e.nombre Estado,
                 f.fechaSolicitud,
@@ -365,9 +399,9 @@ class Formulario{
                 INNER JOIN
             estado e ON f.idEstado = e.id
                     WHERE (fechaSolicitud BETWEEN :read_fechaInicial AND :read_fechaFinal);";
-            $param= array(':read_fechaInicial'=>$this->read_fechaInicial, ':read_fechaFinal'=>$this->read_fechaFinal);            
+            $param= array(':read_fechaInicial'=>$this->read_fechaInicial, ':read_fechaFinal'=>$this->read_fechaFinal);
             $data= DATA::Ejecutar($sql, $param);
-            
+
             if($data){
                 return $data;
             }
@@ -375,7 +409,7 @@ class Formulario{
                 return false;
             }
 
-        }     
+        }
         catch(Exception $e) {
             error_log("[ERROR]  (".$e->getCode()."): ". $e->getMessage());
             header('HTTP/1.0 400 Bad error');
@@ -386,17 +420,19 @@ class Formulario{
         }
     }
 
-    function ReadbyID(){        
+    function ReadbyID(){
         try {
-            $sql="SELECT f.id, f.idEstado, f.idSala, s.idDataCenter, f.idTramitante, f.idAutorizador, 
+            $sql="SELECT f.id, f.idEstado, f.idSala, s.idDataCenter, f.idTramitante, f.idAutorizador,
                         f.idResponsable, f.consecutivo, f.fechaSolicitud, f.fechaIngreso,
-                        f.fechaSalida, f.motivoVisita, f.otrosDetalles
+                        f.fechaSalida, f.motivoVisita, f.otrosDetalles, u.nombre tramitante_nombre
                 FROM formulario f
                 INNER JOIN sala s
                 ON f.idSala = s.id
+                LEFT JOIN usuario_n u
+                ON f.idTramitante = u.id
                 WHERE f.id = :id;";
-            $param= array(':id'=>$this->id);            
-            $data= DATA::Ejecutar($sql, $param);   
+            $param= array(':id'=>$this->id);
+            $data= DATA::Ejecutar($sql, $param);
             if ($data){
 
                 $this->id = $data[0]["id"];
@@ -404,6 +440,7 @@ class Formulario{
                 $this->idSala = $data[0]["idSala"];
                 $this->idDataCenter = $data[0]["idDataCenter"];
                 $this->idTramitante = $data[0]["idTramitante"];
+                $this->tramitante_nombre = $data[0]["tramitante_nombre"];
                 $this->idAutorizador = $data[0]["idAutorizador"];
                 $this->idResponsable = $data[0]["idResponsable"];
                 $this->consecutivo = $data[0]["consecutivo"];
@@ -413,13 +450,13 @@ class Formulario{
                 $this->motivoVisita = $data[0]["motivoVisita"];
                 $this->otrosDetalles = $data[0]["otrosDetalles"];
 
-                $sql="SELECT v.id, v.cedula, v.nombre text, v.empresa, v.fechaCreacion 
+                $sql="SELECT v.id, v.cedula, v.nombre text, v.empresa, v.fechaCreacion
                 FROM usuario_n v
                 INNER JOIN visitante_formulario vf
                 ON vf.idVisitante = v.id
                 WHERE vf.idFormulario = :idFormulario;";
-                $param= array(':idFormulario'=>$this->id);            
-                $data= DATA::Ejecutar($sql, $param);   
+                $param= array(':idFormulario'=>$this->id);
+                $data= DATA::Ejecutar($sql, $param);
                 if ($data){
                     $this->arrayVisitantes=[];
                     foreach ($data as $value) {
@@ -427,9 +464,9 @@ class Formulario{
                     }
                     return $this;
                 }
-            }   
+            }
 
-        }     
+        }
         catch(Exception $e) {
             error_log("[ERROR]  (".$e->getCode()."): ". $e->getMessage());
             header('HTTP/1.0 400 Bad error');

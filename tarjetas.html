@@ -2,174 +2,312 @@
 <html lang="es">
 
 <head>
-  <!-- check User session -->
-  <script src="assets/js/jquery/dist/jquery.min.js"></script>
-  <script src="assets/js/session.js"></script>
-  <script>
-    Session.Check();
-  </script>
-  <!-- /End check -->
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <!-- Meta, title, CSS, favicons, etc. -->
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- <link rel="icon" href="images/favicon.ico" type="image/ico" /> -->
+	<!-- check User session -->
+	<script src="vendors/jquery-3.5.1/jquery-3.5.1.js"></script>
+	<script src="assets/js/session.js"></script>
+	<script>
+		Session.Check();
+	</script>
+	<!-- /End check -->
+	<meta http-equiv="Content-Type"
+		content="text/html; charset=UTF-8">
+	<!-- Meta, title, CSS, favicons, etc. -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible"
+		content="IE=edge">
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1">
+	<!-- <link rel="icon" href="images/favicon.ico" type="image/ico" /> -->
 
-  <title>Bitácora CDC | DTI</title>
+	<title>Bitácora CDC | DTI</title>
 
-  <!-- Bootstrap -->
-  <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Font Awesome -->
-  <link href="vendors/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
-  <!-- Datatables -->
-  <link href="vendors/datatables.net/datatables.min.css" rel="stylesheet">
-  <link href="vendors/datatables.net/DataTables-1.10.18/css/dataTables.bootstrap.min.css" rel="stylesheet">
-  <!-- NProgress -->
-  <link href="vendors/nprogress/nprogress.css" rel="stylesheet">
-  <!-- bootstrap-daterangepicker -->
-  <link href="vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-  <!-- Custom Theme Style -->
-  <link href="assets/css/custom.min.css" rel="stylesheet">
+	<!-- Bootstrap -->
+	<link href="vendors/bootstrap/dist/css/bootstrap.min.css"
+		rel="stylesheet">
+	<!-- Font Awesome -->
+	<link href="vendors/font-awesome-4.7.0/css/font-awesome.min.css"
+		rel="stylesheet">
+	<!-- Datatables -->
+	<link href="vendors/datatables.net/datatables.min.css"
+		rel="stylesheet">
+	<link href="vendors/datatables.net/DataTables-1.10.18/css/dataTables.bootstrap.min.css"
+		rel="stylesheet">
+	<!-- NProgress -->
+	<link href="vendors/nprogress/nprogress.css"
+		rel="stylesheet">
+	<!-- bootstrap-daterangepicker -->
+	<link href="vendors/bootstrap-daterangepicker/daterangepicker.css"
+		rel="stylesheet">
+	<!-- Custom Theme Style -->
+	<link href="assets/css/custom.min.css"
+		rel="stylesheet">
+	<!-- SweetAlert2 -->
+	<script src="vendors/sweetalert2/dist/sweetalert2.js"></script>
+	<link href="vendors/sweetalert2/dist/sweetalert2.min.css"
+		rel="stylesheet">
 </head>
 
 <body class="nav-md">
-  <div class="container body">
-    <div class="main_container">
-      <div class="col-md-3 left_col">
-        <div class="left_col scroll-view">
-          <div class="navbar nav_title" style="border: 0;">
-            <a href="index.html" class="site_title"><i class="fa fa-bullhorn"></i> <span>Centros de Datos Corporativos
-              </span></a>
-          </div>
+	<div class="container body">
+		<div class="main_container">
+			<div class="col-md-3 left_col">
+				<div class="left_col scroll-view">
+					<div class="navbar nav_title"
+						style="border: 0;">
+						<a href="index.html"
+							class="site_title"><i class="fa fa-bullhorn"></i> <span>Centros de Datos Corporativos
+							</span></a>
+					</div>
 
-          <div class="clearfix"></div>
+					<div class="clearfix"></div>
 
-          <!-- menu profile quick info -->
-          <div class="profile clearfix">
-            <div class="profile_pic">
-              <img src="images/LogoICESmall.png" alt="..."
-                style="width:70px;height:70px;border-radius:50%;margin-top:10%">
-            </div>
-            <div class="profile_info">
-              <span><span>Bienvenido,</span></span>
-              <h2>Usuario de Seguridad</h2>
-            </div>
-          </div>
-          <!-- /menu profile quick info -->
+					<!-- menu profile quick info -->
+					<div class="profile clearfix">
+						<div class="profile_pic">
+							<img src="images/LogoICESmall.png"
+								alt="..."
+								style="width:70px;height:70px;border-radius:50%;margin-top:10%">
+						</div>
+						<div class="profile_info">
+							<span><span>Bienvenido,</span></span>
+							<h2>Usuario de Seguridad</h2>
+						</div>
+					</div>
+					<!-- /menu profile quick info -->
 
-          <br />
+					<br />
 
-          <!-- sidebar menu -->
-          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-            <div class="menu_section">
-              <h3 id='call_userName'></h3>
-              <ul id="menubox" class="nav side-menu">
+					<!-- sidebar menu -->
+					<div id="sidebar-menu"
+						class="main_menu_side hidden-print main_menu">
+						<div class="menu_section">
+							<h3 id='call_userName'></h3>
+							<ul id="menubox"
+								class="nav side-menu">
 
-              </ul>
-            </div>
-          </div>
-          <!-- /sidebar menu -->
-        </div>
-      </div>
+							</ul>
+						</div>
+					</div>
+					<!-- /sidebar menu -->
+				</div>
+			</div>
 
-      <!-- top navigation -->
-      <div class="top_nav">
-        <div class="nav_menu">
-          <nav>
-            <div class="nav toggle">
-              <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-            </div>
+			<!-- top navigation -->
+			<div class="top_nav">
+				<div class="nav_menu">
+					<nav>
+						<div class="nav toggle">
+							<a id="menu_toggle"><i class="fa fa-bars"></i></a>
+						</div>
 
-            <ul class="nav navbar-nav navbar-right">
-              <li class="">
-                <a id="call_name" href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
-                  aria-expanded="false">
-                  <img src="images/img.png" alt="">Usuario de Seguridad
-                  <span class=" fa fa-angle-down"></span>
-                </a>
-                <ul class="dropdown-menu dropdown-usermenu pull-right">
-                  <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Salir</a></li>
-                </ul>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-      <!-- /top navigation -->
+						<ul class="nav navbar-nav navbar-right">
+							<li class="">
+								<a id="call_name"
+									href="javascript:;"
+									class="user-profile dropdown-toggle"
+									data-toggle="dropdown"
+									aria-expanded="false">
+									<img src="images/img.png"
+										alt="">Usuario de Seguridad
+									<span class=" fa fa-angle-down"></span>
+								</a>
+								<ul class="dropdown-menu dropdown-usermenu pull-right">
+									<li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Salir</a></li>
+								</ul>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+			<!-- /top navigation -->
 
-      <!-- page content -->
-      <div class="right_col" role="main">
-        <div class="">
-          <div class="page-title">
-            <div class="title_left">
-              <h3>Pool de Tarjetas
-                <!-- <small>de acceso a personal autorizado</small> -->
-              </h3>
-            </div>
-          </div>
+			<!-- page content -->
+			<div class="right_col"
+				role="main">
+				<div class="">
+					<div class="page-title">
+						<div class="title_left">
+							<h3>Pool de Tarjetas
+								<!-- <small>de acceso a personal autorizado</small> -->
+							</h3>
+						</div>
+					</div>
 
-          <div class="clearfix"></div>
+					<div class="clearfix"></div>
 
-          <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-              <div class="x_panel">
-                <div class="x_title">
-                  <!-- <button type="button" class="btn btn-primary">Registrar Tarjeta Nueva</button> -->
-                  <div class="clearfix"></div>
-                </div>
+					<div class="row">
+						<div class="col-md-12 col-sm-12 col-xs-12">
+							<div class="x_panel">
+								<div class="x_title">
+									<button type="button"
+										id="crearTarjeta"
+										class="btn btn-primary">Registrar Tarjeta Nueva</button>
+									<div class="clearfix"></div>
+								</div>
 
-                <div class="x_content">
-
-
-                  <div class="table-responsive">
-                    <table id="tb_pool_tarjetas" class="table table-striped jambo_table bulk_action">
-
-                    </table>
-                  </div>
-
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- /page content -->
+								<div class="x_content">
 
 
-      <!-- footer content -->
-      <footer>
-        <div class="pull-right">
-          Operaciones TI - DTI - Instituto Costarricense de Electricidad
-        </div>
-        <div class="clearfix"></div>
-      </footer>
-      <!-- /footer content -->
-    </div>
-  </div>
+									<div id="containerTable"
+										class="table-responsive"
+										style="overflow-x: unset;">
+										<table id="tb_pool_tarjetas"
+											class="display">
+											<thead>
+												<tr>
+													<th>idTarjeta</th>
+													<th>Consecutivo</th>
+													<th>Centro de Datos</th>
+													<th>Sala</th>
+													<th>Sala</th>
+													<th>Estado</th>
+												</tr>
+											</thead>
+											<tbody>
 
-  <!-- jQuery -->
-  <script src="assets/js/jquery/dist/jquery.min.js"></script>
-  <!-- Bootstrap -->
-  <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-  <!-- NProgress -->
-  <script src="vendors/nprogress/nprogress.js"></script>
-  <!-- JS dataTables -->
-  <script src="vendors/datatables.net/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
-  <script src="vendors/datatables.net/DataTables-1.10.18/js/dataTables.bootstrap.min.js"></script>
-  <!-- bootstrap-progressbar -->
-  <script src="vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-  <!-- bootstrap-daterangepicker -->
-  <script src="vendors/moment/min/moment.min.js"></script>
-  <script src="vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-  <!-- JS Scripts -->
-  <script src="assets/js/tarjeta.js"></script>
-  <!-- JS  -->
-  <!-- <script src="js/bootstrap-select.js"></script> -->
+											</tbody>
 
-  <!-- Custom Theme Scripts -->
-  <script src="assets/js/custom.js"></script>
+										</table>
+									</div>
+
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /page content -->
+
+
+			<!-- footer content -->
+			<footer>
+				<div class="pull-right">
+					Operaciones TI - DTI - Instituto Costarricense de Electricidad
+				</div>
+				<div class="clearfix"></div>
+			</footer>
+			<!-- /footer content -->
+		</div>
+	</div>
+
+
+
+
+
+	<!--Modal Crear usuario -->
+	<div class="modal fade"
+		id="modal_NuevaTarjeta">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">Crear Nueva Tarjeta</h4>
+					<button type="button"
+						class="close"
+						data-dismiss="modal">&times;</button>
+				</div>
+				<!-- Modal body -->
+				<div class="modal-body">
+					<div>
+						<form class="form-horizontal"
+							role="form">
+							<div class="form-tajeta">
+								<div class="form-group">
+									<label for="sel_centro_datos"
+										class="col-sm-2 control-label">Centro de Datos</label>
+									<div class="col-sm-10">
+										<select id="sel_centro_datos"
+											class="form-control js-example-responsive">
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="sel_sala"
+										class="col-sm-2 control-label">Sala</label>
+									<div class="col-sm-10">
+										<select id="sel_sala"
+											class="form-control js-example-responsive">
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inp_tarjeta"
+										class="col-sm-2 control-label">Tarjeta</label>
+									<div class="col-sm-10"
+										style="display: -webkit-inline-box;">
+										<input type="text"
+											class="form-control inp_validar"
+											id="inp_tarjeta"
+											placeholder="Ingrese el consecutivo de la tarjeta">
+										<p id=valConsecutivo
+											style="position: relative;
+											left: -70px;
+											top: 0.7em;
+											color: white">Ya Existe</p>
+
+
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="sel_estado"
+										class="col-sm-2 control-label">Estado</label>
+									<div class="col-sm-10">
+										<select id="sel_estado"
+											class="form-control js-example-responsive">
+											<option value="0">Disponible</option>
+											<option value="1">Asiganada</option>
+											<option value="3">Deshabilitada</option>
+											<option value="4">Otro</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</form>
+
+						<hr>
+						<!-- Modal footer -->
+						<div class="modal-footer">
+							<button type="button"
+								class="btn btn-primary"
+								id="btn_guardarTarjeta"
+								disabled>Guardar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+	<!-- jQuery -->
+	<script src="assets/js/jquery/dist/jquery.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+	<!-- NProgress -->
+	<script src="vendors/nprogress/nprogress.js"></script>
+	<!-- JS dataTables -->
+	<script src="vendors/datatables.net/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
+	<script src="vendors/datatables.net/DataTables-1.10.18/js/dataTables.bootstrap.min.js"></script>
+	<!-- bootstrap-progressbar -->
+	<script src="vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+	<!-- bootstrap-daterangepicker -->
+	<script src="vendors/moment/min/moment.min.js"></script>
+	<script src="vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+	<!-- SweetAlert2 -->
+	<script src="vendors/sweetalert2/dist/sweetalert2.js"></script>
+	<!-- JS Scripts -->
+	<script src="assets/js/sala.js"></script>
+	<script src="assets/js/datacenter.js"></script>
+	<script src="assets/js/tarjeta.js"></script>
+	<!-- JS  -->
+	<!-- <script src="js/bootstrap-select.js"></script> -->
+
+	<!-- Custom Theme Scripts -->
+	<script src="assets/js/custom.js"></script>
 
 </body>
 
@@ -177,13 +315,41 @@
 
 <script>
 
-  $(document).ready(function () {
+	$(document).ready(function () {
+
+		tarjeta.carga_pool_tarjetas;
+		formulario = [];
+		dataCenter.ReadAll;
+		$("#sel_centro_datos").change(function () {
+			sala.carga_SalabyDC;
+		})
+
+		$("#crearTarjeta").click(function () {
+			tarjeta.id = null;
+			tarjeta.accion = "Create";
+			$('#inp_tarjeta').val('');
+			$('.modal-title').text('Crear Nueva Tarjeta');
+
+			$('#btn_guardarTarjeta').attr("disabled", "disabled");
+			$("#modal_NuevaTarjeta").modal("toggle");
+		});
+
+		$('#inp_tarjeta').on('input', function (e) {
+			if ($('#inp_tarjeta').val().length >= 1) {
+				tarjeta.ValidarTarjeta;
+			}
+		});
+
+		$("#btn_guardarTarjeta").click(function () {
+			tarjeta.idSala = $("#sel_sala").val();
+			tarjeta.estado = $("#sel_estado").val();;
+			tarjeta.consecutivo = $.trim($('#inp_tarjeta').val());
+			tarjeta.Crear;
+			$("#modal_NuevaTarjeta").modal("toggle");
+		});
 
 
-    tarjeta.carga_pool_tarjetas;
-
-
-  });
+	});
 
 
 </script>

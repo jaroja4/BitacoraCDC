@@ -26,6 +26,7 @@ class Sala {
                 if (sala.id!=null){
                     sel_sala.val(sala.id);
                 }
+                $('#sel_sala').trigger('change');
             })
             .fail(function (e) {
                 $sel_sala.html('<option id="-1">Cargando...</option>');
@@ -40,7 +41,7 @@ class Sala {
         //     }
         // })
         //     .done(function (e) {
-        //         return dataSala = JSON.parse(e);                
+        //         return dataSala = JSON.parse(e);
         //     })
         //     .fail(function (e) {
         //         // dataCenter.showError(e);
@@ -48,4 +49,4 @@ class Sala {
     }
 }
 
-let sala = new Sala();  
+let sala = new Sala();

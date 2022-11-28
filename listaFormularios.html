@@ -2,125 +2,152 @@
 <html lang="es">
 
 <head>
-  <!-- check User session -->
-  <script src="assets/js/jquery/dist/jquery.min.js"></script>
-  <script src="assets/js/session.js"></script>
-  <script>
-    Session.Check();
-  </script>
-  <!-- /End check -->
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <!-- Meta, title, CSS, favicons, etc. -->
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- <link rel="icon" href="images/favicon.ico" type="image/ico" /> -->
+	<!-- check User session -->
+	<script src="assets/js/jquery/dist/jquery.min.js"></script>
+	<script src="assets/js/session.js"></script>
+	<script>
+		Session.Check();
+	</script>
+	<!-- /End check -->
+	<meta http-equiv="Content-Type"
+		content="text/html; charset=UTF-8">
+	<!-- Meta, title, CSS, favicons, etc. -->
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible"
+		content="IE=edge">
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1">
+	<!-- <link rel="icon" href="images/favicon.ico" type="image/ico" /> -->
 
-  <title>Bitácora CDC | DTI</title>
+	<title>Bitácora CDC | DTI</title>
 
-  <!-- Bootstrap -->
-  <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Font Awesome -->
-  <link href="vendors/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
-  <!-- Datatables -->
-  <link href="vendors/datatables.net/datatables.min.css" rel="stylesheet">
-  <link href="vendors/datatables.net/DataTables-1.10.18/css/dataTables.bootstrap.min.css" rel="stylesheet">
-  <!-- SweetAlert -->
-  <link href="vendors/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
-  <!-- RangePicker -->
-  <link href="vendors/daterangepicker/daterangepicker.css" rel="stylesheet">
-  <!-- NProgress -->
-  <link href="vendors/nprogress/nprogress.css" rel="stylesheet">
-  <!-- bootstrap-daterangepicker -->
-  <link href="vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-  <!-- Custom Theme Style -->
-  <link href="assets/css/custom.min.css" rel="stylesheet">
-  <link href="assets/css/modal_accordion_formulario_ingreso.css" rel="stylesheet">
+	<!-- Bootstrap -->
+	<link href="vendors/bootstrap/dist/css/bootstrap.min.css"
+		rel="stylesheet">
+	<!-- Font Awesome -->
+	<link href="vendors/font-awesome-4.7.0/css/font-awesome.min.css"
+		rel="stylesheet">
+	<!-- Datatables -->
+	<link href="vendors/datatables.net/datatables.min.css"
+		rel="stylesheet">
+	<link href="vendors/datatables.net/DataTables-1.10.18/css/dataTables.bootstrap.min.css"
+		rel="stylesheet">
+	<!-- SweetAlert -->
+	<link href="vendors/sweetalert2/dist/sweetalert2.min.css"
+		rel="stylesheet">
+	<!-- RangePicker -->
+	<link href="vendors/daterangepicker/daterangepicker.css"
+		rel="stylesheet">
+	<!-- NProgress -->
+	<link href="vendors/nprogress/nprogress.css"
+		rel="stylesheet">
+	<!-- bootstrap-daterangepicker -->
+	<link href="vendors/bootstrap-daterangepicker/daterangepicker.css"
+		rel="stylesheet">
+	<!-- Custom Theme Style -->
+	<link href="assets/css/custom.min.css"
+		rel="stylesheet">
+	<link href="assets/css/modal_accordion_formulario_ingreso.css"
+		rel="stylesheet">
 
-  <link href='vendors/select2/css/select2.css' rel='stylesheet' type='text/css'>
+	<link href='vendors/select2/css/select2.css'
+		rel='stylesheet'
+		type='text/css'>
 
 
 
 </head>
 
 <body class="nav-md">
-  <div class="container body">
-    <div class="main_container" style="visibility:hidden">
-      <div class="col-md-3 left_col">
-        <div class="left_col scroll-view">
-          <div class="navbar nav_title" style="border: 0;">
-            <a href="index.html" class="site_title">
-              <!-- <i class="fa fa-bullhorn"></i>  -->
-              <span style="font-size: 20px !important; line-height: 2.5vh !important;">Centros de Datos Corporativos</span>
-            </a>
-          </div>
+	<div class="container body">
+		<div class="main_container"
+			style="visibility:hidden">
+			<div class="col-md-3 left_col">
+				<div class="left_col scroll-view">
+					<div class="navbar nav_title"
+						style="border: 0;">
+						<a href="index.html"
+							class="site_title">
+							<!-- <i class="fa fa-bullhorn"></i>  -->
+							<span style="font-size: 20px !important; line-height: 2.5vh !important;">Centros de Datos
+								Corporativos</span>
+						</a>
+					</div>
 
-          <div class="clearfix"></div>
+					<div class="clearfix"></div>
 
-          <!-- menu profile quick info -->
-          <div class="profile clearfix">
-            <div class="profile_pic">
-              <!-- <img src="images/LogoICESmall.png" alt="..."
+					<!-- menu profile quick info -->
+					<div class="profile clearfix">
+						<div class="profile_pic">
+							<!-- <img src="images/LogoICESmall.png" alt="..."
                 style="width:70px;height:70px;border-radius:50%;margin-top:10%"> -->
-              <img src="images/LogoICESmall.png" alt="..."
-              style="width:70px;height:70px;border-radius:50%;margin-top:10%">
-            </div>
-            <!-- <div class="profile_info">
+							<img src="images/LogoICESmall.png"
+								alt="..."
+								style="width:70px;height:70px;border-radius:50%;margin-top:10%">
+						</div>
+						<!-- <div class="profile_info">
               <span><span>Bienvenido,</span></span>
               <h2>Usuario de Seguridad</h2>
             </div> -->
-          </div>
-          <!-- /menu profile quick info -->
+					</div>
+					<!-- /menu profile quick info -->
 
-          <br />
+					<br />
 
-          <!-- sidebar menu -->
-          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-            <div class="menu_section">
-              <h3 id='call_userName'></h3>
-              <ul id="menubox" class="nav side-menu">
+					<!-- sidebar menu -->
+					<div id="sidebar-menu"
+						class="main_menu_side hidden-print main_menu">
+						<div class="menu_section">
+							<h3 id='call_userName'></h3>
+							<ul id="menubox"
+								class="nav side-menu">
 
-              </ul>
-            </div>
-          </div>
-          <!-- /sidebar menu -->
-        </div>
-      </div>
+							</ul>
+						</div>
+					</div>
+					<!-- /sidebar menu -->
+				</div>
+			</div>
 
-      <!-- top navigation -->
-      <div class="top_nav">
-        <div class="nav_menu">
-          <nav>
-            <div class="nav toggle">
-              <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-            </div>
+			<!-- top navigation -->
+			<div class="top_nav">
+				<div class="nav_menu">
+					<nav>
+						<div class="nav toggle">
+							<a id="menu_toggle"><i class="fa fa-bars"></i></a>
+						</div>
 
-            <ul class="nav navbar-nav navbar-right">
-              <li class="">
-                <a id="call_name" href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
-                  aria-expanded="false">
-                  <img  src="images/img.png" alt="">Usuario de Seguridad
-                  <span class=" fa fa-angle-down"></span>
-                </a>
-                <ul class="dropdown-menu dropdown-usermenu pull-right">
-                  <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Salir</a></li>
-                </ul>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-      <!-- /top navigation -->
+						<ul class="nav navbar-nav navbar-right">
+							<li class="">
+								<a id="call_name"
+									href="javascript:;"
+									class="user-profile dropdown-toggle"
+									data-toggle="dropdown"
+									aria-expanded="false">
+									<img src="images/img.png"
+										alt="">Usuario de Seguridad
+									<span class=" fa fa-angle-down"></span>
+								</a>
+								<ul class="dropdown-menu dropdown-usermenu pull-right">
+									<li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Salir</a></li>
+								</ul>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+			<!-- /top navigation -->
 
-      <!-- page content -->
-      <div class="right_col" role="main">
-        <div class="">
-          <div class="page-title">
-            <div class="title_left">
-              <h3>Formularios <small>de acceso a personal autorizado</small></h3>
-            </div>
+			<!-- page content -->
+			<div class="right_col"
+				role="main">
+				<div class="">
+					<div class="page-title">
+						<div class="title_left">
+							<h3>Formularios <small>de acceso a personal autorizado</small></h3>
+						</div>
 
-            <!-- <div class="title_right">
+						<!-- <div class="title_right">
                   <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                     <div class="input-group">
                       <input type="text" class="form-control" placeholder="Buscar en formularios...">
@@ -130,363 +157,444 @@
                     </div>
                   </div>
                 </div> -->
-          </div>
+					</div>
 
-          <div class="clearfix"></div>
+					<div class="clearfix"></div>
 
-          <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-              <div class="x_panel">
-                <div class="x_title">
-                  <button id="btn_abrirModal" type="button" class="btn btn-primary">Crear Nuevo Formulario</button>
-                  <div class="nav navbar-right panel_toolbox">
-                    <div id="dp_rango_Lista_Formularios"
-                      style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%; float:right">
-                      <i class="fa fa-calendar"></i>&nbsp;
-                      <span></span> <i class="fa fa-caret-down"></i>
-                    </div>
-                  </div>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
-                  <div class="table-responsive">
-                    <table id="tbl_formularios" class="table table-striped jambo_table bulk_action">
-                      <thead>
-                      </thead>
+					<div class="row">
+						<div class="col-md-12 col-sm-12 col-xs-12">
+							<div class="x_panel">
+								<div class="x_title">
+									<button id="btn_abrirModal"
+										type="button"
+										style="display: none;"
+										class="btn btn-primary">Crear Nuevo Formulario</button>
+									<div class="nav navbar-right panel_toolbox">
+										<div id="dp_rango_Lista_Formularios"
+											style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%; float:right">
+											<i class="fa fa-calendar"></i>&nbsp;
+											<span></span> <i class="fa fa-caret-down"></i>
+										</div>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+								<div class="x_content">
+									<div class="table-responsive">
+										<table id="tbl_formularios"
+											class="table table-striped jambo_table bulk_action">
+											<thead>
+											</thead>
 
-                      <tbody>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- /page content -->
-
-
-      <!-- footer content -->
-      <footer>
-        <div class="pull-right">
-          Operaciones TI - DTI - Instituto Costarricense de Electricidad
-        </div>
-        <div class="clearfix"></div>
-      </footer>
-      <!-- /footer content -->
-    </div>
-  </div>
-
-  <!--Modal Crear Tarea -->
-  <div class="modal fade" id="modal_new_form">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Formulario de Ingreso</h4>
-        </div>
-
-        <!-- Modal body -->
-        <div class="modal-body">
-
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-12 col-md-12 col-lg-12">
-                <div id="accordion" class="acoordion">
-
-                  <div class="panel acoordion-step">
-                    <div>
-                      <span class="acoordion-step-number">1</span>
-                      <h4 class="acoordion-step-title">
-                        <a id="acoordionSitio" role="button" data-toggle="collapse" data-parent="#accordion"
-                          href="#collapseOne"> Sitio a
-                          Autorizar:</a>
-                      </h4>
-                    </div>
-                    <div id="collapseOne" class="collapse in">
-                      <div class="acoordion-step-body">
-                        <div class="row">
-                          <div class="col-sm-12 col-md-12 col-lg-12">
-                            <form>
-                              <div class="col-sm-12 col-md-12 col-lg-6 form-group">
-                                <label for="sel_centro_datos">Centro de Datos</label>
-                                <select class="form-control" id="sel_centro_datos"> </select>
-                              </div>
-                              <div class="col-sm-12 col-md-12 col-lg-6 form-group">
-                                <label for="inp_sala">Sala</label>
-                                <select class="form-control" id="sel_sala"> </select>
-                              </div>
-                            </form>
-                          </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                          <div class="col-sm-12 col-md-12 col-lg-12">
-                            <form>
-                              <div class="col-sm-12 col-md-12 col-lg-6 form-group">
-                                <label for="sel_responsable">Seleccione el Responsable</label>
-                                <select id='sel_responsable' style='width: 100%;'>
-                                  <option value='-1'>- Buscar Responsable -</option>
-                                </select>
-                              </div>
-                              <div class="col-sm-12 col-md-12 col-lg-6 form-group">
-                                <label for="sel_autorizador">Seleccione el Autorizador</label>
-                                <select class="form-control" style="height: 2.7em;" id="sel_autorizador">
-                                  <option value="null" selected>Seleccione...</option>
-                                </select>
-                              </div>
-                            </form>
-                          </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                          <div class="col-sm-12 col-md-12 col-lg-12">
-                            <form>
-                              <div class="col-sm-12 col-md-12 col-lg-6 form-group">
-                                <label for="sel_tramitante">Tramitante:</label>
-                                <select class="form-control" id="sel_tramitante"> </select>
-                              </div>
-                              <div class="col-sm-12 col-md-12 col-lg-6 form-group">
-                                <label for="sel_estado">Estado</label>
-                                <select class="form-control" id="sel_estado">
-                                  <option value="0">Pendiente</option>
-                                  <option value="1">Aprobado</option>
-                                  <option value="2">Denegado</option>
-                                  <option value="3">Finalizado</option>
-                                </select>
-                              </div>
-                            </form>
-                          </div>
-                        </div>
-                        <br>
-                      </div>
-                    </div>
-                  </div>
+											<tbody>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /page content -->
 
 
-                  <div class="panel acoordion-step">
-                    <div role="tab" id="headingTwo">
-                      <span class="acoordion-step-number">2</span>
-                      <h4 class="acoordion-step-title">
-                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
-                          href="#collapseTwo"> Fecha y Detalles: </a> </h4>
-                    </div>
+			<!-- footer content -->
+			<footer>
+				<div class="pull-right">
+					Operaciones TI - DTI - Instituto Costarricense de Electricidad
+				</div>
+				<div class="clearfix"></div>
+			</footer>
+			<!-- /footer content -->
+		</div>
+	</div>
 
-                    <div id="collapseTwo" class="panel-collapse collapse">
-                      <div class="acoordion-step-body">
-                        <!-- <div class="acoordion-address-step"> -->
-                        <div class="row">
-                          <div class="col-sm-12 col-md-12 col-lg-12">
-                            <div class="form-group">
-                              <div class="col-sm-12 col-md-12 col-md-6">
-                                <label for="otrosDetalles">RFC, Equipo, Placa de Vehículos</label>
-                                <input type="text" class="form-control" id="otrosDetalles"
-                                  placeholder="Ingrese los detalles aquí.">
-                              </div>
+	<!--Modal Crear Tarea -->
+	<div class="modal fade"
+		id="modal_new_form">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
 
-                              <div class="col-sm-12 col-md-12 col-lg-6">
-                                <label for="dp_rangoFechaFormulario">Rango de Fechas</label>
-                                <div id="dp_rangoFechaFormulario"
-                                  style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%; float:right">
-                                  <i class="fa fa-calendar"></i>&nbsp;
-                                  <span></span> <i class="fa fa-caret-down"></i>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                          <div class="col-sm-12 col-md-12 col-lg-12">
-                            <div class="form-group">
-                              <div class="col-sm-12 col-md-12 col-lg-12">
-                                <label for="inp_descripcion">Describa el Motivo de la Visita:</label>
-                                <textarea class="form-control" id="inp_descripcion" rows="3"></textarea>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">Formulario de Ingreso</h4>
+				</div>
 
-                  </div>
+				<!-- Modal body -->
+				<div class="modal-body">
+
+					<div class="container">
+						<div class="row">
+							<div class="col-sm-12 col-md-12 col-lg-12">
+								<div id="accordion"
+									class="acoordion">
+
+									<div class="panel acoordion-step">
+										<div>
+											<span class="acoordion-step-number">1</span>
+											<h4 class="acoordion-step-title">
+												<a id="acoordionSitio"
+													role="button"
+													data-toggle="collapse"
+													data-parent="#accordion"
+													href="#collapseOne"> Sitio a
+													Autorizar:</a>
+											</h4>
+										</div>
+										<div id="collapseOne"
+											class="collapse in">
+											<div class="acoordion-step-body">
+												<div class="row">
+													<div class="col-sm-12 col-md-12 col-lg-12">
+														<form>
+															<div class="col-sm-12 col-md-12 col-lg-6 form-group">
+																<label for="sel_centro_datos">Centro de Datos</label>
+																<select class="form-control"
+																	id="sel_centro_datos"> </select>
+															</div>
+															<div class="col-sm-12 col-md-12 col-lg-6 form-group">
+																<label for="inp_sala">Sala</label>
+																<select class="form-control"
+																	id="sel_sala"> </select>
+															</div>
+														</form>
+													</div>
+												</div>
+												<br>
+												<div class="row">
+													<div class="col-sm-12 col-md-12 col-lg-12">
+														<form>
+															<div class="col-sm-12 col-md-12 col-lg-6 form-group">
+																<label for="sel_responsable">Seleccione el Responsable</label>
+																<select id='sel_responsable'
+																	style='width: 100%;'>
+																	<option value='-1'>- Buscar Responsable -</option>
+																</select>
+															</div>
+															<div class="col-sm-12 col-md-12 col-lg-6 form-group">
+																<label for="sel_autorizador">Seleccione el Autorizador</label>
+																<select disabled
+																	class="form-control"
+																	style="height: 2.7em;"
+																	id="sel_autorizador">
+																	<option value="null"
+																		selected>Seleccione...</option>
+																</select>
+															</div>
+														</form>
+													</div>
+												</div>
+												<br>
+												<div class="row">
+													<div class="col-sm-12 col-md-12 col-lg-12">
+														<form>
+															<div class="col-sm-12 col-md-12 col-lg-6 form-group">
+																<label for="sel_tramitante">Tramitante:</label>
+																<select disabled
+																	class="form-control"
+																	id="sel_tramitante">
+																</select>
+															</div>
+															<div class="col-sm-12 col-md-12 col-lg-6 form-group">
+																<label for="sel_estado">Estado</label>
+																<select disabled
+																	class="form-control"
+																	id="sel_estado">
+																	<option value="0">Pendiente</option>
+																	<option value="1">Aprobado</option>
+																	<option value="2">Denegado</option>
+																	<option value="3">Finalizado</option>
+																</select>
+															</div>
+														</form>
+													</div>
+												</div>
+												<br>
+											</div>
+										</div>
+									</div>
 
 
-                  <div class="panel acoordion-step">
-                    <div role="tab" id="headingThree"> <span class="acoordion-step-number">3</span>
-                      <h4 class="acoordion-step-title"> <a class="collapsed" role="button" data-toggle="collapse"
-                          data-parent="#accordion" href="#collapseThree"> Visitantes </a> </h4>
-                    </div>
+									<div class="panel acoordion-step">
+										<div role="tab"
+											id="headingTwo">
+											<span class="acoordion-step-number">2</span>
+											<h4 class="acoordion-step-title">
+												<a class="collapsed"
+													role="button"
+													data-toggle="collapse"
+													data-parent="#accordion"
+													href="#collapseTwo"> Fecha y Detalles: </a>
+											</h4>
+										</div>
 
-                    <div id="collapseThree" class="panel-collapse collapse">
-                      <div class="acoordion-step-body">
+										<div id="collapseTwo"
+											class="panel-collapse collapse">
+											<div class="acoordion-step-body">
+												<!-- <div class="acoordion-address-step"> -->
+												<div class="row">
+													<div class="col-sm-12 col-md-12 col-lg-12">
+														<div class="form-group">
+															<div class="col-sm-12 col-md-12 col-md-6">
+																<label for="otrosDetalles">RFC, Equipo, Placa de Vehículos</label>
+																<input type="text"
+																	class="form-control"
+																	id="otrosDetalles"
+																	placeholder="Ingrese los detalles aquí.">
+															</div>
 
-                        <div class="row">
-                          <div class="col-sm-12 col-md-12 col-lg-12">
-                            <div class="form-group">
-                              <div class="col-sm-12 col-md-12 col-md-9">
-                                <label for="inp_titulo">Personal por Autorizar:</label>
-                                <div class="form-group">
-                                  <select id='dp_select_visitante' style="width:100%">
-                                    <option value='0'>- Buscar Visitante -</option>
-                                  </select>
-                                </div>
-                              </div>
+															<div class="col-sm-12 col-md-12 col-lg-6">
+																<label for="dp_rangoFechaFormulario">Rango de Fechas</label>
+																<div id="dp_rangoFechaFormulario"
+																	style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%; float:right">
+																	<i class="fa fa-calendar"></i>&nbsp;
+																	<span></span> <i class="fa fa-caret-down"></i>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<br>
+												<div class="row">
+													<div class="col-sm-12 col-md-12 col-lg-12">
+														<div class="form-group">
+															<div class="col-sm-12 col-md-12 col-lg-12">
+																<label for="inp_descripcion">Describa el Motivo de la Visita:</label>
+																<textarea class="form-control"
+																	id="inp_descripcion"
+																	rows="3"></textarea>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
 
-                              <div class="col-sm-12 col-md-12 col-lg-3">
-                                <label for="btn_nuevoVisitante">Registrar Visitante:</label>
-                                <button type="button" class="btn btn-primary" id="btn_nuevoVisitante">Agregar
-                                  Visitante</button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+									</div>
+
+
+									<div class="panel acoordion-step">
+										<div role="tab"
+											id="headingThree"> <span class="acoordion-step-number">3</span>
+											<h4 class="acoordion-step-title"> <a class="collapsed"
+													role="button"
+													data-toggle="collapse"
+													data-parent="#accordion"
+													href="#collapseThree"> Visitantes </a> </h4>
+										</div>
+
+										<div id="collapseThree"
+											class="panel-collapse collapse">
+											<div class="acoordion-step-body">
+
+												<div class="row">
+													<div class="col-sm-12 col-md-12 col-lg-12">
+														<div class="form-group">
+															<div class="col-sm-12 col-md-12 col-md-9">
+																<label for="inp_titulo">Personal por Autorizar:</label>
+																<div class="form-group">
+																	<select id='dp_select_visitante'
+																		style="width:100%">
+																		<option value='0'>- Buscar Visitante -</option>
+																	</select>
+																</div>
+															</div>
+
+															<div style="display: none;"
+																class="col-sm-12 col-md-12 col-lg-3">
+																<label for="btn_nuevoVisitante">Registrar Visitante:</label>
+																<button type="button"
+																	class="btn btn-primary"
+																	id="btn_nuevoVisitante">Agregar
+																	Visitante</button>
+															</div>
+														</div>
+													</div>
+												</div>
 
 
 
 
 
-                        <div class="row">
-                          <div class="col-sm-12 col-md-12 col-lg-12">
-                            <div class="form-group">
-                              <!-- <div class="row"> -->
-                              <!-- <label for="inp_titulo">Personal por Autorizar:</label>
+												<div class="row">
+													<div class="col-sm-12 col-md-12 col-lg-12">
+														<div class="form-group">
+															<!-- <div class="row"> -->
+															<!-- <label for="inp_titulo">Personal por Autorizar:</label>
                               <div class="form-group">
                                 <select id='dp_select_visitante' style='width: 400px;'>
                                   <option value='0'>- Buscar Visitante -</option>
                                 </select>
                               </div> -->
 
-                              <table id="tb_visitante_seccionado" class="display" style="width:100%">
+															<table id="tb_visitante_seccionado"
+																class="display"
+																style="width:100%">
 
-                              </table>
-                              <!-- </div> -->
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+															</table>
+															<!-- </div> -->
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
 
-                  </div>
-
-
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Modal footer -->
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" id="btn_guardar_formulario">Enviar</button>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
+									</div>
 
 
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Modal footer -->
+					<div class="modal-footer">
+						<button type="button"
+							class="btn btn-primary"
+							id="btn_guardar_formulario">Enviar</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 
 
 
 
-  <!--Modal Crear usuario -->
-  <div class="modal fade" id="modal_NuevoUsuario">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
 
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Crear Nuevo Usuario</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
 
-        <!-- Modal body -->
-        <div class="modal-body">
+	<!--Modal Crear usuario -->
+	<div class="modal fade"
+		id="modal_NuevoUsuario">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
 
-          <form class="form-horizontal" role="form">
-            <div class="form-group">
-              <label for="inp_nombre" class="col-sm-2 control-label">Nombre Completo</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="inp_nombre" placeholder="Ingrese Nombre Completo">
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="inp_identificacion" class="col-sm-2 control-label">Identificación</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="inp_identificacion"
-                  placeholder="Ingrese el numero de Identificación">
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="inp_usuario" class="col-sm-2 control-label">Usuario de Red</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="inp_usuario" placeholder="Ingrese el Usuario de Red">
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="inp_identificacion" class="col-sm-2 control-label">Correo Electrónico</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="inp_correo" placeholder="Ingrese el correo electrónico">
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="inp_empresa" class="col-sm-2 control-label">Dependencia o Empresa</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="inp_empresa"
-                  placeholder="Ingrese la empresa o dependencia a la que pertenece">
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="inp_rol" class="col-sm-2 control-label">Rol:</label>
-              <div class="col-sm-10">
-                <select id="inp_rol" class="form-control js-example-responsive" style="width: 100%" multiple="multiple">
-                  <!-- <option value='Visitante'>Visitante</option>
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">Crear Nuevo Usuario</h4>
+					<button type="button"
+						class="close"
+						data-dismiss="modal">&times;</button>
+				</div>
+
+				<!-- Modal body -->
+				<div class="modal-body">
+
+					<form class="form-horizontal"
+						role="form">
+						<div class="form-group">
+							<label for="inp_nombre"
+								class="col-sm-2 control-label">Nombre Completo</label>
+							<div class="col-sm-10">
+								<input type="text"
+									class="form-control"
+									id="inp_nombre"
+									placeholder="Ingrese Nombre Completo">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inp_identificacion"
+								class="col-sm-2 control-label">Identificación</label>
+							<div class="col-sm-10">
+								<input type="text"
+									class="form-control"
+									id="inp_identificacion"
+									placeholder="Ingrese el numero de Identificación">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inp_usuario"
+								class="col-sm-2 control-label">Usuario de Red</label>
+							<div class="col-sm-10">
+								<input type="text"
+									class="form-control"
+									id="inp_usuario"
+									placeholder="Ingrese el Usuario de Red">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inp_identificacion"
+								class="col-sm-2 control-label">Correo Electrónico</label>
+							<div class="col-sm-10">
+								<input type="text"
+									class="form-control"
+									id="inp_correo"
+									placeholder="Ingrese el correo electrónico">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inp_empresa"
+								class="col-sm-2 control-label">Dependencia o Empresa</label>
+							<div class="col-sm-10">
+								<input type="text"
+									class="form-control"
+									id="inp_empresa"
+									placeholder="Ingrese la empresa o dependencia a la que pertenece">
+							</div>
+						</div>
+						<div style="display: none;"
+							class="form-group">
+							<label for="inp_rol"
+								class="col-sm-2 control-label">Rol:</label>
+							<div class="col-sm-10">
+								<select id="inp_rol"
+									class="form-control js-example-responsive"
+									style="width: 100%"
+									multiple="multiple">
+									<!-- <option value='Visitante'>Visitante</option>
                     <option value='Responsable'>Responsable</option>
                     <option value='Autorizador'>Autorizador</option> -->
-                </select>
+								</select>
 
 
-                <!-- <select class="form-control" id="inp_rol" name="tipoFiltro">
+								<!-- <select class="form-control" id="inp_rol" name="tipoFiltro">
                     <option value='Visitante'>Visitante</option>
                     <option value='Responsable'>Responsable</option>
                     <option value='Autorizador'>Autorizador</option>
                   </select> -->
-              </div>
-            </div>
-          </form>
-          <hr>
-          <form class="form-horizontal">
-            <div class="form-group">
-              <label for="inp_usuario" class="col-sm-2 control-label">Buscar en LDAP:</label>
-              <div class="col-sm-4">
-                <select class="form-control" id="sel_tipoFiltro" name="tipoFiltro">
-                  <option value='mail'>Correo</option>
-                  <option value='samAccountName'>Usuario</option>
-                  <option value='cn'>Nombre</option>
-                  <option value='description'>Cedula</option>
-                </select>
-              </div>
-              <div class="col-sm-4">
-                <input type="text" class="form-control" id="inp_searchValue" name="searchValue"
-                  placeholder="Ingrese el Valor a Buscar">
-              </div>
-              <div class="col-sm-1">
-                <button id="btn_buscarLDAP" class="btn btn-default">Buscar</button>
-              </div>
-            </div>
-          </form>
-          <!-- Modal footer -->
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" id="btn_guardarUsuario">Agregar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+							</div>
+						</div>
+					</form>
+					<hr>
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label for="inp_usuario"
+								class="col-sm-2 control-label">Buscar en LDAP:</label>
+							<div class="col-sm-4">
+								<select class="form-control"
+									id="sel_tipoFiltro"
+									name="tipoFiltro">
+									<option value='mail'>Correo</option>
+									<option value='samAccountName'>Usuario</option>
+									<option value='cn'>Nombre</option>
+									<option value='description'>Cedula</option>
+								</select>
+							</div>
+							<div class="col-sm-4">
+								<input type="text"
+									class="form-control"
+									id="inp_searchValue"
+									name="searchValue"
+									placeholder="Ingrese el Valor a Buscar">
+							</div>
+							<div class="col-sm-1">
+								<button id="btn_buscarLDAP"
+									class="btn btn-default">Buscar</button>
+							</div>
+						</div>
+					</form>
+					<!-- Modal footer -->
+					<div class="modal-footer">
+						<button type="button"
+							class="btn btn-primary"
+							id="btn_guardarUsuario">Agregar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 
@@ -509,34 +617,34 @@
 
 
 
-  <!-- jQuery -->
-  <script src="assets/js/jquery/dist/jquery.min.js"></script>
-  <!-- Bootstrap -->
-  <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-  <!-- JS dataTables -->
-  <script src="vendors/datatables.net/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
-  <script src="vendors/datatables.net/DataTables-1.10.18/js/dataTables.bootstrap.min.js"></script>
-  <!-- NProgress -->
-  <script src="vendors/nprogress/nprogress.js"></script>
-  <!-- bootstrap-progressbar -->
-  <script src="vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-  <!-- Seleect2 -->
-  <script src='vendors/select2/js/select2.js'></script>
-  <!-- Moment -->
-  <script src="vendors/moment/moment.min.js"></script>
-  <script src="vendors/moment/locale/es.js"></script>
-  <!-- SweetAlert2 -->
-  <script src="vendors/sweetalert2/dist/sweetalert2.js"></script>
-  <!-- bootstrap-daterangepicker -->
-  <script src="vendors/daterangepicker/daterangepicker.min.js"></script>
-  <!-- Custom Theme Scripts -->
-  <script src="assets/js/custom.js"></script>
-  <script src="assets/js/formulario.js"></script>
-  <script src="assets/js/sala.js"></script>
-  <script src="assets/js/datacenter.js"></script>
-  <!-- <script src="assets/js/responsable.js"></script>  -->
-  <script src="assets/js/usuario.js"></script>
-  <script src="assets/js/rol.js"></script>
+	<!-- jQuery -->
+	<script src="assets/js/jquery/dist/jquery.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+	<!-- JS dataTables -->
+	<script src="vendors/datatables.net/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
+	<script src="vendors/datatables.net/DataTables-1.10.18/js/dataTables.bootstrap.min.js"></script>
+	<!-- NProgress -->
+	<script src="vendors/nprogress/nprogress.js"></script>
+	<!-- bootstrap-progressbar -->
+	<script src="vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+	<!-- Seleect2 -->
+	<script src='vendors/select2/js/select2.js'></script>
+	<!-- Moment -->
+	<script src="vendors/moment/moment.min.js"></script>
+	<script src="vendors/moment/locale/es.js"></script>
+	<!-- SweetAlert2 -->
+	<script src="vendors/sweetalert2/dist/sweetalert2.js"></script>
+	<!-- bootstrap-daterangepicker -->
+	<script src="vendors/daterangepicker/daterangepicker.min.js"></script>
+	<!-- Custom Theme Scripts -->
+	<script src="assets/js/custom.js"></script>
+	<script src="assets/js/formulario.js"></script>
+	<script src="assets/js/sala.js"></script>
+	<script src="assets/js/datacenter.js"></script>
+	<!-- <script src="assets/js/responsable.js"></script>  -->
+	<script src="assets/js/usuario.js"></script>
+	<script src="assets/js/rol.js"></script>
 
 </body>
 
@@ -544,361 +652,365 @@
 
 <script>
 
-  $(document).ready(function () {
+	$(document).ready(function () {
 
-    dataCenter.ReadAll;
-    usuario.autorizador_ReadAll;
-    rol.readAll;
+		dataCenter.ReadAll;
 
-    $('#inp_rol').select2({
-      width: "100%",
-      multiple: true,
-      placeholder: 'Seleccione Rol...',
-      closeOnSelect: false
-    });
+		$('#inp_rol').select2({
+			width: "100%",
+			multiple: true,
+			placeholder: 'Seleccione Rol...',
+			closeOnSelect: false
+		});
 
+		$("#btn_guardar_formulario").click(function () {
+			formulario.validar;
+		});
 
-    $("#btn_guardar_formulario").click(function () {
-      formulario.validar;
-    });
+		$("#btn_guardarUsuario").click(function () {
+			usuario.id = null;
+			usuario.nombre = $("#inp_nombre").val();
+			usuario.cedula = $("#inp_identificacion").val();
+			usuario.correo = $("#inp_correo").val();
+			usuario.usuario = $("#inp_usuario").val();
+			usuario.empresa = $("#inp_empresa").val();
+			// usuario.rol = $("#inp_rol").select2("val");
+			usuario.rol = ["c4d35117-d57e-4cad-b3bc-b589f002814d"];
 
+			usuario.create;
+		});
 
-    $("#btn_guardarUsuario").click(function () {
-      usuario.id = null;
-      usuario.nombre = $("#inp_nombre").val();
-      usuario.cedula = $("#inp_identificacion").val();
-      usuario.correo = $("#inp_correo").val();
-      usuario.usuario = $("#inp_usuario").val();
-      usuario.empresa = $("#inp_empresa").val();
-      usuario.rol = $("#inp_rol").select2("val");
+		$("#btn_nuevoVisitante").click(function () {
+			usuario.clearModalNuevoUsuario;
+			$("#modal_NuevoUsuario").modal("show");
+		});
 
-      usuario.create;
-    });
+		$("#btn_buscarLDAP").click(function () {
+			event.preventDefault();
 
-    $("#btn_nuevoVisitante").click(function () {
-      usuario.clearModalNuevoUsuario;
-      $("#modal_NuevoUsuario").modal("show");
-    });
+			var values = { tipoFiltro: "", searchValue: "" };
+			values.tipoFiltro = $("#sel_tipoFiltro").val();
+			values.searchValue = $("#inp_searchValue").val();
 
-    $("#btn_buscarLDAP").click(function () {
-      event.preventDefault();
+			var miAccion = "BuscarLDAP";
+			$.ajax({
+				type: "POST",
+				url: "class/checkLDAP.php",
+				data: {
+					action: miAccion,
+					obj: JSON.stringify(values)
+				}
+			})
+				.done(function (e) {
+					var data = JSON.parse(e);
+					if (data) {
+						$("#inp_nombre").val(data.nombre);
+						$("#inp_identificacion").val(data.cedula);
+						$("#inp_correo").val(data.email);
+						$("#inp_usuario").val(data.usuario);
+						$("#inp_empresa").val(data.physicaldeliveryofficename);
+						usuario.SwalAlert('success', 'Usuario Encontrado');
+					}
+					else {
+						usuario.SwalAlert('error', 'Sin Resultados');
+					}
+				})
 
-      var values = { tipoFiltro: "", searchValue: "" };
-      values.tipoFiltro = $("#sel_tipoFiltro").val();
-      values.searchValue = $("#inp_searchValue").val();
+		});
 
-      var miAccion = "BuscarLDAP";
-      $.ajax({
-        type: "POST",
-        url: "class/checkLDAP.php",
-        data: {
-          action: miAccion,
-          obj: JSON.stringify(values)
-        }
-      })
-        .done(function (e) {
-          var data = JSON.parse(e);
-          if (data) {
-            $("#inp_nombre").val(data.nombre);
-            $("#inp_identificacion").val(data.cedula);
-            $("#inp_correo").val(data.email);
-            $("#inp_usuario").val(data.usuario);
-            $("#inp_empresa").val(data.physicaldeliveryofficename);
-            usuario.SwalAlert('success', 'Usuario Encontrado');
-          }
-          else {
-            usuario.SwalAlert('error', 'Sin Resultados');
-          }
-        })
+		$("#sel_centro_datos").change(function () {
+			sala.carga_SalabyDC;
+		})
 
-    });
+		var result_Visitantes = [];
+		var tb_visitante_seccionado = $('#tb_visitante_seccionado').DataTable({
+			// responsive: true,
+			destroy: true,
+			paging: false,
+			ordering: false,
+			responsive: true,
+			info: false,
+			searching: false,
+			scrollX: false,
+			scrollY: false,
+			scrollCollapse: true,
+			language: {
+				"infoEmpty": "Sin Visitantes Seleccionados",
+				"emptyTable": "Sin Visitantes Seleccionados",
+				"search": "Buscar",
+				"zeroRecords": "No hay resultados",
+				"lengthMenu": "Mostrar _MENU_ registros",
+				"paginate": {
+					"first": "Primera",
+					"last": "Ultima",
+					"next": "Siguiente",
+					"previous": "Anterior"
+				}
+			},
+			columnDefs: [
+				{
+					title: "IDVisitante",
+					data: "id",
+					targets: 0,
+					visible: false
+				},
+				{
+					title: "Cedula",
+					data: "cedula",
+					targets: 1
+				},
+				{
+					title: "Nombre",
+					data: "text",
+					targets: 2
+				},
+				{
+					title: "Empresa",
+					data: "empresa",
+					targets: 3
+				},
+				{
+					title: "Eliminar",
+					targets: 4,
+					visible: true,
+					mRender: function (e) {
+						return '<button class=btnEliminarVisitante onclick="deleteVisitante(this)" > <i class="fa fa-trash-o" style="color:firebrick" aria-hidden="true"></i> </button>';
+					}
+				}
+			]
+		});
 
+		$('#tbl_formularios tbody').on('click', 'tr', function () {
+			formulario.clear;
+			formulario.id = $('#tbl_formularios').DataTable().row(this).data().id;
+			formulario.cargarFormulariobyID;
+		});
 
+		$("#sel_responsable").select2({
+			ajax: {
+				url: "class/Responsable.php",
+				type: "post",
+				dataType: 'json',
+				delay: 250,
+				data: function (params) {
+					return {
+						action: "ReadAll",
+						search_value: params.term // search term
+					};
+				},
+				processResults: function (response) {
+					return {
+						results: response
+					};
+				},
+				cache: true
+			}
+		});
 
-    $("#sel_centro_datos").change(function () {
-      sala.carga_SalabyDC;
-    })
+		$("#dp_select_visitante").change(function () {
 
-    var result_Visitantes = [];
+			var visitante_repetido = false;
+			var addVisitante = jQuery.map(result_Visitantes, function (obj) {
+				if (obj.id === $("#dp_select_visitante").val())
+					return obj; // or return obj.name, whatever.
+			});
 
-    var tb_visitante_seccionado = $('#tb_visitante_seccionado').DataTable({
-      // responsive: true,
-      destroy: true,
-      paging: false,
-      ordering: false,
-      responsive: true,
-      info: false,
-      searching: false,
-      scrollX: false,
-      scrollY: false,
-      scrollCollapse: true,
-      language: {
-        "infoEmpty": "Sin Visitantes Seleccionados",
-        "emptyTable": "Sin Visitantes Seleccionados",
-        "search": "Buscar",
-        "zeroRecords": "No hay resultados",
-        "lengthMenu": "Mostrar _MENU_ registros",
-        "paginate": {
-          "first": "Primera",
-          "last": "Ultima",
-          "next": "Siguiente",
-          "previous": "Anterior"
-        }
-      },
-      columnDefs: [
-        {
-          title: "IDVisitante",
-          data: "id",
-          targets: 0,
-          visible: false
-        },
-        {
-          title: "Cedula",
-          data: "cedula",
-          targets: 1
-        },
-        {
-          title: "Nombre",
-          data: "text",
-          targets: 2
-        },
-        {
-          title: "Empresa",
-          data: "empresa",
-          targets: 3
-        },
-        {
-          title: "Eliminar",
-          targets: 4,
-          visible: true,
-          mRender: function (e) {
-            return '<button class=btnEliminarVisitante onclick="deleteVisitante(this)" > <i class="fa fa-trash-o" style="color:firebrick" aria-hidden="true"></i> </button>';
-          }
-        }
-      ]
-    });
-
-    $('#tbl_formularios tbody').on('click', 'tr', function () {
-      formulario.clear;
-      formulario.id = $('#tbl_formularios').DataTable().row(this).data().id;
-      formulario.cargarFormulariobyID;
-    });
-
-    $("#sel_responsable").select2({
-      ajax: {
-        url: "class/Responsable.php",
-        type: "post",
-        dataType: 'json',
-        delay: 250,
-        data: function (params) {
-          return {
-            action: "ReadAll",
-            search_value: params.term // search term
-          };
-        },
-        processResults: function (response) {
-          return {
-            results: response
-          };
-        },
-        cache: true
-      }
-    });
-
-    $("#dp_select_visitante").change(function () {
-
-      var visitante_repetido = false;
-      var addVisitante = jQuery.map(result_Visitantes, function (obj) {
-        if (obj.id === $("#dp_select_visitante").val())
-          return obj; // or return obj.name, whatever.
-      });
-
-      tb_visitante_seccionado
-        .columns(0)
-        .data()
-        .flatten()
-        .filter(function (value, index) {
-          if (value == addVisitante[0].id ? true : false)
-            visitante_repetido = true;
-        });
+			tb_visitante_seccionado
+				.columns(0)
+				.data()
+				.flatten()
+				.filter(function (value, index) {
+					if (value == addVisitante[0].id ? true : false)
+						visitante_repetido = true;
+				});
 
 
 
-      if (!visitante_repetido) {
-        tb_visitante_seccionado.row.add(addVisitante[0]).draw();
-      }
+			if (!visitante_repetido) {
+				tb_visitante_seccionado.row.add(addVisitante[0]).draw();
+			}
 
 
-      $("#dp_select_visitante").val(0);
+			$("#dp_select_visitante").val(0);
 
-    });
+		});
 
-    $("#dp_select_visitante").select2({
-      ajax: {
-        url: "class/Visitante.php",
-        type: "post",
-        dataType: 'json',
-        delay: 250,
-        data: function (params) {
-          return {
-            action: "Search",
-            search_value: params.term // search term
-          };
-        },
-        processResults: function (response) {
-          result_Visitantes = response;
-          return {
-            results: response
-          };
-        },
-        cache: true
-      }
-    });
+		$("#dp_select_visitante").select2({
+			ajax: {
+				url: "class/Visitante.php",
+				type: "post",
+				dataType: 'json',
+				delay: 250,
+				data: function (params) {
+					return {
+						action: "Search",
+						search_value: params.term // search term
+					};
+				},
+				processResults: function (response) {
+					result_Visitantes = response;
+					return {
+						results: response
+					};
+				},
+				cache: true
+			}
+		});
 
-    $("#btn_abrirModal").click(function () {
-      formulario.clear;
-      $('#sel_autorizador').val("null").change();
-      $("#modal_new_form").modal("show");
-    });
+		$("#btn_abrirModal").click(function () {
+			formulario.clear;
+			$('#sel_autorizador').val("null").change();
+			formulario.rolCheck();
+			$('#sel_tramitante').empty();
+			$('#sel_tramitante').append(`<option value="${Session.id}">
+                                       ${Session.name}
+                                  </option>`);
+			$('#sel_tramitante').val(Session.id).change();
+			$("#modal_new_form").modal("show");
+		});
 
-    // DATERANGEPICKER Solicitud FORMULARIO
-    $(function () {
+		// DATERANGEPICKER Solicitud FORMULARIO
+		$(function () {
 
-      formulario.fechaIngreso = moment().locale("es");
-      formulario.fechaSalida = moment().add(5, 'hour').locale("es");
+			formulario.fechaIngreso = moment().locale("es");
+			formulario.fechaSalida = moment().add(5, 'hour').locale("es");
 
-      $('#dp_rangoFechaFormulario').daterangepicker({
-        timePicker: true,
-        opens: "center",
-        locale: {
-          format: 'D MMMM YY - hh:mm A',
-          separator: " - ",
-          applyLabel: "Aplicar",
-          cancelLabel: "Cancelar",
-          fromLabel: "From",
-          toLabel: "To",
-          customRangeLabel: "Manual",
-          daysOfWeek: [
-            "DO",
-            "Lu",
-            "Ma",
-            "Mi",
-            "Ju",
-            "Vi",
-            "Sa"
-          ],
-          monthNames: [
-            "Enero",
-            "Febrero",
-            "Marzo",
-            "Abril",
-            "Mayo",
-            "Junio",
-            "Julio",
-            "Agosto",
-            "Setiembre",
-            "Octubre",
-            "Noviembre",
-            "Diciembre"
-          ],
-          firstDay: 1
-        },
-        startDate: formulario.fechaIngreso,
-        endDate: formulario.fechaSalida
-      }, cbFechas);
+			$('#dp_rangoFechaFormulario').daterangepicker({
+				timePicker: true,
+				opens: "center",
+				locale: {
+					format: 'D MMMM YY - hh:mm A',
+					separator: " - ",
+					applyLabel: "Aplicar",
+					cancelLabel: "Cancelar",
+					fromLabel: "From",
+					toLabel: "To",
+					customRangeLabel: "Manual",
+					daysOfWeek: [
+						"DO",
+						"Lu",
+						"Ma",
+						"Mi",
+						"Ju",
+						"Vi",
+						"Sa"
+					],
+					monthNames: [
+						"Enero",
+						"Febrero",
+						"Marzo",
+						"Abril",
+						"Mayo",
+						"Junio",
+						"Julio",
+						"Agosto",
+						"Setiembre",
+						"Octubre",
+						"Noviembre",
+						"Diciembre"
+					],
+					firstDay: 1
+				},
+				startDate: formulario.fechaIngreso,
+				endDate: formulario.fechaSalida
+			}, cbFechas);
 
-      function cbFechas(fechaIngreso, fechaSalida) {
-        // $('#dp_rangoFechaFormulario span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-        $('#dp_rangoFechaFormulario span').html(fechaIngreso.format('D MMMM YY - hh:mm A') + '  ->  ' + fechaSalida.format('D MMMM YY - hh:mm A'));
-      }
+			function cbFechas(fechaIngreso, fechaSalida) {
+				// $('#dp_rangoFechaFormulario span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+				$('#dp_rangoFechaFormulario span').html(fechaIngreso.format('D MMMM YY - hh:mm A') + '  ->  ' + fechaSalida.format('D MMMM YY - hh:mm A'));
+			}
 
-      cbFechas(formulario.fechaIngreso, formulario.fechaSalida);
+			cbFechas(formulario.fechaIngreso, formulario.fechaSalida);
 
-    });
+		});
 
-    // DATERANGEPICKER Lista FORMULARIOS
-    $(function () {
+		// DATERANGEPICKER Lista FORMULARIOS
+		$(function () {
 
-      var lista_Formularios_Start = moment().subtract(29, 'days');
-      var lista_Formularios_End = moment().locale("es");;
-
-
-      function cb(lista_Formularios_Start, lista_Formularios_End) {
-        $('#dp_rango_Lista_Formularios span').html(lista_Formularios_Start.format('MMMM D, YYYY') + ' - ' + lista_Formularios_End.format('MMMM D, YYYY'));
-      }
-
-      $('#dp_rango_Lista_Formularios').daterangepicker({
-        "opens": "left",
-        "locale": {
-          "format": "DD/MM/YYYY",
-          "separator": " - ",
-          "applyLabel": "Aplicar",
-          "cancelLabel": "Cancelar",
-          "fromLabel": "From",
-          "toLabel": "To",
-          "customRangeLabel": "Manual",
-          "daysOfWeek": [
-            "DO",
-            "Lu",
-            "Ma",
-            "Mi",
-            "Ju",
-            "Vi",
-            "Sa"
-          ],
-          "monthNames": [
-            "Enero",
-            "Febrero",
-            "Marzo",
-            "Abril",
-            "Mayo",
-            "Junio",
-            "Julio",
-            "Agosto",
-            "Setiembre",
-            "Octubre",
-            "Noviembre",
-            "Diciembre"
-          ],
-          "firstDay": 1
-        },
-        startDate: lista_Formularios_Start,
-        endDate: lista_Formularios_End,
-        ranges: {
-          'Hoy': [moment(), moment()],
-          'Ayer': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-          'Ultimos 7 Días': [moment().subtract(6, 'days'), moment()],
-          'Ultimos 30 Días': [moment().subtract(29, 'days'), moment()],
-          'Este Mes': [moment().startOf('month'), moment().endOf('month')],
-          'Ultimo Mes': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-        }
-      }, cb);
-
-      cb(lista_Formularios_Start, lista_Formularios_End);
-
-      formulario.read_fechaInicial = lista_Formularios_Start.format('YYYY-MM-DD') + ' 00:00:00';
-      formulario.read_fechaFinal = lista_Formularios_End.format('YYYY-MM-DD') + ' 23:59:59';
-      formulario.ReadAllbyRange;
-
-    });
-
-  });
-
-  function deleteVisitante(visitante) {
-    var mitabla = $('#tb_visitante_seccionado').DataTable();
-    mitabla.row($(visitante).parents('tr')[0]).remove().draw(false);
-  }
-
-  $('#dp_rango_Lista_Formularios').on('apply.daterangepicker', function (ev, picker) {
-    formulario.read_fechaInicial = picker.startDate.format('YYYY-MM-DD') + ' 00:00:00';
-    formulario.read_fechaFinal = picker.endDate.format('YYYY-MM-DD') + ' 23:59:59';
-    formulario.ReadAllbyRange;
-  });
+			var lista_Formularios_Start = moment().subtract(29, 'days');
+			var lista_Formularios_End = moment().locale("es");;
 
 
-  $('#dp_rangoFechaFormulario').on('apply.daterangepicker', function (ev, picker) {
-    formulario.fechaIngreso = picker.startDate.format();
-    formulario.fechaSalida = picker.endDate.format();
-  });
+			function cb(lista_Formularios_Start, lista_Formularios_End) {
+				$('#dp_rango_Lista_Formularios span').html(lista_Formularios_Start.format('MMMM D, YYYY') + ' - ' + lista_Formularios_End.format('MMMM D, YYYY'));
+			}
+
+			$('#dp_rango_Lista_Formularios').daterangepicker({
+				"opens": "left",
+				"locale": {
+					"format": "DD/MM/YYYY",
+					"separator": " - ",
+					"applyLabel": "Aplicar",
+					"cancelLabel": "Cancelar",
+					"fromLabel": "From",
+					"toLabel": "To",
+					"customRangeLabel": "Manual",
+					"daysOfWeek": [
+						"DO",
+						"Lu",
+						"Ma",
+						"Mi",
+						"Ju",
+						"Vi",
+						"Sa"
+					],
+					"monthNames": [
+						"Enero",
+						"Febrero",
+						"Marzo",
+						"Abril",
+						"Mayo",
+						"Junio",
+						"Julio",
+						"Agosto",
+						"Setiembre",
+						"Octubre",
+						"Noviembre",
+						"Diciembre"
+					],
+					"firstDay": 1
+				},
+				startDate: lista_Formularios_Start,
+				endDate: lista_Formularios_End,
+				ranges: {
+					'Hoy': [moment(), moment()],
+					'Ayer': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+					'Ultimos 7 Días': [moment().subtract(6, 'days'), moment()],
+					'Ultimos 30 Días': [moment().subtract(29, 'days'), moment()],
+					'Este Mes': [moment().startOf('month'), moment().endOf('month')],
+					'Ultimo Mes': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+				}
+			}, cb);
+
+			cb(lista_Formularios_Start, lista_Formularios_End);
+
+			formulario.read_fechaInicial = lista_Formularios_Start.format('YYYY-MM-DD') + ' 00:00:00';
+			formulario.read_fechaFinal = lista_Formularios_End.format('YYYY-MM-DD') + ' 23:59:59';
+			formulario.ReadAllbyRange;
+
+		});
+
+		setTimeout(function () {
+			formulario.rolCheck();
+		}, 1000);
+
+	});
+
+	function deleteVisitante(visitante) {
+		var mitabla = $('#tb_visitante_seccionado').DataTable();
+		mitabla.row($(visitante).parents('tr')[0]).remove().draw(false);
+	}
+
+	$('#dp_rango_Lista_Formularios').on('apply.daterangepicker', function (ev, picker) {
+		formulario.read_fechaInicial = picker.startDate.format('YYYY-MM-DD') + ' 00:00:00';
+		formulario.read_fechaFinal = picker.endDate.format('YYYY-MM-DD') + ' 23:59:59';
+		formulario.ReadAllbyRange;
+	});
+
+
+	$('#dp_rangoFechaFormulario').on('apply.daterangepicker', function (ev, picker) {
+		formulario.fechaIngreso = picker.startDate.format();
+		formulario.fechaSalida = picker.endDate.format();
+	});
 
 </script>

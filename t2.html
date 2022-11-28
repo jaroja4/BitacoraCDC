@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<!-- check User session -->
+	<script src="vendors/jquery-3.5.1/jquery-3.5.1.js"></script>
+	<script src="assets/js/session.js"></script>
+	<script>
+		Session.Check();
+	</script>
+	<!-- /End check -->
+	<meta http-equiv="Content-Type"
+		content="text/html; charset=UTF-8">
+	<!-- Meta, title, CSS, favicons, etc. -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible"
+		content="IE=edge">
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1">
+	<!-- <link rel="icon" href="images/favicon.ico" type="image/ico" /> -->
+
+	<title>Bitácora CDC | DTI</title>
+
+	<!-- Bootstrap -->
+	<link href="vendors/bootstrap/dist/css/bootstrap.min.css"
+		rel="stylesheet">
+	<!-- Font Awesome -->
+	<link href="vendors/font-awesome-4.7.0/css/font-awesome.min.css"
+		rel="stylesheet">
+	<!-- Datatables -->
+	<link href="vendors/datatables.net/datatables.min.css"
+		rel="stylesheet">
+	<link href="vendors/datatables.net/DataTables-1.10.18/css/dataTables.bootstrap.min.css"
+		rel="stylesheet">
+	<!-- NProgress -->
+	<link href="vendors/nprogress/nprogress.css"
+		rel="stylesheet">
+	<!-- bootstrap-daterangepicker -->
+	<link href="vendors/bootstrap-daterangepicker/daterangepicker.css"
+		rel="stylesheet">
+	<!-- Custom Theme Style -->
+	<link href="assets/css/custom.min.css"
+		rel="stylesheet">
+</head>
+
+<body class="nav-md">
+	<div class="container body">
+		<div class="main_container">
+			<div class="col-md-3 left_col">
+				<div class="left_col scroll-view">
+					<div class="navbar nav_title"
+						style="border: 0;">
+						<a href="index.html"
+							class="site_title"><i class="fa fa-bullhorn"></i> <span>Centros de Datos Corporativos
+							</span></a>
+					</div>
+
+					<div class="clearfix"></div>
+
+					<!-- menu profile quick info -->
+					<div class="profile clearfix">
+						<div class="profile_pic">
+							<img src="images/LogoICESmall.png"
+								alt="..."
+								style="width:70px;height:70px;border-radius:50%;margin-top:10%">
+						</div>
+						<div class="profile_info">
+							<span><span>Bienvenido,</span></span>
+							<h2>Usuario de Seguridad</h2>
+						</div>
+					</div>
+					<!-- /menu profile quick info -->
+
+					<br />
+
+					<!-- sidebar menu -->
+					<div id="sidebar-menu"
+						class="main_menu_side hidden-print main_menu">
+						<div class="menu_section">
+							<h3 id='call_userName'></h3>
+							<ul id="menubox"
+								class="nav side-menu">
+
+							</ul>
+						</div>
+					</div>
+					<!-- /sidebar menu -->
+				</div>
+			</div>
+
+			<!-- top navigation -->
+			<div class="top_nav">
+				<div class="nav_menu">
+					<nav>
+						<div class="nav toggle">
+							<a id="menu_toggle"><i class="fa fa-bars"></i></a>
+						</div>
+
+						<ul class="nav navbar-nav navbar-right">
+							<li class="">
+								<a id="call_name"
+									href="javascript:;"
+									class="user-profile dropdown-toggle"
+									data-toggle="dropdown"
+									aria-expanded="false">
+									<img src="images/img.png"
+										alt="">Usuario de Seguridad
+									<span class=" fa fa-angle-down"></span>
+								</a>
+								<ul class="dropdown-menu dropdown-usermenu pull-right">
+									<li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Salir</a></li>
+								</ul>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+			<!-- /top navigation -->
+
+			<!-- page content -->
+			<div class="right_col"
+				role="main">
+				<div class="">
+					<div class="page-title">
+						<div class="title_left">
+							<h3>Pool de Tarjetas
+								<!-- <small>de acceso a personal autorizado</small> -->
+							</h3>
+						</div>
+					</div>
+
+					<div class="clearfix"></div>
+
+					<div class="row">
+						<div class="col-md-12 col-sm-12 col-xs-12">
+							<div class="x_panel">
+								<div class="x_title">
+									<button type="button"
+										id="crearTarjeta"
+										class="btn btn-primary">Registrar Tarjeta Nueva</button>
+									<div class="clearfix"></div>
+								</div>
+
+								<div class="x_content">
+
+
+
+									<table id="tb_pool_tarjetas"
+										class="display"
+										style="width:100%">
+										<thead>
+											<tr>
+												<th>Consecutivo</th>
+												<th>Centro de Datos</th>
+												<th>Sala</th>
+												<th>Estado</th>
+												<th>Eliminar</th>
+												<th>Eliminar</th>
+												<th>$320,800</th>
+											</tr>
+										</thead>
+										<tbody>
+
+										</tbody>
+									</table>
+
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /page content -->
+
+
+			<!-- footer content -->
+			<footer>
+				<div class="pull-right">
+					Operaciones TI - DTI - Instituto Costarricense de Electricidad
+				</div>
+				<div class="clearfix"></div>
+			</footer>
+			<!-- /footer content -->
+		</div>
+	</div>
+
+
+
+
+
+	<!--Modal Crear usuario -->
+	<div class="modal fade"
+		id="modal_NuevaTarjeta">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">Crear Nueva Tarjeta</h4>
+					<button type="button"
+						class="close"
+						data-dismiss="modal">&times;</button>
+				</div>
+				<!-- Modal body -->
+				<div class="modal-body">
+					<div>
+						<form class="form-horizontal"
+							role="form">
+							<div class="form-tajeta">
+								<div class="form-group">
+									<label for="sel_centro_datos"
+										class="col-sm-2 control-label">Centro de Datos</label>
+									<div class="col-sm-10">
+										<select id="sel_centro_datos"
+											class="form-control js-example-responsive">
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="sel_sala"
+										class="col-sm-2 control-label">Sala</label>
+									<div class="col-sm-10">
+										<select id="sel_sala"
+											class="form-control js-example-responsive">
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inp_tarjeta"
+										class="col-sm-2 control-label">Tarjeta</label>
+									<div class="col-sm-10">
+										<input type="text"
+											class="form-control inp_validar"
+											id="inp_tarjeta"
+											placeholder="Ingrese el consecutivo de la tarjeta">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="sel_estado"
+										class="col-sm-2 control-label">Estado</label>
+									<div class="col-sm-10">
+										<select id="sel_estado"
+											class="form-control js-example-responsive">
+										</select>
+									</div>
+								</div>
+							</div>
+						</form>
+
+						<hr>
+						<!-- Modal footer -->
+						<div class="modal-footer">
+							<button type="button"
+								class="btn btn-primary"
+								id="btn_guardarTarjeta"
+								disabled>Guardar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+	<!-- jQuery -->
+	<script src="assets/js/jquery/dist/jquery.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+	<!-- NProgress -->
+	<script src="vendors/nprogress/nprogress.js"></script>
+	<!-- JS dataTables -->
+	<script src="vendors/datatables.net/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
+	<script src="vendors/datatables.net/DataTables-1.10.18/js/dataTables.bootstrap.min.js"></script>
+	<!-- bootstrap-progressbar -->
+	<script src="vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+	<!-- bootstrap-daterangepicker -->
+	<script src="vendors/moment/min/moment.min.js"></script>
+	<script src="vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+	<!-- JS Scripts -->
+	<script src="assets/js/tarjeta.js"></script>
+	<!-- JS  -->
+	<!-- <script src="js/bootstrap-select.js"></script> -->
+
+	<!-- Custom Theme Scripts -->
+	<script src="assets/js/custom.js"></script>
+
+</body>
+
+</html>
+
+<script>
+
+
+	$(document).ready(function () {
+
+		var miAccion = 'ReadAll';
+
+		$.ajax({
+			type: "POST",
+			url: "class/Tarjeta.php",
+			data: {
+				action: miAccion,
+				obj: JSON.stringify(tarjeta)
+			}
+		})
+			.done(function (e) {
+				drawTarjetas(e);
+			})
+			.fail(function (e) {
+				// tarjeta.showError(e);
+			});
+
+
+
+
+		function drawTarjetas(e) {
+			var data_tajeta = JSON.parse(e);
+			$('#tb_pool_tarjetas thead tr')
+				.clone(true)
+				.addClass('filters')
+				.appendTo('#tb_pool_tarjetas thead');
+
+			var table = $('#tb_pool_tarjetas').DataTable({
+				orderCellsTop: true,
+				fixedHeader: true,
+				data: data_tajeta,
+
+				columns: [
+					{
+						title: "idTarjeta",
+						data: "id",
+						visible: false
+					},
+					{
+						title: "Consecutivo",
+						data: "consecutivo"
+					},
+					{
+						title: "Centro de Datos",
+						data: "nombreDC"
+					},
+					{
+						title: "idSala",
+						data: "idSala",
+						visible: false
+					},
+					{
+						title: "Sala",
+						data: "nombreSala"
+					},
+					{
+						title: "Estado",
+						data: "estado",
+						mRender: function (e) {
+							return (e == 0) ? 'Disponible' : (e == 1) ? 'Asiganada' : (e == 2) ? 'Deshabilitada' : 'Otro'
+						}
+					},
+					{
+						title: "Eliminar",
+						visible: true,
+						mRender: function (e) {
+							return '<button class=btnEliminarTarjeta onclick="deleteTarjeta(this)" > <i class="fa fa-trash-o" style="color:firebrick" aria-hidden="true"></i> </button>';
+						}
+					}
+				],
+				initComplete: function () {
+					var api = this.api();
+
+					// For each column
+					api
+						.columns()
+						.eq(0)
+						.each(function (colIdx) {
+							// Set the header cell to contain the input element
+							var cell = $('.filters th').eq(
+								$(api.column(colIdx).header()).index()
+							);
+							var title = $(cell).text();
+							$(cell).html('<input type="text" placeholder="' + title + '" />');
+
+							// On every keypress in this input
+							$(
+								'input',
+								$('.filters th').eq($(api.column(colIdx).header()).index())
+							)
+								.off('keyup change')
+								.on('change', function (e) {
+									// Get the search value
+									$(this).attr('title', $(this).val());
+									var regexr = '({search})'; //$(this).parents('th').find('select').val();
+
+									var cursorPosition = this.selectionStart;
+									// Search the column for that value
+									api
+										.column(colIdx)
+										.search(
+											this.value != ''
+												? regexr.replace('{search}', '(((' + this.value + ')))')
+												: '',
+											this.value != '',
+											this.value == ''
+										)
+										.draw();
+								})
+								.on('keyup', function (e) {
+									e.stopPropagation();
+
+									$(this).trigger('change');
+									$(this)
+										.focus()[0]
+										.setSelectionRange(cursorPosition, cursorPosition);
+								});
+						});
+				},
+			});
+
+		}
+
+		// Setup - add a text input to each footer cell
+
+	});
+
+	// $(document).ready(function () {
+
+	// 	tarjeta.carga_pool_tarjetas;
+
+	// 	$("#crearTarjeta").click(function () {
+
+
+	// 		$("#modal_NuevaTarjeta").modal("toggle");
+
+	// 	});
+
+
+	// });
+
+
+</script>

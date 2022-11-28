@@ -2,358 +2,626 @@
 <html lang="es">
 
 <head>
-  <!-- check User session -->
-  <script src="assets/js/jquery/dist/jquery.min.js"></script>
-  <script src="assets/js/session.js"></script>
-  <script>
-    Session.Check();
-  </script>
-  <!-- /End check -->
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <!-- Meta, title, CSS, favicons, etc. -->
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- <link rel="icon" href="images/favicon.ico" type="image/ico" /> -->
+	<!-- check User session -->
+	<script src="assets/js/jquery/dist/jquery.min.js"></script>
+	<script src="assets/js/session.js"></script>
+	<script>
+		Session.Check();
+	</script>
+	<!-- /End check -->
+	<meta http-equiv="Content-Type"
+		content="text/html; charset=UTF-8">
+	<!-- Meta, title, CSS, favicons, etc. -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible"
+		content="IE=edge">
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1">
+	<!-- <link rel="icon" href="images/favicon.ico" type="image/ico" /> -->
 
-  <title>Bitácora CDC | DTI</title>
+	<title>Bitácora CDC | DTI</title>
 
-  <!-- Bootstrap -->
-  <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Font Awesome -->
-  <link href="vendors/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
-  <!-- NProgress -->
-  <link href="vendors/nprogress/nprogress.css" rel="stylesheet">
-  <!-- SweetAlert -->
-  <link href="vendors/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
-  <!-- bootstrap-daterangepicker -->
-  <link href="vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-  <!-- Custom Theme Style -->
-  <link href="assets/css/custom.min.css" rel="stylesheet">
-  <link href="assets/css/registro.css" rel="stylesheet">
+	<!-- Bootstrap -->
+	<link href="vendors/bootstrap/dist/css/bootstrap.min.css"
+		rel="stylesheet">
+	<!-- Font Awesome -->
+	<link href="vendors/font-awesome-4.7.0/css/font-awesome.min.css"
+		rel="stylesheet">
+	<!-- NProgress -->
+	<link href="vendors/nprogress/nprogress.css"
+		rel="stylesheet">
+	<!-- SweetAlert -->
+	<link href="vendors/sweetalert2/dist/sweetalert2.min.css"
+		rel="stylesheet">
+	<!-- bootstrap-daterangepicker -->
+	<link href="vendors/bootstrap-daterangepicker/daterangepicker.css"
+		rel="stylesheet">
+	<!-- Custom Theme Style -->
+	<link href="assets/css/custom.min.css"
+		rel="stylesheet">
+	<link href="assets/css/registro.css"
+		rel="stylesheet">
 </head>
 
 <body class="nav-md">
-  <div class="container body">
-    <div class="main_container">
-      <div class="col-md-3 left_col">
-        <div class="left_col scroll-view">
-          <div class="navbar nav_title" style="border: 0;">
-            <a href="index.html" class="site_title">
-              <span> CDC | DTI</span>
-            </a>
-          </div>
+	<div class="container body">
+		<div class="main_container">
+			<div class="col-md-3 left_col">
+				<div class="left_col scroll-view">
+					<div class="navbar nav_title"
+						style="border: 0;">
+						<a href="index.html"
+							class="site_title">
+							<span> CDC | DTI</span>
+						</a>
+					</div>
 
-          <div class="clearfix"></div>
+					<div class="clearfix"></div>
 
-          <!-- menu profile quick info -->
-          <div class="profile clearfix">
-            <div class="profile_pic">
-              <img src="images/LogoICESmall.png" alt="..."
-                style="width:70px;height:70px;border-radius:50%;margin-top:10%">
-            </div>
-            <div class="profile_info">
-              <span><span>Bienvenido,</span></span>
-              <h2>Usuario de Seguridad</h2>
-            </div>
-          </div>
-          <!-- /menu profile quick info -->
+					<!-- menu profile quick info -->
+					<div class="profile clearfix">
+						<div class="profile_pic">
+							<img src="images/LogoICESmall.png"
+								alt="..."
+								style="width:70px;height:70px;border-radius:50%;margin-top:10%">
+						</div>
+						<div class="profile_info">
+							<span><span>Bienvenido,</span></span>
+							<h2>Usuario de Seguridad</h2>
+						</div>
+					</div>
+					<!-- /menu profile quick info -->
 
-          <br />
+					<br />
 
-          <!-- sidebar menu -->
-          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-            <div class="menu_section">
-              <h3 id='call_userName'></h3>
-              <ul id="menubox" class="nav side-menu">
+					<!-- sidebar menu -->
+					<div id="sidebar-menu"
+						class="main_menu_side hidden-print main_menu">
+						<div class="menu_section">
+							<h3 id='call_userName'></h3>
+							<ul id="menubox"
+								class="nav side-menu">
 
-              </ul>
-            </div>
-          </div>
-          <!-- /sidebar menu -->
-        </div>
-      </div>
+							</ul>
+						</div>
+					</div>
+					<!-- /sidebar menu -->
+				</div>
+			</div>
 
-      <!-- top navigation -->
-      <div class="top_nav">
-        <div class="nav_menu">
-          <nav>
-            <div class="nav toggle">
-              <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-            </div>
+			<!-- top navigation -->
+			<div class="top_nav">
+				<div class="nav_menu">
+					<nav>
+						<div class="nav toggle">
+							<a id="menu_toggle"><i class="fa fa-bars"></i></a>
+						</div>
 
-            <ul class="nav navbar-nav navbar-right">
-              <li class="">
-                <a id="call_name" href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
-                  aria-expanded="false">
-                  <img src="images/img.png" alt="">Usuario de Seguridad
-                  <span class=" fa fa-angle-down"></span>
-                </a>
-                <ul class="dropdown-menu dropdown-usermenu pull-right">
-                  <li>
-                    <a href="login.html"> <i class="fa fa-sign-out pull-right"></i> Salir</a>
-                  </li>
-                </ul>
-              </li>
+						<ul class="nav navbar-nav navbar-right">
+							<li class="">
+								<a id="call_name"
+									href="javascript:;"
+									class="user-profile dropdown-toggle"
+									data-toggle="dropdown"
+									aria-expanded="false">
+									<img src="images/img.png"
+										alt="">Usuario de Seguridad
+									<span class=" fa fa-angle-down"></span>
+								</a>
+								<ul class="dropdown-menu dropdown-usermenu pull-right">
+									<li>
+										<a href="login.html"> <i class="fa fa-sign-out pull-right"></i> Salir</a>
+									</li>
+								</ul>
+							</li>
 
-              <li role="presentation" class="dropdown">
-                <a href="javascript:;" class="dropdown-toggle info-number sitio" data-toggle="dropdown"
-                  aria-expanded="false">
-                  Seleccione un sitio: <i style="margin-left: 10px;font-size:24px;" class="fa fa-building-o"></i>
-                </a>
-                <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+							<li role="presentation"
+								class="dropdown">
+								<a href="javascript:;"
+									class="dropdown-toggle info-number sitio"
+									data-toggle="dropdown"
+									aria-expanded="false">
+									Seleccione un sitio: <i style="margin-left: 10px;font-size:24px;"
+										class="fa fa-building-o"></i>
+								</a>
+								<ul id="menu1"
+									class="dropdown-menu list-unstyled msg_list"
+									role="menu">
 
 
-                </ul>
-              </li>
-              <!-- <li>
+								</ul>
+							</li>
+							<!-- <li>
                   <a id="lbl_sitio"> San Pedro </a>
               </li> -->
-            </ul>
-          </nav>
-        </div>
-      </div>
+						</ul>
+					</nav>
+				</div>
+			</div>
 
-      </li>
-      </ul>
-    </div>
-    <!-- /top navigation -->
+			</li>
+			</ul>
+		</div>
+		<!-- /top navigation -->
 
-    <!-- page content -->
-    <div class="right_col" role="main">
-      <div class="row">
-        <!-- <div class="center-block"> -->
-        <div class="login_wrapper">
-          <!-- <div class="col-md-12 col-sm-12 col-xs-12"> -->
+		<!-- page content -->
+		<div class="right_col"
+			role="main">
+			<div class="row">
+				<!-- <div class="center-block"> -->
+				<div class="login_wrapper">
+					<!-- <div class="col-md-12 col-sm-12 col-xs-12"> -->
 
-          <section class="login_content">
-            <form>
-              <h2>Tarjeta | Identificación</h2>
-              <div>
-                <br>
-                <input id="inp_identificacion" type="text" class="form-control" placeholder="cédula" required=""
-                  style="font-size: -webkit-xxx-large; padding: 10%; text-transform: uppercase;" />
-              </div>
-              <div>
-                <button id="btn_check_Identificacion" type="button" class="btn btn-primary btn-lg">Consultar</button>
-              </div>
+					<section class="login_content">
+						<form>
+							<h2>Tarjeta | Identificación</h2>
+							<div>
+								<br>
+								<input id="inp_identificacion"
+									type="text"
+									class="form-control"
+									placeholder="cédula"
+									required=""
+									style="font-size: -webkit-xxx-large; padding: 10%; text-transform: uppercase;" />
+							</div>
+							<div>
+								<button id="btn_check_Identificacion"
+									type="button"
+									class="btn btn-primary btn-lg">Consultar</button>
+							</div>
 
-              <div class="clearfix"></div>
-            </form>
-          </section>
-        </div>
+							<div class="clearfix"></div>
+						</form>
+					</section>
+				</div>
 
-      </div>
-    </div>
-  </div>
+			</div>
+		</div>
+	</div>
 
-  </div>
-  <!-- /page content -->
+	</div>
+	<!-- /page content -->
 
-  <!-- footer content -->
-  <footer>
-    <div class="pull-right">
-      Operaciones TI - DTI - Instituto Costarricense de Electricidad
-    </div>
-    <div class="clearfix"></div>
-  </footer>
-  <!-- /footer content -->
-  </div>
-  </div>
+	<!-- footer content -->
+	<footer>
+		<div class="pull-right">
+			Operaciones TI - DTI - Instituto Costarricense de Electricidad
+		</div>
+		<div class="clearfix"></div>
+	</footer>
+	<!-- /footer content -->
+	</div>
+	</div>
 
 
 
-  <!-- The modal -->
-  <div class="modal fade" id="modalVisitante" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3 id="modalTituloVisitante"> Formulario # <span id="modalVisitanteNoFormulario"></span></h3>
-          <!-- <h1 class="modal-title" id="modalVisitanteTitulo"></h1> -->
-        </div>
+	<!-- The modal -->
+	<div class="modal fade"
+		id="modalVisitante"
+		role="dialog">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 id="modalTituloVisitante"> Formularios Registrados</h3>
+					<!-- <h1 class="modal-title" id="modalVisitanteTitulo"></h1> -->
+				</div>
 
-        <div class="modal-body">
+				<div class="modal-body">
 
-          <!-- <div class="row">
-            <div class="col-sm-12 col-md-12 col-lg-12">
-              
-            </div>
-          </div>
-          <br> -->
-          <div class="row">
-            <div class="col-sm-12 col-md-6 col-lg-6">
-              <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1">Cédula: </span>
-                <input type="text" readonly class="form-control txt_large" id="modalVisitanteCedula"> </input>
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-6 col-lg-6">
-              <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1">Nombre: </span>
-                <input type="text" readonly class="form-control txt_large" id="modalVisitanteNombre"> </input>
-              </div>
-            </div>
-          </div>
 
-          <br>
-          <div class="row">
-            <div class="col-sm-12 col-md-6 col-lg-6">
-              <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1">Empresa / Dependencia </span>
+					<div class="panel panel-default">
+						<div class="panel-heading panel-heading-nav">
+							<ul class="nav nav-tabs">
+								<li role="presentation"
+									class="active">
+									<a href="#one"
+										aria-controls="one"
+										role="tab"
+										data-toggle="tab"><span id="modalVisitanteNoFormulario"></span></a>
+								</li>
+								<!-- <li role="presentation">
+									<a href="#two"
+										aria-controls="two"
+										role="tab"
+										data-toggle="tab">Form</a>
+								</li> -->
+							</ul>
+						</div>
 
-                <input type="text" readonly class="form-control txt_large" id="modalVisitanteEmpresa"> </input>
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-6 col-lg-6">
-              <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1">Autorizador </span>
-                <input type="text" readonly class="form-control txt_large" id="modalVisitanteAutoriza"> </input>
-              </div>
-            </div>
-          </div>
+						<div class="panel-body">
+							<div class="tab-content">
+								<div role="tabpanel"
+									class="tab-pane fade in active"
+									id="one">
 
-          <br>
-          <div class="row">
-            <div class="col-sm-12 col-md-6 col-lg-6">
-              <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1">Permiso desde: </span>
+									<div>
+										<div class="row">
+											<div class="col-sm-12 col-md-12 col-lg-12 text-center">
+												<div>
+													<img id="img_visitante"
+														src="images/pic_user.png"
+														alt="..."
+														class="rounded mx-auto d-block"
+														style="max-height: 150px;">
+												</div>
+											</div>
+										</div>
+										<br>
+										<div class="row">
+											<div class="col-sm-12 col-md-6 col-lg-6">
+												<div class="input-group">
+													<span class="input-group-addon"
+														id="basic-addon1">Cédula: </span>
+													<input type="text"
+														readonly
+														class="form-control txt_large"
+														id="modalVisitanteCedula"> </input>
+												</div>
+											</div>
+											<div class="col-sm-12 col-md-6 col-lg-6">
+												<div class="input-group">
+													<span class="input-group-addon"
+														id="basic-addon1">Nombre: </span>
+													<input type="text"
+														readonly
+														class="form-control txt_large"
+														id="modalVisitanteNombre"> </input>
+												</div>
+											</div>
+										</div>
 
-                <input type="text" readonly class="form-control txt_large" id="modalVisitanteFechaEntrada"> </input>
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-6 col-lg-6">
-              <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1">Permiso hasta: </span>
-                <input type="text" readonly class="form-control txt_large" id="modalVisitanteFechaSalida"> </input>
-              </div>
-            </div>
-          </div>
+										<br>
+										<div class="row">
+											<div class="col-sm-12 col-md-6 col-lg-6">
+												<div class="input-group">
+													<span class="input-group-addon"
+														id="basic-addon1">Empresa / Dependencia </span>
 
-          <br>
-          <div class="row">
-            <div class="col-sm-12 col-md-6 col-lg-6">
-              <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1">Numero de Tarjeta </span>
-                <input type="text" readonly class="form-control txt_tarjeta"
-                  id="modalVisitanteConsecutivoTarjeta"></input>
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-6 col-lg-6">
-              <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1">Visita Sala </span>
-                <input type="text" readonly class="form-control txt_tarjeta" style="color: royalblue;"
-                  id="modalVisitaSala"></input>
-              </div>
-            </div>
-          </div>
-          <hr>
-          <div class="row">
-            <div class="col-sm-12 col-md-12 col-lg-12">
-              <div class="form-group">
-                <div class="col-sm-12 col-md-12 col-lg-12">
-                  <label class="txt_large" for="inp_descripcion">Otros Detalles:</label>
-                  <textarea class="form-control txt_large" disabled id="modalVisitanteOtrosDetalles"
-                    rows="3"></textarea>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button id="btn_cierra_modal" type="button" class="btn btn-danger btn-lg">Cancelar</button>
-          <button id="btn_entrega_tarjeta" type="button" class="btn btn-success btn-lg" data-dismiss="modal">Entregar
-            Tarjeta</button>
-        </div>
-      </div>
-    </div>
-  </div>
+													<input type="text"
+														readonly
+														class="form-control txt_large"
+														id="modalVisitanteEmpresa"> </input>
+												</div>
+											</div>
+											<div class="col-sm-12 col-md-6 col-lg-6">
+												<div class="input-group">
+													<span class="input-group-addon"
+														id="basic-addon1">Autorizador </span>
+													<input type="text"
+														readonly
+														class="form-control txt_large"
+														id="modalVisitanteAutoriza"> </input>
+												</div>
+											</div>
+										</div>
 
-  <!-- jQuery -->
-  <script src="assets/js/jquery/dist/jquery.min.js"></script>
-  <!-- Bootstrap -->
-  <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-  <!-- NProgress -->
-  <script src="vendors/nprogress/nprogress.js"></script>
-  <!-- bootstrap-progressbar -->
-  <script src="vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-  <!-- bootstrap-daterangepicker -->
-  <script src="vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-  <!-- Moment.js -->
-  <script src="vendors/moment/min/moment.min.js"></script>
-  <script src="vendors/moment/locale/es.js"></script>
-  <!-- SweetAlert2 -->
-  <script src="vendors/sweetalert2/dist/sweetalert2.js"></script>
+										<br>
+										<div class="row">
+											<div class="col-sm-12 col-md-6 col-lg-6">
+												<div class="input-group">
+													<span class="input-group-addon"
+														id="basic-addon1">Permiso desde: </span>
 
-  <!-- JS  -->
-  <!-- <script src="js/bootstrap-select.js"></script> -->
+													<input type="text"
+														readonly
+														class="form-control txt_large"
+														id="modalVisitanteFechaEntrada"> </input>
+												</div>
+											</div>
+											<div class="col-sm-12 col-md-6 col-lg-6">
+												<div class="input-group">
+													<span class="input-group-addon"
+														id="basic-addon1">Permiso hasta: </span>
+													<input type="text"
+														readonly
+														class="form-control txt_large"
+														id="modalVisitanteFechaSalida"> </input>
+												</div>
+											</div>
+										</div>
 
-  <!-- Custom Theme Scripts -->
-  <script src="assets/js/custom.js"></script>
-  <script src="assets/js/datacenter.js"></script>
-  <script src="assets/js/formulario.js"></script>
-  <script src="assets/js/tarjeta.js"></script>
+										<br>
+										<div class="row">
+											<div class="col-sm-12 col-md-6 col-lg-6">
+												<div class="input-group">
+													<span class="input-group-addon"
+														id="basic-addon1">Numero de Tarjeta </span>
+													<input type="text"
+														readonly
+														class="form-control txt_tarjeta"
+														id="modalVisitanteConsecutivoTarjeta"></input>
+												</div>
+											</div>
+											<div class="col-sm-12 col-md-6 col-lg-6">
+												<div class="input-group">
+													<span class="input-group-addon"
+														id="basic-addon1">Visita Sala </span>
+													<input type="text"
+														readonly
+														class="form-control txt_tarjeta"
+														style="color: royalblue;"
+														id="modalVisitaSala"></input>
+												</div>
+											</div>
+										</div>
+										<hr>
+										<div class="row">
+											<div class="col-sm-12 col-md-12 col-lg-12">
+												<div class="form-group">
+													<div class="col-sm-12 col-md-12 col-lg-12">
+														<label class="txt_large"
+															for="inp_descripcion">Otros Detalles:</label>
+														<textarea class="form-control txt_large"
+															disabled
+															id="modalVisitanteOtrosDetalles"
+															rows="3"></textarea>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+
+								</div>
+								<div role="tabpanel"
+									class="tab-pane fade"
+									id="two">
+
+									<div>
+										<div class="row">
+											<div class="col-sm-12 col-md-12 col-lg-12 text-center">
+												<div>
+													<img id="img_visitante"
+														src="images/pic_user.png"
+														alt="..."
+														class="rounded mx-auto d-block"
+														style="max-height: 150px;">
+												</div>
+											</div>
+										</div>
+										<br>
+										<div class="row">
+											<div class="col-sm-12 col-md-6 col-lg-6">
+												<div class="input-group">
+													<span class="input-group-addon"
+														id="basic-addon1">Cédula: </span>
+													<input type="text"
+														readonly
+														class="form-control txt_large"
+														id="modalVisitanteCedula"> </input>
+												</div>
+											</div>
+											<div class="col-sm-12 col-md-6 col-lg-6">
+												<div class="input-group">
+													<span class="input-group-addon"
+														id="basic-addon1">Nombre: </span>
+													<input type="text"
+														readonly
+														class="form-control txt_large"
+														id="modalVisitanteNombre"> </input>
+												</div>
+											</div>
+										</div>
+
+										<br>
+										<div class="row">
+											<div class="col-sm-12 col-md-6 col-lg-6">
+												<div class="input-group">
+													<span class="input-group-addon"
+														id="basic-addon1">Empresa / Dependencia </span>
+
+													<input type="text"
+														readonly
+														class="form-control txt_large"
+														id="modalVisitanteEmpresa"> </input>
+												</div>
+											</div>
+											<div class="col-sm-12 col-md-6 col-lg-6">
+												<div class="input-group">
+													<span class="input-group-addon"
+														id="basic-addon1">Autorizador </span>
+													<input type="text"
+														readonly
+														class="form-control txt_large"
+														id="modalVisitanteAutoriza"> </input>
+												</div>
+											</div>
+										</div>
+
+										<br>
+										<div class="row">
+											<div class="col-sm-12 col-md-6 col-lg-6">
+												<div class="input-group">
+													<span class="input-group-addon"
+														id="basic-addon1">Permiso desde: </span>
+
+													<input type="text"
+														readonly
+														class="form-control txt_large"
+														id="modalVisitanteFechaEntrada"> </input>
+												</div>
+											</div>
+											<div class="col-sm-12 col-md-6 col-lg-6">
+												<div class="input-group">
+													<span class="input-group-addon"
+														id="basic-addon1">Permiso hasta: </span>
+													<input type="text"
+														readonly
+														class="form-control txt_large"
+														id="modalVisitanteFechaSalida"> </input>
+												</div>
+											</div>
+										</div>
+
+										<br>
+										<div class="row">
+											<div class="col-sm-12 col-md-6 col-lg-6">
+												<div class="input-group">
+													<span class="input-group-addon"
+														id="basic-addon1">Numero de Tarjeta </span>
+													<input type="text"
+														readonly
+														class="form-control txt_tarjeta"
+														id="modalVisitanteConsecutivoTarjeta"></input>
+												</div>
+											</div>
+											<div class="col-sm-12 col-md-6 col-lg-6">
+												<div class="input-group">
+													<span class="input-group-addon"
+														id="basic-addon1">Visita Sala </span>
+													<input type="text"
+														readonly
+														class="form-control txt_tarjeta"
+														style="color: royalblue;"
+														id="modalVisitaSala"></input>
+												</div>
+											</div>
+										</div>
+										<hr>
+										<div class="row">
+											<div class="col-sm-12 col-md-12 col-lg-12">
+												<div class="form-group">
+													<div class="col-sm-12 col-md-12 col-lg-12">
+														<label class="txt_large"
+															for="inp_descripcion">Otros Detalles:</label>
+														<textarea class="form-control txt_large"
+															disabled
+															id="modalVisitanteOtrosDetalles"
+															rows="3"></textarea>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+
+
+
+
+				<!-- </div> -->
+				<div class="modal-footer">
+					<button id="btn_cierra_modal"
+						type="button"
+						class="btn btn-danger btn-lg">Cancelar</button>
+					<button id="btn_entrega_tarjeta"
+						type="button"
+						class="btn btn-success btn-lg"
+						data-dismiss="modal">Entregar
+						Tarjeta</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- jQuery -->
+	<script src="assets/js/jquery/dist/jquery.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+	<!-- NProgress -->
+	<script src="vendors/nprogress/nprogress.js"></script>
+	<!-- bootstrap-progressbar -->
+	<script src="vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+	<!-- bootstrap-daterangepicker -->
+	<script src="vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+	<!-- Moment.js -->
+	<script src="vendors/moment/min/moment.min.js"></script>
+	<script src="vendors/moment/locale/es.js"></script>
+	<!-- SweetAlert2 -->
+	<script src="vendors/sweetalert2/dist/sweetalert2.js"></script>
+
+	<!-- JS  -->
+	<!-- <script src="js/bootstrap-select.js"></script> -->
+
+	<!-- Custom Theme Scripts -->
+	<script src="assets/js/custom.js"></script>
+	<script src="assets/js/datacenter.js"></script>
+	<script src="assets/js/formulario.js"></script>
+	<script src="assets/js/tarjeta.js"></script>
 
 </body>
+<style>
+	.panel-heading-nav {
+		border-bottom: 0;
+		padding: 10px 0 0;
+	}
+
+	.panel-heading-nav .nav {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+</style>
 
 </html>
 
 <script>
-  $('form').keypress(function (e) {
-    if (e == 13) {
-      return false;
-    }
-  });
+	$('form').keypress(function (e) {
+		if (e == 13) {
+			return false;
+		}
+	});
 
-  $('input').keypress(function (e) {
-    if (e.which == 13) {
-      return false;
-    }
-  });
+	$('input').keypress(function (e) {
+		if (e.which == 13) {
+			return false;
+		}
+	});
 
-  dataCenter.index_cargaSitioXIP;
-  dataCenter.Registro_ReadAll;
-  function dataCenterSelect(id, nombre) {
-    dataCenter.id = id;
-    dataCenter.nombre = nombre;
-    $(".sitio").html(dataCenter.nombre + '  <i style="margin-left: 10px;font-size:24px;" class="fa fa-building-o"></i>');
-  }
-  $(document).ready(function () {
+	dataCenter.index_cargaSitioXIP;
+	dataCenter.Registro_ReadAll;
+	function dataCenterSelect(id, nombre) {
+		dataCenter.id = id;
+		dataCenter.nombre = nombre;
+		$(".sitio").html(dataCenter.nombre + '  <i style="margin-left: 10px;font-size:24px;" class="fa fa-building-o"></i>');
+	}
+	$(document).ready(function () {
 
-    $('#modalVisitante').modal({ backdrop: 'static', keyboard: false, show: false })
+		$("#img_visitante").attr("src", this.img_userDefault);
 
-    $("#btn_cierra_modal").click(function () {
-      $("#inp_identificacion").val("");
-      $("#modalVisitante").modal("toggle");
-    });
+		$('#modalVisitante').modal({ backdrop: 'static', keyboard: false, show: false })
 
-    $("#btn_sitio_sanpedro").click(function () {
-      $(".sitio").html('San Pedro  <i style="margin-left: 10px;font-size:24px;" class="fa fa-building-o"></i>');
-      dataCenter.Registro_ReadAll
-    });
+		$("#btn_cierra_modal").click(function () {
+			$("#inp_identificacion").val("");
+			$("#modalVisitante").modal("toggle");
+		});
 
-    $("#btn_entrega_tarjeta").click(function () {
-      if ($("#btn_entrega_tarjeta").data("accion") == "entregar")
-        tarjeta.Entregar;
-      if ($("#btn_entrega_tarjeta").data("accion") == "recibir")
-        tarjeta.Recibir;
-    });
+		$("#btn_sitio_sanpedro").click(function () {
+			$(".sitio").html('San Pedro  <i style="margin-left: 10px;font-size:24px;" class="fa fa-building-o"></i>');
+			dataCenter.Registro_ReadAll
+		});
+
+		$("#btn_entrega_tarjeta").click(function () {
+			if ($("#btn_entrega_tarjeta").data("accion") == "entregar")
+				tarjeta.Entregar;
+			if ($("#btn_entrega_tarjeta").data("accion") == "recibir")
+				tarjeta.Recibir;
+		});
 
 
-    $("#btn_sitio_sabana").click(function () {
-      $(".sitio").html('Sabana <i style="margin-left: 10px;font-size:24px;" class="fa fa-building-o"></i>');
-    });
+		$("#btn_sitio_sabana").click(function () {
+			$(".sitio").html('Sabana <i style="margin-left: 10px;font-size:24px;" class="fa fa-building-o"></i>');
+		});
 
-    $("#btn_check_Identificacion").click(function () {
-      formulario.buscar;
-    });
+		$("#btn_check_Identificacion").click(function () {
+			formulario.buscar;
+		});
 
-    $("#inp_identificacion").on('keyup', function (e) {
-      if (e.keyCode == 13) {
-        formulario.buscar;
-      }
-    });
+		$("#inp_identificacion").on('keyup', function (e) {
+			if (e.keyCode == 13) {
+				formulario.buscar;
+			}
+		});
 
-  });
+	});
 
 
 </script>

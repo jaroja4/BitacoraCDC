@@ -2,6 +2,8 @@ var url;
 var t = null;
 var mouseX;
 var mouseY;
+var idUsuario;
+var url = '';
 
 $(document).ready(function () {
 
@@ -15,9 +17,49 @@ $(document).ready(function () {
         return false;
     });
 
+
     $(document).mousemove(function (e) {
         mouseX = e.pageX;
         mouseY = e.pageY;
+    });
+
+    $('#btnCambiarPasswd').click(function () {
+      if ($('#newPasswd').val().length >= 8 &&
+          $('#newPasswd').val() == $('#re-newPasswd').val() ){
+
+        $('#newPasswd').val($('#newPasswd').val().trim());
+
+        $('#btnCambiarPasswd').attr("disabled", "disabled");
+
+        $.ajax({
+            type: "POST",
+            url: "class/Usuario.php",
+            data: {
+                action: 'UpdatePasswd',
+                id: idUsuario,
+                password: $('#newPasswd').val(),
+                beforeSend: function () {
+                    $("#error").fadeOut();
+                }
+            }
+        })
+        .done(function (e) {
+            var data = JSON.parse(e);
+            if (data.status == 'passwdOK') {
+                if (data.url)
+                    location.href = data.url;
+            }
+        })
+        .fail(function (e) {
+            showError(e);
+        })
+        .always(function () {
+            $("#btnLogin").removeAttr("disabled");
+        });
+      }
+      else{
+        alert("Error al cambiar la contraseña");
+      }
     });
 
     $('#btnKeyboar').click(function () {
@@ -51,21 +93,81 @@ function Login() {
         .done(function (e) {
             var data = JSON.parse(e);
             if (data.status == 'login') {
+                $("#frmLogin").hide();
+                $("#frmChangePSWD").hide();
+                $("#frmCheckToken").show();
                 if (data.url)
-                    location.href = data.url;
+                    url = data.url;
+
+
+                idUsuario = data.id;
+
+                $('#btnCheckToken').click(function (e) {
+                  e.preventDefault()
+                  $('#token').val($('#token').val().trim());
+                  if ($('#token').val().length == 4){
+
+                    $('#token').attr("disabled", "disabled");
+
+                    $.ajax({
+                        type: "POST",
+                        url: "class/Usuario.php",
+                        data: {
+                            action: 'CheckToken',
+                            id: idUsuario,
+                            token: $('#token').val(),
+                            beforeSend: function () {
+                                $("#error").fadeOut();
+                            }
+                        }
+                    })
+                    .done(function (e) {
+                        var data = JSON.parse(e);
+                        if (data.status == 'TokenOK') {
+                            if (url)
+                                location.href = url;
+                        }
+                        if (data.status == false) {
+                          Swal.fire({
+                            position: "top-end",
+                            type: 'error',
+                            title: 'Token Invalido',
+                            showConfirmButton: false,
+                            timer: 1500,
+                          });
+                        }
+                    })
+                    .fail(function (e) {
+                        showError(e);
+                    })
+                    .always(function () {
+                        $("#btnLogin").removeAttr("disabled");
+                        $('#token').removeAttr("disabled");
+
+                    });
+                  }
+                  else{
+                    alert("Error TOKEN");
+                  }
+                });
             }
             else if (data.status == 'inactivo')
                 $("#error").fadeIn(500, function () {
-                    $("#error").html(`                    
+                    $("#error").html(`
                     <div class="alert alert-danger alert-dismissible fade in" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
                         Usuario <strong>INACTIVO</strong>.
                     </div>
                 `);
                 });
+            else if (data.status == "cambiarPWD"){
+                idUsuario = data.id;
+                $('#frmLogin').hide();
+                $('#frmChangePSWD').show();
+            }
             else if (data.status == 'noexiste')
                 $("#error").fadeIn(500, function () {
-                    $("#error").html(`                    
+                    $("#error").html(`
                     <div class="alert alert-danger alert-dismissible fade in" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
                         Usuario <strong>NO EXISTE</strong>, favor registrarse.
@@ -91,7 +193,7 @@ function Login() {
 };
 
 function showError(e) {
-    //$(".modal").css({ display: "none" });  
+    //$(".modal").css({ display: "none" });
     var data = JSON.parse(e.responseText);
     swal({
         type: 'error',

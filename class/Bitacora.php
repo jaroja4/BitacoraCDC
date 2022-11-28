@@ -52,7 +52,7 @@ class Bitacora{
         try {
             $sql="SELECT b.id, b.idFormulario, b.idVisitante, b.idTarjeta, b.entrada, b.salida,
                     f.consecutivo consecutivoFormulario, f.motivoVisita, f.otrosDetalles,
-                    u.nombre, u.empresa,
+                    u.nombre, u.empresa, u.cedula,
                     t.consecutivo consecutivoTarjeta,
                     (Select CONCAT(dc.nombre, ', ', s.nombre) As sala 
                         FROM dataCenter dc

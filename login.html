@@ -2,48 +2,157 @@
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <title>Portal de Centros de Datos Corporativos</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="vendors/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="assets/css/loginForm.css">
-
+	<meta charset="UTF-8">
+	<title>Portal de Centros de Datos Corporativos</title>
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet"
+		href="vendors/bootstrap/dist/css/bootstrap.css">
+	<link rel="stylesheet"
+		href="assets/css/loginForm.css">
+	<script src="assets/js/jquery/dist/jquery.js"></script>
+	<!--
+		SweetAlert
+		-->
+	<script src="vendors/sweetalert2/dist/sweetalert2.all.min.js"></script>
+	<link href="vendors/sweetalert2/dist/sweetalert2.min.css"
+		rel="stylesheet">
 </head>
 
 
 <body>
 
-    <header>
-    </header>
+	<header>
+	</header>
 
-    <div class="signin-form">
-        <div class="container">
-            <div id="error"></div>
-            <form id="frmLogin" name="frmLogin"
-                style="font-family:Quicksand, sans-serif;background-color:rgba(44,40,52,0.73);width:320px;padding:40px;">
-                <div>
-                    <a href="index.html">
-                        <img class="img-rounded img-responsive" src="images/logo_GrupoICE.png" id="image"
-                            style="width:auto;height:auto;margin-bottom: 2vh;">
-                    </a>
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="text" id="correo" name="correo" placeholder="correo@ice.go.cr"
-                        required>
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="password" id="password" name="password" placeholder="contraseña"
-                        required>
-                </div>
-                <button class="btn btn-default" type="submit" value="Ingresar" id="btnLogin"
-                    style="width:100%;height:100%;background-color: #214a80;color: #fff;border-color: #122b40;">Ingresar</button>
-            </form>
-        </div>
-    </div>
+	<div class="signin-form">
+		<div class="container">
+			<div id="error"></div>
+			<form id="frmLogin"
+				name="frmLogin"
+				style="font-family:Quicksand, sans-serif;background-color:rgba(44,40,52,0.73);width:320px;padding:40px;">
+				<div>
+					<a href="index.html">
+						<img class="img-rounded img-responsive"
+							src="images/logo_GrupoICE.png"
+							id="image"
+							style="width:auto;height:auto;margin-bottom: 2vh;">
+					</a>
+				</div>
+				<div class="form-group">
+					<input class="form-control"
+						type="text"
+						id="correo"
+						name="correo"
+						placeholder="correo@ice.go.cr"
+						required>
+				</div>
+				<div class="form-group">
+					<input class="form-control"
+						type="password"
+						id="password"
+						name="password"
+						placeholder="contraseña"
+						required>
+				</div>
+				<button class="btn btn-default"
+					type="submit"
+					value="Ingresar"
+					id="btnLogin"
+					style="width:100%;height:100%;background-color: #214a80;color: #fff;border-color: #122b40;">Ingresar</button>
+			</form>
+
+			<form id="frmChangePSWD"
+				name="frmChangePSWD"
+				style="display:none;font-family:Quicksand, sans-serif;background-color:rgba(44,40,52,0.73);width:320px;padding:40px;"
+				autocomplete="off">
+				<div>
+					<a href="login.html">
+						<img class="img-rounded img-responsive"
+							src="images/logo_GrupoICE.png"
+							id="image"
+							style="width:auto;height:auto;margin-bottom: 2vh;">
+					</a>
+				</div>
+				<div class="form-group">
+					<input class="form-control"
+						type="password"
+						id="newPasswd"
+						name="newPasswd"
+						placeholder="Nueva contraseña"
+						autocomplete="new-password"
+						required
+						autocomplete="off"
+						readonly
+						onfocus="this.removeAttribute('readonly');">
+				</div>
+				<div class="form-group">
+					<input class="form-control"
+						type="password"
+						id="re-newPasswd"
+						name="re-newPasswd"
+						placeholder="Confirme contraseña"
+						autocomplete="new-password"
+						required
+						autocomplete="off"
+						readonly
+						onfocus="this.removeAttribute('readonly');">
+				</div>
+				<button class="btn btn-default"
+					type="submit"
+					value="Cambiar"
+					id="btnCambiarPasswd"
+					style="width:100%;height:100%;background-color: #214a80;color: #fff;border-color: #122b40;">Cambiar</button>
+			</form>
+
+
+			<form id="frmCheckToken"
+				name="frmCheckToken"
+				style="display:none;font-family:Quicksand, sans-serif;background-color:rgba(44,40,52,0.73);width:320px;padding:40px;"
+				autocomplete="off">
+				<div>
+					<a href="login.html">
+						<img class="img-rounded img-responsive"
+							src="images/logo_GrupoICE.png"
+							id="image"
+							style="width:auto;height:auto;margin-bottom: 2vh;">
+					</a>
+				</div>
+				<div class="form-group">
+					<input class="form-control"
+						type="text"
+						id="token"
+						name="token"
+						placeholder="TOKEN"
+						autocomplete="new-password"
+						required
+						autocomplete="off"
+						readonly
+						onfocus="this.removeAttribute('readonly');">
+				</div>
+				<button class="btn btn-default"
+					type="submit"
+					value="Enviar"
+					id="btnCheckToken"
+					style="width:100%;height:100%;background-color: #214a80;color: #fff;border-color: #122b40;">Enviar</button>
+			</form>
+		</div>
+	</div>
 
 </body>
-<script src="assets/js/jquery/dist/jquery.js" type="text/jscript"></script>
-<script src="assets/js/login.js" languaje="javascript" type="text/javascript"></script>
+
+
+<script>
+	$(document).ready(function () {
+
+	});
+</script>
+
+
+type="text/jscript"></script>
+<script src="assets/js/login.js"
+	languaje="javascript"
+	type="text/javascript"></script>
 <script src="vendors/bootstrap/dist/js/bootstrap.js"></script>
 <script src="vendors/validator/validator.js"></script>
 

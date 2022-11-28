@@ -2,297 +2,337 @@
 <html lang="es">
 
 <head>
-  <!-- check User session -->
-  <script src="assets/js/jquery/dist/jquery.min.js"></script>
-  <script src="assets/js/session.js"></script>
-  <script>
-    Session.Check();
-  </script>
-  <!-- /End check -->
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <!-- Meta, title, CSS, favicons, etc. -->
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- <link rel="icon" href="images/favicon.ico" type="image/ico" /> -->
+	<!-- check User session -->
+	<script src="assets/js/jquery/dist/jquery.min.js"></script>
+	<script src="assets/js/session.js"></script>
+	<script>
+		Session.Check();
+	</script>
+	<!-- /End check -->
+	<meta http-equiv="Content-Type"
+		content="text/html; charset=UTF-8">
+	<!-- Meta, title, CSS, favicons, etc. -->
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible"
+		content="IE=edge">
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1">
+	<!-- <link rel="icon" href="images/favicon.ico" type="image/ico" /> -->
 
-  <title>Bitácora CDC | DTI</title>
+	<title>Bitácora CDC | DTI</title>
 
-  <!-- Bootstrap -->
-  <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Font Awesome -->
-  <link href="vendors/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
-  <!-- Datatables -->
-  <link href="vendors/datatables.net/datatables.min.css" rel="stylesheet">
-  <link href="vendors/datatables.net/DataTables-1.10.18/css/dataTables.bootstrap.min.css" rel="stylesheet">
-  <!-- SweetAlert -->
-  <link href="vendors/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
-  <!-- RangePicker -->
-  <link href="vendors/daterangepicker/daterangepicker.css" rel="stylesheet">
-  <!-- NProgress -->
-  <link href="vendors/nprogress/nprogress.css" rel="stylesheet">
-  <!-- bootstrap-daterangepicker -->
-  <link href="vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-  <!-- Custom Theme Style -->
-  <link href="assets/css/custom.min.css" rel="stylesheet">
-  <link href="assets/css/modal_accordion_formulario_ingreso.css" rel="stylesheet">
+	<!-- Bootstrap -->
+	<link href="vendors/bootstrap/dist/css/bootstrap.min.css"
+		rel="stylesheet">
+	<!-- Font Awesome -->
+	<link href="vendors/font-awesome-4.7.0/css/font-awesome.min.css"
+		rel="stylesheet">
+	<!-- Datatables -->
+	<link href="vendors/datatables.net/datatables.min.css"
+		rel="stylesheet">
+	<link href="vendors/datatables.net/DataTables-1.10.18/css/dataTables.bootstrap.min.css"
+		rel="stylesheet">
+	<!-- SweetAlert -->
+	<link href="vendors/sweetalert2/dist/sweetalert2.min.css"
+		rel="stylesheet">
+	<!-- RangePicker -->
+	<link href="vendors/daterangepicker/daterangepicker.css"
+		rel="stylesheet">
+	<!-- NProgress -->
+	<link href="vendors/nprogress/nprogress.css"
+		rel="stylesheet">
+	<!-- bootstrap-daterangepicker -->
+	<link href="vendors/bootstrap-daterangepicker/daterangepicker.css"
+		rel="stylesheet">
+	<!-- Custom Theme Style -->
+	<link href="assets/css/custom.min.css"
+		rel="stylesheet">
+	<link href="assets/css/modal_accordion_formulario_ingreso.css"
+		rel="stylesheet">
 
-  <link href='vendors/select2/css/select2.css' rel='stylesheet' type='text/css'>
+	<link href='vendors/select2/css/select2.css'
+		rel='stylesheet'
+		type='text/css'>
 
 
 
 </head>
 
 <body class="nav-md">
-  <div class="container body">
-    <div class="main_container">
-      <div class="col-md-3 left_col">
-        <div class="left_col scroll-view">
-          <div class="navbar nav_title" style="border: 0;">
-            <a href="index.html" class="site_title"><i class="fa fa-bullhorn"></i> <span>Centros de Datos Corporativos
-              </span></a>
-          </div>
+	<div class="container body">
+		<div class="main_container">
+			<div class="col-md-3 left_col">
+				<div class="left_col scroll-view">
+					<div class="navbar nav_title"
+						style="border: 0;">
+						<a href="index.html"
+							class="site_title"><i class="fa fa-bullhorn"></i> <span>Centros de Datos Corporativos
+							</span></a>
+					</div>
 
-          <div class="clearfix"></div>
+					<div class="clearfix"></div>
 
-          <!-- menu profile quick info -->
-          <div class="profile clearfix">
-            <div class="profile_pic">
-              <img src="images/LogoICESmall.png" alt="..."
-                style="width:70px;height:70px;border-radius:50%;margin-top:10%">
-            </div>
-            <div class="profile_info">
-              <span><span>Bienvenido,</span></span>
-              <h2>Usuario de Seguridad</h2>
-            </div>
-          </div>
-          <!-- /menu profile quick info -->
+					<!-- menu profile quick info -->
+					<div class="profile clearfix">
+						<div class="profile_pic">
+							<img src="images/LogoICESmall.png"
+								alt="..."
+								style="width:70px;height:70px;border-radius:50%;margin-top:10%">
+						</div>
+						<div class="profile_info">
+							<span><span>Bienvenido,</span></span>
+							<h2>Usuario de Seguridad</h2>
+						</div>
+					</div>
+					<!-- /menu profile quick info -->
 
-          <br />
+					<br />
 
-          <!-- sidebar menu -->
-          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-            <div class="menu_section">
-              <h3 id='call_userName'></h3>
-              <ul id="menubox" class="nav side-menu">
+					<!-- sidebar menu -->
+					<div id="sidebar-menu"
+						class="main_menu_side hidden-print main_menu">
+						<div class="menu_section">
+							<h3 id='call_userName'></h3>
+							<ul id="menubox"
+								class="nav side-menu">
 
-              </ul>
-            </div>
-          </div>
-          <!-- /sidebar menu -->
-        </div>
-      </div>
+							</ul>
+						</div>
+					</div>
+					<!-- /sidebar menu -->
+				</div>
+			</div>
 
-      <!-- top navigation -->
-      <div class="top_nav">
-        <div class="nav_menu">
-          <nav>
-            <div class="nav toggle">
-              <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-            </div>
+			<!-- top navigation -->
+			<div class="top_nav">
+				<div class="nav_menu">
+					<nav>
+						<div class="nav toggle">
+							<a id="menu_toggle"><i class="fa fa-bars"></i></a>
+						</div>
 
-            <ul class="nav navbar-nav navbar-right">
-              <li class="">
-                <a id="call_name" href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
-                  aria-expanded="false">
-                  <img src="images/img.png" alt="">Usuario de Seguridad
-                  <span class=" fa fa-angle-down"></span>
-                </a>
-                <ul class="dropdown-menu dropdown-usermenu pull-right">
-                  <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Salir</a></li>
-                </ul>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-      <!-- /top navigation -->
+						<ul class="nav navbar-nav navbar-right">
+							<li class="">
+								<a id="call_name"
+									href="javascript:;"
+									class="user-profile dropdown-toggle"
+									data-toggle="dropdown"
+									aria-expanded="false">
+									<img src="images/img.png"
+										alt="">Usuario de Seguridad
+									<span class=" fa fa-angle-down"></span>
+								</a>
+								<ul class="dropdown-menu dropdown-usermenu pull-right">
+									<li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Salir</a></li>
+								</ul>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+			<!-- /top navigation -->
 
-      <!-- page content -->
-      <div class="right_col" role="main">
-        <div class="page-title">
-          <div class="title_left">
-            <h3>Formularios <small>de acceso a personal autorizado</small></h3>
-          </div>
-        </div>
+			<!-- page content -->
+			<div class="right_col"
+				role="main">
+				<div class="page-title">
+					<div class="title_left">
+						<h3>Formularios <small>de acceso a personal autorizado</small></h3>
+					</div>
+				</div>
 
-        <div class="clearfix"></div>
+				<div class="clearfix"></div>
 
-        <div class="row">
-          <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="x_panel">
-              <div class="x_content">
-                <div class="row">
-                  <div class="col-sm-12 col-md-12 col-lg-12">
-                    <form>
-                      <div class="col-sm-12 col-md-12 col-lg-12 form-group">
-                        <label for="sel_tipoFiltro">Seleccione el Parametro de Busqueda:</label>
-                        <select id="sel_tipoFiltro" name="tipoFiltro">
-                          <option value='mail'>Correo</option>
-                          <option value='samAccountName'>Usuario</option>
-                          <option value='samAccountName'>Nombre</option>
-                          <option value='description'>Cedula</option>
-                        </select>
-                      </div>
-                      <div class="col-sm-12 col-md-12 col-lg-12 form-group">
-                        <label for="inp_searchValue">Inserte el Valor a Buscar:</label>
-                        <input id="inp_searchValue" type="text" name="searchValue">
-                      </div>
-                    </form>
-                  </div>
-                </div>
+				<div class="row">
+					<div class="col-md-12 col-sm-12 col-xs-12">
+						<div class="x_panel">
+							<div class="x_content">
+								<div class="row">
+									<div class="col-sm-12 col-md-12 col-lg-12">
+										<form>
+											<div class="col-sm-12 col-md-12 col-lg-12 form-group">
+												<label for="sel_tipoFiltro">Seleccione el Parametro de Busqueda:</label>
+												<select id="sel_tipoFiltro"
+													name="tipoFiltro">
+													<option value='mail'>Correo</option>
+													<option value='samAccountName'>Usuario</option>
+													<option value='samAccountName'>Nombre</option>
+													<option value='description'>Cedula</option>
+												</select>
+											</div>
+											<div class="col-sm-12 col-md-12 col-lg-12 form-group">
+												<label for="inp_searchValue">Inserte el Valor a Buscar:</label>
+												<input id="inp_searchValue"
+													type="text"
+													name="searchValue">
+											</div>
+										</form>
+									</div>
+								</div>
 
-                <div class="row">
-                  <div class="col-sm-12 col-md-12 col-lg-12">
-                    <button type="button" class="btn btn-primary" id="btn_buscarLDAP">Enviar</button>
-                  </div>
-                </div>
+								<div class="row">
+									<div class="col-sm-12 col-md-12 col-lg-12">
+										<button type="button"
+											class="btn btn-primary"
+											id="btn_buscarLDAP">Enviar</button>
+									</div>
+								</div>
 
-                <div class="row">
-                  <div class="col-sm-12 col-md-12 col-lg-12">
-                    <pre id="dataResult">
+								<div class="row">
+									<div class="col-sm-12 col-md-12 col-lg-12">
+										<img id="img_visitante"
+											src="images/pic_user.png"
+											alt="..."
+											class="rounded mx-auto d-block"
+											style="max-height: 300px;">
+										<pre id="dataResult">
                     </pre>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- /page content -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /page content -->
 
 
-      <!-- footer content -->
-      <footer>
-        <div class="pull-right">
-          Operaciones TI - DTI - Instituto Costarricense de Electricidad
-        </div>
-        <div class="clearfix"></div>
-      </footer>
-      <!-- /footer content -->
-    </div>
-  </div>
+			<!-- footer content -->
+			<footer>
+				<div class="pull-right">
+					Operaciones TI - DTI - Instituto Costarricense de Electricidad
+				</div>
+				<div class="clearfix"></div>
+			</footer>
+			<!-- /footer content -->
+		</div>
+	</div>
 
-  <!-- jQuery -->
-  <script src="assets/js/jquery/dist/jquery.min.js"></script>
-  <!-- Bootstrap -->
-  <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-  <!-- JS dataTables -->
-  <script src="vendors/datatables.net/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
-  <script src="vendors/datatables.net/DataTables-1.10.18/js/dataTables.bootstrap.min.js"></script>
-  <!-- NProgress -->
-  <script src="vendors/nprogress/nprogress.js"></script>
-  <!-- bootstrap-progressbar -->
-  <script src="vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-  <!-- Seleect2 -->
-  <script src='vendors/select2/js/select2.js'></script>
-  <!-- Moment -->
-  <script src="vendors/moment/moment.min.js"></script>
-  <script src="vendors/moment/locale/es.js"></script>
-  <!-- SweetAlert2 -->
-  <script src="vendors/sweetalert2/dist/sweetalert2.js"></script>
-  <!-- bootstrap-daterangepicker -->
-  <script src="vendors/daterangepicker/daterangepicker.min.js"></script>
-  <!-- Custom Theme Scripts -->
-  <script src="assets/js/custom.js"></script>
-  <script src="assets/js/usuario.js"></script>
+	<!-- jQuery -->
+	<script src="assets/js/jquery/dist/jquery.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+	<!-- JS dataTables -->
+	<script src="vendors/datatables.net/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
+	<script src="vendors/datatables.net/DataTables-1.10.18/js/dataTables.bootstrap.min.js"></script>
+	<!-- NProgress -->
+	<script src="vendors/nprogress/nprogress.js"></script>
+	<!-- bootstrap-progressbar -->
+	<script src="vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+	<!-- Seleect2 -->
+	<script src='vendors/select2/js/select2.js'></script>
+	<!-- Moment -->
+	<script src="vendors/moment/moment.min.js"></script>
+	<script src="vendors/moment/locale/es.js"></script>
+	<!-- SweetAlert2 -->
+	<script src="vendors/sweetalert2/dist/sweetalert2.js"></script>
+	<!-- bootstrap-daterangepicker -->
+	<script src="vendors/daterangepicker/daterangepicker.min.js"></script>
+	<!-- Custom Theme Scripts -->
+	<script src="assets/js/custom.js"></script>
+	<script src="assets/js/usuario.js"></script>
 
 </body>
 
 </html>
 
 <style>
-  pre {
-    outline: 1px solid #ccc;
-    padding: 5px;
-    margin: 5px;
-    height: 50vh;
-  }
+	pre {
+		outline: 1px solid #ccc;
+		padding: 5px;
+		margin: 5px;
+		height: 50vh;
+	}
 
-  .string {
-    color: green;
-  }
+	.string {
+		color: green;
+	}
 
-  .number {
-    color: darkorange;
-  }
+	.number {
+		color: darkorange;
+	}
 
-  .boolean {
-    color: blue;
-  }
+	.boolean {
+		color: blue;
+	}
 
-  .null {
-    color: magenta;
-  }
+	.null {
+		color: magenta;
+	}
 
-  .key {
-    color: red;
-  }
+	.key {
+		color: red;
+	}
 </style>
 
 <script>
 
-  $(document).ready(function () {
+	$(document).ready(function () {
 
-    $('input').on('keydown', function (e) {
-      /* Prevent form submission */
-      if (e.keyCode == 13) {
-        return false;
-      }
-    })
+		$('input').on('keydown', function (e) {
+			/* Prevent form submission */
+			if (e.keyCode == 13) {
+				return false;
+			}
+		})
 
-    $("#btn_buscarLDAP").click(function () {
-      var values = { tipoFiltro: "", searchValue: "" };
-      values.tipoFiltro = $("#sel_tipoFiltro").val();
-      values.searchValue = $("#inp_searchValue").val();
+		$("#btn_buscarLDAP").click(function () {
+			var values = { tipoFiltro: "", searchValue: "" };
+			values.tipoFiltro = $("#sel_tipoFiltro").val();
+			values.searchValue = $("#inp_searchValue").val();
 
-      var miAccion = "BuscarLDAP";
-      $.ajax({
-        type: "POST",
-        url: "class/checkLDAP.php",
-        data: {
-          action: miAccion,
-          obj: JSON.stringify(values)
-        }
-      })
-        .done(function (e) {
-          drawLDAPResult(e);
-        })
+			var miAccion = "BuscarLDAP";
+			$.ajax({
+				type: "POST",
+				url: "class/checkLDAP.php",
+				data: {
+					action: miAccion,
+					obj: JSON.stringify(values)
+				}
+			})
+				.done(function (e) {
+					drawLDAPResult(e);
+				})
 
-    });
-  })
+		});
+	})
 
-  function drawLDAPResult(e) {
+	function drawLDAPResult(e) {
 
-    var data = JSON.parse(e);
-    var str = JSON.stringify(data, undefined, 4);
+		var data = JSON.parse(e);
+		var str = JSON.stringify(data, undefined, 4);
 
-    // output(str);
-    $("#dataResult").html(syntaxHighlight(str));
-  }
+		// output(str);
+		$("#dataResult").html(syntaxHighlight(str));
+	}
 
-  // function output(inp) {
-  //   $("#dataResult").html(inp);
-  // }
+	// function output(inp) {
+	//   $("#dataResult").html(inp);
+	// }
 
-  function syntaxHighlight(json) {
-    json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
-      var cls = 'number';
-      if (/^"/.test(match)) {
-        if (/:$/.test(match)) {
-          cls = 'key';
-        } else {
-          cls = 'string';
-        }
-      } else if (/true|false/.test(match)) {
-        cls = 'boolean';
-      } else if (/null/.test(match)) {
-        cls = 'null';
-      }
-      return '<span class="' + cls + '">' + match + '</span>';
-    });
-  }
+	function syntaxHighlight(json) {
+		data = JSON.parse(json);
+		image = data.rh_image;
+		delete data.rh_image;  // or delete person["age"];
+		$("#img_visitante").attr("src", image);
+
+		json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+		return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+			var cls = 'number';
+			if (/^"/.test(match)) {
+				if (/:$/.test(match)) {
+					cls = 'key';
+				} else {
+					cls = 'string';
+				}
+			} else if (/true|false/.test(match)) {
+				cls = 'boolean';
+			} else if (/null/.test(match)) {
+				cls = 'null';
+			}
+			return '<span class="' + cls + '">' + match + '</span>';
+		});
+	}
 
 
 

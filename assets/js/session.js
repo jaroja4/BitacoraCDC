@@ -1,5 +1,8 @@
 var Session = {
     state: undefined,
+    name: undefined,
+    id: undefined,
+    rol: undefined,
     Check() {
         Session.state = undefined
         $.ajax({
@@ -21,6 +24,9 @@ var Session = {
                         Session.setUsername(data.username, data.nombre);
                         Session.setMenu(data.eventos);
                         Session.state = true;
+                        Session.id  = data.id;
+                        Session.name = data.nombre;
+                        Session.rol = data.listarol;
                         // Session.sideBarDraw(data);
                         $(".main_container").removeAttr("style");
                         break;
@@ -36,7 +42,7 @@ var Session = {
                             title: 'El usuario no tiene credenciales para ver esta página.',
                             showConfirmButton: false,
                             timer: 3000
-                        });*/                        
+                        });*/
                         location.href = 'index.html';
                         break;
                     case 'invalido':
@@ -68,19 +74,10 @@ var Session = {
             item.menu = item.menu.replace(/ /g, "_");
             item.modulo = item.modulo.replace(/ /g, "_");
             item.opcion  = item.opcion.replace(/ /g, "_");
-            //Si no existe el modulo lo crea junto con sus Menu y Opción
-            if (!$(`#${item.modulo}`).length) {
+            //Si no existe el menu lo crea junto con sus Menu y Opción
+            if (!$(`#${item.menu}`).length) {
                 //Agrega el Modulo
-                Session.AgregaModulo(item.iconoModulo, item.modulo);
-                //Agrega el Menu
-                Session.AgregaMenu(item.modulo, item.iconoMenu, item.menu);
-                //Agrega la opcion
-                Session.AgregaOpcion(item.menu, item.url, item.opcion);
-            }
-            //Si no existe el Menu lo crea junto con sus Opción
-            else if (!$(`#${item.menu}`).length) {
-                //Agrega el Menu
-                Session.AgregaMenu(item.modulo, item.iconoMenu, item.menu);
+                Session.AgregaModulo(item.iconoMenu, item.menu);
                 //Agrega la opcion
                 Session.AgregaOpcion(item.menu, item.url, item.opcion);
             }
@@ -102,9 +99,7 @@ var Session = {
     },
     AgregaModulo(i, m) {
         $('#menubox').append(`
-            <li>
-                <a>
-                    <i class="${i}"></i> ${m.replace(/_/g, " ")}
+            <li><a><i class="${i}"></i> ${m.replace(/_/g, " ")}
                     <span class="fa fa-chevron-down"></span>
                 </a>
                 <ul id="${m}" class="nav child_menu">
@@ -112,21 +107,9 @@ var Session = {
             </li>
         `);
     },
-    AgregaMenu(mo, ic, me) {
-        $(`#${mo}`).append(`
-            <li>
-                <a>
-                    <i class="${ic} fa-xs"></i> ${me.replace(/_/g, " ")} 
-                    <span class="fa fa-chevron-down"></span>
-                </a>
-                <ul id="${me}" class="nav child_menu">
-                </ul>
-            </li>
-            `);
-    },
     AgregaOpcion(m, u, o) {
         $(`#${m}`).append(`
-            <li class="sub_menu"><a href="${u}">${o.replace(/_/g, " ")}</a></li>
+            <li><a href="${u}">${o.replace(/_/g, " ")}</a></li>
         `);
     },
     End() {

@@ -2,121 +2,149 @@
 <html lang="es">
 
 <head>
-  <!-- check User session -->
-  <script src="assets/js/jquery/dist/jquery.min.js"></script>
-  <script src="assets/js/session.js"></script>
-  <script>
-    Session.Check();
-  </script>
-  <!-- /End check -->
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <!-- Meta, title, CSS, favicons, etc. -->
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- <link rel="icon" href="images/favicon.ico" type="image/ico" /> -->
+	<!-- check User session -->
+	<script src="assets/js/jquery/dist/jquery.min.js"></script>
+	<script src="assets/js/session.js"></script>
+	<script>
+		Session.Check();
+	</script>
+	<!-- /End check -->
+	<meta http-equiv="Content-Type"
+		content="text/html; charset=UTF-8">
+	<!-- Meta, title, CSS, favicons, etc. -->
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible"
+		content="IE=edge">
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1">
+	<!-- <link rel="icon" href="images/favicon.ico" type="image/ico" /> -->
 
-  <title>Bitácora CDC | DTI</title>
+	<title>Bitácora CDC | DTI</title>
 
-  <!-- Bootstrap -->
-  <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Font Awesome -->
-  <link href="vendors/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
-  <!-- Datatables -->
-  <link href="vendors/datatables.net/datatables.min.css" rel="stylesheet">
-  <link href="vendors/datatables.net/DataTables-1.10.18/css/dataTables.bootstrap.min.css" rel="stylesheet">
-  <!-- SweetAlert -->
-  <link href="vendors/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
-  <!-- RangePicker -->
-  <link href="vendors/daterangepicker/daterangepicker.css" rel="stylesheet">
-  <!-- NProgress -->
-  <link href="vendors/nprogress/nprogress.css" rel="stylesheet">
-  <!-- bootstrap-daterangepicker -->
-  <link href="vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-  <!-- Custom Theme Style -->
-  <link href="assets/css/custom.min.css" rel="stylesheet">
-  <link href="assets/css/modal_accordion_formulario_ingreso.css" rel="stylesheet">
+	<!-- Bootstrap -->
+	<link href="vendors/bootstrap/dist/css/bootstrap.min.css"
+		rel="stylesheet">
+	<!-- Font Awesome -->
+	<link href="vendors/font-awesome-4.7.0/css/font-awesome.min.css"
+		rel="stylesheet">
+	<!-- Datatables -->
+	<link href="vendors/datatables.net/datatables.min.css"
+		rel="stylesheet">
+	<link href="vendors/datatables.net/DataTables-1.10.18/css/dataTables.bootstrap.min.css"
+		rel="stylesheet">
+	<!-- SweetAlert -->
+	<link href="vendors/sweetalert2/dist/sweetalert2.min.css"
+		rel="stylesheet">
+	<!-- RangePicker -->
+	<link href="vendors/daterangepicker/daterangepicker.css"
+		rel="stylesheet">
+	<!-- NProgress -->
+	<link href="vendors/nprogress/nprogress.css"
+		rel="stylesheet">
+	<!-- bootstrap-daterangepicker -->
+	<link href="vendors/bootstrap-daterangepicker/daterangepicker.css"
+		rel="stylesheet">
+	<!-- Custom Theme Style -->
+	<link href="assets/css/custom.min.css"
+		rel="stylesheet">
+	<link href="assets/css/modal_accordion_formulario_ingreso.css"
+		rel="stylesheet">
 
-  <link href='vendors/select2/css/select2.css' rel='stylesheet' type='text/css'>
+	<link href='vendors/select2/css/select2.css'
+		rel='stylesheet'
+		type='text/css'>
+	<link href='assets/css/listaUsuarios.css'
+		rel='stylesheet'
+		type='text/css'>
 
 
 
 </head>
 
 <body class="nav-md">
-  <div class="container body">
-    <div class="main_container">
-      <div class="col-md-3 left_col">
-        <div class="left_col scroll-view">
-          <div class="navbar nav_title" style="border: 0;">
-            <a href="index.html" class="site_title"><i class="fa fa-bullhorn"></i> <span>Centros de Datos Corporativos
-              </span></a>
-          </div>
+	<div class="container body">
+		<div class="main_container">
+			<div class="col-md-3 left_col">
+				<div class="left_col scroll-view">
+					<div class="navbar nav_title"
+						style="border: 0;">
+						<a href="index.html"
+							class="site_title"><i class="fa fa-bullhorn"></i> <span>Centros de Datos Corporativos
+							</span></a>
+					</div>
 
-          <div class="clearfix"></div>
+					<div class="clearfix"></div>
 
-          <!-- menu profile quick info -->
-          <div class="profile clearfix">
-            <div class="profile_pic">
-              <img src="images/LogoICESmall.png" alt="..."
-                style="width:70px;height:70px;border-radius:50%;margin-top:10%">
-            </div>
-            <div class="profile_info">
-              <span><span>Bienvenido,</span></span>
-              <h2>Usuario de Seguridad</h2>
-            </div>
-          </div>
-          <!-- /menu profile quick info -->
+					<!-- menu profile quick info -->
+					<div class="profile clearfix">
+						<div class="profile_pic">
+							<img src="images/LogoICESmall.png"
+								alt="..."
+								style="width:70px;height:70px;border-radius:50%;margin-top:10%">
+						</div>
+						<div class="profile_info">
+							<span><span>Bienvenido,</span></span>
+							<h2>Usuario de Seguridad</h2>
+						</div>
+					</div>
+					<!-- /menu profile quick info -->
 
-          <br />
+					<br />
 
-          <!-- sidebar menu -->
-          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-            <div class="menu_section">
-              <h3 id='call_userName'></h3>
-              <ul id="menubox" class="nav side-menu">
+					<!-- sidebar menu -->
+					<div id="sidebar-menu"
+						class="main_menu_side hidden-print main_menu">
+						<div class="menu_section">
+							<h3 id='call_userName'></h3>
+							<ul id="menubox"
+								class="nav side-menu">
 
-              </ul>
-            </div>
-          </div>
-          <!-- /sidebar menu -->
-        </div>
-      </div>
+							</ul>
+						</div>
+					</div>
+					<!-- /sidebar menu -->
+				</div>
+			</div>
 
-      <!-- top navigation -->
-      <div class="top_nav">
-        <div class="nav_menu">
-          <nav>
-            <div class="nav toggle">
-              <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-            </div>
+			<!-- top navigation -->
+			<div class="top_nav">
+				<div class="nav_menu">
+					<nav>
+						<div class="nav toggle">
+							<a id="menu_toggle"><i class="fa fa-bars"></i></a>
+						</div>
 
-            <ul class="nav navbar-nav navbar-right">
-              <li class="">
-                <a id="call_name" href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
-                  aria-expanded="false">
-                  <img src="images/img.png" alt="">Usuario de Seguridad
-                  <span class=" fa fa-angle-down"></span>
-                </a>
-                <ul class="dropdown-menu dropdown-usermenu pull-right">
-                  <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Salir</a></li>
-                </ul>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-      <!-- /top navigation -->
+						<ul class="nav navbar-nav navbar-right">
+							<li class="">
+								<a id="call_name"
+									href="javascript:;"
+									class="user-profile dropdown-toggle"
+									data-toggle="dropdown"
+									aria-expanded="false">
+									<img src="images/img.png"
+										alt="">Usuario de Seguridad
+									<span class=" fa fa-angle-down"></span>
+								</a>
+								<ul class="dropdown-menu dropdown-usermenu pull-right">
+									<li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Salir</a></li>
+								</ul>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+			<!-- /top navigation -->
 
-      <!-- page content -->
-      <div class="right_col" role="main">
-        <div class="">
-          <div class="page-title">
-            <div class="title_left">
-              <h3>Gestión de Usuarios <small></small></h3>
-            </div>
+			<!-- page content -->
+			<div class="right_col"
+				role="main">
+				<div class="">
+					<div class="page-title">
+						<div class="title_left">
+							<h3>Gestión de Usuarios <small></small></h3>
+						</div>
 
-            <!-- <div class="title_right">
+						<!-- <div class="title_right">
                   <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                     <div class="input-group">
                       <input type="text" class="form-control" placeholder="Buscar en formularios...">
@@ -126,218 +154,453 @@
                     </div>
                   </div>
                 </div> -->
-          </div>
+					</div>
 
-          <div class="clearfix"></div>
+					<div class="clearfix"></div>
 
-          <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-              <div class="x_panel">
-                <div class="x_title">
-                  <button id="btn_abrirModal_NuevoUsuario" type="button" class="btn btn-primary">Crear Nuevo
-                    Usuario</button>
-                  <div class="nav navbar-right panel_toolbox">
+					<div class="row">
+						<div class="col-md-12 col-sm-12 col-xs-12">
+							<div class="x_panel">
+								<div class="x_title">
+									<button id="btn_abrirModal_NuevoUsuario"
+										type="button"
+										class="btn btn-primary">Crear Nuevo
+										Usuario</button>
+									<div class="nav navbar-right panel_toolbox">
 
-                  </div>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
+									</div>
+									<div class="clearfix"></div>
+								</div>
+								<div class="x_content">
 
-                  <div class="container">
-                    <ul class="nav nav-tabs">
-                      <li class="active">
-                        <a href="#tab_usuarios" data-toggle="tab">Usuarios</a>
-                      </li>
-                      <li><a href="#tab_responsables" data-toggle="tab">Responsables</a>
-                      </li>
-                      <li><a href="#tab_visitantes" data-toggle="tab">Visitantes</a>
-                      </li>
-                      <li><a href="#tab_autorizadores" data-toggle="tab">Autorizadores</a>
-                      </li>
-                    </ul>
+									<div class="container">
+										<ul class="nav nav-tabs">
+											<li class="active">
+												<a href="#tab_usuarios"
+													data-toggle="tab">Usuarios</a>
+											</li>
+											<li><a href="#tab_responsables"
+													data-toggle="tab">Responsables</a>
+											</li>
+											<li><a href="#tab_visitantes"
+													data-toggle="tab">Visitantes</a>
+											</li>
+											<li><a href="#tab_autorizadores"
+													data-toggle="tab">Autorizadores</a>
+											</li>
+											<li><a href="#tab_tramitantes"
+													data-toggle="tab">Tramitantes</a>
+											</li>
+										</ul>
 
-                    <div class="tab-content ">
-                      <br>
-                      <div class="tab-pane active" id="tab_usuarios">
-                        <div class="table-responsive">
-                          <table id="tb_usuarios" class="table table-striped jambo_table bulk_action">
-                            <thead>
-                            </thead>
+										<div class="tab-content ">
+											<br>
+											<div class="tab-pane active"
+												id="tab_usuarios">
+												<div class="table-responsive">
+													<table id="tb_usuarios"
+														class="table table-striped jambo_table bulk_action">
+														<thead>
+														</thead>
 
-                            <tbody>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
+														<tbody>
+														</tbody>
+													</table>
+												</div>
+											</div>
 
-                      <div class="tab-pane" id="tab_responsables">
-                        <div class="table-responsive">
-                          <table id="tb_responsables" class="table table-striped jambo_table bulk_action">
-                            <thead>
-                            </thead>
+											<div class="tab-pane"
+												id="tab_responsables">
+												<div class="table-responsive">
+													<table id="tb_responsables"
+														class="table table-striped jambo_table bulk_action">
+														<thead>
+														</thead>
 
-                            <tbody>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
+														<tbody>
+														</tbody>
+													</table>
+												</div>
+											</div>
 
-                      <div class="tab-pane" id="tab_visitantes">
-                        <div class="table-responsive">
-                          <table id="tb_visitantes" class="table table-striped jambo_table bulk_action">
-                            <thead>
-                            </thead>
+											<div class="tab-pane"
+												id="tab_visitantes">
+												<div class="table-responsive">
+													<table id="tb_visitantes"
+														class="table table-striped jambo_table bulk_action">
+														<thead>
+														</thead>
 
-                            <tbody>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
+														<tbody>
+														</tbody>
+													</table>
+												</div>
+											</div>
 
-                      <div class="tab-pane" id="tab_autorizadores">
-                        <div class="table-responsive">
-                          <table id="tb_autorizadores" class="table table-striped jambo_table bulk_action">
-                            <thead>
-                            </thead>
+											<div class="tab-pane"
+												id="tab_autorizadores">
+												<div class="table-responsive">
+													<table id="tb_autorizadores"
+														class="table table-striped jambo_table bulk_action">
+														<thead>
+														</thead>
 
-                            <tbody>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
+														<tbody>
+														</tbody>
+													</table>
+												</div>
+											</div>
 
-                    </div>
-                  </div>
+											<div class="tab-pane"
+												id="tab_tramitantes">
+												<div class="table-responsive">
+													<table id="tb_tramitantes"
+														class="table table-striped jambo_table bulk_action">
+														<thead>
+														</thead>
 
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- /page content -->
+														<tbody>
+														</tbody>
+													</table>
+												</div>
+											</div>
+
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /page content -->
 
 
-      <!-- footer content -->
-      <footer>
-        <div class="pull-right">
-          Operaciones TI - DTI - Instituto Costarricense de Electricidad
-        </div>
-        <div class="clearfix"></div>
-      </footer>
-      <!-- /footer content -->
-    </div>
-  </div>
+			<!-- footer content -->
+			<footer>
+				<div class="pull-right">
+					Operaciones TI - DTI - Instituto Costarricense de Electricidad
+				</div>
+				<div class="clearfix"></div>
+			</footer>
+			<!-- /footer content -->
+		</div>
+	</div>
 
-  <!--Modal Crear usuario -->
-  <div class="modal fade" id="modal_NuevoUsuario">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
+	<!--Modal Crear usuario -->
+	<div class="modal fade"
+		id="modal_NuevoUsuario">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
 
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Crear Nuevo Usuario</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">Crear Nuevo Usuario</h4>
+					<button type="button"
+						class="close"
+						data-dismiss="modal">&times;</button>
+				</div>
 
-        <!-- Modal body -->
-        <div class="modal-body">
+				<!-- Modal body -->
+				<div class="modal-body">
 
-          <form class="form-horizontal" role="form">
-            <div class="form-group">
-              <label for="inp_nombre" class="col-sm-2 control-label">Nombre Completo</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="inp_nombre" placeholder="Ingrese Nombre Completo">
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="inp_identificacion" class="col-sm-2 control-label">Identificación</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="inp_identificacion"
-                  placeholder="Ingrese el numero de Identificación">
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="inp_usuario" class="col-sm-2 control-label">Usuario de Red</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="inp_usuario" placeholder="Ingrese el Usuario de Red">
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="inp_identificacion" class="col-sm-2 control-label">Correo Electrónico</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="inp_correo" placeholder="Ingrese el correo electrónico">
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="inp_empresa" class="col-sm-2 control-label">Dependencia o Empresa</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="inp_empresa"
-                  placeholder="Ingrese la empresa o dependencia a la que pertenece">
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="inp_rol" class="col-sm-2 control-label">Rol:</label>
-              <div class="col-sm-10">
-                <select id="inp_rol" class="form-control js-example-responsive">
-                </select>
-              </div>
-            </div>
-          </form>
-          <hr>
-          <form class="form-horizontal">
-            <div class="form-group">
-              <label for="inp_usuario" class="col-sm-2 control-label">Buscar en LDAP:</label>
-              <div class="col-sm-4">
-                <select class="form-control" id="sel_tipoFiltro" name="tipoFiltro">
-                  <option value='mail'>Correo</option>
-                  <option value='samAccountName'>Usuario</option>
-                  <option value='cn'>Nombre</option>
-                  <option value='description'>Cedula</option>
-                </select>
-              </div>
-              <div class="col-sm-4">
-                <input type="text" class="form-control" id="inp_searchValue" name="searchValue"
-                  placeholder="Ingrese el Valor a Buscar">
-              </div>
-              <div class="col-sm-1">
-                <button id="btn_buscarLDAP" class="btn btn-default">Buscar</button>
-              </div>
-            </div>
-          </form>
-          <!-- Modal footer -->
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" id="btn_guardarUsuario">Agregar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+					<div>
 
-  <!-- jQuery -->
-  <script src="assets/js/jquery/dist/jquery.min.js"></script>
-  <!-- Bootstrap -->
-  <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-  <!-- JS dataTables -->
-  <script src="vendors/datatables.net/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
-  <script src="vendors/datatables.net/DataTables-1.10.18/js/dataTables.bootstrap.min.js"></script>
-  <!-- NProgress -->
-  <script src="vendors/nprogress/nprogress.js"></script>
-  <!-- bootstrap-progressbar -->
-  <script src="vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-  <!-- Seleect2 -->
-  <script src='vendors/select2/js/select2.js'></script>
-  <!-- Moment -->
-  <script src="vendors/moment/moment.min.js"></script>
-  <script src="vendors/moment/locale/es.js"></script>
-  <!-- SweetAlert2 -->
-  <script src="vendors/sweetalert2/dist/sweetalert2.js"></script>
-  <!-- bootstrap-daterangepicker -->
-  <script src="vendors/daterangepicker/daterangepicker.min.js"></script>
-  <!-- Custom Theme Scripts -->
-  <script src="assets/js/custom.js"></script>
-  <script src="assets/js/usuario.js"></script>
-  <script src="assets/js/rol.js"></script>
+						<!-- Nav tabs -->
+						<ul class="nav nav-tabs"
+							role="tablist">
+							<li role="presentation"
+								class="active">
+								<a href="#usrExternal"
+									aria-controls="profile"
+									role="tab"
+									data-toggle="tab">Externo</a>
+							</li>
+							<li role="presentation">
+								<a href="#usrLDAP"
+									aria-controls="home"
+									role="tab"
+									data-toggle="tab">Usuario LDAP</a>
+							</li>
+						</ul>
+
+						<!-- Tab panes -->
+						<div class="tab-content">
+							<div role="tabpanel"
+								class="tab-pane active"
+								id="usrExternal">
+								<hr>
+								<form class="form-horizontal"
+									role="form">
+									<div class="form-group">
+										<label for="img_visitante"
+											class="col-sm-2 control-label">Foto</label>
+										<div class="col-sm-10 text-center">
+											<img id="img_visitante"
+												src=""
+												alt="..."
+												class="rounded mx-auto d-block"
+												style="max-height: 150px;">
+											<input id="inp_visitante"
+												type='file'>
+											<p id="b64"
+												style="display: none;"></p>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inp_nombre"
+											class="col-sm-2 control-label">Nombre Completo</label>
+										<div class="col-sm-10">
+											<input type="text"
+												class="form-control inp_validar"
+												id="inp_nombre"
+												placeholder="Ingrese Nombre Completo">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inp_identificacion"
+											class="col-sm-2 control-label">Identificación</label>
+										<div class="col-sm-10">
+											<input type="text"
+												class="form-control only_allow_numeric inp_validar"
+												id="inp_identificacion"
+												placeholder="Ingrese el numero de Identificación">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inp_empresa"
+											class="col-sm-2 control-label">Dependencia o Empresa</label>
+										<div class="col-sm-10">
+											<input type="text"
+												class="form-control inp_validar"
+												id="inp_empresa"
+												placeholder="Ingrese la empresa o dependencia a la que pertenece">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inp_telephonenumber"
+											class="col-sm-2 control-label">Teléfono</label>
+										<div class="col-sm-10">
+											<input type="text"
+												class="form-control"
+												id="inp_telephonenumber"
+												placeholder="Ingrese el número de contacto">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inp_correo"
+											class="col-sm-2 control-label">Correo Electrónico</label>
+										<div class="col-sm-10">
+											<input type="text"
+												class="form-control inp_validar"
+												id="inp_correo"
+												placeholder="Ingrese el correo electrónico">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inp_usuario"
+											class="col-sm-2 control-label">Usuario de Red</label>
+										<div class="col-sm-10">
+											<input type="text"
+												class="form-control inp_validar"
+												id="inp_usuario"
+												placeholder="Ingrese el Usuario de Red">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inp_rol inp_validar"
+											class="col-sm-2 control-label">Rol</label>
+										<div class="col-sm-10">
+											<select id="inp_rol"
+												class="form-control js-example-responsive">
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inp_doc"
+											class="col-sm-2 control-label">Contrato</label>
+										<div id="contrato"
+											class="col-sm-10">
+											<input style="padding: 5px 0;"
+												id="inp_doc"
+												type='file'>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label"
+											for="inp_passwd">
+											Contraseña
+										</label>
+										<div class="col-sm-3">
+											<input class="form-check-input"
+												style="margin-top: 10px;"
+												checked
+												type="radio"
+												name="newPasswd"
+												id="inp_passwdNoChange"
+												value="true">
+											<small style="margin-left: 5px ;"
+												id="passwordHelpInline"
+												class="text-muted">
+												Configuración Actual.
+											</small>
+										</div>
+										<div class="col-sm-2">
+											<input class="form-check-input"
+												style="margin-top: 10px;"
+												type="radio"
+												name="newPasswd"
+												id="inp_passwdLDAP"
+												value="true">
+											<small style="margin-left: 5px ;"
+												id="passwordHelpInline"
+												class="text-muted">
+												Cambiar a LDAP.
+											</small>
+										</div>
+										<div class="col-sm-4">
+											<input class="form-check-input"
+												style="margin-top: 10px;"
+												type="radio"
+												name="newPasswd"
+												id="inp_passwdLOCAL"
+												value="true">
+											<small style="margin-left: 5px ;"
+												id="passwordHelpInline"
+												class="text-muted">
+												Reestablecer contraseña Local.
+											</small>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label"
+											for="inp_tarjeta_fija">
+											Tarjeta fija
+										</label>
+										<div class="col-sm-10">
+											<input class="form-check-input"
+												style="margin-top: 10px;"
+												type="checkbox"
+												name="newPasswd"
+												id="inp_tarjeta_fija"
+												value="true">
+											<small style="margin-left: 5px ;"
+												id="passwordHelpInline"
+												class="text-muted">
+												Marcar unicamente si el visitante tiene un carnet preasignado.
+											</small>
+										</div>
+									</div>
+
+
+
+									<div class="form-tajeta-fija">
+										<div class="form-group">
+											<label for="sel_centro_datos"
+												class="col-sm-2 control-label">Centro de Datos</label>
+											<div class="col-sm-10">
+												<select id="sel_centro_datos"
+													class="form-control js-example-responsive">
+												</select>
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="sel_sala"
+												class="col-sm-2 control-label">Sala</label>
+											<div class="col-sm-10">
+												<select id="sel_sala"
+													class="form-control js-example-responsive">
+												</select>
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="sel_tarjeta"
+												class="col-sm-2 control-label">Tarjeta</label>
+											<div class="col-sm-10">
+												<select id="sel_tarjeta"
+													class="form-control js-example-responsive">
+												</select>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+							<div role="tabpanel"
+								class="tab-pane"
+								id="usrLDAP">
+								<hr>
+								<form class="form-horizontal">
+									<div class="form-group">
+										<label for="inp_usuario"
+											class="col-sm-2 control-label">Buscar en LDAP:</label>
+										<div class="col-sm-4">
+											<select class="form-control"
+												id="sel_tipoFiltro"
+												name="tipoFiltro">
+												<option value='mail'>Correo</option>
+												<option value='samAccountName'>Usuario</option>
+												<option value='cn'>Nombre</option>
+												<option value='description'>Cedula</option>
+											</select>
+										</div>
+										<div class="col-sm-4">
+											<input type="text"
+												class="form-control"
+												id="inp_searchValue"
+												name="searchValue"
+												placeholder="Ingrese el Valor a Buscar">
+										</div>
+										<div class="col-sm-1">
+											<button id="btn_buscarLDAP"
+												class="btn btn-default">Buscar</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+
+						<hr>
+						<!-- Modal footer -->
+						<div class="modal-footer">
+							<button type="button"
+								class="btn btn-primary"
+								id="btn_guardarUsuario"
+								disabled>Agregar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- jQuery -->
+	<script src="assets/js/jquery/dist/jquery.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+	<!-- JS dataTables -->
+	<script src="vendors/datatables.net/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
+	<script src="vendors/datatables.net/DataTables-1.10.18/js/dataTables.bootstrap.min.js"></script>
+	<!-- NProgress -->
+	<script src="vendors/nprogress/nprogress.js"></script>
+	<!-- bootstrap-progressbar -->
+	<script src="vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+	<!-- Seleect2 -->
+	<script src='vendors/select2/js/select2.js'></script>
+	<!-- Moment -->
+	<script src="vendors/moment/moment.min.js"></script>
+	<script src="vendors/moment/locale/es.js"></script>
+	<!-- SweetAlert2 -->
+	<script src="vendors/sweetalert2/dist/sweetalert2.js"></script>
+	<!-- bootstrap-daterangepicker -->
+	<script src="vendors/daterangepicker/daterangepicker.min.js"></script>
+	<!-- Custom Theme Scripts -->
+	<script src="assets/js/custom.js"></script>
+	<script src="assets/js/usuario.js"></script>
+	<script src="assets/js/rol.js"></script>
+	<script src="assets/js/datacenter.js"></script>
+	<script src="assets/js/sala.js"></script>
+	<script src="assets/js/tarjeta.js"></script>
 
 </body>
 
@@ -345,108 +608,386 @@
 
 <script>
 
-  var update = false;
-
-  $(document).ready(function () {
-
-    usuario.responsables_ReadAll_list;
-    usuario.usuarios_ReadAll_list;
-    usuario.visitantes_ReadAll_list;
-    usuario.autorizadores_ReadAll_list;
-    usuario.autorizadores_ReadAll_list;
-    rol.readAll;
-
-    $('#inp_rol').select2({
-      width: "100%",
-      multiple: true,
-      placeholder: 'Seleccione Rol...',
-      closeOnSelect: false
-    });
-
-    $("#btn_abrirModal_NuevoUsuario").click(function () {
-      usuario.clearModalNuevoUsuario;
-      update = false;
-      $("#btn_guardarUsuario").text("Crear");
-      $("#modal_NuevoUsuario").modal("toggle");
-    });
-
-    $("#btn_guardarUsuario").click(function () {
-      usuario.nombre = $("#inp_nombre").val();
-      usuario.cedula = $("#inp_identificacion").val();
-      usuario.correo = $("#inp_correo").val();
-      usuario.usuario = $("#inp_usuario").val();
-      usuario.empresa = $("#inp_empresa").val();
-      usuario.rol = $("#inp_rol").select2("val");
-
-      update ? usuario.update : usuario.create;
-    });
-
-    $("#btn_buscarLDAP").click(function () {
-      event.preventDefault();
-
-      var values = { tipoFiltro: "", searchValue: "" };
-      values.tipoFiltro = $("#sel_tipoFiltro").val();
-      values.searchValue = $("#inp_searchValue").val();
-
-      var miAccion = "BuscarLDAP";
-      $.ajax({
-        type: "POST",
-        url: "class/checkLDAP.php",
-        data: {
-          action: miAccion,
-          obj: JSON.stringify(values)
-        }
-      })
-        .done(function (e) {
-          var data = JSON.parse(e);
-          if (data) {
-            $("#inp_nombre").val(data.nombre);
-            $("#inp_identificacion").val(data.cedula);
-            $("#inp_correo").val(data.email);
-            $("#inp_usuario").val(data.usuario);
-            $("#inp_empresa").val(data.physicaldeliveryofficename);
-            usuario.SwalAlert('success', 'Usuario Encontrado');
-          }
-          else {
-            usuario.SwalAlert('error', 'Sin Resultados');
-          }
-        })
-
-    });
-
-    $('#tb_usuarios tbody').on('click', 'tr', function () {
-      update = true;
-      usuario.id = $('#tb_usuarios').DataTable().row(this).data().id;
-      usuario.nombre = $('#tb_usuarios').DataTable().row(this).data().nombre;
-      usuario.usuario = $('#tb_usuarios').DataTable().row(this).data().usuario;
-      usuario.cedula = $('#tb_usuarios').DataTable().row(this).data().cedula;
-      usuario.correo = $('#tb_usuarios').DataTable().row(this).data().correo;
-      usuario.empresa = $('#tb_usuarios').DataTable().row(this).data().empresa;
-
-      rol.idUsuario = usuario.id;
-      usuario.rol = rol.loadbyUser;
-
-      $("#inp_nombre").val(usuario.nombre);
-      $("#inp_identificacion").val(usuario.cedula);
-      $("#inp_correo").val(usuario.correo);
-      $("#inp_usuario").val(usuario.usuario);
-      $("#inp_empresa").val(usuario.empresa);
-
-      if (usuario.cedula != null) {
-        $('#sel_tipoFiltro').val("description").change();
-        $("#inp_searchValue").val(usuario.cedula);
-      } else if (usuario.usuario != "" && usuario.usuario != null) {
-        $('#sel_tipoFiltro').val("samAccountName").change();
-        $("#inp_searchValue").val(usuario.usuario);
-      } else if (usuario.correo != null) {
-        $('#sel_tipoFiltro').val("mail").change();
-        $("#inp_searchValue").val(usuario.correo);
-      }
-
-      $("#btn_guardarUsuario").text("Actualizar");
-      $("#modal_NuevoUsuario").modal("toggle");
-    });
+	var update = false;
 
 
-  })
+	$(document).ready(function () {
+		usuario.responsables_ReadAll_list;
+		usuario.usuarios_ReadAll_list;
+		usuario.visitantes_ReadAll_list;
+		usuario.autorizadores_ReadAll_list;
+		usuario.tramitantes_ReadAll_list;
+		rol.readAll;
+
+		formulario = 1; //se necesita para el dataCenter.ReadAll;
+		dataCenter.ReadAll;
+		$("#img_visitante").attr("src", this.img_userDefault);
+
+		document.getElementById("inp_visitante").addEventListener("change", read_img_visitante);
+		document.getElementById("inp_doc").addEventListener("change", read_inp_doc);
+
+		function read_img_visitante() {
+			if (this.files && this.files[0]) {
+				var FR = new FileReader();
+				FR.addEventListener("load", function (e) {
+					document.getElementById("inp_visitante").src = e.target.result;
+					document.getElementById("img_visitante").src = e.target.result;
+				});
+				FR.readAsDataURL(this.files[0]);
+			}
+
+		}
+		function read_inp_doc() {
+			if (this.files && this.files[0]) {
+				var FR = new FileReader();
+				FR.addEventListener("load", function (e) {
+					document.getElementById("inp_doc").src = e.target.result;
+				});
+				FR.readAsDataURL(this.files[0]);
+			}
+
+		}
+
+		$('#tabsUser a').click(function (e) {
+			e.preventDefault()
+			$(this).tab('show')
+		})
+
+		$('#inp_rol').select2({
+			width: "100%",
+			multiple: true,
+			placeholder: 'Seleccione Rol...',
+			closeOnSelect: false
+		});
+
+		$("#btn_abrirModal_NuevoUsuario").click(function () {
+			usuario.clearModalNuevoUsuario;
+			update = false;
+			$("#btn_guardarUsuario").text("Crear");
+			$("#modal_NuevoUsuario").modal("toggle");
+			$('.form-tajeta-fija').hide();
+		});
+
+		$(".only_allow_numeric").on("keypress keyup blur", function (event) {
+			$(this).val($(this).val().replace(/[^\d].+/, ""));
+			if ((event.which < 48 || event.which > 57)) {
+				event.preventDefault();
+			}
+		});
+
+		$("#inp_telephonenumber").keypress(function (e) {
+			var charCode = (e.which) ? e.which : e.keyCode;
+			if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+				return false;
+			}
+		});
+
+		let frm_newUser = []; 114220639
+		$("#inp_nombre").focusout(function () {
+			val_nombre();
+			validar_frm_newUser();
+		});
+
+		$("#inp_identificacion").focusout(function () {
+			val_identificacion();
+			validar_frm_newUser();
+		});
+
+		$("#inp_empresa").focusout(function () {
+			val_empresa();
+			validar_frm_newUser();
+		});
+
+		$("#inp_telephonenumber").focusout(function () {
+			val_telephonenumber();
+			validar_frm_newUser();
+		})
+
+		$("#inp_correo").focusout(function () {
+			val_correo();
+			validar_frm_newUser();
+		});
+
+		$("#inp_usuario").focusout(function () {
+			val_usuario();
+			validar_frm_newUser();
+		});
+
+		$('input[type=radio][name=newPasswd]').change(function () {
+			if (this.id == "inp_passwdLDAP") {
+				if ($("#inp_correo").val().toLowerCase().indexOf("@ice.go.cr") < 2) {
+					$($("#inp_correo")).addClass("red_highlights");
+					$('#btn_guardarUsuario').prop('disabled', true);
+					$("#inp_telephonenumber").removeClass("red_highlights");
+					frm_newUser.telephonenumber = true;
+					frm_newUser.correo = false;
+				} else {
+					$($("#inp_correo")).removeClass("red_highlights");
+					frm_newUser.correo = true;
+				}
+			}
+			if (this.id == 'inp_passwdLOCAL') {
+				if ($("#inp_telephonenumber").val().length != 8) {
+					$($("#inp_telephonenumber")).addClass("red_highlights");
+					$('#btn_guardarUsuario').prop('disabled', true);
+					$("#inp_correo").removeClass("red_highlights");
+					frm_newUser.telephonenumber = false;
+				} else {
+					$($("#inp_telephonenumber")).removeClass("red_highlights");
+					frm_newUser.telephonenumber = true;
+				}
+
+				if ($("#inp_correo").val().toLowerCase().indexOf("@ice.go.cr") < 2) {
+					$($("#inp_correo")).addClass("red_highlights");
+					$('#btn_guardarUsuario').prop('disabled', true);
+					frm_newUser.correo = false;
+				} else {
+					$($("#inp_correo")).removeClass("red_highlights");
+					frm_newUser.correo = true;
+				}
+			}
+			if (this.id == 'inp_passwdNoChange') {
+				$("#inp_telephonenumber").removeClass("red_highlights");
+				$("#inp_correo").removeClass("red_highlights");
+				frm_newUser.correo = true;
+				frm_newUser.telephonenumber = true;
+			}
+		});
+
+		function validar_frm_newUser() {
+			if (frm_newUser.nombre && frm_newUser.identificacion &&
+			frm_newUser.empresa && $("#inp_rol").val() != null
+				// frm_newUser.telephonenumber && frm_newUser.usuario &&
+				// frm_newUser.correo
+				) {
+				$('#btn_guardarUsuario').prop('disabled', false);
+			}
+			else
+				$('#btn_guardarUsuario').prop('disabled', true);
+		}
+
+		function val_nombre() {
+			if ($("#inp_nombre").val().length < 8) {
+				$("#inp_nombre").addClass("red_highlights");
+				$('#btn_guardarUsuario').prop('disabled', true);
+				frm_newUser.nombre = false;
+			} else {
+				$("#inp_nombre").removeClass("red_highlights");
+				frm_newUser.nombre = true;
+			}
+			$("#inp_nombre").val($("#inp_nombre").val().trim());
+		}
+
+		function val_identificacion() {
+			if ($("#inp_identificacion").val().length <= 8) {
+				$("#inp_identificacion").addClass("red_highlights");
+				$('#btn_guardarUsuario').prop('disabled', true);
+				frm_newUser.identificacion = false;
+			} else {
+				$("#inp_identificacion").removeClass("red_highlights");
+				frm_newUser.identificacion = true;
+			}
+			$("#inp_identificacion").val($("#inp_identificacion").val().trim());
+		}
+
+		function val_empresa() {
+			if ($("#inp_empresa").val().length <= 2) {
+				$("#inp_empresa").addClass("red_highlights");
+				$('#btn_guardarUsuario').prop('disabled', true);
+				frm_newUser.empresa = false;
+			} else {
+				$("#inp_empresa").removeClass("red_highlights");
+				frm_newUser.empresa = true;
+			}
+			$("#inp_empresa").val($("#inp_empresa").val().trim());
+		}
+
+		function val_telephonenumber() {
+			$("#inp_telephonenumber").val($("#inp_telephonenumber").val().trim());
+			if ($("#inp_passwdLOCAL").is(':checked')) {
+				if ($("#inp_telephonenumber").val().length != 8) {
+					$($("#inp_telephonenumber")).addClass("red_highlights");
+					$('#btn_guardarUsuario').prop('disabled', true);
+					frm_newUser.telephonenumber = false;
+				} else {
+					$($("#inp_telephonenumber")).removeClass("red_highlights");
+					frm_newUser.telephonenumber = true;
+				}
+			} else {
+				$($("#inp_telephonenumber")).removeClass("red_highlights");
+				frm_newUser.telephonenumber = true;
+			}
+		}
+
+		function val_correo() {
+			$("#inp_correo").val($("#inp_correo").val().trim());
+			if ($("#inp_passwdLDAP").is(':checked') || $("#inp_passwdLOCAL").is(':checked')) {
+				if ($("#inp_correo").val().toLowerCase().indexOf("@ice.go.cr") > 1) {
+					$("#inp_correo").removeClass("red_highlights");
+					frm_newUser.correo = true;
+				} else {
+					$($("#inp_correo")).addClass("red_highlights");
+					frm_newUser.correo = false;
+				}
+			} else {
+				$("#inp_correo").removeClass("red_highlights");
+				frm_newUser.correo = true;
+			}
+		}
+
+		function val_usuario() {
+			$("#inp_usuario").val($("#inp_usuario").val().trim());
+			frm_newUser.usuario = true;
+		}
+
+		function val_frm_user() {
+			val_nombre();
+			val_identificacion();
+			val_empresa();
+			val_telephonenumber();
+			val_correo();
+			val_usuario();
+		}
+
+		$("#btn_guardarUsuario").click(function () {
+			if (usuario.validarNuevoUsuario) {
+				usuario.nombre = $("#inp_nombre").val();
+				usuario.cedula = $("#inp_identificacion").val();
+				usuario.correo = $("#inp_correo").val();
+				usuario.telephonenumber = $("#inp_telephonenumber").val();
+				usuario.usuario = $("#inp_usuario").val();
+				usuario.empresa = $("#inp_empresa").val();
+				usuario.rol = $("#inp_rol").select2("val");
+				usuario.img_visitante = $("#img_visitante").attr('src');
+				usuario.inp_doc = $("#inp_doc").attr('src');
+				usuario.sendPaswd = false;
+				usuario.authDetail = {};
+				if ($("#inp_passwdLDAP").is(":checked")) {
+					usuario.authDetail.authType = "LDAP";
+					usuario.authDetail.authState = "active";
+				} else if ($("#inp_passwdLOCAL").is(":checked")) {
+					usuario.authDetail.authType = "LOCAL";
+					usuario.authDetail.authState = "changePWD";
+				} else {
+					usuario.authDetail.authType = "";
+					usuario.authDetail.authState = "";
+				}
+				if ($('#inp_tarjeta_fija').prop('checked')) {
+					usuario.tarjeta_fija = true;
+					usuario.idTarjeta = $('#sel_tarjeta').val();
+				}
+				else {
+					usuario.tarjeta_fija = false;
+				}
+				update ? usuario.update : usuario.create;
+			}
+			else {
+				usuario.SwalAlert("error", "Faltan Datos");
+			}
+		});
+
+		$("#btn_buscarLDAP").click(function () {
+			event.preventDefault();
+
+			var values = { tipoFiltro: "", searchValue: "" };
+			values.tipoFiltro = $("#sel_tipoFiltro").val();
+			values.searchValue = $("#inp_searchValue").val();
+
+			var miAccion = "BuscarLDAP";
+			$.ajax({
+				type: "POST",
+				url: "class/checkLDAP.php",
+				data: {
+					action: miAccion,
+					obj: JSON.stringify(values)
+				}
+			})
+				.done(function (e) {
+					var data = JSON.parse(e);
+					if (data) {
+						$("#inp_nombre").val(data.nombre);
+						$("#inp_identificacion").val(data.cedula);
+						$("#inp_correo").val(data.email);
+						// $("#inp_telephonenumber").val(data.telephonenumber);
+						$("#inp_telephonenumber").val(data.cellphonenumber ? data.cellphonenumber : data.telephonenumbe);
+						$("#inp_usuario").val(data.usuario);
+						$("#inp_empresa").val(data.physicaldeliveryofficename);
+						if (data.rh_image) {
+							$("#img_visitante").attr("src", data.rh_image);
+						} else {
+							if ($("#img_visitante").attr("src").length < 100) {
+								$("#img_visitante").attr("src", usuario.img_userDefault);
+							}
+						}
+						usuario.SwalAlert('success', 'Usuario Encontrado');
+					}
+					else {
+						usuario.SwalAlert('error', 'Sin Resultados');
+					}
+				})
+
+		});
+
+		$('#tb_usuarios tbody').on('click', 'tr', function () {
+			update = true;
+			usuario.id = $('#tb_usuarios').DataTable().row(this).data().id;
+			usuario.nombre = $('#tb_usuarios').DataTable().row(this).data().nombre;
+			usuario.usuario = $('#tb_usuarios').DataTable().row(this).data().usuario;
+			usuario.cedula = $('#tb_usuarios').DataTable().row(this).data().cedula;
+			usuario.correo = $('#tb_usuarios').DataTable().row(this).data().correo;
+			usuario.telephonenumber = $('#tb_usuarios').DataTable().row(this).data().telephonenumber;
+			usuario.empresa = $('#tb_usuarios').DataTable().row(this).data().empresa;
+
+			$("#img_visitante").attr("src", usuario.img_userDefault);
+
+			rol.idUsuario = usuario.id;
+			usuario.rol = rol.loadbyUser;
+
+			usuario.img_visitante = usuario.load_img_visitante;
+			usuario.inp_doc = usuario.load_inp_doc;
+
+			$("#inp_nombre").val(usuario.nombre);
+			$("#inp_identificacion").val(usuario.cedula);
+			$("#inp_correo").val(usuario.correo);
+			$("#inp_telephonenumber").val(usuario.telephonenumber);
+			$("#inp_usuario").val(usuario.usuario);
+			$("#inp_empresa").val(usuario.empresa);
+
+			if (usuario.correo != null) {
+				$('#sel_tipoFiltro').val("mail").change();
+				$("#inp_searchValue").val(usuario.correo);
+			} else if (usuario.usuario != "" && usuario.usuario != null) {
+				$('#sel_tipoFiltro').val("samAccountName").change();
+				$("#inp_searchValue").val(usuario.usuario);
+			} else if (usuario.cedula != null) {
+				$('#sel_tipoFiltro').val("description").change();
+				$("#inp_searchValue").val(usuario.cedula);
+			}
+
+			tarjeta.Check_usuario_has_tarjeta(usuario.id)
+			val_frm_user();
+			// $('input:radio[name=newPasswd][id=inp_passwdNoChange]').attr('checked', true);
+
+			$("#btn_guardarUsuario").text("Actualizar");
+			$("#modal_NuevoUsuario").modal("toggle");
+		});
+
+		$("#sel_centro_datos").change(function () {
+			sala.carga_SalabyDC;
+		})
+
+		$("#sel_sala").change(function () {
+			tarjeta.carga_tarjetas_by_sala;
+		})
+
+		$("#inp_tarjeta_fija").change(function () {
+			if (this.checked) {
+				$('.form-tajeta-fija').show();
+			} else {
+				$('.form-tajeta-fija').hide();
+			}
+		});
+
+	})
+
 </script>

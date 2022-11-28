@@ -3,12 +3,12 @@ setlocale(LC_ALL,"es_ES");
 date_default_timezone_set('America/Costa_Rica');
 mb_internal_encoding('UTF-8');
 
-if( isset($_POST["action"])){        
+if( isset($_POST["action"])){
     $opt= $_POST["action"];
-    unset($_POST['action']);    
+    unset($_POST['action']);
     // Classes
     require_once("Conexion.php");
-    // 
+    //
     // Instance
     $searchLDAP = new SearchLDAP();
     switch($opt){
@@ -31,10 +31,11 @@ class SearchLDAP{
     public $telephonenumber = "";
     public $streetaddress = "";
     public $physicaldeliveryofficename = "";
+    public $rh_image = "";
 
 	function __construct(){
         require_once("Conexion.php");
-        
+
         if(isset($_POST["obj"])){
             $obj= json_decode($_POST["obj"],true);
             $this->tipoFiltro = $obj["tipoFiltro"];
@@ -60,15 +61,21 @@ class SearchLDAP{
             $this->usuario = utf8_encode( $LDAP_user_data[0]["samaccountname"][0] ?? null );
             $this->cedula = utf8_encode( $LDAP_user_data[0]["description"][0] ?? null );
             $this->telephonenumber = utf8_encode( $LDAP_user_data[0]["telephonenumber"][0] ?? null );
+            $this->cellphonenumber = utf8_encode( $LDAP_user_data[0]["extensionattribute9"][0] ?? null );
             $this->streetaddress = utf8_encode( $LDAP_user_data[0]["streetaddress"][0] ?? null );
             $this->physicaldeliveryofficename = utf8_encode( $LDAP_user_data[0]["physicaldeliveryofficename"][0] ?? null );
-            
+
+
+				    require_once("Usuario.php");
+						$usuario = new Usuario();
+						$this->rh_image = $usuario->getImgRH($this->cedula);
+
             @ldap_close($LDAP_connect);
             return $this;
-            
+
         } else {
             error_log("Falla el Bind: " . ldap_error($ldap));
-            return false;  
+            return false;
         }
     }
 }

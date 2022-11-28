@@ -1,1 +1,5 @@
 sudo ln -s /opt/www/BitacoraCDC /opt/www/operacionesti.icetel.ice/BitacoraCDC2
+
+ALTER TABLE `control_acceso_cdc_dbp`.`usuario_n`
+ADD COLUMN `auth_detail` VARCHAR(90) NULL DEFAULT NULL AFTER `imagen`;
+

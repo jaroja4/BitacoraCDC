@@ -27,104 +27,128 @@ class Bitacora {
     drawBitacorabyRange(e) {
         var data_bitacora = JSON.parse(e);
 
-        data_bitacora.map(function(item){
-            item.entrada = moment(item.entrada).format('YYYY/MM/DD hh:mm a');
-            item.salida = item.salida!=null?moment(item.salida).format('YYYY/MM/DD hh:mm a'):"Pendiente";
-        });
+        if (data_bitacora != false) {          
+          data_bitacora.map(function(item){
+              item.entrada = moment(item.entrada).format('YYYY/MM/DD hh:mm a');
+              item.salida = item.salida!=null?moment(item.salida).format('YYYY/MM/DD hh:mm a'):"Pendiente";
+          });
 
-        $.fn.dataTable.moment( 'DD-MMM-YYYY hh:mm a' );
+          $.fn.dataTable.moment( 'DD-MMM-YYYY hh:mm a' );
 
-        tbl_bitacora = $('#tbl_bitacora').DataTable({
-            data: data_bitacora,
-            destroy: true,
-            autoWidth: false,
-            language: {
-                "infoEmpty": "Sin Elementos que Mostrar",
-                "emptyTable": "Sin Elementos que Mostrar",
-                "search": "Buscar",
-                "zeroRecords": "No hay resultados",
-                "lengthMenu": "Mostar _MENU_ registros",
-                "paginate": {
-                    "first": "Primera",
-                    "last": "Ultima",
-                    "next": "Siguiente",
-                    "previous": "Anterior"
+          tbl_bitacora = $('#tbl_bitacora').DataTable({
+              data: data_bitacora,
+              destroy: true,
+              autoWidth: false,
+              dom: 'Bfrtip',
+              buttons: [
+                  'copy', 'csv', 'excel', 'pdf', 'print'
+              ],
+              
+              buttons: [
+                {
+                    extend: 'pdfHtml5',
+                    orientation: 'landscape',
+                    pageSize: 'LEGAL',
+                    download: 'open',
+                    exportOptions: {
+                      columns: [4,5,6,13,7,8,9,11,12]
+                    },
+                     text:'Exportar a PDF'
                 }
-            },
-            columns: [
-                {
-                    title: "id",
-                    data: "id",
-                    visible: false
-                },
-                {
-                    title: "Formulario",
-                    data: "idFormulario",
-                    visible: false
-                },
-                {
-                    title: "Visitante",
-                    data: "idVisitante",
-                    visible: false
-                },
-                {
-                    title: "Tarjeta",
-                    data: "idTarjeta",
-                    visible: false
-                },
-                {
-                    title: "Fecha Entrada",
-                    data: "entrada",
-                    width: "10%"
-                },
-                {
-                    title: "Fecha Salida",
-                    data: "salida",
-                    width: "10%"
-                },
-                {
-                    title: "Formulario",
-                    data: "consecutivoFormulario",
-                    width: "5%"
-                },
-                {
-                    title: "Visitante",
-                    data: "nombre",
-                    width: "20%"
-                },
-                {
-                    title: "Empresa",
-                    data: "empresa",
-                    width: "10%"
-                },
-                {
-                    title: "Motivo Visita",
-                    data: "motivoVisita",
-                    width: "20%"
-                },
-                {
-                    title: "Detalles Visita",
-                    data: "otrosDetalles",
-                    width: "20%",
-                    visible: false
-                },
-                {
-                    title: "Ubicación",
-                    data: "sala",
-                    width: "20%"
-                },
-                {
-                    title: "Tarjeta Asignada",
-                    data: "consecutivoTarjeta",
-                    width: "5%"
-                }
-            ],
-            "order": [
-                [4, "desc"]
-            ],
+              ],
+              language: {
+                  "infoEmpty": "Sin Elementos que Mostrar",
+                  "emptyTable": "Sin Elementos que Mostrar",
+                  "search": "Buscar",
+                  "zeroRecords": "No hay resultados",
+                  "lengthMenu": "Mostar _MENU_ registros",
+                  "paginate": {
+                      "first": "Primera",
+                      "last": "Ultima",
+                      "next": "Siguiente",
+                      "previous": "Anterior"
+                  }
+              },
+              columns: [
+                  {
+                      title: "id",
+                      data: "id",
+                      visible: false
+                  },
+                  {
+                      title: "Formulario",
+                      data: "idFormulario",
+                      visible: false
+                  },
+                  {
+                      title: "Visitante",
+                      data: "idVisitante",
+                      visible: false
+                  },
+                  {
+                      title: "Tarjeta",
+                      data: "idTarjeta",
+                      visible: false
+                  },
+                  {
+                      title: "Fecha Entrada",
+                      data: "entrada",
+                      width: "10%"
+                  },
+                  {
+                      title: "Fecha Salida",
+                      data: "salida",
+                      width: "10%"
+                  },
+                  {
+                      title: "Formulario",
+                      data: "consecutivoFormulario",
+                      width: "5%"
+                  },
+                  {
+                      title: "Visitante",
+                      data: "nombre",
+                      width: "20%"
+                  },
+                  {
+                      title: "Empresa",
+                      data: "empresa",
+                      width: "10%"
+                  },
+                  {
+                      title: "Motivo Visita",
+                      data: "motivoVisita",
+                      width: "20%"
+                  },
+                  {
+                      title: "Detalles Visita",
+                      data: "otrosDetalles",
+                      width: "20%",
+                      visible: false
+                  },
+                  {
+                      title: "Ubicación",
+                      data: "sala",
+                      width: "20%"
+                  },
+                  {
+                      title: "Tarjeta Asignada",
+                      data: "consecutivoTarjeta",
+                      width: "5%"
+                  },
+                  {
+                      title: "Cedula",
+                      data: "cedula",
+                      width: "0%",
+                      visible: false
+                  }
+              ],
+              "order": [
+                  [4, "desc"]
+              ],
 
-        });
-
+          });
+        }
     }
 
     get ReadVisitantesSitio() {

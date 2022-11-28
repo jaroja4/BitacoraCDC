@@ -43,9 +43,14 @@ class DataCenter {
         })
             .done(function (e) {
                 var data = JSON.parse(e);
-                dataCenter.id = data["id"];
-                dataCenter.nombre = data["nombre"];
-                $(".sitio").html(data["nombre"] + ' <i style="margin-left: 10px;font-size:24px;" class="fa fa-building-o"></i>');
+                if (data != null){
+                  dataCenter.id = data["id"];
+                  dataCenter.nombre = data["nombre"];
+                  $(".sitio").html(data["nombre"] + ' <i style="margin-left: 10px;font-size:24px;" class="fa fa-building-o"></i>');
+                }
+                else{
+                  $(".sitio").html('Seleccionar un Sitio: <i style="margin-left: 10px;font-size:24px;" class="fa fa-building-o"></i>');
+                }
             })
             .fail(function (e) {
                 $(".sitio").html('Seleccionar un Sitio: <i style="margin-left: 10px;font-size:24px;" class="fa fa-building-o"></i>');
@@ -81,7 +86,7 @@ class DataCenter {
                         })
             })
             .fail(function (e) {
-                
+
             });
     }
 
@@ -108,6 +113,7 @@ class DataCenter {
             $('#tb_CDC').DataTable({
                 data: dataCDC,
                 destroy: true,
+                sScrollX: "100%",
                 autoWidth: false,
                 language: {
                     "infoEmpty": "Sin Centros de Datos Creados",
@@ -148,15 +154,15 @@ class DataCenter {
                     }
                 ]
             });
-    
+
             $('#tb_CDC tbody').on('click', 'tr', function () {
                 dataCenter.clear;
                 dataCenter.id = $('#tb_CDC').DataTable().row(this).data().id;
                 // dataCenter.cargarResponsablebyID;
             });
         }
-        
+
     }
 }
 
-let dataCenter = new DataCenter();  
+let dataCenter = new DataCenter();

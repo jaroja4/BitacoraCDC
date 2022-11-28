@@ -1,0 +1,10 @@
+.form-tajeta-fija {
+	display: none;
+}
+
+.red_highlights {
+	box-shadow: 0 0 5px rgb(255 0 0);
+	padding: 3px 0px 3px 3px;
+	margin: 5px 1px 3px 0px;
+	border: 1px solid rgb(255 0 0);
+}

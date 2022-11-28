@@ -2,214 +2,315 @@
 <html lang="es">
 
 <head>
-    <!-- check User session -->
-    <script src="assets/js/jquery/dist/jquery.min.js"></script>
-    <script src="assets/js/session.js"></script>
-    <script>
-        Session.Check();
-    </script>
-    <!-- /End check -->
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link rel="icon" href="images/favicon.ico" type="image/ico" /> -->
+	<!-- check User session -->
+	<script src="assets/js/jquery/dist/jquery.min.js"></script>
+	<script src="assets/js/session.js"></script>
+	<script>
+		Session.Check();
+	</script>
+	<!-- /End check -->
+	<meta http-equiv="Content-Type"
+		content="text/html; charset=UTF-8">
+	<!-- Meta, title, CSS, favicons, etc. -->
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible"
+		content="IE=edge">
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1">
+	<!-- <link rel="icon" href="images/favicon.ico" type="image/ico" /> -->
 
-    <title>Bitácora CDC | DTI</title>
+	<title>Bitácora CDC | DTI</title>
 
-    <!-- Bootstrap -->
-    <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="vendors/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <!-- Datatables -->
-    <link href="vendors/datatables.net/datatables.min.css" rel="stylesheet">
-    <link href="vendors/datatables.net/DataTables-1.10.18/css/dataTables.bootstrap.min.css" rel="stylesheet">
-    <!-- SweetAlert -->
-    <link href="vendors/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
-    <!-- RangePicker -->
-    <link href="vendors/daterangepicker/daterangepicker.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="vendors/nprogress/nprogress.css" rel="stylesheet">
-    <!-- bootstrap-daterangepicker -->
-    <link href="vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-    <!-- Custom Theme Style -->
-    <link href="assets/css/custom.min.css" rel="stylesheet">
-    <link href="assets/css/modal_accordion_formulario_ingreso.css" rel="stylesheet">
+	<!-- Bootstrap -->
+	<link href="vendors/bootstrap/dist/css/bootstrap.min.css"
+		rel="stylesheet">
+	<!-- Font Awesome -->
+	<link href="vendors/font-awesome-4.7.0/css/font-awesome.min.css"
+		rel="stylesheet">
+	<!-- Datatables -->
+	<link href="vendors/datatables.net/datatables.min.css"
+		rel="stylesheet">
+	<link href="vendors/datatables.net/DataTables-1.10.18/css/dataTables.bootstrap.min.css"
+		rel="stylesheet">
+	<!-- SweetAlert -->
+	<link href="vendors/sweetalert2/dist/sweetalert2.min.css"
+		rel="stylesheet">
+	<!-- RangePicker -->
+	<link href="vendors/daterangepicker/daterangepicker.css"
+		rel="stylesheet">
+	<!-- NProgress -->
+	<link href="vendors/nprogress/nprogress.css"
+		rel="stylesheet">
+	<!-- bootstrap-daterangepicker -->
+	<link href="vendors/bootstrap-daterangepicker/daterangepicker.css"
+		rel="stylesheet">
+	<!-- Custom Theme Style -->
+	<link href="assets/css/custom.min.css"
+		rel="stylesheet">
+	<link href="assets/css/modal_accordion_formulario_ingreso.css"
+		rel="stylesheet">
 
-    <link href='vendors/select2/css/select2.css' rel='stylesheet' type='text/css'>
+	<link href='vendors/select2/css/select2.css'
+		rel='stylesheet'
+		type='text/css'>
 
 
 
 </head>
 
 <body class="nav-md">
-    <div class="container body">
-        <div class="main_container">
-            <div class="col-md-3 left_col">
-                <div class="left_col scroll-view">
-                    <div class="navbar nav_title" style="border: 0;">
-                        <a href="index.html" class="site_title"><i class="fa fa-bullhorn"></i> <span>Centros de Datos
-                                Corporativos
-                            </span></a>
-                    </div>
+	<div class="container body">
+		<div class="main_container">
+			<div class="col-md-3 left_col">
+				<div class="left_col scroll-view">
+					<div class="navbar nav_title"
+						style="border: 0;">
+						<a href="index.html"
+							class="site_title"><i class="fa fa-bullhorn"></i> <span>Centros de Datos
+								Corporativos
+							</span></a>
+					</div>
 
-                    <div class="clearfix"></div>
+					<div class="clearfix"></div>
 
-                    <!-- menu profile quick info -->
-                    <div class="profile clearfix">
-                        <div class="profile_pic">
-                            <img src="images/LogoICESmall.png" alt="..."
-                                style="width:70px;height:70px;border-radius:50%;margin-top:10%">
-                        </div>
-                        <div class="profile_info">
-                            <span><span>Bienvenido,</span></span>
-                            <h2>Usuario de Seguridad</h2>
-                        </div>
-                    </div>
-                    <!-- /menu profile quick info -->
+					<!-- menu profile quick info -->
+					<div class="profile clearfix">
+						<div class="profile_pic">
+							<img src="images/LogoICESmall.png"
+								alt="..."
+								style="width:70px;height:70px;border-radius:50%;margin-top:10%">
+						</div>
+						<div class="profile_info">
+							<span><span>Bienvenido,</span></span>
+							<h2>Usuario de Seguridad</h2>
+						</div>
+					</div>
+					<!-- /menu profile quick info -->
 
-                    <br />
+					<br />
 
-                    <!-- sidebar menu -->
-                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-                        <div class="menu_section">
-                            <h3 id='call_userName'></h3>
-                            <ul id="menubox" class="nav side-menu">
+					<!-- sidebar menu -->
+					<div id="sidebar-menu"
+						class="main_menu_side hidden-print main_menu">
+						<div class="menu_section">
+							<h3 id='call_userName'></h3>
+							<ul id="menubox"
+								class="nav side-menu">
 
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- /sidebar menu -->
-                </div>
-            </div>
+							</ul>
+						</div>
+					</div>
+					<!-- /sidebar menu -->
+				</div>
+			</div>
 
-            <!-- top navigation -->
-            <div class="top_nav">
-                <div class="nav_menu">
-                    <nav>
-                        <div class="nav toggle">
-                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-                        </div>
+			<!-- top navigation -->
+			<div class="top_nav">
+				<div class="nav_menu">
+					<nav>
+						<div class="nav toggle">
+							<a id="menu_toggle"><i class="fa fa-bars"></i></a>
+						</div>
 
-                        <ul class="nav navbar-nav navbar-right">
-                            <li class="">
-                                <a id="call_name" href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <img src="images/img.png" alt="">Usuario de Seguridad
-                                    <span class=" fa fa-angle-down"></span>
-                                </a>
-                                <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Salir</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-            <!-- /top navigation -->
+						<ul class="nav navbar-nav navbar-right">
+							<li class="">
+								<a id="call_name"
+									href="javascript:;"
+									class="user-profile dropdown-toggle"
+									data-toggle="dropdown"
+									aria-expanded="false">
+									<img src="images/img.png"
+										alt="">Usuario de Seguridad
+									<span class=" fa fa-angle-down"></span>
+								</a>
+								<ul class="dropdown-menu dropdown-usermenu pull-right">
+									<li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Salir</a></li>
+								</ul>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+			<!-- /top navigation -->
 
-            <!-- page content -->
-            <div class="right_col" role="main">
-                <div class="">
-                    <div class="page-title">
-                        <div class="title_left">
-                            <h3>Gestión de Roles <small></small></h3>
-                        </div>
-                    </div>
+			<!-- page content -->
+			<div class="right_col"
+				role="main">
+				<div class="">
+					<div class="page-title">
+						<div class="title_left">
+							<h3>Gestión de Roles <small></small></h3>
+						</div>
+					</div>
 
-                    <div class="clearfix"></div>
+					<div class="clearfix"></div>
 
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                            <div class="x_panel">
-                                <div class="x_title">
-                                    <button id="btn_abrirModal_NuevoUsuario" type="button" class="btn btn-primary">Crear
-                                        Nuevo Rol</button>
-                                    <div class="nav navbar-right panel_toolbox">
+					<div class="row">
+						<div class="col-md-12 col-sm-12 col-xs-12">
+							<div class="x_panel">
+								<div class="x_title">
+									<button id="btn_abrirModal_NuevoRol"
+										type="button"
+										class="btn btn-primary">Crear
+										Nuevo Rol</button>
+									<div class="nav navbar-right panel_toolbox">
 
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="x_content">
-                                    <div class="container">
-                                        <ul class="nav nav-tabs">
-                                            <li class="active">
-                                                <a href="#tab_roles" data-toggle="tab">Roles</a>
-                                            </li>
-                                            <li><a href="#tab_eventos" data-toggle="tab">Eventos</a>
-                                            </li>
-                                        </ul>
-                                        <div class="tab-content ">
-                                            <br>
-                                            <div class="tab-pane active" id="tab_usuarios">
-                                                <div class="table-responsive">
-                                                    <table id="tb_roles"
-                                                        class="table table-striped jambo_table bulk_action">
-                                                        <thead>
-                                                        </thead>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+								<div class="x_content">
+									<div class="container">
+										<ul class="nav nav-tabs">
+											<li class="active">
+												<a href="#tab_roles"
+													data-toggle="tab">Roles</a>
+											</li>
+											<li><a href="#tab_eventos"
+													data-toggle="tab">Eventos</a>
+											</li>
+										</ul>
+										<div class="tab-content">
+											<br>
+											<div class="tab-pane active"
+												id="tab_roles">
+												<div class="table-responsive">
+													<table id="tb_roles"
+														class="table table-striped jambo_table bulk_action">
+														<thead>
+														</thead>
 
-                                                        <tbody>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                            <div class="tab-pane" id="tab_responsables">
-                                                <div class="table-responsive">
-                                                    <table id="tb_roles"
-                                                        class="table table-striped jambo_table bulk_action">
-                                                        <thead>
-                                                        </thead>
+														<tbody>
+														</tbody>
+													</table>
+												</div>
+											</div>
+											<div class="tab-pane"
+												id="tab_eventos">
+												<div class="table-responsive">
+													<table id="tb_eventos"
+														class="table table-striped jambo_table bulk_action">
+														<thead>
+														</thead>
 
-                                                        <tbody>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /page content -->
+														<tbody>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /page content -->
+
+					<!--Modal Crear usuario -->
+					<div class="modal fade"
+						id="modal_NuevoRol">
+						<div class="modal-dialog modal-lg">
+							<div class="modal-content">
+
+								<!-- Modal Header -->
+								<div class="modal-header">
+									<h4 class="modal-title">Crear Nuevo Rol</h4>
+									<button type="button"
+										class="close"
+										data-dismiss="modal">&times;</button>
+								</div>
+
+								<!-- Modal body -->
+								<div class="modal-body">
 
 
-                    <!-- footer content -->
-                    <footer>
-                        <div class="pull-right">
-                            Operaciones TI - DTI - Instituto Costarricense de Electricidad
-                        </div>
-                        <div class="clearfix"></div>
-                    </footer>
-                    <!-- /footer content -->
-                </div>
-            </div>
+									<div class="row">
+										<div class="col-md-6">
 
-            <!-- jQuery -->
-            <script src="assets/js/jquery/dist/jquery.min.js"></script>
-            <!-- Bootstrap -->
-            <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-            <!-- JS dataTables -->
-            <script src="vendors/datatables.net/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
-            <script src="vendors/datatables.net/DataTables-1.10.18/js/dataTables.bootstrap.min.js"></script>
-            <!-- NProgress -->
-            <script src="vendors/nprogress/nprogress.js"></script>
-            <!-- bootstrap-progressbar -->
-            <script src="vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-            <!-- Seleect2 -->
-            <script src='vendors/select2/js/select2.js'></script>
-            <!-- Moment -->
-            <script src="vendors/moment/moment.min.js"></script>
-            <script src="vendors/moment/locale/es.js"></script>
-            <!-- SweetAlert2 -->
-            <script src="vendors/sweetalert2/dist/sweetalert2.js"></script>
-            <!-- bootstrap-daterangepicker -->
-            <script src="vendors/daterangepicker/daterangepicker.min.js"></script>
-            <!-- Custom Theme Scripts -->
-            <script src="assets/js/custom.js"></script>
-            <script src="assets/js/usuario.js"></script>
-            <script src="assets/js/rol.js"></script>
+											<div class="panel panel-default">
+												<div class="panel-heading">
+													<h3 class="panel-title">Nuevo Rol</h3>
+												</div>
+												<div class="panel-body">
+
+
+
+													<form class="form-horizontal">
+														<div class="form-group">
+															<label for="inp_nombreRol"
+																class="col-md-3 control-label">Nombre Rol:</label>
+														</div>
+														<div class="col-md-12">
+															<input type="text"
+																class="form-control"
+																id="inp_nombreRol"
+																name="inp_nombreRol"
+																placeholder="Ingrese el nombre del nuevo rol">
+														</div>
+													</form>
+												</div>
+											</div>
+										</div> <!-- //Cierra -->
+										<div class="col-md-6">
+											<div class="panel panel-default">
+												<div class="panel-heading">
+													<h3 class="panel-title">Eventos</h3>
+												</div>
+												<div class="panel-body">
+													<div id="chkbox_rol"
+														class="checkbox">
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<br>
+									<!-- Modal footer -->
+									<div class="modal-footer">
+										<button type="button"
+											class="btn btn-primary"
+											id="btn_guardarRol">Agregar</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- footer content -->
+					<footer>
+						<div class="pull-right">
+							Operaciones TI - DTI - Instituto Costarricense de Electricidad
+						</div>
+						<div class="clearfix"></div>
+					</footer>
+					<!-- /footer content -->
+				</div>
+			</div>
+
+			<!-- jQuery -->
+			<script src="assets/js/jquery/dist/jquery.min.js"></script>
+			<!-- Bootstrap -->
+			<script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+			<!-- JS dataTables -->
+			<script src="vendors/datatables.net/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
+			<script src="vendors/datatables.net/DataTables-1.10.18/js/dataTables.bootstrap.min.js"></script>
+			<!-- NProgress -->
+			<script src="vendors/nprogress/nprogress.js"></script>
+			<!-- bootstrap-progressbar -->
+			<script src="vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+			<!-- Seleect2 -->
+			<script src='vendors/select2/js/select2.js'></script>
+			<!-- Moment -->
+			<script src="vendors/moment/moment.min.js"></script>
+			<script src="vendors/moment/locale/es.js"></script>
+			<!-- SweetAlert2 -->
+			<script src="vendors/sweetalert2/dist/sweetalert2.js"></script>
+			<!-- bootstrap-daterangepicker -->
+			<script src="vendors/daterangepicker/daterangepicker.min.js"></script>
+			<!-- Custom Theme Scripts -->
+			<script src="assets/js/custom.js"></script>
+			<script src="assets/js/usuario.js"></script>
+			<script src="assets/js/rol.js"></script>
+			<script src="assets/js/evento.js"></script>
 
 </body>
 
@@ -217,11 +318,52 @@
 
 <script>
 
-    var update = false;
+	var update = false;
 
-    $(document).ready(function () {
+	$(document).ready(function () {
+		rol.tb_readAll;
+		var eventos;
+		eventos = evento.readAll;
 
-        rol.tb_readAll;
 
-    })
+
+		$("#btn_guardarRol").click(function () {
+			// rol.id = null;
+			// rol.nombre = $("#inp_nombreRol").val();
+			rol.eventosXrol = [];
+
+			$.each($("#chkbox_rol").find("input"), function (i, item) {
+					if ($(item).prop("checked")) {
+						rol.eventosXrol.push($(item).val());
+					}
+			});
+			rol.update;
+		});
+
+
+		$("#btn_abrirModal_NuevoRol").click(function () {
+			rol.clearRolxEventos;
+			update = false;
+			$("#btn_guardarRol").text("Crear");
+			$("#modal_NuevoRol").modal("toggle");
+		});
+
+
+		// $('#tb_roles tbody').on('click', 'tr', function () {
+		// 	update = true;
+		// 	rol.id = $('#tb_roles').DataTable().row(this).data().id;
+		// 	rol.nombre = $('#tb_roles').DataTable().row(this).data().text;
+		// 	evento.readEventosxRol(rol.id);
+		// 	$("#inp_nombreRol").val(rol.nombre);
+
+		// 	$("#btn_guardarRol").text("Actualizar");
+		// 	$("#modal_NuevoRol").modal("toggle");
+		// });
+	})
+
+
+
+
+
+
 </script>
